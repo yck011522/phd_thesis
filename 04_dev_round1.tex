@@ -648,9 +648,9 @@ Possible Solution and Follow-Up
 
 The most obvious solution to this issue was to use the robotic arm to support the weight of the moving beam. Since the robotic arm was designed to transfer the timber beam to the clamps, it simply has to keep holding it while it moves. The beam gripper would then release the beam after the joints are securely clamped. There are two conflicting concerns regarding this concept:
 \begin{itemize}
-\item It is a solution with very little or no additional hardware requirements, therefore it is easy to implement from the hardware perspective.
-\item The design of clamps can be simplified because it no longer has to support the beam, making them easier to build and lighter weight.
-\item The movement of the robot and the clamps will have to be synchronised. This is known to be possible in industrial settings where external axes are integrated with the robot arm’s motion controller. However, synchronising it with an experimental remote-controlled device has no precedence, tThe programming and control implementation is likely to be difficult.
+    \item It is a solution with very little or no additional hardware requirements, therefore it is easy to implement from the hardware perspective.
+    \item The design of clamps can be simplified because it no longer has to support the beam, making them easier to build and lighter weight.
+    \item The movement of the robot and the clamps will have to be synchronised. This is known to be possible in industrial settings where external axes are integrated with the robot arm’s motion controller. However, synchronising it with an experimental remote-controlled device has no precedence, tThe programming and control implementation is likely to be difficult.
 \end{itemize}
 After trying to find alternative solutions with no avail. The decision was made to pursue the synchronisation and control problem. Although a working hypothesis was created and tested in the next Dev Round 2 (see 5.2.3 Synchronisation between Clamp and RFL Robot). This pursuit would eventually lead to the discovery of many technical problems that were rarely discussed in the field of digital fabrication. Nevertheless, the Clamp and Arm synchronised Motion would be solved in Dev Round 4 and 5.
 

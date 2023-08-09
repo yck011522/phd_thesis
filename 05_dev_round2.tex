@@ -1,0 +1,1029 @@
+\chapter{Development Round 2 - Bus Stop Demonstrator}
+
+\section{Goal}
+
+The goal of the second round is to extend the proof of concept shown in the previous development to create the first technology demonstration that can assemble a timber frame structure. The robotic operations were still based on the operations listed in 4.1.4 DiRT Clamping Assembly Process Task List (v1). However, since the discovery in 4.5.5 Beam Support Needed During Clamping, the ClampSyncAssembly motion has been revised to use the robotic arm to support the weight of the beam while the clamps operate, the new motion is referred to as RobotClampSyncLM.
+In addition, based on the findings in 4.5.6 Design Study using Orthogonal Lap Joint, the intention is to jump to variable-angle jap joints with the agenda to create a more architecturally relevant demonstrator. 
+The development strategy for this round was to create a minimum viable product (MVP) for performing the demo. The intention was to provide quick feedback, guide the subsequent development rounds and avoid conducting unnecessary development work. 
+
+\subsection{Scope for the First Large-Scale Demonstration}
+
+Being the first demonstration with the robotic arms, the scope of the robotic assembly demonstration included only the BeamTransfer and the RobotClampSyncLM. The other robotic movements such as material pickup, tool change, attach and detach clamps, gripper retract and gripper transit are performed manually or are guided by an operator using the joystick on the ABB robot controller’s teach pendant.
+These two movements were chosen because they represent two of the most important robotic movements - Free Motion and Linear Motion. See later Section 5.2.2 RFL Robotic Platform and 5.2.7 Motion Planning for details regarding the difference between the two. In addition, the RobotClampSyncLM also requires synchronised motion between the robotic arm and the clamps.
+The following features and functionalities were identified to be essential for this demonstration:
+\begin{itemize}
+    \item Mechatronics
+    \begin{itemize}
+        \item Redesign clamp actuator to survive mechanical stall
+        \item Redesign clamp body to cope with variable angles
+        \item Simplify attachment mechanism
+        \item Improve electronics to include battery and wireless module
+        \item Develop Parallel Gripper
+    \end{itemize}
+    \item Firmware
+    \begin{itemize}
+        \item Develop wireless communication network
+        \item Develop wireless control and command system for multiple clamps
+        \item Develop synchronisation method between the robotic arm and clamps
+    \end{itemize}
+    \item CAD Modeling software 
+        \begin{itemize}
+        \item Develop data structure for beams and joints and process parameters
+        \item Develop user Interface for modelling and visualisation
+        \end{itemize}
+    \item CAM Process software
+        \begin{itemize}
+        \item Develop software to call motion planning routine
+        \end{itemize}
+\end{itemize}
+
+\section{Literature Review}
+\subsection{Parametric Variations of Lap Joints}
+In order to guide both software and hardware (clamp) development towards variable-angle lap joints, the first task is to define the scope of variations. The following diagram shows the intent of the variable angle lap joint, which starts from a prototypical lap joint (a). Series (b) describes the parametric angle variations of the joint depending on the intersection angle of the two beams. At the same time, the intention was to design the clamp to accommodate different topological variations of lap joints as shown in series (c).
+
+In order to simplify the clamping method, these intersecting beams have to contain co-planar faces similar to the orthogonal joint in the last round. In other words, the lap joint also has to be flush after it is assembled. Lap joints with co-planar faces have a few special properties that are useful for designing the clamp and the design software:
+
+\begin{itemize}
+    \item The assembly direction is perpendicular to the co-planar surface
+    \item The assembly direction can be found from the cross product of the two intersecting vectors.
+    \item The joint design can be easily ‘flipped’ to change the assembly directly to the opposite direction.
+    \item It is easy to clamp over two parallel faces over the two mating beams
+\end{itemize}
+
+\subsection{RFL Robotic Platform}
+The demonstration of this Dev Round was performed in the Robotic Fabrication Laboratory (RFL) (see also 3.3.2 Laboratory Context). The RFL robotic platform consists of four ABB IRB 4600-40-2.55 six-axis spherical wrist robotic arms, mounted on a custom 3-axis gantry system developed by Güdel Group AG, Switzerland. It covers a large free space (43 by 16 by 8 metres) where robotic manipulations can be tested. The maximum reach of the robotic arm is 2.55m from its base at the gantry, and its maximum payload is 40kg.
+
+The picture below shows the industrial robotic arms and the gantry. The four Z-axis telescopic axis can be seen extended to a low position. Two robotic arms and their Z-axis are grouped to share the same gantry, which can move in the longitudinal X direction. In total, there are two gantries.
+
+The drawing below shows the reachability and construction envelope under the robotic gantry. The blue area is the maximum height (5.7m) for an object to be reachable by the robotic arm without impeding the gantry movements. However, in practice, it would be difficult for the robotic arm to reach the top of such a tall object. The measurement on the right shows the clearance height of the robot when it is retracted. Objects below this height (4m) would still allow the robot to move above it. 
+
+All of the robotic demonstrations in this thesis used only one of the robotic arms and its associated 3-axis gantry system. This resulted in a 9 DOF robotic system. The second robotic arm and its two-axis cart mounted on the same gantry were placed in a parked position during the process.
+All nine axes are controlled by a single ABB IRC5 Robot Controller. It can perform synchronous interpolated motions with all 9 axes simultaneously. This thesis used two types of motion commands: 
+
+\begin{itemize}
+    \item interpolated joint motion (MoveAbsJ in ABB’s terminology)
+    \item interpolated linear motion in Cartesian space (MoveL in ABB’s terminology)
+\end{itemize}
+
+These motion commands are the basic building block of a complex robotic programme. Each of the motion commands supports the definition of one target, which instructs the robot to move its End Flange from its current position to the target. In the case of linear movement, the flange frame will trace out a straight line in Cartesian space. In the case of joint motion, the trace is a straight line when seen in a joint position - time plot, a.k.a. Joint Space.
+In practice, it is common to chain together a number of motion commands for more detailed control. This allows the addition of Intermediate Targets before the final target is reached; these targets are called Waypoints. In the context of this thesis, these chained motions are very common because of the need to avoid obstacles.
+
+\subsection{Synchronisation between Clamp and RFL Robot}
+In order to perform the RobotClampSyncLM motion, a synchronisation method is needed between the clamps and the RFL robot. The method used in this round of development is a very simple concept that only requires the robot and clamps to
+\begin{itemize}
+    \item Share the same motion profile parameters.
+    \item Start their motion together.
+\end{itemize}
+    A motion profile is a mathematical representation of the motion of a robotic part (e.g. flange of the robot and the jaw of the clamp), which defines its position, velocity, and acceleration over time. One of the most common motion profiles used in robotics, and also used for the purpose of this synchronisation, is the trapezoidal motion profile (Tan et al., 2007).
+The trapezoidal motion profile is characterised by a trapezoidal shape in the velocity-time graph, consisting of three distinct phases: acceleration, constant velocity, and deceleration. The following list shows the key parameters involved in a trapezoidal motion profile and their units used in this thesis.
+\begin{itemize}
+    \item Acceleration (a), mm/s2 - The rate at which the system's velocity increases during the acceleration phase. 
+    \item Deceleration (d), mm/s2 - The rate at which the system's velocity decreases during the deceleration phase. Similar to acceleration, it is also expressed in mm/s2. 
+    \item Maximum velocity (v_max), mm/s - The highest velocity the system reaches during the constant velocity phase. The unit used in this thesis is mm/s. 
+    \item Total travel distance (s), mm - The total distance the system moves during the motion. 
+\end{itemize}
+
+By sharing the same motion profile parameters and initiating motion simultaneously, the clamps and the RFL robot can match their position during the entire RobotClampSyncLM motion.
+
+\subsection{Distributed Control System}
+In order to develop a new control system for the clamps and to allow its synchronised motion with the robotic arm. I adopted the concept of Distributed Control System (DCS) from the field of industrial process control. This approach divides a complex system into individual control loops that are assigned to individual controllers. This makes the development process easier because individual controllers can have simpler control functions and can be tested with less complexity. It is also easier to adapt the system to new requirements in later development rounds. 
+
+Below is a typical implementation diagram of DCS showing four functional levels. Level 0 refers to the physical hardware, such as actuators and sensors. Higher levels are controllers, such as control code in embedded systems and those running on a PC. In the context of this thesis, only controllers from levels 1 to 3 are involved.
+
+In the rest of the thesis, the Level prefix (L1, L2, L3) will be appended to the controller name wherever needed to improve clarity and avoid ambiguity.
+
+Note that the term ‘distributed’ in the name DCS does not imply decentralised control. Controllers in a DCS system typically form a tree-like hierarchical structure, with a top-level controller exercising overall control. A communication network and protocol are needed to allow communication between them. 
+
+In the following system diagram, the controllers used in this development are listed according to their hierarchical structure. The communication mechanism between each controller is included in the table below.
+
+Parent Controller
+Child Controller
+Communication
+L3 Process Controller
+L2 Clamp Controller
+Custom, G-Code-like Commands, communicated over ROS via roslibpy via ros_bridge
+L2 Clamp Controller
+L1 Clamp Firmware
+Custom, G-Code-like Commands over custom radio wireless network
+(see 5.3.9 CL3 Firmware)
+L3 Process Controller
+L2 ROS-RRC Driver 
+Instructions * implemented in compas_rrc, communicated over ROS via roslibpy via ros_bridge
+L2 ROS-RRC Driver 
+L2 RRC Server
+Protocol * implemented in compas_rrc over ROS
+
+* Controllers and protocol with an asterisk are open source software and were not implemented by the author.
+
+The L3 Process Execution Controller (see 5.3.15 Process Execution Controller) and L2 Clamp Controller (see 5.3.12 Clamp Controller (L2)) are new developments in this round. The L1 Clamp Firmware (see 5.3.9 CL3 Firmware) requires an upgrade from the one developed in the previous round. 
+
+The use of compas_rrc, which contains the ROS-RRC Driver and the RRC Server in RobotWare, was dictated by the laboratory setup and is outside of the author’s control. However, its functionality is appreciated by the needs of this project as it provides an abstracted communication layer over the ABB robot controller. It offers an easy-to-use interface that can be accessed by the Level 3 Process Controller to stream commands to the robot.
+\subsection{Designing Joints and Assembly Sequence}
+Timber structures with integral timber joints are highly interlocked, meaning that as elements are added, previous elements may be geometrically blocked from being released. This means that the joint geometry must be carefully designed with respect to the assembly sequence to ensure that the whole structure can be assembled; this is often called assemblability. 
+
+Carpenters and designers have long known the importance of designing structures that are assemblable. Especially for complex structures such as timber roofs and timber pagodas. The design of the timber joinery and the design of the assembly sequence go hand in hand. The table below shows a general description of four properties in a timber structure in order to explain how they are intertwined.
+
+Detail Level
+Property
+Joint Level
+Joint Geometry / Joint Assembly Direction / Geometrical blocking direction 
+Beam Level
+Beam Assembly Direction
+Global / Assembly Level
+Assembly Sequence / Order of Assembly
+Global / Assembly Level
+Geometrical Arrangement / Neighbour Relationship
+
+
+Assuming a simple linear one-by-one assembly sequence, we can identify the following relationship for a specific beam X:
+
+Prior beam(s) / Already Assembled → Active Beam X → Later Beam(s) / To be Assembled
+
+Given the position arrangement of all beams, we can also identify all the neighbours for a specific beam X. For example, in the following graph, W and Y are neighbours of X.
+
+Beam X has two joints, Joint XW and XY. If the assembly sequence in the diagram is V → W → X → Y → Z, then we can determine that only joint WX is being assembled when beam X is added. This is called the Mating Joint(s). In this case, the joint can be designed in two ways, as shown in the following diagram, which has opposite assembly directions.
+
+Consider the diagram below where the structure is not assemblable. If the orange piece is the last piece in the assembly sequence, then both of its joints are mating Joints when it is added. Due to their geometrical arrangement, we can see that there are no possibilities to design the joints such that they can be assembled. 
+
+The relationship between 
+
+In order to design demonstrator structures for this thesis, the beam and joint models are essential for CNC machining, and the assembly sequence and assembly directions are essential for creating the robotic assembly programmes. In practice, an efficient CAD data structure has to be identified, and a user interface has to be developed for designers (or me, the author) to model them. In addition, it would be beneficial for the modelling software to provide some automatic checks to avoid assemblability mistakes. 
+
+Note that although these modelling functions are essential to our robotic processes, they are generic to all timber joint-related designs. Therefore I refer them to the CAD aspects of the design software development, denoting their process-agnostic nature.
+
+\subsection{CAD Modelling}
+The use of computational design tools in timber construction is well-established. Timber-specific CAD programmes like CADWORK have been employed for decades, allowing designers and timber engineers to create detailed models of timber structures, joint geometry and fasteners using a Graphical User Interface (GUI). 
+While none of these programmes are specifically designed for timber frame construction, some of their generic functionalities can be utilised for modelling them:
+    \begin{itemize}
+    \item Interactive modelling of timber elements (e.g. columns, beams, rafters)
+        \begin{itemize}
+        \item Adjustment of beam section sizes, extension of their length
+        \item Adjustment of beam position and orientation
+        \end{itemize}
+    \item Detection of intersecting and neighbouring beams
+        \begin{itemize}
+        \item To Identify possible joint locations
+        \item To perform an interference check
+        \end{itemize}
+    \item Identification of possible joint topology (e.g. splice joint, T connection, X connection) for the designer to ‘attach’ a joint
+        \begin{itemize}
+        \item Provides a catalogue of joints for the designer to choose from
+        \item Parametric customisation (add image of the topology offered by CADWORKS)
+        \end{itemize}
+     \item Visualisation of timber elements
+        \begin{itemize}
+        \item Overall visualisation of entire assembly or subassembly
+        \item Element-by-element visualisation showing joint processing locations
+        \end{itemize}
+    \end{itemize}
+
+Unfortunately, the existing practice in computation timber design is only concerned with designing a static structure. The assembly sequences and assembly directions are often simple enough for designers to check them manually. Therefore none of these programmes provides methods to model them, let alone visualise them or check them for their assemblability. 
+
+The CAD model of these programmes, which contain not only geometrical definitions but also beam neighbour relationships, joint types and their customizations, are proprietary and inaccessible to third-party software. It is only possible to export the geometric information for downstream operations such as CNC machining (using the previously introduced BTLx file format) and the creation of assembly drawings. This means that it is not possible to start modelling in these programmes and reuse their CAD model for robotic assembly. 
+
+Moreover, until the beginning of this thesis (summer of 2019), these software programmes had not yet embraced the idea of plugins, meaning that it was not possible to extend their functions with custom software code for modelling robotic processes. This led to the decision that a custom CAD modelling solution has to be developed for the purpose of this thesis to design demonstrator structures that can be assembled robotically.
+
+COMPAS framework
+
+The problem of closed data structures and closed computing frameworks has been a major obstacle to interdisciplinary collaboration. One of the most promising solutions to address it is the COMPAS computational framework (Mele & others, 2017). Its development stems from the need to address the limitations of existing software programs in the field of architecture, engineering, and construction.
+
+It revolves around the idea of using transparent, accessible, and standardised data formats that can be easily shared, manipulated, and understood by various software tools and users. In other words, the encoding of data is not dependent on any specific CAD software implementation. This enables smooth integration and communication between diverse software systems for user interface, graphical visualisation, and computational algorithms, catering for different fields of expertise. In addition, COMPAS offers a wide range of libraries and tools for computational geometry, structural analysis, and robotic control, which can be combined and customised for the purpose of this thesis. The L2 robot control library mentioned earlier, compas_rrc (Fleischmann et al., 2020) (see 5.2.4 Distributed Control System), is also based on the COMPAS framework.
+
+Given the flexible and collaborative nature of the COMPAS framework, I have chosen to adopt it for developing the computational software in this thesis. By leveraging COMPAS, I can create an integrated CAD / CAM programme that allows:
+\begin{itemize}
+    \item CAD modelling - joints, beams and assembly details
+    \item CAM modelling - robots, tools and their details (see next section: CAM Modelling)
+    \item Simulation and visualisation
+    \item Interfaces with robotic planning algorithms that are needed to create the robotic programmes (see the following sections for details)
+\end{itemize}
+
+\subsection{Motion Planning}
+
+Motion planning is a critical aspect of creating programmes for robots, such as the RFL robotic platform used in this thesis. (footnote: For the discussion of robotic planning, I’ll use the term ‘robot’ to refer to the entire kinematic chain of the RFL robot, including the 3 linear rails of the gantry and the 6 rotary joints of the robotic arm.) It refers to the process of determining the sequence of joint positions for a robot to go through, in order to achieve a specific task, such as transporting a beam from one place to another place. Motion planning is performed by Motion Planners or Planning Algorithms (LaValle, 2006), they consider the robot's kinematics, the objects attached to the robot, obstacles in the environment, and any other operational constraints to find a path that the robot can move safely to reach a destination.
+
+As stated in the research question, the general goal is to understand if robotic tasks can be planned automatically from a CAD model. Which begs the question of what inputs are needed for the motion planners and how are the planning constraints defined. In the field of motion planning, this is called defining a Planning Problem.
+
+\subsubsection{Collision Checking}
+
+A Collision Checker (CC) is a fundamental component used in motion planning. It ensures that the robot's path does not result in self-collision, or collisions with other objects, such as the partially assembled (PA) timber structure or the clamps, by evaluating the robot's movement and its surrounding environment. 
+
+By default, the CC checks for all pairwise collisions between robot links, attached objects and the environment. The only exceptions that are allowed to touch are the robot links that are connected by a joint. However, in different phases of an assembly process, some objects will require special permission to touch or penetrate another object. For example, during joint closure, the moving beam is allowed to touch the clamps and the neighbouring beams. 
+
+Typically, these permissions are specified using an Allowed Collision Matrix (ACM). It is a data structure that stores information about which pairs of objects in the environment can safely come into contact with each other.
+
+\subsubsection{Inverse Kinematics}
+
+An Inverse Kinematics (IK) Solver or Sampler is an essential component for motion planning to determine the joint angles and positions required for the robot's end-effector (the part of the robot that interacts with its environment) to achieve a specific target pose. Forward Kinematics (FK), on the other hand, is the process of calculating the end-effector's position and orientation given a set of joint angles.
+
+FK calculation is straightforward, and the equation has a closed-form analytical solution. However, IK calculation is more complex. For certain types of robots, such as the ABB IRB 4600 6-axis robotic arm used in the RFL setup, the IK equation has an analytical solution and can be computed easily. For example, using IK-Fast (Diankov & Kuffner, 2008). However, when combined with the three linear gantry axes in the RFL, the 9 DOF kinematic chain does not have a simple IK formula. In fact, the extra DOF allows the end-effector to reach a target pose with infinitely many possibilities, this is often called the null space (Craig, 2006).
+
+A common approach to solving high DOF IK is to combine random sampling with an analytical solution. For example, the custom algorithm used in this thesis will first randomly sample the three gantry axes and then solve the robotic arm potion with IK-Fast. An alternative solution is to combine random initialization with gradient descent methods such as TRAC-IK (Beeson & Ames, 2015). 
+
+\subsubsection{Motion Planner}
+
+Motion planning (MP) is the process of using an algorithm to generate robot trajectory between a starting and ending pose. The algorithms are referred to as Motion Planners.  If IK is considered a static configuration solution to reach a target, MP is the continuous solution that goes from one target to another. 
+
+There are two types of motions used in this thesis, Linear Motion (LM) and Free Motion (FM), each of which requires specialised planners. The table below compares their differences and explains how they are used: 
+
+
+Linear Motion (LM) 
+Free Motion (FM)
+End Effector and Workpiece Movement
+Straight-line motions between two points.
+Typically only the start and end positions are constrained. The in-between path is free for the planner to decide.
+Reasons for their use
+LM belongs to a class of constrained motion (Berenson et al., 2011). They are used when the exact motion path is known, such as when performing some insertion or sliding movement. Note that even though the path of the end-effector is fixed, the movement of each joint is still free for the planner to decide. For high DOF robots, this can allow the robot body to move around obstacles.
+FM allows the planner to find a valid path around obstacles by moving all the available joints; it is often used when a logical path cannot be easily defined.
+
+
+Example
+To move a beam linearly during joint closure. Because the beam’s motion is constrained by the geometry of the mating timber joints. 
+To bring a timber beam from the pickup location to the work area through tight openings of the already assembled structure.
+
+Similar to IK, Motion Planners also take into account the robot kinematics, collision objects and ACM. The following diagram shows the input and output of a typical MP computation. The general format is the same for LM and FM. Note that the starting and ending conditions of the path can be specified as either Pose (6DOF Frame) or Robot Configuration (a.k.a. Joint Values). 
+
+Typically, a configuration would be used when a known configuration is preferred. For example, going to a repetitive or calibrated (taught) target. When a Configuration is specified, the planner will use that value for the corresponding end-point of the trajectory. For targets that are novel and its configuration is not known, a Pose can be used. The planner will perform IK internally to obtain the corresponding configurations. If the planning is successful, the configurations can be extracted from the trajectory returned.
+
+For Free Motion, it is possible to specify starting, ending or both sides as configurations. However, for Linear Motion, it is common to specify no more than one side as configuration, as it can cause over-constraining problems (Berenson et al., 2011).
+
+\subsubsection{MP as a design feasibility check}
+
+Most of the motion planners rely on random searching to find collision-free paths. Therefore the planning process is stochastic, meaning the results can be different every time the computation is performed. It also means that the time needed to find a solution, if one exists, cannot be determined. 
+
+Typically, a maximum planning time is established. If a solution cannot be found within the given time, the user will need to decide whether to give it more time or to give up. These sample-based MP are also considered probabilistically complete (as in the completeness of searching algorithms), meaning that they can search the solution space completely only if given a sufficiently long time to compute (LaValle, 2006). For the solution space in the RFL setup, this can be an unrealistically long search. Therefore it is very difficult to prove that a planning problem is impossible. It is more correct to say that a motion is infeasible given the amount of computation time.
+
+For more information on state of the art regarding motion planning, please see (Garrett et al., 2021a). For related work in using motion planner as a design feasibility check, please see (Gandia et al., 2018). 
+
+\subsubsection{Selecting Motion Planning Algorithms}
+
+Motion Planning is a computationally hard problem, and there are many algorithms that have been developed to optimise their performance for application-specific scenarios (LaValle, 2006). It is critical to choose a suitable planner to find solutions efficiently. The planners that were chosen for this thesis considered two criteria:
+    \begin{itemize}
+    \item Effectiveness for high DOF robots - The RFL robotic system with 9 DOF is considered high for many planning algorithms. Typically these algorithms are benchmarked against 6 or 7 DOF robots that are common in the manufacturing or service industry.
+    \item Effectiveness over obstacles and narrow passages - The presence of the partially assembled (PA) structure presents many obstacles to the robotic movement. In addition, the robot will need to manipulate long timber elements into narrow openings of the PA structure.
+    \end{itemize}
+
+The choice and implementation of the algorithms were performed by my collaborator YiJiang Huang, who has a background in mathematics and computer science and has extensive experience in the field of robotics for construction. For details regarding the experiments and rationales, consider reading his PhD thesis (Huang, 2022). The table below summarises the planning algorithms chosen and implemented for the demonstration. They are used for all the subsequent demonstrators.
+
+Linear Motion Planner (LMP)
+Free Motion Planner (FMP)
+Planning Approach
+Sample and projection technique
+Sampling-based motion planning
+Algorithm used in this thesis
+Randomised Gradient Descent (Yao & Gupta, 2007) - combines random sampling with gradient-based local search, it is effective against non-convex objective functions, such as when facing obstacles and narrow passages.
+RRT-Connect (Kuffner Jr. & LaValle, 2000) - connects two configurations in a robot's configuration space by iteratively growing two trees, one from the start and the other from the goal, and attempting to connect them at each iteration.
+
+Motion planners are often treated as a black box in architectural application research. However, the goal of this thesis goes beyond using MP as an automatic function, but to create functions that could automatically create the input for MP, start the MP, and react to its success or failure. Just as a foreman needs to understand how to do the worker’s job to supervise them efficiently. The development of the higher-level functions required a certain level of understanding of the planning process.
+
+\subsubsection{Motion planning with COMPAS FAB}
+
+
+One important detail about the planner used in this thesis is that they are compatible with the standard motion planning interface described in the compas_fab (Rust et al., 2018). This interface is developed for standardising a Python-based interface for calling various planning algorithms that may be implemented in different languages or needs to operate on a specific operating system. For example, moveit! (Sucan & Chitta, 2018) runs on ROS (Quigley et al., 2009) in Linux. The motion planner is referred to as a backend in this context. All the backends offer CC as a standard service and offer different IK and MP algorithms. The planner implemented by YiJiang (Huang, 2020/2023) for this thesis is considered one of these backends. 
+
+This use of compas_fab motion planning interface allows easy integration with the Python-based and compas-centred CAD software infrastructure adopted in this thesis. It also allows my development to focus on the formulation of the design from the CAD model into planning requests that can be passed into this blackbox. At a later stage, this interface also serves as a division of work between me and YiJiang. He can fine-tune operating parameters on the planning algorithms and compare their performance with the same planning request.
+
+A typical planning request to the backend is referred to as a “Planning Call” or “Planning Request”. The table below shows the basic input and output for an FMP. Because of the non-repetitive nature of the assembly process, these input parameters vary from motion to motion. Note that the starting and ending targets can be specified as a Robot Configuration (a.k.a Joint values) or a Cartesian Pose (6DOF frame). If a pose is provided, the Motion planner will find a suitable configuration that will satisfy the pose.
+
+The inputs for LMP are similar, but typically only one of the two targets is provided as robot configuration. Otherwise, it may be ‘over-constrained’ and can be difficult for the planner to find a solution.
+
+
+\subsection{Executing Robotic Motion}
+
+After the motion planning stage, the trajectory is saved for later execution on the RFL robotic platform. The trajectory is a sequence of robot configurations that are designed to achieve the desired collision-free motion specified during the planning phase.
+
+In order to execute the trajectory, the L3 Process Controller (see 5.2.4 Distributed Control System) sends the list of configurations to the L2 Robot Controller via compas_rrc, and finally to the L1 RRC Server running on the ABB IRC5 Robot Controller. The L1 controller controls the robot to perform an interpolated joint motion (see 5.2.2 RFL Robotic Platform) between each configuration, effectively moving the robot from one configuration to the next.
+
+At the beginning of each trajectory, it is important to ensure that the robot starts from the same configuration as the first configuration in the trajectory. Otherwise, the robot will begin with an unplanned motion to reach the first configuration, which may cause collisions.
+
+For the subsequent waypoints, the motion is linearly interpolated in the configuration space. Typically, an industrial robotic controller will provide blending options between these straight segments. Without blending, the trajectory will become 	jerky because of the sudden change in joint velocity. Blending provides a trade-off between smooth operation and a small deviation from the waypoint. The value requires some empirical tuning and is dependent on waypoint distance and motion velocity. In this thesis, a 0.3mm blending zone was used. 
+
+\section{Development}
+
+\subsection{Ball Screw Linear Actuator}
+
+In order to continue developing the linear clamping mechanism, the first task is to address the mechanical problem observed in 4.5.2 Damaged actuator gearbox. The decision was to redesign the linear actuator from the component level because there were no suitable off-the-shelf linear actuators that could satisfy the following requirements:
+\begin{itemize}
+    \item High Pulling capacity: > 3000N
+    \item Lightweight: < 1kg
+    \item Compact: Similar form factor similar to the geometry used in the CL1 clamp.
+\end{itemize}
+
+Component Selection
+
+The selection of the following components for the initial test was largely based on intuition:
+\begin{itemize}
+    \item DC Motor 36GP-555 by Chihai Motor
+        \begin{itemize}
+        \item 8mm Output D-Shaft 
+        \item Integrated Hall Effect Encoder x 2 channels
+        \item Nominal Voltage: 12V
+        \end{itemize}
+    \item 3- Stage Planetary Gearbox in combination with the 36GP-555 motor, two gear ratios were tested.
+        \begin{itemize}
+        \item 1:51 reduction, rated at 95 RPM @ 1.7Nm
+        \item 1:100 reduction, rated at 45 rpm @ 3.0Nm
+        \end{itemize} 
+    \item  Rolled Ball Screw and Ball Nut (DIN69051)
+        \begin{itemize}
+        \item 12mm Outer Diameter x 4mm Lead x 300mm long
+        \item Basic Load Rating 1.8kN (dynamic) and 4.1kN (static)
+        \end{itemize}
+    \item Screw Support - BK10
+    \item Ball Screw Shaft Coupler 8mm ID x 20mm OD x 30 L
+        \begin{itemize}
+        \item Basic Load Rating 5Nm (dynamic) and 10Nm (static)
+        \end{itemize}
+    \end{itemize}
+
+    A simple calculation was performed using manufacturers specifications, and a conservative ball screw efficiency of 90%, using the formula:
+Pull Force (N) = Efficiency * Torque (Nm) * 2 * Pi / lead (m)
+The gearbox with 1:100 reduction with 3Nm torque:
+Pull Force (N) = 0.8 * 3 * 2 * 3.14 / 0.003
+Pull Force (N) = 5652N
+The gearbox with 1:100 reduction with 1.7Nm torque:
+Pull Force (N) = 0.8 * 1.7 * 2 * 3.14 / 0.003
+Pull Force (N) = 3202N
+Both gearbox choices are capable of delivering 3000N. The weight of the motor with the gearbox is about 480g. The assembled weight of the ball screw, nut and support is about 380g. The total implementation was below 1kg. 
+
+Validation
+
+An evaluation setup was created to test the pull force from this motor, screw and gearbox combination. The intention was to measure Pull Force against different Supply Voltage and Current Limit and repeat it for the different motor and gearbox combinations.
+The image below shows the measurement setup
+\begin{itemize}
+    \item Electronic load cell (H3-C3-1.5t-3B by Zemic)
+        \begin{itemize}
+        \item Can measure up to 15kN of pull force. 
+        \item The load cell is calibrated with the help of a pull scale that has an accuracy of 2% and resolution of 0.1kg, up to 300kg, and the range beyond the calibration was interpolated. 
+\item Data logger (PhidgetBridge 4-input by Phidget). 
+\item Lab power supply is used to provide a DC voltage from 2V to 14V. 
+        \begin{itemize}
+        \item It is set at constant voltage mode with different current limiting values from 2A to 7A. 
+        \end{itemize}
+    \end{itemize}
+
+During the test, DC voltage is applied, and the motor is allowed to run free until it is stalled. Power is then cut to avoid overheating the motor. The screw was found to rewind itself due to stalled compressive force in the mechanical system. This measurement was repeated 5 times. The maximum value recorded was considered the data point for the maximum pulling force.
+Below is the result of the two gearbox combinations:
+
+Interpretation and Follow-up
+
+
+In both plots, we can see the graph exhibiting an upward trend in response to the increase in voltage. The graph shows two distinct slopes. The first slope should correspond to the power limit imposed by the set voltage. As voltage increases, current will also increase until it is capped by the limit. Subsequent increase in the voltage becomes a fixed current system and results in the slope on the right hand side.
+
+Most of the data points in the graphs are above 3000N, which means that either system is very capable of delivering the pull force required. Considering that a LiPo battery can supply much more current in the range of 50 to 100A, the motor driver tested in the previous round will likely be the limiting factor at 7A. Even in this case, the output is more than sufficient. 
+
+Therefore it is safe to conclude that the 1:51 gearbox is likely to be sufficient for the purpose and it will spin nearly double the speed of the 1:100 version.
+
+Note that this screw implementation did not contain any linear guide. The linear guide is implemented later with the clamp jaw. This avoids a redundant linear guide within the actuator if it was purchased as an stand-alone integrated module, which helped keep the weight low.  
+
+\subsection{Clamp Jaw Design}
+
+The goal of this jaw design exercise is to address the unstable design found in the SL1 Clamp jaws, due to the use of circular bronze bushing around a circular shaft. In addition, the test setup from the actuator development is adapted for verifying the pull force when the actuator is combined with the clamp jaw design.
+
+The main improvement of the jaw design is the use of a square profile linear guide rail with recirculating ball bearings blocks. This type of guide rail can provide the necessary rotational resistance that was missing in the previous design. However, linear guides are also weaker than bushing when a large static load is applied, such as during clamping.
+
+An empirical approach was adopted to understand the following issues:
+\begin{itemize}
+\item Will the Linear Guide be damaged by the clamping force?
+\item What is the ideal spacing between the bearings
+\item Can the linear guide be mounted without back support?
+    \begin{itemize}
+    \item To save some weight and manufacturing cost
+    \end{itemize}
+\end{itemize}
+
+    The linear guide rail selected is a generic brand linear guide with geometry similar to Hiwin HGL15CA. The width and height of the rail are 15mm x 15mm, and the total width and height including the bearing block are 34mm x 24mm. There is no preload in the bearing blocks because they were not available from the manufacturer. The choice of using a generic brand was a budget concern despite worry over its performance. It is hoped that the empirical testing here can validate its performance.
+
+The following image shows an L shaped aluminium plate used to simulate the geometry of the clamp jaw and allow two linear guide bearings to be positioned at different spacing. The load cell is attached to the middle of the jaw to simulate the centre of pressure when clamping on the timber joint.
+
+
+Validation
+
+A number of tests were conducted, similar to the development of the linear actuator. The general approach was to test the safe configuration first before moving to a more risky one that may damage the components. Fortunately, no components were damaged in the end.
+
+Test 1: Pull Force Test
+
+Similar to the previous screw pull force test with the 1:51 gearbox but with the clamp jaw and the linear rail. The purpose is to see the difference after the addition of the jaw components. The results can be seen in the plot below. The data points for the 7A line are comparable to the previous test in the 3000N to 5000N range. 
+
+
+Test 2: Spacing between linear bearings
+
+The purpose is to investigate the effect of different spacing between the two linear guide bearings. The testing jaw allows mounting the bearings in 5 possible spacings (measured centre to centre): 74mm, 87mm, 100mm, 126mm, and 152mm. The DC power supply is configured to a constant current mode for easier comparison, only one data point is needed for each current. 
+
+The results can be seen in the plot below. The effect of bearing spacing did not have a significant impact on the pull force. The L-shape clamp jaw deformed in each of these pull tests, but it appeared to be within a reasonable amount and it always elastically returned to its original shape after the load was released. No damage is observed on the linear rail in all the scenarios. The conclusion was that the bearing could be placed as close as possible.
+
+Test 3 - Free Floating Linear Rail
+
+In the previous test, the entire length of the linear guide was mounted on the aluminium plate backing. This test is to determine if the backing is unnecessary. Removing the backing could potentially make the clamp design simpler.
+
+Two of the mounting screws towards the jaw direction were removed, effectively leaving the guide rail itself as the support. The same pulling test was performed again with the 74mm bearing spacing and with 7A of current.
+
+The result was a similar amount of deflection of the clamp jaw as the previous test. The linear guide rail did not appear to deform. No damage was observed on the guide rail or the bearings. The conclusion is the backing can be omitted.
+
+\subsection{Lap Clamp CL2 Hardware}
+
+The Lap Clamp CL2 is a progressive improvement from CL1 (see 4.3.1 Lap Clamp CL1 - Proof of Concept). The following list shows the major improvements and the means to achieve them. Details can be found in the descriptions that followed:
+\begin{enumerate}
+\item Strong linear actuator that will not damage itself
+    \begin{itemize}
+        \item Ball screw actuator (instead of an integrated linear actuator); see 5.3.1 Ball Screw Linear Actuator for details.
+    \end{itemize}
+\item Better stability of the clamp jaw 
+    \begin{itemize}
+    \item Linear guide with square rails (instead of round shaft); see 5.3.2 Clamp Jaw design for details.
+    \end{itemize}
+\item Faster machining time for custom parts
+    \begin{itemize}
+    \item Optimised parts design (see below)
+    \end{itemize}
+\item Non-backdrivable clamp
+    \begin{itemize}
+    \item Gearbox with worm-gear instead of a planetary gearbox (see below)
+    \end{itemize}
+\end{enumerate}
+
+Design Considerations
+
+In order to save machining time, the clamp jaw was redesigned. The drawing below shows the jaw in CL1 (left) that was constructed out of aluminium sheets and bolted together. The new design for CL2 (right) features a solid aluminium body that requires less fabrication time and is more rigid. 
+
+The following drawing shows a preliminary design of the CL2 clamp. The adoption of the motor 36GP-555 with a planetary gearbox resulted in a design where the motor extended behind the docking adapter of the clamp. This was undesirable because the robot arm could damage the motor if there were a collision. 
+
+An alternative solution was found to use a worm gearbox such that the output shaft is rotated by 90 degrees. This resulted in a more compact design shown in the drawings below. In addition, the use of worm gear in the drive train prevents back driving seen in the tests of 5.3.1 Ball Screw Linear Actuator. This will allow the clamp to hold position against external forces without exerting motor power, enhancing the safety of the device to prevent unintended motion.
+
+Worm Gearbox Validation
+
+Because worm gearboxes are known to have significantly lower efficiency than planetary gearboxes, additional tests were conducted to select a suitable gearbox and to verify its pull force. The gearbox GW4058 by Chihai Motor models was identified to have a compatible size and is able to interface with the same DC motor 36GP-555. Two gear ratios (1:54 and 1:72) were tested with a setup similar to the last test in 5.3.2 Clamp Jaw design. The following plot shows the result:
+
+It was surprising to see that the 1:54 gearbox performed better than the 1:72 gearbox. This was probably due to the 1:72 gearbox having lower efficiency. Compared with the previous test with the 1:51 planetary gearbox, the pull force is much lower. At 7A 12V the worm gear pulled 2900N, compared to 5100N by the planetary.
+
+Li-Po Battery Test
+
+Because of the relatively low pulling result with the worm drive, a follow-up test was performed using the 4-Cell Lipo Battery (14.8V 1300mAh 45-90C) that can theoretically provide more current. I do not have the right equipment to quantify the current, but it is sufficient to observe the amount of pulled force. The tests were repeated multiple times, and the gearbox was disassembled to observe for damage. The result this time is listed in the table below. 
+
+
+Worm Gearbox 1:54 
+Worm Gearbox 1:54 
+Pull Force with LiPo Battery
+4900N (no damage observed)
+4450N (no damage observed)
+
+Since the pull force can reach 4900N, which is more than the 3000N target. The 1:54 gearbox is therefore selected for use in the CL2 clamp.
+Construction 
+The construction of the clamp began with the linear actuators and clamp jaws. 4 clamps (8 jaws in total) were intended to be made for the demonstration. However, during this time, the CL3 clamp design was pursued (see next section), the decision was to adapt the actuator and jaw parts to construct CL3. Therefore the CL2 was never completed. The photo below shows the actuator and jaw assembled for CL2 but later adapted to CL3.
+
+
+\subsection{Lap Clamp CL3 Hardware}
+The Lap Clamp CL3 was designed almost at the same time as CL2. The main intention is to adapt the clamping mechanism for variable-angle lap joints set forth in 5.2.1 Parametric Variations of Lap Joints. 
+
+The initial goal at the beginning is to create a clamp that can accommodate 45 degrees lap joints that are commonly used in diagonal bracing. However, in the process of adapting the clamp, it is found that the best strategy is to separate the hardware for left-handed joint and right-handed joint angles. This resulted in two clamp designs that are mirror-symmetrical, each able to handle 25 to 90 degrees on each side (measured on the acute angle of the intersection). 
+
+Design Considerations
+
+The drawing below illustrates the evolution from the two-jaw CL2 design (top left) towards a single-jaw design (bottom right) that can be used for an angled lap joint. The main difference is the change of pressure location from the side of the joint towards the centre of the joint, where the two beams intersect.
+12
+34
+The following images show the location of the clamp attachment gripper and the docking adapter being changed from the back of the joint to the side of the joint, in the obtuse angle quadrant. Because the new attachment gripper closes in the front-back direction instead of the left-right direction, the choice of the actuator was also changed from a self-centering pneumatic gripper to a pneumatic linear slide.
+
+
+The following image shows the design of the two mirror-symmetrical clamps, named CL3 (left) and CL3M (right). The symmetrical clamp jaws are adapted from the left and right jaw of the CL2 construction.
+
+The position of the docking adapter provided ample room for the robotic arm to attach it to the structure (left) and detach it after use (right). 
+
+Design Details
+The following drawing shows the main components of the final CL3 clamp design after details are added. The components on the CL3M are similar.
+
+
+Construction
+
+Because of the vastly superior support for variable-angle lap joints, the CL3 was constructed in favour of the CL2 design. This was a risky decision because the single-jaw and slider-based gripper strategy was a large jump from the CL1 prototype. Nevertheless, two copies of the CL3 and CL3M designs were constructed. The decision to make four clamps was a balance between cost and sufficient design freedom for creating the demonstrator.
+
+The photo below shows the constructed CL3 clamp before the docking adapter was attached. This was because the demonstration goal in this round did not include the robotic attachment and detachment yet. A manual pneumatic connector can be seen attached for the operator to operate the gripper manually.
+
+\subsection{Docking adapter}
+The docking adapter is the mechanical interface that serves as the connection between the robotic arm and the DiRT tools. In the initial concept, this is similar to a robotic quick changer that is commonly used in the manufacturing industry for switching between tools. Because there was a set of robotic quick changers (SWK / SWA 040 series by Schunk GmbH & Co. KG, Global) available in the lab donated by previous projects, it was adopted for this role. The photo below shows the quick changer mounted on the flange of the robot. Two pneumatic feed through can be seen connected for the parallel grippers (see next section).
+
+It was only after using this robotic quick changer, that its property was found to be unideal for the docking adapter role for DiRT operations, especially for timber assembly. Despite its limitations, this robotic quick changer is used until the end of this thesis.
+
+The related problems are documented in 6.5.2 Docking Adapter Misalignment and 6.5.4 Docking Adapter Fail to Lock. This eventually led to the development of multiple workarounds to bridge the gap. These workarounds are documented in 6.5.5 Docking Adapter Alignment with Camera, 7.3.14 Camera-Marker Alignment Correction System, 7.3.16 Compliant Control for Robotic Arm and 8.3.3 Automatic Shake when Docking with Tools. 
+
+\subsection{Parallel Gripper PG500 and PG1000}
+
+The Parallel Gripper PG500 and PG1000 were designed to allow the robotic arm to hold timber beams of different lengths. The design of these grippers was adopted from a previous project in the laboratory that was proven to be reliable. 
+
+The following drawing shows the main components of the PG1000 gripper. It consists of two self-centring parallel pneumatic grippers positioned 950mm apart (measured on the centre). An aluminium bar provides the support of the two grippers with the docking adapter mounted on top. The total length of the gripper is 1005mm. The design of the PG500 is similar but with a shorter connecting bar. 
+
+These timber beams used for the demonstration have a fixed 100mm square profile. This allows the use of the short-stroke pneumatic gripper (PGN-plus 100-1 by Schunk) that has a compact design. The stroke is 10mm on each jaw with a combined closing force of 900N. 
+
+The drawing below shows the dimensions of the gripper (including both sides of the robotic quick changer) in its closed state. 
+
+Construction
+The photo below shows the constructed PG500 gripper. Sandpaper can be seen lining the gripper fingers to prevent the wood from slipping. The GP1000 has a similar construction. 
+
+\subsection{CL3 Clamp Electronics}
+
+The CL3 Clamp Electronics was based on the experience learnt from the CL1 electronics. The new design features the following improvements:
+\begin{itemize}
+\item Arduino Uno was replaced with an Arduino Nano. It offers the same capabilities in a more compact form factor.
+\item Buffer diode is added before battery voltage regulation to address the brownout problem (see 4.5.3 Electronics Brownout).
+\item Supports controlling 1 or 2 DC Servo motors. 
+    \begin{itemize}
+    \item The one-motor scenario is designed for CL3 hardware with one clamp jaw. (see 5.3.4 Lap Clamp CL3 Hardware)
+    \item The two-motor scenario is reserved for CL2 hardware but was never needed or tested because CL3 was successful.
+    \end{itemize}
+\item A ribbon cable is used to connect the controller and motor driver to be more flexible with positioning.
+\end{itemize}
+
+The CL3 clamp electronics were designed with the following new features:
+\begin{itemize}
+\item Control and communicate through CC1101 radio module over SPI bus. (see 5.3.10 Radio Network)
+\item DIP Switch for physically setting device MAC address
+\item Input for monitoring end/homing switch
+\item Integrated plastic enclosure
+\end{itemize}
+
+Design Considerations
+
+The main challenge in developing this electronic controller is the limited amount of IO pins available from the Arduino Nano. Due to the addition of the radio module and two limit switches, almost all IO pins are occupied. Even the design of the DIP switch input to set the Radio MAC address had to be compressed to occupy only a single analogue input pin by using a resistor ladder. (cite: tutorial for a resistor ladder)
+The load cell connection that was included in the CL1 design was removed because of the lack of pins. This is a difficult compromise because the load cell could have provided useful insight for better understanding the synchronised clamping process. As there was no chance to test the load cells in the previous round, they were considered a lower priority than switching to a different microcontroller with more GPIO pins.  
+The table below shows the main components. The underlined items are newly added in this development round. 
+Component
+Specification
+Radio
+CC1101 by Texas Instruments, on pre-integrated PCB module
+Motor Driver
+H-Bridge Motor Driver XY160D
+End Switch Configuration
+Normal close (NC) switch
+Microcontroller
+Arduino Nano (ATMEL ATMEGA328 with new bootloader @ 16MHz)
+Voltage Regulator
+ Linear Voltage Regulator Chip LM7805 with filter capacitors
+Radio Addressing Switch
+ 4 position DIP switch with resistor ladder
+Battery Choice
+Typical: 4-cell Li-Po 1000mAh 4S 75C (Nominal 14.8V)
+Battery Connector
+XT60 
+
+
+The end switch was newly added because the previous linear actuator had integrated end switches that would simply disconnect the DC motor when reaching the end. This arrangement introduced unnecessary uncertainty to the control firmware because it is not possible to determine whether the motor had stalled due to load or whether it reached the end of travel.
+
+The DIP switch was added to enable the physical setting of the MAC address for each of the four controllers. This simplified the firmware uploading process because the MAC addresses do not have to be changed for individual compilation. An alternative solution could have involved storing the MAC address in the microcontroller's EEPROM. In practice, the DIP Switch was set only once and was never adjusted. 
+
+The plastic enclosure was designed specifically for the CL3 clamp body. It consists of two parts - a base for the circuit boards to attach to the metallic body of the clamp and a cover that can be easily removed for maintenance without detaching the base. The design of stacking the main circuit board above the motor driver board was kept from the CL1 design in order to keep the device compact. 
+
+In cases where the entire electronic pack had to be removed from the clamp, it can be easily separated without affecting the mechanical parts. The plastic enclosures are slightly different due to the symmetrical difference between CL3 and CL3M clamps. 
+
+Plug connectors were used for the motor and encoder. Connection terminals were used for the end switches. This proved to be beneficial on multiple occasions where it was necessary to separate the motors and end switches for maintenance or repair.
+
+Schematics
+
+Construction
+Four identical controller boards were made for the CL3 and CL3M clamps. The circuit is built on a 60mm x 80mm protoboard and manually wired similar to the previous CL1 board. The following diagram shows the wiring underneath the protoboard and the jumpers that route directly between pins.
+
+Despite the relatively low complexity, a lesson learnt from this experience is that the time spent to wire and debug a protoboard is better worth outsourcing the build to a PCB foundry. 
+
+The plastic enclosure is 3D-printed with PLA plastic using a generic desktop 3D printer with 0.2mm layer height and 90% infill. In the subsequent robotic demonstrations, the protection proved to be invaluable for avoiding collision damage to fragile components.
+
+The following photo shows the main components on the circuit board. ( The white plastic enclosure is not the one used for the CL3 hardware). 
+
+The following photo shows the actual enclosure used on the CL3 hardware. It was printed in black PLA and has a slightly different design to fit the clamp better.
+
+\subsection{Motion Control for DC Servo Motor}
+The motion control algorithm for the DC motor is an important development for creating the CL3 Clamp firmware (an L1 controller). The algorithm is responsible for:
+
+Task
+
+Strategy
+
+Real-time monitoring of the motor position.
+Current position is obtained by counting encoder signals using external interrupts of the microcontroller.
+Computing the error with the intended motion profile (see 5.2.3 Synchronisation between Clamp and RFL Robot).
+Position error is monitored between current position and target position. 
+Target position is computed from the motion profile.
+Producing control signals to the H-bridge motor driver (see 4.3.2.2 Motor Driver) that can minimise tracking error. 
+The motor control signal is a PWM signal generated by the microcontroller. 
+The duty cycle of the PWM signal is determined by a PID controller monitoring the positional error.
+
+The development process required multiple experiments to validate the system and determine suitable operation parameters. The following list shows the experiments and their results in chronological order.
+\begin{enumerate}
+\item Validation of the encoder
+    \begin{itemize}
+        \item Confirmed the accuracy of the microcontroller integrating encoder signals in both directions.
+    \end{itemize}
+\item DC voltage to speed relationship
+    \begin{itemize}
+    \item Confirmed the motor driver can deliver power within limits.
+    \end{itemize}
+\item PWM control (open loop)
+    \begin{itemize}
+    \item Established suitable PWM Frequency for a linear duty cycle to motor speed relationship.
+    \item Established the PWM deadband in speed control.
+    \end{itemize}
+\item PID Speed Control (closed loop with encoder)
+    \begin{itemize}
+\item Validated deadband linearity over zero crossing for bidirectional control.
+    \end{itemize}
+\item Rectangular motion profile (closed-loop with respect to a step function)
+    \begin{itemize}
+    \item Established PID values for improving motor control damping
+    \end{itemize}
+\item Trapezoidal motion profile
+    \begin{itemize}
+    \item Established acceleration, deceleration, and maximum speed values for operations.
+    \item Established the maximum tracking error useful for determining a stalled condition.
+    \end{itemize}
+\item Stopping condition (indirectly provides stall protection to the motor)
+    \begin{itemize}
+    \item Validated position error monitoring strategy
+    \item Validated pull force is unaffected by stopping condition
+\end{itemize}
+    \end{enumerate}
+
+Operational Parameters
+
+The table below lists the operation parameters that were obtained from the tests and used in the CL3 Firmware.
+
+Parameters
+Values
+Notes
+Encoder resolution
+44 pulse/revolution
+36GP-555 Motor with 2 channel Hall Encoder
+PWM control frequency
+3921.16Hz
+
+
+PWM speed control resolution
+8 bit (256 steps)
+Direction is a separate bit
+CW CCW Zero-crossing deadband
+30 / 255 
+
+
+kP
+0.04 throttle/step
+‘throttle’ is a control unit for the PWM signal after adjustment of deadband. It has a full range between -1 to +1. 
+kI
+0.2 throttle/step/s
+
+
+kD
+0.0002 throttle/step/s
+
+
+Max speed
+3000 step/s 
+5mm/s with 4mm screw lead and 1:54 gearbox
+Acceleration and deceleration
+3000step/s2
+No Load conditions
+Maximum tracking error
+8 steps
+
+
+Error threshold for triggering a stalled stop
+100 steps
+Approximately 0.1 to 0.2 mm error with 4mm pitch screw
+
+
+Validation Result
+The blue line in the two graphs below shows the position and tracking error using the operation parameters listed above.
+
+The solid purple line in the graph below shows the pull force under different maximum speed settings. The results between 1000 and 3000 step/s are similar. This corresponds to 1.7mm/s and 5mm/s for the ballscrew with 4mm lead.
+
+\subsection{CL3 Firmware}
+The CL3 Firmware is an L1 controller developed to run on the Arduino microcontroller. It serves two primary purposes.
+
+\begin{itemize}
+\item Receive and process commands (Serial and Radio)
+\item Controlled servo motor motion
+\end{itemize}
+
+The main loop implemented quasi-time-sharing task management to service different subroutines. This requires all the subroutines to execute in a relatively short amount of time. All blocking functions, such as waiting for a serial message to arrive to transmit, have to be implemented in an asynchronous way. The table below contains all the subroutines, they are all visited in each control loop.
+Main control loop subroutines
+Description
+Motor Motion Control
+Runs PID control loop for motion control. Only active when there is an active motion target. There is a separate timer keeping track of the PID control frequency.
+Battery Monitor
+Check battery level
+Read and Process Serial Command 
+Process command received from USB serial interface, this is used only for debugging
+Read and Process Radio Command 
+Process command received from Radio module. 
+Radio
+Checks if Radio is still active
+
+
+\subsection{Radio Network}
+The DiRT radio network is developed to create a reliable communication network with the following properties.
+\begin{itemize}
+\item Low latency
+\item Insensitive to electromagnetic noise emitting from the robotics environment
+\item Insensitive to occlusion from the construction environment. 
+\end{itemize}
+
+The initial attempt of using a 2.4Ghz WiFi network from an Arduino microcontroller yielded poor results. The main problem is the reconnection time after a dropped connection is too long for the robotic operation, and its high frequency is fairly sensitive to occlusion by metallic objects. ZigBee technologies were considered for creating this network because of their integrated solution for the physical radio and network layer. However, I decided to implement the network for the opportunity to understand the underlying mechanism better and to have more control over the parameters of the radio and the network.
+
+
+My custom implementation consists of a single-chip digital packet radio, CC1101 by Texas Instrument, that is capable of managing the physical layer (cite: CC1101 data sheet, product information). The surface mount ship can be interfaced easily through an integrated module manufactured by Telesky (see image). The network is implemented with a star topology with a PC acting as the network coordinator. This PC connects to the network through an Arduino-based network adapter (see next section 5.3.10 Radio Network USB adapter). All the clamps are connected to the network by a direct connection between the CC1101 chip and the Arduino microcontroller. 
+
+Communication over the network is always initiated by the controlling PC, even for telemetry updates. Every clamp has a fixed MAC (Media Access Control) address that is registered to the L2 Clamp Controller (see 5.3.12 Clamp Controller (L2)) on the PC and their identity is known by it. Therefore, there is no need for any network discovery or handshake for the clamps to join the network. During the robotic assembly operation, all clamps are expected to be present in the network, and their response to a telemetry request is sufficient to prove their existence on the network. This design eliminated the overhead and delay for a clamp to rejoin the network.
+
+The transport layer design is also customised to the unique operation of the devices. In order to reduce latency and maximise throughput, all the commands and response over the network is designed to fit within one single flexible-length data packet that is between 10 to 30 bytes long. This avoided the delay when reassembling messages. 
+
+Automatic resend was implemented in the application layer in the L2 controller but not on the clamp firmware. In the case where a clamp does not acknowledge a command, the PC can resend it after a fixed amount of time. 
+
+The table below lists the other physical and network layer techniques that were considered for improving the reliability and performance of the network, including the reasons whether they were adopted or not.
+
+Technique
+Explanation
+Adoption
+Use lower carrier frequency
+Lower frequencies generally penetrate obstacles better and are less affected by occlusion.
+European ISM I band (433MHz) is selected for development as it is the lowest available frequency supported by the chip. This frequency band can be used without licence in Switzerland (cite: https://www.ofcomnet.ch/api/rir/1008/05)
+Error detection and correction
+Error detection algorithms, such as Cyclic Redundancy Check (CRC), and correction algorithms, such as forward error correction (FEC) or automatic repeat request (ARQ), to improve the network's resilience to noise and interference.
+
+
+
+CC1101 supports CRC for error detection. However its support for FEC only covers fixed-length messages, which was not the option selected for this development. 
+ARQ is implemented at the application layer in the Clamp Controller running in the PC.
+Contention avoidance
+Contention avoidance techniques, such as Clear Channel
+Assessment (CCA), can reduce the chance of contention and packet loss. 
+CC1101 supports CCA and is used in this development.
+Spread spectrum techniques
+Spread spectrum communication techniques such as frequency hopping spread spectrum (FHSS) or direct sequence spread spectrum (DSSS) can increase the network's resistance to interference and enhance signal robustness.
+
+
+CC1101 supports FHSS in collaboration with suitable MCU control. However this was not implemented in this development as it is beyond my knowledge.
+Antenna design and placement
+Directional antennas at the base station can focus the radio signal in the desired direction and minimise interference from other sources. 
+A directional antenna was considered but not adopted at the base station because other techniques were already sufficient.
+Maximise power
+Transmission power can be increased to improve the signal-to-noise ratio. 
+Following the current Switzerland
+Radio Interface Regulation, 
+H-band allows 1mW effective
+radiated power and I-Band allows 10 mW if the duty cycle is below 10%.
+Multipath network
+Network topology, such as a mesh network, that allows for multiple paths between nodes, can increase redundancy and improve the network's ability to handle occlusions and interference. Dynamic routing protocols can also help in maintaining network connectivity despite changing environmental conditions.
+Star network topology was chosen for its simplicity and speed. Mesh topology was considered, but the implementation is likely beyond my knowledge. If mesh is necessary, a ZigBee implementation would be more appropriate.
+
+
+The development of the network is tested with a throughput tester inside the RFL robotic environment separate from the development of the clamp electronics and firmware. The testing setup consists of a base station PC with the radio adapter over USB, and a battery powered Arduino connected to the radio module providing a response. This setup simulates a complete round trip for the command and response application. A number of the testing scenarios were performed to tune operation parameters and validate the reliability of the system. Below is a summary of the results:
+\begin{itemize}
+\item Packet length vs round trip time
+    \begin{itemize}
+    \item Different packet lengths from 1 byte to 59 bytes were tested 100 times, no-acknowledge is not counted. The round trip time is found to be highly linear to the packet length (linear fit: y = 0.3906x + 12.108). Every byte corresponds to roughly 0.39ms to do one round trip, which is equatable to the default 38kbps modem setting on the chip. 
+
+    \item This test confirms that there are no buffering issues within the round trip and the frequency channel is mostly clear for immediate transmission.
+    \item In our application, packet length will not exceed 59 bytes. Therefore a 40ms wait duration is set for a message without acknowledgement to be considered a lost packet.
+    \end{itemize}
+\item Obstacle penetration
+    \begin{itemize}
+    \item Test successfully performed over 5m distance with 2 closed doors in between. Using a packet length of 20 bytes, the result is less than 1% packet loss.
+\end{itemize}
+\item 433 MHz vs 868MHz
+    \begin{itemize}
+\item Tests have shown that the 433MHz outperforms the 868 MHz significantly in range and occlusion tests. However, it is hard to draw a conclusion whether this is due to the lower frequency or because the integrated radio module is designed with peripheral components optimised for 433MHz operations.
+    \end{itemize}
+\end{itemize}
+
+The development of this radio network ended after these validation tests and it was used without issues for all subsequent demonstrations. However, later observation may indicate that this implementation can hit a latency limit with more tools (see 8.5.5 Wireless Radio Latency).
+
+\subsection{Radio Network USB Dongle Adapter}
+The USB Dongle adapter is the physical network layer that allows the L2 clamp controller running on a personal computer (PC) to send commands to the clamps. Most of the functionalities are implemented on its firmware running on the microcontroller:
+\begin{itemize}
+\item Allow the PC to connect to it via USB port.
+\item Allow the PC to configure the CC1101 settings via the USB (address, frequency, channel and sync word)
+\item Allow the PC to send and receive variable-length message packet via the USB
+\item Allow debug messages to be printed to a 1602 LCD Screen (via I2C bus with the PCF9574 IO Expander)
+    \begin{itemize}
+    \item Used only in debug and development scenarios as its use reduces the adapter throughput.
+    \end{itemize}
+\end{itemize}
+
+Main Components
+
+Component
+Specification
+Radio
+CC1101 by Texas Instruments, on pre-integrated PCB module
+Mictocontroller
+Arduino Nano (ATMEGA328 with new bootloader)
+Power
+Powered by host PC USB Port @ 5V
+Connector to Serial Radio
+Phoenix Terminal Block Socket 5.08mm Pitch
+Connector to IC LCD Screen
+Reichelt PS Series 2.5mm Pitch 5 Pin PCB Connector (PS25/5G BR)  
+
+
+The circuit is built on a 50mm x 70mm protoboard. The wiring is completed using small wires. Arrangement of the components can refer to the photo below. The schematic drawing is drawn with the connectors oriented the same way as soldered on the PCB.
+
+\subsection{Clamp Controller (L2)}
+The Clamp controller is a L2 controller that is developed to run on the controlling PC for supervising all the clamps. It provides the following functions:
+\begin{itemize}
+\item Provides a GUI overview of all Clamps and their telemetry
+\item Accepts commands from Level 3 Process Controller over ROS messaging network using ros_bridge as interface.
+\begin{itemize}
+    \item Go to Position Command (Format: [clamp_ids],velocity,position_mm)
+    \item Stop Command (Format: [clamp_ids])
+\end{itemize}
+\item Connects to the Clamp Radio Network using the USB Radio Dongle via Serial Port. Sends commands to each individual clamp:
+\begin{itemize}
+    \item Set Velocity Command (Format: clamp_id,velocity_step_per_sec)
+    \item Go to Position Command (Format: clamp_id,position_step)
+    \item Stop Command (Format: clamp_id)
+\end{itemize}
+\item Provides UI buttons for operator to perform manual functions to either one or all clamps:
+    \begin{itemize}
+    \item Homing (on start of the device)
+    \item Go to a position
+    \item Set Active Velocity
+    \item Stop
+\end{itemize}
+\item Log traffic
+\end{itemize}
+
+The following image shows the GUI when it is configured for 2 clamps during testing. 
+
+Telemetry 
+In order to avoid radio contention, a telemetry update is actively requested by the L2 Controller. The request interval is 150ms for clamps that are in active motion. Otherwise, the update is every 2000ms. 
+In order to reduce processing time in the L1 controller, telemetry is transmitted from the L1 Firmware to L2 Clamp Controller in raw values. A digital twin model was used to keep track of the conversion scale between the raw values and their output.
+\begin{itemize}
+\item Current Velocity, Current Position, Target Position, Error
+\item Motor Power Output
+\item Battery Value 
+\end{itemize}
+Automatic Resend Request
+
+In this implementation, all the commands between Level 3 and Level 2 and Level 1 are single-direction communication. There are no mechanisms designed to provide feedback on the execution status such as ‘running’ or ‘completed’ or ‘failed’. However, communication between L2 and L1 controllers is wireless, and it has a high chance of lost packages. Therefore an acknowledgement and automatic repeat request (ARQ) protocol were implemented in the L2 and L1 controllers. The recent protocol has two parameters, acknowledgement time before resending and the number of attempts. The default values used for motion commands are 100ms and 4 attempts. The values used for requesting telemetry are 40ms and 1 attempt. 
+
+\subsection{Assembly Model Data Structure and Functions}
+A data structure was developed to support CAD modelling of the beams, joints and their assembly. It was designed to facilitate various geometrical operations, such as inferring joints from beam arrangements, and topographical operations among beams and neighbours (see 5.2.6 CAD Modelling). The data structure is based on the object-oriented programming paradigm and implemented in Python. 
+There are three main entities in the data structure:
+\begin{itemize}
+\item Beam - Represents the physical beam, with a one-to-one correspondence.
+\item Joint - Represents two properties 
+\begin{itemize}
+    \item the physical joints that are carved into the beam
+    \item the topological connection between beams in the structure
+\end{itemize}
+\item Assembly - Represents a group of beams (typically that are connected by joints)
+\end{itemize}
+
+\subsubsection{Beam and Joint}
+While Beam objects have a one-to-one relationship to a physical entity, the Joint object serves a dual purpose of representing geometry and relationships. The diagram below shows two possible structures to represent Joints as a graph. The difference between representation (a) and (b) is whether the Joint is represented as one or two objects in between two beams.
+
+After considering the compatibility with BTLx, a leading file format for exchanging geometry data for timber components, representation (a) was chosen. This is because the double-joint structure is similar to the Beam-to-Processing relationship used in BTLx, which also facilitates the separation of the geometrical entities for each individual beam. The diagram below shows how the graph in representation (a) can be sliced to create a geometry group for each beam.
+
+The geometry of the beam with joints can be computed by solid boolean operations between the un-cut beam model, and the negative models of the joint volumes. The relative ease of dynamically recomputing the solid model allows quick visualisation during interactive design.
+Beam Geometry = Beam Uncut Model Minus (Union of all Joint Negative Volume Models )
+Where: 
+Minus is 3D Solid Boolean Subtraction
+Union is 3D Solid Boolean Union
+This computation is also similar to the Beam and Processing relationships used in BTLx. The difference is that BTLx encodes a joint with a closer relationship to machine operations, such as removing the material with a mill head versus a saw.
+
+\subsubsection{Assembly as a Graph}
+The Assembly object is a collection of Beams and Joints, and can be implemented as a graph structure. For example, the diagram below (left) shows the assembly graph using the two-joint-object arrangement. Two edges are used to connect between nodes, each of which can contain one of the joint objects. The extraction of the joint geometries related to a beam would be to select all the outward-going edges from it (see diagram below, right).
+
+In order to support the modelling of the robotic assembly process, the graph used in this thesis is extended with a node property (a.k.a. beam property) for specifying its assembly sequence. The property is a zero-index integer, and its values should be unique within an Assembly. Consider the structure below with four beams (A, B, C, D). The numbers in the bracket represent their assembly sequence. The Beam-Joint graph can be seen on the right.
+
+Using the graph, it is possible to identify the neighbour relationships between beams. For example, if Beam B is to be removed, all the edges (joints) connecting to the B node should also be removed. In addition, it is possible to identify the neighbours that are affected by the deletion (Beam C and D) and recompute downstream relationships only. 
+
+Using this sequence number, it is possible to extract the partial structure at every step of the assembly. This is useful for visualisation and for using them as collision geometry during motion planning.
+
+For a given assembly step, It is also possible to identify the active beam and its joints that need to be assembled with the PA structure. For example, in the following diagram, Beam C(2) is the active beam for step 2. It has three outgoing edges in the graph (Joint C-A, C-B and C-D). Ignore the edges that are pointing to nodes (red) that have a higher sequence number (C-D. The remaining edges (green) are the joints that need to be assembled (Joint C-A and C-B). 
+
+It is also possible to perform more complex operations on the graph. For example, when swapping the order between two elements, identify the joints that need to be flipped. The following diagram shows an example where the sequence number of Beam C and D is swapped. Note that only the joints that are connecting the two swapped elements need to be flipped.
+
+This swapping logic can be extended to pick a node and insert it at an arbitrary position in the assembly sequence.  The affected edges (joints) will be those whose nodes have flipped their earlier-later relationship. 
+
+\subsubsection{AssemblyModel Implementation}
+The AssemblyModel structure was implemented in this DevRound by extending the DirectedGraph class in the compas library. However, the advanced functions for addition, deletion and changing sequence were not implemented until Dev Round 3 to support the more advanced User Interface (see 6.3.4 Design Software Implementation in Rhino Python).
+The serialisation of the BeamModel, JointModel and AssemblyModel uses an open-data structure where all the internal attributes are serialised. This is a trade-off for maximising compatibility, with no loss of computational data but resulting in a rather large file. 
+
+\subsection{CAD / CAM User Interface}
+A user interface was created in Rhino Grasshopper for modelling the demonstrator. The implementation focused only on the essential functions that would allow a user to model timber beams, specify the half-lap joints and define how the Grippers and Clamps are positioned. It has three distinct phases that must be followed sequentially (this is only an implementation limitation). The only exception is the adjustments within Phase 2 that can be made in arbitrary order:
+\begin{enumerate}
+\item Assembly Design - Define beams arrangement and their assembly sequence
+\begin{enumerate}
+    \item Arrangement Input - Using centerlines or Solid Polysurface Model
+    \item Assembly Sequence - Move a beam earlier or later in the assembly sequence.
+    \item Assembly Direction - Flip Joint opening to another side
+\item Process Design - Change properties of the assembly and process design:
+    \begin{enumerate}
+    \item Choose Tools - Gripper Type / Grasp Face / Location
+    \item Adjust Tool Position - Gripper grasp location / Clamp orientation
+    \end{enumerate}
+\item Motion Planning - Compute robot trajectory (automatic process)
+\end{enumerate}
+
+Assembly Design Phase - The designer starts by modelling the timber structure in Rhino using the default modelling functions provided by Rhino UI. The beams are modelled by creating square profiled cuboids (polysurface in Rhino terminology) that have a 100mm square profile but are extended to the designer’s desired length. During this time, the lap joints are not modelled, and the designer can freely adjust the position and orientation of the beams using the default modelling function from Rhino (such as move, rotate and mirror).
+
+Once the designer is happy with the arrangements, the beams are used as input to the grasshopper script, which automatically:
+\begin{itemize}
+    \item Detects the input and creates beam objects using the ITJ library.
+    \begin{itemize}
+        \item Centerline input will require additional specification of the minor axis
+    \end{itemize}
+    \item Create an ITJ Assembly object with all the beams
+    \begin{itemize}
+        \item A unique beam_id is assigned to each beam sequentially
+    \end{itemize}
+    \item Create an assembly sequence corresponding to the input sequence.
+    \begin{itemize}
+        \item Sequence can be changed within this phase
+    \end{itemize}
+    \item Create the lap joints by finding intersections between the beams
+    \begin{itemize}
+        \item Automatic detection of lap joint parameters
+        \item Assigns the lap joints to the two mating beams
+    \end{itemize}
+\end{itemize}
+The image below shows the user interface for Assembly Design with two viewports (blue background) and some buttons for triggering functions. The left viewport shows all the beams in the assembly. The user can click on any one of the beams to view the assembly state at that moment on the right viewport. It shows the active beam (green) at its pre-assembled state.
+
+The image below shows the highlight on a problematic beam. The interface is able to detect conflicting joint orientations that cannot be assembled, using directional block graphs (Wilson, 1992). The user selects a specific joint to flip their direction to correct the problem.
+
+Process Design Phase - At the beginning of this phase, the software will automatically infer the assembly direction and clamp choice based on the Assembly Model. 
+The user will need to review the location of tools and objects at every step of the assembly process. This needs to happen for every beam and for every key moment. The key moments are:
+\begin{itemize}
+\item Before attaching the clamp to the structure
+\item After undocking from the clamp
+\item Moment before the beam is placed in the clamp
+\item After clamping
+\item After the gripper retracts from the beam
+\item Before docking with the clamp
+\item After detaching the clamp from the structure
+\end{itemize}
+
+The image below shows the user interface for selecting a beam (on the left viewport) and the visualisation of a key moment (on the right viewport). A gripper model can be seen coloured in red because it is in collision with the clamps at that movement. 
+To correct this problem, the user can select a small gripper that does not cause a collision. The image below shows the same key moment after the collision was corrected.
+
+\subsubsection{Coordinate Systems}
+
+The coordinate system used in the 3D modelling environment was the same as the one used by the iGPS position tracking system (Stadelmann et al., 2019) installed in the laboratory. The Robot Kinematics model used for IK and MP was also based on the same coordinate system. 
+
+Collision objects such as walls, floors, and fixed objects in the lab were measured by the iGPS system. The measurement yielded individual points that were placed in the same CAD environment. These measured points are highly accurate (<0.2mm deviation) and are used for modelling collision meshes for the motion planner process.
+
+\subsubsection{Motion Planning}
+The two robotic motions are planned using the same Rhino interface with a different GH script. A planning function was developed to extract the location of the objects and robot targets for each of the two motions. It is able to formulate the following inputs for the two planning call:
+\begin{itemize}
+\item BeamTransfer (input for Free Motion Planner)
+    \begin{itemize}
+    \item Starting Configuration = Pickup location (Fixed)
+    \item Target Frame = Beam Design Location - Assembly Vector
+    \item Attached Objects = Docking Adapter + Gripper + Beam
+    \item ACM = (none)
+    \item Object States = Current PA Structure *
+    \end{itemize}
+\item RobotClampSyncLM (input for Linear Motion Planner)
+    \begin{itemize}
+    \item Start Configuration = Previous End Configuration
+    \item Target Frame = Beam Design Location
+    \item Attached Objects = Docking Adapter + Gripper + Beam
+    \item ACM = (Beam x Neighbouring Beam) + (Beam x Clamps)
+    \item Object States = Current PA Structure + Clamps
+    \end{itemize}
+\end{itemize}
+* The clamps are not included because the planner was not able to find results. See 5.5.3 Narrow Passage Problem for details.
+
+The GH script was able to pass these inputs to the motion planning backend using the compas_fab library. The RobotModel used to initiate the backend was prepared from previous projects in the lab that used the same robot. 
+
+The planning process is initiated manually for each beam. The BeamTransfer motion is planned first, and the RobotClampSyncLM is planned next. The ending robot configuration of the BeamTransfer motion is used as the start configuration of the RobotClampSyncLM.
+
+Planning was not always successful, and debugging was problematic due to the lack of feedback that indicated the problem (see 5.5.2 Checking Incorrect Planning Inputs). Sometimes it takes a few tries for the planner to find a solution. In general, the free motion took longer to plan than the linear motion. This is likely caused by the number of collision geometry between the start and end targets. However, if the ending configuration of the robot were in a difficult position (see image below, left) it would be difficult for the linear motion planner to continue the motion. In this case, the free motion would be replanned to see if it ends at a better solution (see image below, right).
+
+When the planning was successful, a visualisation tool was available from compas_fab to replay the planned trajectory by animating the robot model in the Rhino/GH environment. Successful trajectories were stored for later retrieval during execution. Separate files were used to store each trajectory for each beam. This allowed easy version control for individually planned motion. 
+
+\subsection{Process Execution Controller}
+An interface was created in the Rhino/GH environment to retrieve the planned trajectory from files for a selected beam and motion. When it is triggered by the operator (me, the author) using a button. It can issue motion commands to the L2 robot controller and L2 Clamp Controller (see 5.2.4 Distributed Control System) and issue motion commands. 
+\begin{itemize}
+\item BeamTransfer (Free Motion)
+    \begin{itemize}
+    \item Begin - Send all trajectory points to the robot through compas_rrc, allowing the robot to buffer all the trajectory points. 
+    \item Confirmation of completion  -  This can be detected if all the motion tasks are marked as complete by compas_rrc. However, this was not implementable in the RH/GH environment without blocking the entire UI. The motion is also not pausable or cancelable using the GH interface.
+    \item Speed - Speed adjustment was possible through the teach pendant as a percentage override.
+    \item Failure Mode: Failure or error that stopped the ABB programme pointer cannot be automatically detected by the GH script. The operator has to reset rrc’s programme pointer and reset the execution controller manually.
+    \end{itemize}
+\item RobotClampSyncLM (Linear Motion)
+    \begin{itemize}
+    \item Implements the Start Together Synchronisation method (see 5.2.3 Synchronisation between Clamp and RFL Robot)
+    \item Begin - Motion commands sent to the clamps first
+    \end{itemize}
+        \begin{itemize}
+        \item If all clamps are acknowledged and are in motion, send motion commands to the robot in a way similar to the FM.
+    \item If any one of the clamps did not acknowledge, immediately send stop instructions to the clamps that are in motion to stop them. 
+    \end{itemize}
+    \begin{itemize}
+    \item Speed - Speed override on the robot teach pendant must be set to 100%.
+    \item Confirmation of completion - not available. Same as above.
+    \item Failure Mode - If any of the clamps stopped motion without reaching the target position. Robot failure cannot be detected automatically.
+    \end{itemize}
+\end{itemize}
+
+The execution speed of the trajectory is in general not relevant to this thesis, except in the case where synchronous movement is needed between the clamps and the robot. For other motions, speed can be arbitrarily decided. In this thesis, a relatively slow speed is used for all the motion, 2mm/s - 80mm/s for linear motion and 100mm/s - 800mm/s for free motion. During debugging, the speed is further reduced as needed on the teach pendant. 
+
+Note that if higher speeds are used, the dynamic effects would also have to be considered, especially the large rotational inertia of a long timber beam.
