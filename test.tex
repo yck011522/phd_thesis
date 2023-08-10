@@ -1,9 +1,22 @@
-\documentclass{article}
-
+\documentclass[a4paper, twoside, 11pt]{book}
 % Comment out the following line to test without fontspec
 % \usepackage{fontspec}
 
+% \usepackage[backend=biber]{biblatex} % Specify backend as biber
+\usepackage[style=authoryear,sorting=ynt,
+			doi=false,isbn=false,url=false,eprint=false]{biblatex}
+            
+\addbibresource{Thesis.bib} % Load your .bib file
+
 \begin{document}
+
+\title{My Document}
+\author{Your Name}
+
+Testing citation: 
+\cite{sobonTimberFrameConstruction1984}
+
+Ending
 
 \include{01_introduction}
 
