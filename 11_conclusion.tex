@@ -1,0 +1,132 @@
+\chapter{Conclusion}
+
+\section{Contribution}
+
+The key contribution of this thesis are
+
+\begin{enumerate}
+	\item Developed the \textbf{distributed robotic tool (DiRT) concept} into a proof-of-concept system for the \textbf{assembly of timber frame structures with integral timber joints}. 
+
+\begin{enumerate}
+	\item Explored the \textbf{flexibility of the DiRT concept} in accommodating different variations of lap joints and different timber sizes, with and without fasteners. \textit{(see \uline{5.3.4 Lap Clamp CL3 Hardware} and \uline{7.3.7 Lap Screwdriver SL1 and SL1\_G200 Hardware})}
+
+	\item Identified two different solutions to improve structural \textbf{stability during construction}. \textit{(see \uline{7.1.1 Deformation-Awareness and Error Correction by Triangulation}, \uline{7.5.2.6 Global Correction Approach}, and \uline{8.3.2 Scaffolding Support During Assembly})}
+
+	\item Formalised the basic mechatronic components of a \textbf{generalised DiRT system} that can be applied beyond the scope of timber assembly. \textit{(see \uline{10.3.1 Designing new DiRT Tools})}
+
+	\item Identified the requirements for developing \textbf{future on-site assembly robotic systems} compatible with DiRT.  \textit{(see \uline{10.3.2 Robotic Platform})}
+
+	\item Developed robotic control and monitoring software for coordinating multiple robot controllers and sensors to \textbf{execute} pre-planned robotic actions. \textit{(see \uline{5.2.3 Synchronisation between Clamp and RFL Robot})}
+
+	\item Identified tasks and responsibilities for\textbf{ system designers, production engineers, and operators} for deploying the DiRT system. \textit{(see \uline{10.1 Response to Research Questions})}
+
+	\item Developed a vision-based docking alignment strategy that is compatible with \textbf{offline pre-planned robotic trajectory} by making \textbf{localised adjustments} online. \textit{(see \uline{7.3.14 Camera-Marker Alignment Correction System})}
+
+\end{enumerate}
+	\item Developed and demonstrated a \textbf{computational design and planning workflow} \textbf{for creating timber structures} assembled with the DiRT system.
+
+\begin{enumerate}
+	\item Identified data structures for modelling robotically fabricated structures, allowing effective modelling of the robotic process at different levels of detail down to each joint. \textit{(see \uline{5.3.13 Assembly Model Data Structure and Functions})}
+
+	\item Identified key software features to support fabrication-aware design workflows, such as process simulation, visualisation and design validation. \textit{(see \uline{5.3.14 CAD / CAM User Interface} and \uline{6.3.5.6 Process Visualization and Adjustment})}
+
+	\item Developed methods for formulating robotic assembly problems for task and motion planning. \textit{(in collaboration with Yijiang Huang)} 
+
+\begin{enumerate}
+	\item An easy-to-use flowchart method for manual task planning in combination with an automatic non-sequential solver for coupled motion planning problems. (Manual task planning with automated motion planning) \textit{(see \uline{6.3.5.1 Task Planning with Flowchart})}
+
+	\item An action and state modelling method to interface with TAMP algorithms. (Automated task and motion planning) \textit{(see \uline{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
+
+\end{enumerate}
+\end{enumerate}
+	\item Designed \textbf{three real-scale demonstrators} and assembled them robotically using the DiRT system.
+
+\begin{enumerate}
+	\item Confirmed the feasibility of a highly automated timber frame assembly process. \textit{(see \uline{7.5.2.12 Highly Automatic Process})}
+
+	\item Demonstrated different possible architectural typologies, such as column grid structure \textit{(see \uline{5.4.4 Demonstrator Design - BusStop Pavilion})}, hut typology \textit{(see \uline{7.4.3 Demonstrator Design  - HyparHut Pavilion}) }and prefabricated spatial frames \textit{(see \uline{8.4.3 Demonstrator Design  - CantiBox Pavilion})}.
+
+	\item Demonstrated possible integration with structurally informed joint design, such as the ability to assemble a wide range of customised joint profiles. \textit{(see \uline{8.3.1 Structurally Informed Polyline Lap Joint})}
+
+\end{enumerate}
+	\item Developed a new hypothesis to \textbf{predict the success probability} of an assembly step affected by alignment problems. \textit{(see Chapter \uline{9 New Hypothesis - Probabilistic Model of Spatial Alignment Success})}
+
+\end{enumerate}
+The thesis not only presents new knowledge on the assembly of timber frame structures, but also offers valuable contributions to the digital fabrication and construction automation fields. In particular, the DiRT concept of separating robotic manipulator and modular tools are transferable to other types of construction. 
+
+In addition, the development of design and planning software, communication and control software for wireless robots, software for synchronising multiple robotic controllers, and fabrication-aware design workflows can be applied more broadly. To promote further innovation, all source codes for the software, 3D models of the mechatronics, schematics for electronics, and 3D models of the demonstrators are freely available under the permissive MIT License. 
+
+\section{Limitations and future work}
+
+The subsequent section outlines the research limitations encountered during this study and suggests how future work could address them. Many of these limitations are practical in nature, such as access to equipment and constrained resources. It is important to note that this chapter focuses on limitations arising from the research methodology, rather than the limitations of the developed DiRT timber assembly system, which were discussed in the previous chapter. Finally, this section presents promising opportunities for future research that could not be accommodated within this study.
+
+\subsection{Extrapolation to On-Site Robotic Systems}
+
+The robotic Fabrication Lab (RFL) in ETH Zurich is one of the most prestigious laboratory environments in the world for experimenting with large-scale robotic manipulation. In this thesis, the RFL robotic system represents a generic robotic platform that is able to perform spatial positioning, with good reachability and a large assembly area. In many ways, the RFL satisfies the requirements for a future on-site robotic manipulator, with the exception that it is located indoors and with an assembly height of only a few metres \textit{(see 5.2.2 RFL Robotic Platform)}. 
+
+One important note is that the maximum reach (2.55m) and payload (40kg) of the robotic arms are relatively low for manipulating large timber beams. Hence the choice of mechatronics and the design decisions throughout this thesis were bound by this limitation. 
+
+For the purpose of studying a pioneering topic on automatic timber assembly, the choice of using an indoor simulacra is justified by the maturity of the RFL robotic setup and the contrasting lack of equally-capable outdoor robotic systems. By adopting the RFL as a generic platform, the researcher is able to start exploring assembly issues with a functional robotic system without pursuing a lengthy hardware development process solely for the manipulator. However, this also excluded the study of on-site challenges. Apart from the obvious weather and logistical challenges, the need to establish a solid foundation for the robot and the building on-site is an interesting challenge that was not explored. 
+
+In the broader context of construction robotics, the kinematic combination used in this thesis (inverted robotic arm installed on gantry) is only one of the many ideas proposed for on-site robotic manipulators. From the three demonstrators presented in this thesis, we can only conclude that this configuration is capable of performing the assembly task. However, it is not possible to conclude whether this is the most suitable or efficient robotic configuration for performing timber frame assembly. It would be interesting to conduct further study with other robotic manipulators for comparison. For reference, recent research on large scale on-site robots include legged excavator \textit{(cite: ETH RSL Menzi Muck)}, tower crane\textit{ (cite: Stuttgart IntCDC RP8)} and spider crane\textit{ (cite: Stuttgart IntCDC RP16)}, all of which can potentially fill a relevant role in the DiRT assembly process.
+
+\subsection{Limitation of the Demonstrators}
+
+Throughout this thesis, five development iterations were conducted, with only three large scale construction experiments. Due to the high cost of each demonstrator, it was not possible to conduct additional assembly experiments within the budget of this thesis. This limited the practical observations and development feedback to be based on only a handful of cases, resulting in scarce data. While smaller experiments were considered as a means to shorten the feedback cycle, they were found to be impractical due to the fixed fee for the digital services and transportation costs being a significant portion of the machining cost. For some of the problems presented in the previous chapters, drawing meaningful conclusions based solely on a few observations was not possible \textit{(see ending summary in \uline{7.5.2.6 Global Correction Approach})}, and further study is required to confirm causal relationships. 
+
+Each demonstrator included a wide variety of timber parts that function as columns, beams, and diagonal bracings, with each part possessing a unique combination of orientation, load condition, number of joints, neighbours, and type of robotic assembly tool used. While it is advantageous to observe a wide variety of assembly conditions, it is challenging to pinpoint the precise cause of any problems observed during execution due to the numerous uncontrolled variables, leading to some unexplored problems being deferred to future work.
+
+\subsection{Study to Assemble Other Joint Types}
+
+The limitation of studying only lap joints in this research should be acknowledged, as they are not the only joint type that are used in timber frame construction. For example, mortise tenon joints and splice joints are also commonly used and offer different structural behaviour that may be desirable in certain structural arrangements. Unfortunately, due to time constraints, this research is only able to study the automatic assembly of lap joints. Furthermore, the research only studied the assembly of lap joints with two neighbours. However, in real-world construction, joints with more than two neighbours are also common, and the assembly process can be more complex. 
+
+Despite these limitations, the development of the two types of lap joint assembly tools (clamps and screwdrivers) provided a strong indication that the DiRT idea can be extended to cover other joint types and joints with more than two neighbours. One evidence is the development of the screwdriver tool, which demonstrates the possibility of customising the tool based on specific needs. In this case, the mechanism is designed to accommodate flexible timber sizes (from 100x100 to 140x100) that are used in the HyparHut demonstrator. It is possible to extrapolate this experience when developing new tools based on the practical needs of a specific project, or to accommodate a special joint type that is yet to be designed. 
+
+Future work should also explore the flexibility for the generalised adoption of the DiRT concept for other types of construction. For example, the assembly of bolted connections in heavy steel construction, which also consist of accurately prefabricated parts, include integrated joint geometry, and require accurate joint alignment. 
+
+\subsection{Study to Assemble other components}
+
+One of the limitations of this thesis is the sole focus on structural components. The research did not explore other types of components that are also used in timber frame construction, such as wall panels, insulation panels, doors, windows and roofing parts. These components require different fastening methods, which could pose challenges for creating an appropriate DiRT tool. Additionally, the use of different materials in conjunction with timber, such as steel and glass, could also present challenges for the assembly process. These materials have different physical properties and may require different strategies for alignment and error correction.
+
+In addition, the existing process of transferring parts one by one may be very inefficient when dealing with a large amount of small components. Further research is needed to determine what hardware or software optimization are possible. For example, hardware to handle multiple parts at the same time, or a strategic relocation of a batch of parts closer to the work area to reduce travelling time. 
+
+It is also important to study whether the same robotic manipulator platform can be shared between the DiRT for structural members and DiRT for other components. From an economic standpoint, the on-site robotic manipulator is an expensive investment, while individual DiRT tools are modular and are comparatively cheap. Therefore it is more cost effective if other elements can also be automatically assembled with the same robotic setup, simply by swapping out the modular tools.
+
+\subsection{Study to Enable Multiple Robotic Arms}
+
+The use of a single robotic arm for the transfer of tools and timber elements has been a significant limitation in this thesis. It has led to a considerable number of tool changes between assembly tools and grippers, which increased assembly time. To improve efficiency, it is likely that the use of two or more robots could perform a wider range of actions. This could either involve two robots performing two separate tasks in parallel to improve productivity or, in some cases, collaborating to complete a single task that would otherwise be impossible \textit{(see \uline{5.6.4 Unstable structure during assembly})}. The implementation of multiple collaborating robots may also increase the maximum payload for beam transfer and resolve some of the overload problems observed. As such, the combined benefits of multiple collaborating robots could be greater than the sum of its parts.
+
+However, the implementation of multiple concurrent tasks is complex and challenging. It requires software that is capable of modelling these collaborative tasks and task planning that accounts for the execution time of each task to optimise overall performance. In a synchronous motion scenario, the motion planner needs to ensure the planned trajectory does not collide with each other. However, if we allow for asynchronous actions between each robotic actor, the challenge to avoid collision with each other is even more complex, because their interaction cannot be predicted in advance. Some recent research has suggested the use of a safety zone to allocate an exclusive space for the operation of each robot \textit{(cite)}. However, it is unclear how flexible this allocation can be used in congested space.
+
+Another practical implementation challenge is the need for a highly accurate calibration for each robot. This is because each of the kinematic chains need to be aligned to operate on the same object. In the case of a collaborative task where two robots manipulate the same object, small misalignment will cause the robots to ‘fight’ with each other. It is likely that the robotic controller needs an advanced control scheme to manage the over-constrained scenario. Recent research in the field of robot control and TAMP have been studying similar multi-hand collaboration problems \textit{(cite)}. However, most of them are not using industrial robots and the workpieces are much smaller. Further study is required to investigate the feasibility and implementation of such a system specific to construction scale. 
+
+Future study should also investigate the potential benefits of using multiple robots and the impact on assembly time, efficiency, and design freedom. This can provide a better understanding to develop on-site robotics platforms. The lack of data gathered using multiple robots is regrettably a missed opportunity in this thesis because the RFL laboratory is equipped with four robotic arms that can potentially be used for this study. 
+
+\subsection{Study on Subassemblies}
+
+A side effect of the payload limitation and the use of only a single robotic arm have dictated the use of a piece-by-piece assembly strategy. While this approach is commonly found in robotic fabrication research due to its simplicity, it may not be the most efficient or flexible in certain scenarios. In some cases, creating subassemblies on the ground before raising them into their final positions can be advantageous. Even centuries-old manual assembly methods use a combination of piece-by-piece and subassembly strategy.
+
+The benefit of creating subassemblies is that they can be easily assembled on the ground to create a stiffer structure before being moved into an upright position. This allows them to be self-supporting and reduces the need for scaffolding. Additionally, subassemblies can be designed with error-correction elements in them to minimise deformation in the sub-assembled state, which reduces deviation and makes subsequent alignment easier.
+
+However, implementing subassemblies presents several challenges. From a hardware perspective, subassemblies are larger and heavier than individual beams, requiring greater care when manipulating them. It is likely that multiple robots would be needed to hold a subassembly at different points to distribute the forces evenly. From a task and motion planning (TAMP) perspective, subassemblies may require maintaining specific orientations while being handled. This requires additional constraints when planning robotic motions and could be challenging when multiple robots are involved. Moreover, the addition of a temporary assembly location requires extra modelling and planning efforts to determine robotic tasks and their targets. These tasks are highly non-repetitive and are difficult to plan manually. Yet, formulating the subassembly problem for a planner to reason and make decisions autonomously is equally challenging. Future research should determine whether planners can identify subassembly opportunities independently or if human guidance, such as manually tagging subgroups, is required.
+
+\subsection{Study on Adaptation to Changing Environments}
+
+In this thesis, the robotic tasks and motion trajectories are pre-planned offline for two main reasons. The first reason is that motion planning with high DOF robots in congested scenes is too slow to be performed in real time. However, an even more important reason is that the method for confirming the constructability of a design involves performing TAMP and ensuring its success, during which all tasks and motions are generated as a by-product. Unfortunately, there are currently no other methods to perform this validation. 
+
+While offline planning offers the absolute confidence that the robotic motion will not be stuck during execution, the drawback is the inability to adapt to changing environments. Any unexpected objects or deviation of the collision model can cause collisions with moving robots and workpieces. In this thesis, the experiments are conducted in a fully controlled lab environment. However, even the small camera tripod used for documentation has found itself in the robot's path multiple times. In an on-site scenario, the risk of collision would likely be much higher. In order to create a robust automatic process, future research could explore methods for detecting unplanned obstacles in real-time and re-plan the upcoming trajectories to avoid them.
+
+A small version of the online adaptation has been demonstrated with the camera-marker correction mechanism. After the marker is detected, the alignment controller instructs the robot to deviate from the planned trajectory for alignment. In this case, the deviation from the planned trajectory is minimal and is performed without collision checks. In the case of avoiding obstacles, the deviation would be much more significant where new trajectories have to be created using updated collision geometries. Note that re-planning may not always have a solution, and there is a chance the operator needs to correct the obstacles manually. Note that after the avoidance manoeuvre, it is essential to merge back to the original trajectory to ensure the process can continue with predetermined certainty.
+
+\section{Final Remarks}
+
+The development of an automatic assembly system for timber frame structures has been an exciting and challenging journey. What began as an exploration of assembly challenges culminated in the discovery of the Distributed Robotic Tool (DiRT) concept. Throughout the study, various developments, discoveries, and advancements emerged, paving the way for a deeper understanding of the nature of the problems and while uncovering even more problems.
+
+The work presented here is not only a demonstration of DiRT system's applicability to timber assembly, but also its potential for generalisation across other domains. This can only be achieved by alternating my persona between the roles of a system developer and a project operator. The former is focused on creating generalised tools and workflows, and the latter is preoccupied with addressing specific project requirements. A part of me rejoices in the successful construction of three demonstrators using the system, yet another part remains unsatisfied, knowing that the developed software and hardware have only been used three times.
+
+Nonetheless, as I reflect on this research journey, I am reminded of the passion, commitment, and perseverance I have experienced throughout its course. There are numerous times I am surprised about a discovery or when a piece of equipment finally functions. Yet, now that all have been put into words, they all sound expected, obvious and unremarkable. All my former education was from an architectural context, yet I do not identify as an architect. I have created a lot of hardware and software throughout these years, yet I am neither a real engineer, nor a computer scientist. The only certainty that I have discovered is that I’m constantly in an identity crisis. 
+
+This thesis is not merely an academic pursuit but also a testimony that I have survived a very difficult adventure. One that would have been unbearable without the support of my advisors, collaborators, colleagues, family, friends, and everyone else who helped me go through this journey. The insights and experiences gained during this research have undoubtedly shaped my understanding of the complexities of robotic construction and fueled my passion for exploring innovative solutions in this ever-evolving field. I hope that this work serves as a stepping stone for future researchers and practitioners, inspiring them to continue pushing the boundaries of robotic construction and automation and unlocking its full potential in shaping the built environment of the future. 
+
+
+\end{document}
