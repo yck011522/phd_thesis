@@ -1,47 +1,48 @@
-
-
 \chapter{Methodology and Assumptions}
 
 In this thesis, an exploratory research method was used. The first reason is the qualitative nature of the three research questions. The second reason is the novelty of the interdisciplinary topics which have yet to be studied in depth. The exploratory research consists of the following steps:
 
 \begin{enumerate}
-	\item \textbf{Identifying Challenges and Creating a Hypothetical Solution}– Although precedence works have already identified challenges in each subtopic \textit{(see \underline{Chapter 2.2 Computational and Design Challenges }and \underline{Chapter 2.1 Mechanical Challenges})}, a holistic analysis is still needed as certain challenges that are coupled together \textit{(see \underline{4.1.1 Addressing Assembly Challenges})}. This leads to a hypothetical robotic assembly process that is based on the idea of a robotic arm manipulating and collaborating with a set of robotic clamps \textit{(see \underline{4.1.2 Distributed Robotic Tool (DiRT) Approach})}.
+	\item \textbf{Identifying Challenges and Creating a Hypothetical Solution --} Although precedence works have already identified challenges in each subtopic \textit{(see \ul{Chapter 2.2 Computational and Design Challenges }and \ul{Chapter 2.1 Mechanical Challenges})}, a holistic analysis is still needed as certain challenges that are coupled together \textit{(see \ul{4.1.1 Addressing Assembly Challenges})}. This leads to a hypothetical robotic assembly process that is based on the idea of a robotic arm manipulating and collaborating with a set of robotic clamps \textit{(see \ul{4.1.2 Distributed Robotic Tool (DiRT) Approach})}.
 
-	\item \textbf{Testing, observing and refining the Hypothetical Solution} – Technical development is performed, and their behaviour is observed with empirical experiments. A number of iterations is performed to refine the hypothetical robotic assembly process and to better understand the problems involved \textit{(see \underline{3.1 Research by Iterative Development})}.
+	\item \textbf{Testing, observing and refining the Hypothetical Solution --} Technical development is performed, and their behaviour is observed with empirical experiments. A number of iterations is performed to refine the hypothetical robotic assembly process and to better understand the problems involved \textit{(see \ul{3.1 Research by Iterative Development})}.
 
-	\item \textbf{Formulating relationships }– Critical analysis is performed during the development in each iteration and at the end of the thesis to answer the research questions and to provide possible avenues for future in-depth studies \textit{(see \underline{3.2 Epistemological assumptions})}.
+	\item \textbf{Formulating relationships --} Critical analysis is performed during the development in each iteration and at the end of the thesis to answer the research questions and to provide possible avenues for future in-depth studies \textit{(see \ul{3.2 Epistemological assumptions})}.
 
 \end{enumerate}
 \section{Research by Iterative Development}
 
-The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \textit{(further elaboration in \underline{3.1.1 Setting Research Goals})}. The following flowchart summarises the iterative loops across the development rounds. 
+The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \textit{(further elaboration in \ul{3.1.1 Setting Research Goals})}. The following flowchart summarises the iterative loops across the development rounds. 
 
-\begin{figure}[H]
-\includegraphics[width=15.92cm,height=14.96cm]{./images/image8.jpg}
+% 1 Image  
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\textwidth]{example-image-a}
+    \caption{Figure Caption}
+    %\label{fig:unique_figure_label}
 \end{figure}
 
+Within each \textbf{Development Phase}, small scale tests were performed and the technology was improved until it was ready for a full systematic test \textit{(further elaboration in \ul{3.1.2 Technical Development})}. 
 
-Within each \textbf{Development Phase}, small scale tests were performed and the technology was improved until it was ready for a full systematic test \textit{(further elaboration in \underline{3.1.2 Technical Development})}. 
+The full full systematic test was performed by designing and constructing a \textbf{Demonstrator Structure} \textit{(further elaboration in \ul{3.1.3 Demonstrator Design})}. 
 
-The full full systematic test was performed by designing and constructing a \textbf{Demonstrator Structure} \textit{(further elaboration in \underline{3.1.3 Demonstrator Design})}. 
-
-During the \textbf{Construction Phase}, certain adjustments of the process parameters are also possible. Afterwhich, the follow-up actions are determined for the next development round\textbf{ }\textit{(further elaboration in \underline{3.1.4 Observations and Interpretation})}.
+During the \textbf{Construction Phase}, certain adjustments of the process parameters are also possible. Afterwhich, the follow-up actions are determined for the next development round\textbf{ }\textit{(further elaboration in \ul{3.1.4 Observations and Interpretation})}.
 
 \subsection{Setting Research Goals}
 
 At the beginning of the first iteration, the goal was to design and prototype an assembly process and to test it with experiments. As new insights and discoveries are made, subsequent development iterations are guided by the discoveries and include follow-up explorations whenever necessary. Below is a summary of the goals in each phase:
 
 \begin{itemize}
-	\item \textbf{Development Round 1 - Clamp Prototype }– A minimal demonstration of the robotic clamp concept is developed to verify the process. The hardware being developed is only capable of assembling one type of lap joints with fixed dimensions. Nevertheless, it successfully performed the task and revealed opportunities for further improvements. \textit{(link to Chapter \underline{4 Dev Round 1 - Clamp Prototype)}}
-
-	\item \textbf{Development Round 2 - Bus Stop Demonstrator }– The initial proof-of-concept clamp is redesigned to accommodate joints with different angles. Software is also developed to generate robot trajectory, control the robot arm, and control the robotic clamps wirelessly. Finally, a high level controller is developed to synchronise motion between the robotic arm and robotic clamps - an important aspect of the assembly process. The entire system was validated through the construction of a timber frame structure with 40 elements. \textit{(link to Chapter \underline{5 Dev Round 2 - Bus Stop Demonstrator)}}
-
-	\item \textbf{Development Round 3 - Automatic Clamp Placement} - This phase completes the automation for mechanical tasks that are identified as low priority in the previous two phases. One of the highlights is the automatic placement and retrieval of robotic clamps on the structure. In addition, task planning and motion planning algorithms were introduced to study the automation of parsing designs to create robotic assembly programmes. The completed fully automatic assembly system was validated by reassembling the last demonstrator in a fully automatic manner.  \textit{(link to Chapter \underline{6 Dev Round 3 - Automatic Clamp Placement)}}
-
-	\item \textbf{Development Round 4 - HyparHut Demonstrator} - This phase consists of a UI upgrade to improve interactive modelling in the CAD environment, the introduction of a fabrication-aware design workflow, and the introduction of a new robotic screwdriver. The new screwdriver allows the assembly of non-planar lap joints and can accommodate timber beams with different profile sizes. This vastly expands the design possibilities for timber frame structures that can be assembled by the automatic process. The new system was validated with the assembly of a structure with a hyperbolic paraboloid roof. One other highlight was the introduction of a vision based alignment process for improving the success rate for the robotic arm to pick up and place tools. \textit{(link to Chapter \underline{7 Dev Round 4 - HyparHut) }}
-
-	\item \textbf{Development Round 5 - CantiBox Demonstrator} - By this round, the robotic assembly process had already achieved a high degree of automation and required little human intervention. The study was therefore expanded to integrate cutting-edge design methods with collaborators in two different fields. The first is structurally-informed joint design using novel design methods that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. The second is automated task and motion planning using PDDLStream to optimise redundant tasks and robotic motions. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. The combined technology was validated with the assembly of a structure with three modular boxes, each containing clamped and screwed joints. This also saw the largest amount of tools being used by the robotic assembly process, which provided insight for the future of the system. \textit{(link to Chapter \underline{8 Dev Round 5 - Cantibox)}}
-
+    
+    \item \textbf{Development Round 1 - Clamp Prototype --} A minimal demonstration of the robotic clamp concept is developed to verify the process. The hardware being developed is only capable of assembling one type of lap joints with fixed dimensions. Nevertheless, it successfully performed the task and revealed opportunities for further improvements. \textit{(link to Chapter \ul{4 Dev Round 1 - Clamp Prototype)}}
+    
+    \item \textbf{Development Round 2 - Bus Stop Demonstrator --} The initial proof-of-concept clamp is redesigned to accommodate joints with different angles. Software is also developed to generate robot trajectory, control the robot arm, and control the robotic clamps wirelessly. Finally, a high level controller is developed to synchronise motion between the robotic arm and robotic clamps - an important aspect of the assembly process. The entire system was validated through the construction of a timber frame structure with 40 elements. \textit{(link to Chapter \ul{5 Dev Round 2 - Bus Stop Demonstrator)}}
+    
+    \item \textbf{Development Round 3 - Automatic Clamp Placement --} This phase completes the automation for mechanical tasks that are identified as low priority in the previous two phases. One of the highlights is the automatic placement and retrieval of robotic clamps on the structure. In addition, task planning and motion planning algorithms were introduced to study the automation of parsing designs to create robotic assembly programmes. The completed fully automatic assembly system was validated by reassembling the last demonstrator in a fully automatic manner.  \textit{(link to Chapter \ul{6 Dev Round 3 - Automatic Clamp Placement)}}
+ 
+    \item \textbf{Development Round 4 - HyparHut Demonstrator --} This phase consists of a UI upgrade to improve interactive modelling in the CAD environment, the introduction of a fabrication-aware design workflow, and the introduction of a new robotic screwdriver. The new screwdriver allows the assembly of non-planar lap joints and can accommodate timber beams with different profile sizes. This vastly expands the design possibilities for timber frame structures that can be assembled by the automatic process. The new system was validated with the assembly of a structure with a hyperbolic paraboloid roof. One other highlight was the introduction of a vision based alignment process for improving the success rate for the robotic arm to pick up and place tools. \textit{(link to Chapter \ul{7 Dev Round 4 - HyparHut) }}
+    \item \textbf{Development Round 5 - CantiBox Demonstrator --} By this round, the robotic assembly process had already achieved a high degree of automation and required little human intervention. The study was therefore expanded to integrate cutting-edge design methods with collaborators in two different fields. The first is structurally-informed joint design using novel design methods that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. The second is automated task and motion planning using PDDLStream to optimise redundant tasks and robotic motions. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. The combined technology was validated with the assembly of a structure with three modular boxes, each containing clamped and screwed joints. This also saw the largest amount of tools being used by the robotic assembly process, which provided insight for the future of the system. \textit{(link to Chapter \ul{8 Dev Round 5 - Cantibox)}}
+ 
 \end{itemize}
 \subsection{Technology Development}
 
@@ -50,47 +51,51 @@ The robotic assembly process required the development of novel hardware and soft
 \begin{itemize}
 	\item \textbf{Mechatronics}
 
-\begin{itemize}
-	\item Robotic arm attachment hardware design (Rhinoceros 3D) 
-
-	\item Robotic clamp and screwdriver hardware design (Rhinoceros 3D) 
-
-	\item Robotic clamp and screwdriver electronics design (EAGLE)
-
-	\item Other static hardware supporting construction (Rhinoceros 3D) 
-
-\end{itemize}
+    \begin{itemize}
+    	\item Robotic arm attachment hardware design (Rhinoceros 3D) 
+    
+    	\item Robotic clamp and screwdriver hardware design (Rhinoceros 3D) 
+    
+    	\item Robotic clamp and screwdriver electronics design (EAGLE)
+    
+    	\item Other static hardware supporting construction (Rhinoceros 3D) 
+    
+    \end{itemize}
+    
 	\item \textbf{Software for CAD}
 
-\begin{itemize}
-	\item CAD library for modelling timber parts and their assembly (Python)
+    \begin{itemize}
+    	\item CAD library for modelling timber parts and their assembly (Python)
+    
+    	\item Design validation tools (Python)
+    
+    	\item User Interface (UI) for interactive design modelling and validation (Python in Rhinoceros 3D) 
+    
+    	\item CAM library for modelling robotic tools and their actions (Python)
+    
+    \end{itemize}
+    
+    \item \textbf{Software for CAM}
 
-	\item Design validation tools (Python)
+    \begin{itemize}
+    	\item Interface with task and motion planning software (Python) \textit{(footnote: in collaboration with YiJiang Huang)}
+    
+    \end{itemize}
+    
+     \item \textbf{Software for control and execution}
 
-	\item User Interface (UI) for interactive design modelling and validation (Python in Rhinoceros 3D) 
-
-	\item CAM library for modelling robotic tools and their actions (Python)
-
+    \begin{itemize}
+    	\item Robotic clamp and screwdriver firmware (C++)
+    
+    	\item Wireless communication firmware (C++)
+    
+    	\item Robotic arm and robotic tools synchronisation controller (Python, ROS)
+    
+    	\item Task execution and process monitoring software (Python)
+    
+    \end{itemize}
 \end{itemize}
-	\item \textbf{Software for CAM}
 
-\begin{itemize}
-	\item Interface with task and motion planning software (Python) \textit{(footnote: in collaboration with YiJiang Huang)}
-
-\end{itemize}
-	\item \textbf{Software for control and execution}
-
-\begin{itemize}
-	\item Robotic clamp and screwdriver firmware (C++)
-
-	\item Wireless communication firmware (C++)
-
-	\item Robotic arm and robotic tools synchronisation controller (Python, ROS)
-
-	\item Task execution and process monitoring software (Python)
-
-\end{itemize}
-\end{itemize}
 During development, multiple technical solutions can often be used to achieve a particular goal. The principle for selecting a specific option included the following criteria: 
 
 \begin{enumerate}
@@ -133,12 +138,15 @@ The timber parts used for the demonstrators were ordered from an industrial timb
 
 \subsection{Observations and Interpretation}
 
-The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters 6 to 10). Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \textit{(See \underline{3.2 Epistemological assumptions} and \underline{3.3 Axiological assumptions})}. 
+The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters 6 to 10). Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \textit{(See \ul{3.2 Epistemological assumptions} and \ul{3.3 Axiological assumptions})}. 
 
-\begin{figure}[H]
-\includegraphics[width=15.92cm,height=3.17cm]{./images/image10.jpg}
+% 1 Image  
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\textwidth]{example-image-a}
+    \caption{Figure Caption}
+    %\label{fig:unique_figure_label}
 \end{figure}
-
 
 The diagram above shows different types of follow-up actions. For example, an observation may suggest new technology developments to improve the robotic assembly system. In some cases, further studies may be necessary to verify a causal relationship where the interpretations may be inconclusive. This can be caused by the scarcity of observations or the lack of scientific controls. Some other problems may require a design solution rather than a technological one, which can be addressed by formulating design guidelines or by creating automatic design checks. 
 
@@ -164,9 +172,9 @@ I was trained at the undergraduate and graduate levels as an architectural desig
 
 \subsection{Laboratory Context}
 
-The research is conducted in the Robotic Fabrication Lab (RFL) of the Institute of Technology in Architecture (ITA) at the Department of Architecture of ETH Zurich, where four industrial robotic arms are mounted upside-down on two gantry robots (custom design by Güdel Group AG, Switzerland), forming a robotic manipulator that covers a large space\textit{ (see \underline{5.2.2 RFL Robotic Platform for technical details})}. Each robot consists of six articulated joints, an independent vertical linear axis, and two horizontal linear axes on the gantry coupled with neighbouring robots. If only a single robot is concerned, all nine axes can be commanded to move synchronously. This offers kinematic redundancy that allows the robot body to avoid obstacles in dense environments. For this thesis, the robotic manipulator in the RFL represents a hypothetical robotic manipulator that acted as a testbed for developing the robotic assembly process. This also carries the assumption that lessons learnt from this setup can be extrapolated to on-site setups in the future. The details of this extrapolation are further discussed in the conclusion chapter \textit{(see \underline{11.2.1 Extrapolation to On-Site Robotic Systems})}. 
+The research is conducted in the Robotic Fabrication Lab (RFL) of the Institute of Technology in Architecture (ITA) at the Department of Architecture of ETH Zurich, where four industrial robotic arms are mounted upside-down on two gantry robots (custom design by Güdel Group AG, Switzerland), forming a robotic manipulator that covers a large space\textit{ (see \ul{5.2.2 RFL Robotic Platform for technical details})}. Each robot consists of six articulated joints, an independent vertical linear axis, and two horizontal linear axes on the gantry coupled with neighbouring robots. If only a single robot is concerned, all nine axes can be commanded to move synchronously. This offers kinematic redundancy that allows the robot body to avoid obstacles in dense environments. For this thesis, the robotic manipulator in the RFL represents a hypothetical robotic manipulator that acted as a testbed for developing the robotic assembly process. This also carries the assumption that lessons learnt from this setup can be extrapolated to on-site setups in the future. The details of this extrapolation are further discussed in the conclusion chapter \textit{(see \ul{11.2.1 Extrapolation to On-Site Robotic Systems})}. 
 
-Our laboratory is also the home to many timber assembly research projects introduced in the context. This undoubtedly influences the research as existing robotic components and software infrastructure are adopted from previous research. For example, the choice of the automatic robotic quick-change system was the result of a donation from previous projects \textit{(see \underline{5.3.5 Docking adapter})}. Another example is the choice of online robot control middleware \textit{(see \underline{5.2.4 Distributed Control System})}, which was determined by our laboratory's standard mode of operations.
+Our laboratory is also the home to many timber assembly research projects introduced in the context. This undoubtedly influences the research as existing robotic components and software infrastructure are adopted from previous research. For example, the choice of the automatic robotic quick-change system was the result of a donation from previous projects \textit{(see \ul{5.3.5 Docking adapter})}. Another example is the choice of online robot control middleware \textit{(see \ul{5.2.4 Distributed Control System})}, which was determined by our laboratory's standard mode of operations.
 
 \subsection{Participants in User Interface Study}
 
@@ -179,7 +187,7 @@ Throughout this thesis, I collaborated with domain experts for some technologica
 \begin{itemize}
 	\item \textbf{Structural Analysis and Timber Joint Design }problems were advised by Dr. Davide Tanadini (Chair of Structural Design, ETH Zurich). His research focuses on possible applications of the theory of plasticity and graphic statics on timber structures and joints and their implementation in digital fabrication. In particular, the last demonstrator was designed by a student under his supervision (global design) and the joints were customised by the models and software he developed as part of this thesis. His PhD dissertation is titled ``Limit analysis and timber plasticity. Plastic design of interlocking timber-to-timber connections" \textit{(cite: Davides thesis) }Together with this thesis, they form part of the NCCR Digital Fabrication research project ‘Spatial Timber Assemblies’.
 
-	\item \textbf{Robotic Task and Motion Planning (TAMP) }problems were advised by Dr. Yijiang Huang (Digital Structures Research Group, MIT, USA). His introduction and advice to the field was essential for me to understand the nature of the complicated problems involved. We worked in close collaboration for realising the three demonstrators, which led to the discovery of many new techniques to bridge between the highly technical fields (robotics and computer algorithms) and architectural design. Many of the planning related software, including all of the motion planning backend were developed by him. His PhD dissertation is titled ``Algorithmic planning for robotic assembly of building structures," \href{https://www.zotero.org/google-docs/?GiBuSm}{(Huang, 2022)}. Both of our researches share the same vision towards improving automation from design to assembly. 
+	\item \textbf{Robotic Task and Motion Planning (TAMP) }problems were advised by Dr. Yijiang Huang (Digital Structures Research Group, MIT, USA). His introduction and advice to the field was essential for me to understand the nature of the complicated problems involved. We worked in close collaboration for realising the three demonstrators, which led to the discovery of many new techniques to bridge between the highly technical fields (robotics and computer algorithms) and architectural design. Many of the planning related software, including all of the motion planning backend were developed by him. His PhD dissertation is titled ``Algorithmic planning for robotic assembly of building structures," \parencite{huangAlgorithmicPlanningRobotic2022}. Both of our researches share the same vision towards improving automation from design to assembly. 
 
 	\item \textbf{Machine Design and Construction}, especially the later development with the screwdriver were advised by Prof. Dr. Agathe Koller and Marco Rossi (both from The Institute for Lab Automation and Mechatronics ILT, OST, Switzerland). They were directly involved in the conceptualization of the screwdriver operation mechanism and the innovative pin gripper mechanism. Marco also offered valuable instructions for machine design and construction, made some of the hardware parts and advised on the tests during hardware development
 
@@ -188,8 +196,8 @@ Throughout this thesis, I collaborated with domain experts for some technologica
 
 The following five chapters (chapter 4 to 8) are written in chronological order corresponding to five development rounds. This is important for understanding the exploration as an evolution between experiments and observations.  Each chapter contains the following sections:
 
-\vspace{1\baselineskip}
 \begin{itemize}
+    % 
 	\item \textbf{Goal - }Identify the goal and scope for the entire development round
 
 	\item \textbf{Background }- Background knowledge needed to understand the rationale for some of the development.
@@ -217,17 +225,15 @@ Readers who are interested only in a specific theme may find the following guide
 	\item \textbf{Two Types of DiRT Assembly Tools}
 
 \begin{itemize}
+
 	\item \textbf{Clamp }for planar lap joints
 
-\begin{itemize}
-	\item Hardware (5.3.4 Lap Clamp CL3 Hardware)
-
-	\item Electronics (5.3.6 CL3 Clamp Electronics)
-
-	\item Firmware (5.3.8 CL3 Firmware)
-
-\end{itemize}
-	\item \textbf{Screwdriver }for planar and non-planar lap joints 
+    \begin{itemize}
+    	\item Hardware (5.3.4 Lap Clamp CL3 Hardware)
+    	\item Electronics (5.3.6 CL3 Clamp Electronics)
+    	\item Firmware (5.3.8 CL3 Firmware)
+    \end{itemize}
+    \item \textbf{Screwdriver }for planar and non-planar lap joints 
 
 \begin{itemize}
 	\item Hardware (7.3.7 Lap Screwdriver SL1 and SL1\_G200 Hardware)
@@ -303,7 +309,7 @@ Readers who are interested only in a specific theme may find the following guide
 \end{itemize}
 \end{itemize}
 \end{itemize}
-\vspace{1\baselineskip}
+
 \begin{itemize}
 	\item \textbf{Task and Motion Planning }workflow (6.3.4 Process Design Workflow)
 
