@@ -56,9 +56,8 @@ On the other hand, integral timber joints are generally weak in rotational stiff
 
 The image below shows an example of a half-timber style timber frame house in Soest, Germany. Notice the exposed diagonal elements on the facade.
 
-\begin{figure}[h]
-    \includegraphics[width=1.0\textwidth]{
-        ./auto_convert/Chapter 1 to 3/images/image9.jpg}
+\begin{figure}[ht]
+    \includegraphics[width=1.0\textwidth]{example-image-a}
     \caption{
         Credits: Licence-free photo, retrieved from \url{https://www.hippopx.com/en/germany-soest-architecture-timber-framed-half-timbered-house-square-city-402214} , n.d.}
 \end{figure}
@@ -219,7 +218,7 @@ Many research projects have already explored the adaptation of robotic arms to p
 
 \subsection{Inaccuracy for non-repetitive targets}
 
-Most of the industrial robotic arms available in the market today were designed for the manufacturing industry. Their long kinematic chains are designed to be able to reach into tight spaces such as machine openings and car interiors. For this purpose, agile motions are preferred over mechanical stiffness and accuracy. In the context of manufacturing, robotic tasks are often repetitive, targets and payload are also known in advance during programming. As long as the robot repeatability is good, manual calibration can be performed to achieve good alignment, this is known as Teaching \textit{(see \ul{6.2.3 Robot Targets - Taught Configuration and Cartesian Pose}) \parencite{shohamRobotTeachingMethods1984}.
+Most of the industrial robotic arms available in the market today were designed for the manufacturing industry. Their long kinematic chains are designed to be able to reach into tight spaces such as machine openings and car interiors. For this purpose, agile motions are preferred over mechanical stiffness and accuracy. In the context of manufacturing, robotic tasks are often repetitive, targets and payload are also known in advance during programming. As long as the robot repeatability is good, manual calibration can be performed to achieve good alignment, this is known as Teaching \textit{(see \ul{6.2.3 Robot Targets - Taught Configuration and Cartesian Pose})} \parencite{shohamRobotTeachingMethods1984}.
 
 However, the difference between repeatability and accuracy is important to consider when using robotic arms for non-repetitive tasks. Repeatability refers to the robot's ability to return to a specific position with high precision, while accuracy is a measurement of the robot's ability to reach a previously uncalibrated target position. This is much more challenging for the robot to achieve because it needs to take into account discrepancies in the robot kinematics model, manufacturing tolerance of the robot parts, and deformation of the robot under different payloads and configurations. 
 
@@ -233,6 +232,6 @@ The anatomy of a robot program can be seen as a segment of movements that goes f
 
 In industrial automation, the production engineer will typically teach waypoints for the robot to move around obstacles. Once the teaching is completed, the engineer will also verify the motion at a slow speed to ensure it is collision-free and later at higher speed (production speed) to ensure dynamic effects are acceptable. Although this process of teaching and validation is tedious and time-consuming, it is acceptable for a repetitive process, because it has to be done only once. 
 
-Alternatively, the configurations and associated trajectories can also be created in a computer simulation, using algorithms that are referred to as motion planners\parencite{lavallePlanningAlgorithms2006}. This workflow requires all the objects and machines around the robot being modelled in the simulated environment for collision checking \textit{(see \ul{5.2.7 Motion Planning})} . Even so, small adjustments may be required in the physical environment as the alignment between physical setups and their simulated counterpart may differ significantly.
+Alternatively, the configurations and associated trajectories can also be created in a computer simulation, using algorithms that are referred to as motion planners\parencite{lavallePlanningAlgorithms2006}. This workflow requires all the objects and machines around the robot being modelled in the simulated environment for collision checking \textit{(see \ul{5.2.7 Motion Planning})}. Even so, small adjustments may be required in the physical environment as the alignment between physical setups and their simulated counterpart may differ significantly.
 
 For planning non-repetitive trajectories the impracticality of teaching the targets means that simulated motion planning must be used. Therefore it will suffer from the accuracy problem when alignment is needed with real world objects. Moreover, the construction environment must be accurately modelled and cannot be changed during the robot operations. 
