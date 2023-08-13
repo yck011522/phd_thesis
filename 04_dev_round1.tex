@@ -389,7 +389,8 @@ The Arduino Uno is later switched to Arduino Nano, which has the same functional
 
 In order to monitor battery voltage, it is connected to the ADC over a voltage divider with a ratio of 3.35 to 1 (see the schematic below). A fully charged LiPo 4S battery at 16.8V will be reduced to 5.01V, which coincides with the upper bound of the ADC. 
 
-The ADC has 10 bit resolution (1024 steps), or 0.00488V per step (5.0V/1024 steps). This circuit design will provide an effective resolution between a full battery at 16.8V and an empty battery at 12.8V = (16.8V - 12.8V) / 0.00488V = 243 steps
+The ADC has 10 bit resolution (1024 steps), or 0.00488V per step \\($5.0V / 1024 steps$). This circuit design will provide an effective resolution ($R_{Eff}$) between a full battery at 16.8V and an empty battery at 12.8V : 
+\\ $R_{Eff} = (16.8V - 12.8V) / 0.00488V = 243 steps$
 
 The actual division ratio and offset between the Raw Values obtained from the ADC, and the Measured Voltage has to be calibrated after construction for each device to compensate for component deviations. 
 
@@ -400,22 +401,24 @@ The Motor Driver and the Arduino Uno were validated in a test setup before the d
     \item Bi-direction control of the actuator using the driver
     \item Encoder output can be read using the interrupt pins
     \item Motion and driver operation under 12V power, without PWM throttle
+\end{itemize}
 
 \subsubsection{Voltage Regulation}
 
 During remote-controlled operation, the 16.8V battery power had to be regulated to 5V for the Arduino microcontroller. A simple linear regulation circuitry based on LM7805 was used for the regulation. Due to the large voltage drop (11.8V), the efficiency of the regulation was expected to be low. However, the low current drawn from the microcontroller (19 mA) and the encoders (4 mA) should not create a power and heat dissipation problem.
 
-The following calculation was performed using ambient temperature TA = 25°C. The thermal resistance of the TO-220 package θJA = 19°C/W. Without a heatsink, the package-to-ambient is approximately 70 °C/W.
+The following calculation was performed using ambient temperature $T_A = 25^{\circ}C$. The thermal resistance of the TO-220 package $\theta_{JA} = 19^{\circ}C/W$. Without a heatsink, the package-to-ambient is approximately $70 ^{\circ}C/W$.
 
-Power Dissipation = (Vin – Vout) * Iout = (11.8V) * 23mA = 271mW
+Power Dissipation $P_D = (V_{in} - V_{out}) * I_{out} = (11.8V) \times 23mA = 271mW$
 
-Thermal formula obtained from LM7805.pdf spec sheet: PD = (TJ – TA) / θJA 
+Thermal formula obtained from LM7805 spec sheet:
+$P_D = (T_J - T_A) / \theta_{JA}$
 
-0.271W = (TJ – 25°C) / (19°C/W + 70°C/W)
+$0.271W = (T_J - 25^{\circ}C) / (19^{\circ}C/W + 70^{\circ}C/W)$
 
-The junction temperature of the chip TJ = 49.1°C, which is far below the maximum junction temperature TJ(max) = 150°C.
+The junction temperature of the chip $T_J = 49.1^{\circ}C$, which is far below the maximum junction temperature $T_J{max} = 150^{\circ}C$.
 
-Schematics
+\paragraph{Schematics}
 
 The following schematic shows the assignment of pins on the Arduino controller:
 
@@ -441,65 +444,31 @@ Check battery level using integrated ADC in microcontroller.
 The main control loop implements non-preemptive scheduling for sharing time between the subroutines. All three subroutines are visited sequentially in each cycle and are allowed to run until it yields control. If needed, each subroutine can implement its own timer to determine how frequently it should be executed, but this was not used in this development. The diagram below describes the main control loop.
 
 \subsubsection{Control Commands}
-The CL1 Clamp Firmware was designed to receive serial commands from the integrated USB serial adapter and provide responses when necessary. Since the USB messaging protocol is completely transparent to the Arduino microcontroller, the serial interface is purely a stream of bytes transmitting at 115200 baud. Command messages are terminated by a '\n' character and without start-of-message header. The Command Processing Subroutine monitors the receive buffer and triggers a response when a command is received.
+The CL1 Clamp Firmware was designed to receive serial commands from the integrated USB serial adapter and provide responses when necessary. Since the USB messaging protocol is completely transparent to the Arduino microcontroller, the serial interface is purely a stream of bytes transmitting at 115200 baud. Command messages are terminated by a '\textbackslash n' character and without start-of-message header. The Command Processing Subroutine monitors the receive buffer and triggers a response when a command is received.
 All commands received by the firmware are treated as real-time commands, allowing motion to be started, modified, or stopped at any time. This is crucial for upper-level controllers (on PC) to assert full control over the hardware behavior and stop it in emergency situations. This behavior is inspired by many embedded real-time CNC motion controllers, such as tinyg2 (cite) and grbl (cite).
 The following table lists the commands that the controller support:
-Command
-Meaning
-Example
-h
-Home device, towards extension direction. Begin immediately.
-h\n
-e
-Synchronise the two arms, then extend (e) or retract (r) by 0.5 mm. Begin immediately. This functions like a small incremental jogging mode. It is considered a Motion Command.
-e\n
-r
-r\n
-0 to 9
-Motion Command - Both motors go to position 0 (fully clamped) , or to other positions till 90mm. Begin immediately.
-3\n (goes to 30mm position)
-+
-Motion Command - Both motors go to position 105mm (fully extended). Begin immediately.
-+\n (goes to 105mm position)
-s
-Stop immediately.
-s\n
-\$0
-Set Axis Speed.
-\$010.0\n 
-(set to 10mm/s)
-\$1
-Set Motor 1 Default zero position relative to home switch.
-\$0888\n 
-(set to step 888)
-\$2
-Set Motor 2 Default home position.
-Same as above
-(
-Begin Comment, ignore subsequent characters until the end-of-comment character or ‘\n’ is received.
-(this comment text will be ignored)
-)
-End of Comment character.
-?
-Request a state report
-?\n
+
+MISSINGTABLE
 
 In order to avoid blocking the main control loop, all motion commands are processed in an asynchronous manner. This is achieved by setting an internal state in the controller, such as a target position, and defer the execution to the motion control subroutine in the main control loop. The Motion Control Subroutine can then be executed regularly to perform motion control (see next section).
-For other commands, such as the settings (\$) commands, the status report (?) and the stop command, are executed immediately. 
+For other commands, such as the settings \verb|(\$)| commands, the status report \verb|(?)| and the stop command, are executed immediately. 
 \subsubsection{Bang Bang Motion Control}
 
 A linear profile motion controller was implemented to control the motion of the two motors based on encoder readings (Tan et al., 2007). The motion profile is defined by the following parameters:
 \begin{itemize}
-    \item Velocity - Extracted from \$0 setting
+    \item Velocity - Extracted from \verb|\$0| setting
     \item Start position - Current motor position when the motion command is received
     \item Target position - Target value defined in the motion command
     \item Start time - The time when the motion command is received
 \end{itemize}
 
-When the Motor Control Subroutine is entered, it computes the current tracking position using the motion trajectory and computes the tracking_position_error by comparing it with the encoder readings. The equations of motion are as follows:
-delta_time = current_time - motion_starting_time
-tracking_position = delta_time * velocity +  starting_position
-tracking_position_error = tracking_position - current_position
+When the Motor Control Subroutine is entered, it computes the current tracking position using the motion trajectory and computes the \verb|tracking_position_error| by comparing it with the encoder readings. The equations of motion are as follows: \\
+{
+\scriptsize
+\verb|delta_time = current_time - motion_starting_time|\\
+\verb|tracking_position = delta_time * velocity +  starting_position|\\
+\verb|tracking_position_error = tracking_position - current_position|\\
+}
 
 The graph below shows the motion profile in a graphical way. Green arrows are the parameters that define the motion profile and brown arrows are the changing tracking targets.
 
@@ -510,16 +479,8 @@ During the motion tracking, if the position error is too large, the controller w
 Extra protection was added to avoid overheating the motor and the driver. This is implemented by detecting whether the encoder values have changed within a certain time. If power was applied to the motor and the encoder did not rotate, the controller would stop and enter the stalled state. 
 
 The following table shows the main control parameters and their tuned values used in the demonstration:
-Motion Control Parameter
-Value
-No movement over-heat protection duration
-100 ms
-Encoder-step per linear-travel (measured empirically)
- 82.285 step mm-1
-The allowable encoder error
-15 step
-Typical linear speed
-2 mm s-1
+
+MISSINGTABLE
 
 The motion control algorithm is validated with the CL1 hardware and its positioning repeatability is within 0.2mm.
 
@@ -530,7 +491,7 @@ The image below shows the timber joint used for validating the clamping movement
 It requires approximately 0.9kN force to be assembled, confirmed using a setup similar to the test conducted in 4.2.2 Joint Tightness but oriented horizontally.
 \subsection{Execution Plan}
 The list below shows a number of planned tests, however the clamped is damaged at the stall test and it cannot be continued. Nevertheless, the lessons learnt from this clamp design and construction experience is sufficient to move on to the next development round. Therefore the damaged clamp was not repaired to continue the test.
-\begin{itemeize}
+\begin{itemize}
     \item Construct column setup
     \begin{itemize}
         \item Vertically column rigidly fixed to ground
@@ -586,15 +547,15 @@ Possible Cause
     Possible Solution and Follow-Up
 A quick search revealed that off-the-shelf linear actuators capable of pulling a few kN of tension are physically too big for the clamp. Possible solutions include:
 \begin{itemize}
-    \item Commision a custom linear actuator from a fabricator
-        \begin{itemize}
+    \item Commission a custom linear actuator from a fabricator
+    \begin{itemize}
         \item This is not pursued because of budget concerns.
-        \end{itemize}
-    \item Design and build a custom screw mechanism for linear actuation
-        \begin{itemize}
-        \item Implemented and tested with success in the next Dev Round (see 5.3.1 Ball Screw Linear Actuator). 
-        \end{itemize}
     \end{itemize}
+    \item Design and build a custom screw mechanism for linear actuation
+    \begin{itemize}
+        \item Implemented and tested with success in the next Dev Round (see 5.3.1 Ball Screw Linear Actuator). 
+    \end{itemize}
+\end{itemize}
 
 Upon reflection, it is likely that if the motor were stalled long enough, the motor driver would also overheat and become damaged. The solution would require the firmware to include stall detection and cut power to the driver if a stall is detected. This is implemented when designing the next motion control algorithm (see 5.3.8 Motion Control for DC Servo Motor)
 This reflection also led to the realisation of a new protection concept for all DiRT tools: The design of any DiRT tool should protect against self-destruction. The actions of the DiRT tool, even under incorrect control, should never cause irreversible damage to its own components. This concept remained relevant for the rest of the thesis guiding the mechatronics development of later tools and systems.
@@ -611,18 +572,18 @@ In the linear regulator design, input and output capacitors were provided to buf
 Possible Solution and Follow-Up
 \begin{itemize}
     \item Add diode before regulator input capacitors - This should help prevent the motor driver from drawing power from the regulator capacitor. The capacitor placed before the regulator should provide sufficient buffering capacity for maintaining regulated voltage on the digital side during maximum motor output.
-        \begin{itemize}
-            \item This was implemented and tested in Dev Round 2 (see 5.3.7 CL3 Clamp Electronics)
-        \end{itemize}
-    \item Add digital stall protection in motor controller firmware to limit stall duration. 
-        \begin{itemize}
-            \item This was implemented and tested successfully in Dev Round 2 (see 5.3.8 Motion Control for DC Servo Motor)
-        \end{itemize}
-    \item Use a separate battery for microcontroller - This could be a very stable solution and can potentially be very robust. However, this also adds an extra battery on-board and would increase operator workload to replace and recharge. 
-        \begin{itemize}
-            \item This was not implemented because the other solutions were sufficient.
-        \end{itemize}
+    \begin{itemize}
+        \item This was implemented and tested in Dev Round 2 (see 5.3.7 CL3 Clamp Electronics)
     \end{itemize}
+    \item Add digital stall protection in motor controller firmware to limit stall duration. 
+    \begin{itemize}
+        \item This was implemented and tested successfully in Dev Round 2 (see 5.3.8 Motion Control for DC Servo Motor)
+    \end{itemize}
+    \item Use a separate battery for microcontroller - This could be a very stable solution and can potentially be very robust. However, this also adds an extra battery on-board and would increase operator workload to replace and recharge. 
+    \begin{itemize}
+        \item This was not implemented because the other solutions were sufficient.
+    \end{itemize}
+\end{itemize}
 
 \subsection{Unstable Clamp Jaw} 
 The unstable clamp jaw problem was discovered almost immediately after the CL1 design was constructed. It is caused by a design error of using a round linear bushing and assuming the linear actuator can act as the second linear guide. 
@@ -632,14 +593,14 @@ Unfortunately, due to the mounting points provided by the actuator, it is diffic
 Possible Solution and Follow-Up
 \begin{itemize}
     \item Use an extra linear guide rail on each jaw.
-        \begin{itemize}
+    \begin{itemize}
         \item This is likely to be bulky and can further increase weight
-        \end{itemize}
-    \item Use linear guide rails with square or rectangular profiles with recirculating ball bearings.
-        \begin{itemize}
-        \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Dev Round 2 (see 5.3.1 Ball Screw Linear Actuator)
-        \end{itemize}
     \end{itemize}
+    \item Use linear guide rails with square or rectangular profiles with recirculating ball bearings.
+    \begin{itemize}
+        \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Dev Round 2 (see 5.3.1 Ball Screw Linear Actuator)
+    \end{itemize}
+\end{itemize}
         
 \subsection{Beam Support Needed During Clamping}
 To further elaborate the problem observed in 4.5.1 Successful Validation, the clamp jaw was able to support the moving beam only in a horizontal position. However, the DiRT assembly system was envisioned to be able to assemble columns, beams and diagonal bracings. Therefore it would be necessary for the moving beam to be stable in other orientations too.
