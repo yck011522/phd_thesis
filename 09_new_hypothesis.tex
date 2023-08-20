@@ -26,11 +26,11 @@ Let's begin by looking at the Table \ref{table:alignment_scenarios}that outlines
 Observations of the three demonstrations (from Development Phase 3 to 5) indicated that there are many different factors affecting the amount of deviation in each of the alignment scenarios. They affect whether the total pairwise deviation can be corrected and thus the chance of successful assembly. Below are some examples of the success factors:
 
 \begin{description}[style=unboxed] % Environment provided enumitem package
-	\item [Tight tolerance, deviation of partially assembled structure] When picking up tools from the structure (types $\#$3 and $\#$7), the alignment between robot-side ATC and tool-side ATC has a very low chance of success\textit{ (see \ul{6.5.3 Docking Adapter Misalignment})}. This may be caused by a combination of the small allowable tolerance (2mm) governed by the design of the ATC and the high deformation of the partially built structure from which the tool is hanging. 
+	\item [Tight tolerance, deviation of partially assembled structure] When picking up tools from the structure (types \#3 and \#7), the alignment between robot-side ATC and tool-side ATC has a very low chance of success\textit{ (see \ul{6.5.3 Docking Adapter Misalignment})}. This may be caused by a combination of the small allowable tolerance (2mm) governed by the design of the ATC and the high deformation of the partially built structure from which the tool is hanging. 
 
-	\item [Correction range] Comparing the two joint closure methods, screwing closure (type $\#$6) have a much higher success rate than clamping closure (type $\#$1). This may be explained by the pointy tip of the screwdriver aiming at a relatively large pre-drilled hole.
+	\item [Correction range] Comparing the two joint closure methods, screwing closure (type \#6) have a much higher success rate than clamping closure (type \#1). This may be explained by the pointy tip of the screwdriver aiming at a relatively large pre-drilled hole.
 
-	\item [Deviation] When retrieving tools from and returning tools to the stationary tool storage (type $\#$4, $\#$5 and $\#$8), the alignment has a very high success rate when compared to other alignment types. This may be explained by the fact that tool storage alignment is performed manually by teaching, there is no deviation of the tool storage afterwards and the robotic platform is repeatable. In other alignment scenarios, the target is novel and may be deformed from its designated location.
+	\item [Deviation] When retrieving tools from and returning tools to the stationary tool storage (type \#4, \#5 and \#8), the alignment has a very high success rate when compared to other alignment types. This may be explained by the fact that tool storage alignment is performed manually by teaching, there is no deviation of the tool storage afterwards and the robotic platform is repeatable. In other alignment scenarios, the target is novel and may be deformed from its designated location.
 
 	\item [Payload] During the transport of a beam to the work area, if the beam is very heavy \textit{(see \ul{7.5.5 Heavy Beam Caused Robot Overload})}, or if the grasp is not near the middle, the chance of success is low. 
 
@@ -103,9 +103,9 @@ The function can be expressed by:
 
 \begin{subequations} \label{eq:probability_of_success}
   \begin{empheq}[left={S(d) = }\empheqlbrace]{align}
-     1 &\text{ , if } x\le0\\
-     K_c &\text{ , if } T < d \le C_Range\\
-     0 &\text{ , if } C_Range < D
+     1 &\text{ , if } x \le 0 \label{eq:probability_of_success_I}\\
+     K_c &\text{ , if } T < d \le C_{Range} \label{eq:probability_of_success_II}\\
+     0 &\text{ , if } C_{Range} < D \label{eq:probability_of_success_III}
   \end{empheq}
 \end{subequations}
 
@@ -270,7 +270,7 @@ Consider an example shown in Figure \ref{fig:?} depicting a type \#1 joint-to-jo
       &= 16\nonumber
 \end{align}
 
-The probability of the deviation $F_D(d)$ can be computed using Equation \ref{eq:probability_with_all_links}:
+The probability of the deviation $F_D(d)$, when $d = 16$ can be computed using Equation \ref{eq:probability_with_all_links}:
 
 \begin{align}
     F_D(d) &= F_x(x) \cdot F_Y(y) \nonumber\\
@@ -278,16 +278,24 @@ The probability of the deviation $F_D(d)$ can be computed using Equation \ref{eq
       &= 0.857375 \cdot 0.95\nonumber\\
       &= 0.814506\nonumber
 \end{align}
+The result of this calculation can also be understood as $F_D(16) = 0.814506$ because $d = 16$.
 
-Consider that there is no tolerance in this tight joint, tolerance T $=$ 0. Assuming that the correction range of the edge chamfer C\textsubscript{Range} $=$ 16mm, and that it has a K\textsubscript{C} of 0.95. We can apply equation [6] to determine the probability of successful assembly S:
+Consider that there is no tolerance in this tight joint, tolerance $T$ is 0 mm. Assuming that the correction range of the edge chamfer $C_{Range}$ is 16 mm, and that it has a $K_C$ of $0.95$. We can apply Equation \ref{eq:probability_when_zero_tolerance} to determine the probability of successful assembly $S$:
 
-% S $=$ F\textsubscript{D}(C\textsubscript{Range})\times K\textsubscript{C} \\ S $=$ F\textsubscript{D}(16)\times 0.95 \\ S $=$ 0.82 \times 0.95 \\ S $=$ 0.78
+\begin{align}
+    S &= F_D(C_{Range}) \cdot K_C \nonumber\\
+      &= F_D(16) \cdot 0.95 \nonumber\\
+      &=  0.814506 \cdot 0.95 \nonumber\\
+      &= 0.77378 \nonumber\\
+\end{align}
+
+The result shows that, under the above assumptions, the probability of successful assembly is approximately 0.77. 
 
 \subsection{Allowable Tolerance and Correctable Deviation}
 
-The Alignment-Correction model considers two mechanisms to counteract deviation. The first is the \textbf{allowable tolerance T} between the mating parts. For example, when designing a pin-in-hole assembly, engineers can dimension the pin to be smaller than the hole so that it can be assembled even if the two parts are not perfectly aligned. Therefore, in the first interval of equation [2] where \textbf{d $\leq$ T}, no correction mechanism is necessary. Theoretically, the dimension of parts needs to also consider production tolerance. However, in the scale of an architectural assembly, the effect of positional deviation is so dominating that the effect of production tolerance can be ignored.
+The Alignment-Correction model considers two mechanisms to counteract deviation. The first is the \textbf{allowable tolerance} $T$ between the mating parts. For example, when designing a pin-in-hole assembly, engineers can dimension the pin to be smaller than the hole so that it can be assembled even if the two parts are not perfectly aligned. Therefore, in the first interval of equation \ref{eq:probability_of_success} where $ d \leq T$, no correction mechanism is necessary. Theoretically, the dimension of parts needs to also consider production tolerance. However, in the scale of an architectural assembly, the effect of positional deviation is so dominating that the effect of production tolerance can be ignored.
 
-In cases where d is larger than T or a large T is undesirable for the joint, a correction mechanism with a suitable C\textsubscript{Range} is needed. This is the case for the integral timber joints used in timber frame construction, which are often designed to be tight-fitting to maximise structural stiffness, thus resulting in zero allowable tolerance. Because perfect alignment is practically impossible, d must be greater than zero, therefore a correction method is needed, such as the chamfered edges implemented in this thesis.
+In cases where $d$ is larger than $T$ or a large $T$ is undesirable for the joint, a correction mechanism with a suitable $C_{Range}$ is needed. This is the case for the integral timber joints used in timber frame construction, which are often designed to be tight-fitting to maximise structural stiffness, thus resulting in zero allowable tolerance. Because perfect alignment is practically impossible, $d$ must be greater than zero, therefore a correction method is needed, such as the chamfered edges implemented in this thesis.
 
 Apart from the joint-to-joint alignment scenario, alignments between other mating pairs are also studied in this thesis. Below is a summary of the correction methods used and their allowable tolerance. 
 
@@ -297,7 +305,7 @@ Apart from the joint-to-joint alignment scenario, alignments between other matin
     % \label{table:}
 \end{table}
 
-The correction methods used in this thesis can be categorised into two types with a slight difference in how C\textsubscript{Range} and C\textsubscript{Residual} are defined.
+The correction methods used in this thesis can be categorised into two types with a slight difference in how $C_{Range}$ and $C_{Residual}$ are defined.
 
 \begin{table}
     \includegraphics[page=6, trim=25.4mm 160mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
@@ -305,9 +313,9 @@ The correction methods used in this thesis can be categorised into two types wit
     % \label{table:}
 \end{table}
 
-% The following example (images below) shows how the model agrees with an observation. During the alignment of the screwed joints, the first point of contact is between the screwdriver tip and the screw hole. Image (a) shows that the tapered screw tip alone (C\textsubscript{Range} $=$ 4) is not enough to correct the misalignment. Image (b) shows an additional chamfered entry to the screw hole to increase the correction range (C\textsubscript{Range} $=$ 10), thus increasing F\textsubscript{D}(C\textsubscript{Range}). Using equation [2], S $=$ F\textsubscript{D}(C\textsubscript{Range})\times K\textsubscript{C }, we can see that the assembly success rate S is larger. 
+The following example (images below) shows how the model agrees with an observation. During the alignment of the screwed joints, the first point of contact is between the screwdriver tip and the screw hole. Image (a) shows that the tapered screw tip alone ($C_{Range} = 4$) is not enough to correct the misalignment. Image (b) shows an additional chamfered entry to the screw hole to increase the correction range ($C_{Range} = 10$), thus increasing $F_D(C_{Range})$. Using Equation \ref{eq:probability_when_zero_tolerance}, $S = F_{D}(C_{Range}) \times K_{C}$, we can see that the assembly success rate S is larger. 
 
-In the example shown in Image (c), d is larger than C\textsubscript{Range} and is not correctable by the chamfered entry. As mentioned before,\textit{ }the amount of chamfer can be selected using equation [4] to achieve a higher success rate. Image (d) shows the hole chamfering tool that was used to make the chamfer.
+In the example shown in Image (c), $d$ is larger than $C_{Range}$ and is not correctable by the chamfered entry. As mentioned before, the amount of chamfer can be selected using Equation \ref{eq:probability_interval_II} to achieve a higher success rate. Image (d) shows the hole chamfering tool that was used to make the chamfer.
 
 \input{image_holder_1}
 
@@ -316,12 +324,12 @@ In the example shown in Image (c), d is larger than C\textsubscript{Range} and i
 The Alignment-Correction Model is also capable of modelling multi-stage alignment and correction mechanisms, two of which are studied in this thesis:
 
 \begin{enumerate}
-	\item After the camera-marker correction mechanism is introduced, the attachment of clamps to the partially-built timber structure (Type $\#$2, tested in CantiBox). The first correction stage is an active correction using the camera-marker correction method. After convergence, the second correction stage is passive guidance by the tapered pin of the clamp gripper.
+	\item After the camera-marker correction mechanism is introduced, the attachment of clamps to the partially-built timber structure (Type \#2, tested in CantiBox). The first correction stage is an active correction using the camera-marker correction method. After convergence, the second correction stage is passive guidance by the tapered pin of the clamp gripper.
 
-	\item The alignment for the screwed joint (Type $\#$6A and $\#$6B, tested in HyparHut). The first correction stage is passive guidance by the tapered screwdriver tip and chamfered screw hole. The second stage passive guidance by chamfered joint edges. 
+	\item The alignment for the screwed joint (Type \#6A and \#6B, tested in HyparHut). The first correction stage is passive guidance by the tapered screwdriver tip and chamfered screw hole. The second stage passive guidance by chamfered joint edges. 
 
 \end{enumerate}
-In both scenarios, the C\textsubscript{Residual} of the first step is designed to be larger than the C\textsubscript{Range} of the second step. This ensures that the result of the first step will be within the allowable correction range of the second step. This also allows equation [5] to be computed only once, using the C\textsubscript{Range }of the first step.
+In both scenarios, the $C_{Residual}$ of the first step is designed to be larger than the $C_{Range}$ of the second step. This ensures that the result of the first step will be within the allowable correction range of the second step. This also allows Equation \ref{eq:probability_expanded_rearranged} to be computed only once, using the $C_{Range}$ of the first step.
 
 \subsection{Multi-Point Alignment}
 
@@ -331,35 +339,34 @@ While there is no joint-to-joint error detection implemented in this thesis, if 
 
 \subsection{Cross-Examination with Observation}
 
-Below is an overview of the variables, D, T, C\textsubscript{Range}, and C\textsubscript{Residual} for all alignment-correct scenarios in this thesis. The rows are presented in the same order as Table $\ldots$ . The values of T, C\textsubscript{Range}, and C\textsubscript{Residual }are actual values based on the design of the joint and the correction mechanisms. 
+Table \ref{table:overview_of_alignment_variables_for_all_alignment} provides an overview of the variables, $D$, $T$, $C_{Range}$, and $C_{Residual}$ for all alignment-correct scenarios in this thesis. The rows are presented in the same order as Table $\ldots$ . The values of $T$, $C_{Range}$, and $C_{Residual}$ are actual values based on the design of the joint and the correction mechanisms. 
 
-However, it is not the intention of this thesis to model the statistical distribution D, as it requires a massive amount of control samples. Nevertheless, a qualitative estimation of the distribution interval is provided based on operator observation, with a confidence level of ``value is very likely to fall within this range''.
+However, it is not the intention of this thesis to model the statistical distribution $D$, as it requires a massive amount of control samples. Nevertheless, a qualitative estimation of the distribution interval is provided based on operator observation, with a confidence level of \textquote{value is very likely to fall within this range}.
 
 \begin{table}
     \includegraphics[page=7, trim=25.4mm 40mm 14mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
-    \caption{Examples of deviations}
-    % \label{table:}
+    \caption{Overview of alignment variables for all alignment-correct scenarios in this thesis}
+    \label{table:overview_of_alignment_variables_for_all_alignment}
 \end{table}
 
-The following table provides an aggregation of T and D values from their estimation in the table above, compare them using the limits in equation [2], and compare it with an empirical observation of the success rate by the operator \textit{(Footnote: the author is the operator in all three demonstrations)}. Despite the very imprecise nature of the estimated values, it still provides a comparative study opportunity between different scenarios.
+Table \ref{table:t_and_d_values_for_all_alignment} provides an aggregation of $T$ and $D$ values from their estimation in the table above, compare them using the limits in equation \ref{eq:probability_of_success}, and compare it with an empirical observation of the success rate by the operator \textit{(Footnote: the author is the operator in all three demonstrations)}. Despite the very imprecise nature of the estimated values, it still provides a comparative study opportunity between different scenarios.
 
 \begin{table}
     \includegraphics[page=8, trim=25.4mm 100mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
-    \caption{Examples of deviations}
-    % \label{table:}
+    \caption{Estimated $T$ and $D$ values in all alignment-correct scenarios in this thesis}
+    \label{table:t_and_d_values_for_all_alignment}
 \end{table}
 
 The following comparisons show that the observations agree with the predictions from the model.
 
 \begin{itemize}
-	\item Deviation in $\#$4, $\#$5, and $\#$8 are always staying in interval I. Therefore, despite no correction mechanism being used, the observed alignment is always successful. 
+	\item Deviation in \#4, \#5, and \#8 are always staying in interval I. Therefore, despite no correction mechanism being used, the observed alignment is always successful. 
 
-	\item $\#$2 and $\#$3 benefited from the addition of the camera-market correction method. C\textsubscript{Range} is increased substantially to 25mm. The model reflects the chance of success and agrees with the observation.
+	\item \#2 and \#3 benefited from the addition of the camera-market correction method. $C_{Range}$ is increased substantially to 25 mm. The model reflects the chance of success and agrees with the observation.
 
-	\item Deviation is larger in $\#$6B than $\#$6A due to the additional flying beam in the structural loop. This effect on success rate can be reflected in the model and agrees with the observation.
+	\item Deviation is larger in \#6B than \#6A due to the additional flying beam in the structural loop. This effect on success rate can be reflected in the model and agrees with the observation.
 
-	\item The observed success rate for $\#$1 went from ‘average’ in the BusStop demonstrator to ‘high’ in the CantiBox demonstrator. This is caused by better deformation management when designing the structure, and the bigger chamfer size used. 
-
+	\item The observed success rate for \#1 went from ‘average’ in the BusStop demonstrator to ‘high’ in the CantiBox demonstrator. This is caused by better deformation management when designing the structure, and the bigger chamfer size used. 
 \end{itemize}
 
 \section{Estimating Deviations}
@@ -368,7 +375,7 @@ The Alignment-Correction Model, introduced in the previous section, introduced t
 
 While many of the static and rigid components in the system, such as grippers, tool changers and end effectors, can be measured to determine their deviation. The flexible components in the system create a challenge for estimating their deviation. This section elaborates on three crucial sources of deviations.
 
-\begin{itemize}
+\begin{itemize}[nosep]
 	\item Deformation of partially assembled structures
 	\item Accuracy of timber parts
 	\item Accuracy of large-scale robotic platforms
@@ -421,52 +428,49 @@ Suffering from the undefined tolerance provided by the timber supplier, a manual
 
 Across the three demonstrators, only pairwise fitting problems were found \textit{(see \ul{8.5.3 Inaccurate Polyline Lap Problem}, \ul{7.5.4 Inaccurate Screw Hole Problem} and \ul{7.5.3 Missing Cut Problem})}. The general tendency is that there is an increased likelihood of manufacturing problems for complex or unconventional joints. While these problems may be resolved in the future, the incidents revealed a more problematic issue - the lack of suitable inspection methods capable of inspecting large timber parts for the level of accuracy required for robotic assembly. Developing new methods to measure the accuracy of timber beams and timber joints may sound simple, but there are some fundamental questions that are yet to be solved. The following list contains some of the challenges that are speculated for the unsolved questions: 
 
-\begin{itemize}
+\begin{itemize}[nosep]
 	\item What are suitable measurement tools?
-
-\begin{itemize}
-	\item Existing tools such as tape measures, laser distance measures, and callipers cannot reach the size needed for measuring a beam or a joint.
-
-	\item Gauges can be used, but only if the geometry is repetitive.
-
-	\item Can non-contact measurement methods be used, such as photogrammetry reconstruction, structure light sensing, X-ray scanner, lidar scanner?
-
-\end{itemize}
+    \begin{itemize}
+    	\item Existing tools such as tape measures, laser distance measures, and callipers cannot reach the size needed for measuring a beam or a joint.
+    
+    	\item Gauges can be used, but only if the geometry is repetitive.
+    
+    	\item Can non-contact measurement methods be used, such as photogrammetry reconstruction, structure light sensing, X-ray scanner, lidar scanner?
+    \end{itemize}
+    
 	\item How to take measurements on the wood surface?
-
-\begin{itemize}
-	\item Which are the critical measurements that need to be inspected? 
-
-	\item How to probe soft surfaces with measurement tools?
-
-	\item How to measure the tightness of a joint?
-
-	\item How to take measurements on joints with many facets and compound angles? (They are almost impossible to measure with manual tools.)
-
-	\item How to take measurements on inside surfaces that are hard to reach? (e.g. when measuring the straightness, diameter and depth of a drilled hole)
-
-	\item If 3D scanning technology is used, how to analyse the point cloud to confirm whether the geometry is acceptable?
-
-	\item How do moisture content and external environmental conditions affect the measurements?
-
-\end{itemize}
-	\item How to deal with the flexibility of the timber beam?
-
-\begin{itemize}
-	\item How to define dimensions and tolerances for a flexible beam that can accommodate flexing?
-
-	\item Measurement may indicate a beam is bent, but this is likely to be usable because the assembly process can bend it back.
-
-\end{itemize}
+    \begin{itemize}
+    	\item Which are the critical measurements that need to be inspected? 
+    
+    	\item How to probe soft surfaces with measurement tools?
+    
+    	\item How to measure the tightness of a joint?
+    
+    	\item How to take measurements on joints with many facets and compound angles? (They are almost impossible to measure with manual tools.)
+    
+    	\item How to take measurements on inside surfaces that are hard to reach? (e.g. when measuring the straightness, diameter and depth of a drilled hole)
+    
+    	\item If 3D scanning technology is used, how to analyse the point cloud to confirm whether the geometry is acceptable?
+    
+    	\item How do moisture content and external environmental conditions affect the measurements?
+    \end{itemize}
+    
+    \item How to deal with the flexibility of the timber beam?
+    \begin{itemize}
+    	\item How to define dimensions and tolerances for a flexible beam that can accommodate flexing?
+    
+    	\item Measurement may indicate a beam is bent, but this is likely to be usable because the assembly process can bend it back.
+    \end{itemize}
+    
 	\item How to deal with bespoke pieces
-
-\begin{itemize}
-	\item Automated inspection is likely necessary. How can the measurement process be integrated into the production workflow?
+    \begin{itemize}
+    	\item Automated inspection is likely necessary. How can the measurement process be integrated into the production workflow?
+    \end{itemize}
+    
+    \item Can the measurements be used to improve joinery machine calibration?
 
 \end{itemize}
-	\item Can the measurements be used to improve joinery machine calibration?
 
-\end{itemize}
 In summary, the ability to assess dimensional accuracy is crucial for quality assurance and for improving the production quality of automatic joinery machines. Moreover, it can help identify the root causes of errors and enable the implementation of corrective actions to prevent recurrence. In the case of the timber assembly process, measuring accuracy can also help optimise the alignment correction mechanisms and provide quantifiable statistics for predicting the success rate using the Alignment-Correction Model introduced earlier.
 
 Additionally, the measured deviation can be used to improve the accuracy of subsequent assembly processes. By measuring the deviation of a beam and its joints, the robot can try to compensate for the production error, thereby reducing the impact of the error on the overall assembly. This could be achieved through various techniques, such as adjusting the path of the robot arm or adjusting the selective compliance force during joint closure to accommodate the deviation. This can result in a robotic process that does not depend on extremely high machining accuracy and can potentially reduce the part rejection rate during production. Overall, the ability to measure accuracy is a critical component in the pursuit of reliable and robust robotic assembly processes.
