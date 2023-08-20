@@ -13,9 +13,13 @@ In this chapter, I will introduce the new hypothesis centred around the probabil
 
 \section{Modelling Alignment and Correction}
 
-Let's begin by looking at the following table that outlines all the alignment scenarios performed. Since we are using one robot for the assembly, the scenarios can all be described as ``Some part(s) on the robot-side attempting to align with some other part(s) on the stationary-side". 
+Let's begin by looking at the Table \ref{table:alignment_scenarios}that outlines all the alignment scenarios performed. Since we are using one robot for the assembly, the scenarios can all be described as ``Some part(s) on the robot-side attempting to align with some other part(s) on the stationary-side". 
 
-MISSINGTABLE
+\begin{table}
+    \includegraphics[page=1, trim=25.4mm 35mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Alignment scenarios performed in the demonstrations}
+    \label{table:alignment_scenarios}
+\end{table}
 
 \subsection{Alignment-Correction Model}
 
@@ -39,7 +43,7 @@ The diagram above shows a Type 1 alignment scenario where two joints needs to be
 
 The second inspiration is taken from the study of reliability in the field of systems engineering, for the use of probability to model success and failure \parencite{hallmannToleranceAllocationTolerancecost2020}. Consider the deviation between the two alignment points, we can assume it behaves like a random variable. This allows us to model it as a continuous probability distribution that can be analysed using statistical methods. Specifically, using the cumulative distribution function\footnote{ In probability theory and statistics, the cumulative distribution function (CDF) of a real-valued random variable X, evaluated at x, is the probability that X will take a value less than or equal to x. } (CDF) to analyse the worst-case deviation.
 
-The two graphs below can help us understand CDF in a graphical way. Let us consider the deviations between the two alignment points. Assuming it is a continuous random variable, its distribution can be graphed using the probability density function, where the X axis is the deviation and Y axis is the probability density. The area under the graph represents all possible values, and therefore it has an area of 1. If we want to find the probability that the actual deviation is less than a certain threshold, we can draw a vertical line at that threshold and find the area on the left-hand side. Mathematically, this can be represented by \textbf{F\textsubscript{D}(x) $=$ P (D$\leq$x)}, where \textbf{F\textsubscript{D}() is the CDF of deviation D}, P is the probability density function (PDF), and the T is the threshold to be analysed.
+The two graphs below can help us understand CDF in a graphical way. Let us consider the deviations between the two alignment points. Assuming it is a continuous random variable, its distribution can be graphed using the probability density function, where the X axis is the deviation and Y axis is the probability density. The area under the graph represents all possible values, and therefore it has an area of 1. If we want to find the probability that the actual deviation is less than a certain threshold, we can draw a vertical line at that threshold and find the area on the left-hand side. Mathematically, this can be represented by $F_D (x) = P (D \leq x)$, where $F_D ()$ is the CDF of deviation $D$, $P$ is the probability density function (PDF), and the $T$ is the threshold to be analysed.
 
 In practice, it is possible to quantify the PDF of a random variable by measurement, model fitting and simulation. Details of which will be presented later in the section.
 
@@ -51,97 +55,124 @@ However, for the purpose of assembly, we are interested in the \textbf{worst-cas
 
 Given the following variables: 
 
-\begin{itemize}
-	\item \textbf{d }is the measured deviation of the two alignment points across the open structural loop. It is assumed to be a random variable because of the random imperfections in the system. 
+\begin{itemize}[nosep]
+	\item $d$ is the measured deviation of the two alignment points across the open structural loop. It is assumed to be a random variable because of the random imperfections in the system. 
 
-	\item \textbf{D} is the probability distribution of the random deviation d, 
+	\item $D$ is the probability distribution of the random deviation $d$, 
 
-	\item \textbf{x} is a variable representing a deviation threshold to be analysed 
+	\item $x$ is a variable representing a deviation threshold to be analysed 
 
-	\item \textbf{K\textsubscript{D }$\in$ (0, 1) }represents the probability that the \textbf{d} takes on a value less than or equal to \textbf{x}. 
+	\item $K_D \in (0,1)$ represents the probability that $d$ takes on a value less than or equal to $x$. 
 
 \end{itemize}
-Using the cumulative distribution function \textbf{F\textsubscript{D}(),} we can define a variable \textbf{K\textsubscript{D }$\in$ (0, 1) }to be the probability that the \textbf{d} takes on a value less than or equal to \textbf{x}: 
 
-\textbf{K\textsubscript{D} $=$ F\textsubscript{D}(x) $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$. [1]}
+Using the cumulative distribution function $F_D ()$ we can define a variable $K_D \in (0,1)$ to be the probability that $d$ takes on a value less than or equal to $x$: 
+
+\begin{equation}
+    K_D = F_D (x)
+\end{equation}
 
 In addition, we model the \textbf{allowable assembly tolerance} of the mating features, such as the gap in a pin-in-hole assembly or the gap on a loose joint pair. From the perspective of the mating features, it is the maximum threshold of deviation d such that assembly is still successful. We can define it using: 
 
 \begin{itemize}
-	\item \textbf{T }as the allowable assembly tolerance 
+	\item $T$ as the allowable assembly tolerance 
 \end{itemize}
 
 If a \textbf{correction mechanism} is used, such as chamfered edges passive correction or camera-marker active correction. We can model the properties of the correction mechanism or process using: 
 
-\begin{itemize}
-	\item \textbf{C\textsubscript{Range}} as the maximum correctable range (e.g. size of chamfered joint edge)
+\begin{itemize}[nosep]
+	\item $C_{Range}$ as the maximum correctable range (e.g. size of chamfered joint edge)
 
-	\item \textbf{K\textsubscript{C}} \textbf{$\in$ (0, 1) }as the success rate of the correction method. 
+	\item  $K_D \in (0,1)$ as the success rate of the correction method. 
 
 \end{itemize}
 
-\textbf{The numerical representation and units }have to be consistent for \textbf{d, x\textsubscript{ }}, \textbf{T, C\textsubscript{Range}} and \textbf{C\textsubscript{Residual}}. For the sake of simple arithmetics, the subsequent explanation will only consider the absolute Cartesian distance for the deviation. Therefore it is represented as a signless real number. Alternatively, a transformation consisting of translation and rotation can be used. However, the transformation arithmetics will be outside the scope of this explanation. 
+\textbf{The numerical representation and units }have to be consistent for $d$, $x$, $T$, $C_{Range}$ and $C_{Residual}$. For the sake of simple arithmetics, the subsequent explanation will only consider the absolute Cartesian distance for the deviation. Therefore it is represented as a signless real number. Alternatively, a transformation consisting of translation and rotation can be used. However, the transformation arithmetics will be outside the scope of this explanation. 
 
-Finally, the probability of successful assembly is represented by \textbf{S $\in$ (0, 1)}. Using the defined variables, I propose the following Alignment-Correction Model to relate S as a function of d with three intervals: 
+Finally, the probability of successful assembly is represented by $S \in (0, 1)$. Using the defined variables, I propose the following Alignment-Correction Model to relate S as a function of d with three intervals: 
 
-\begin{enumerate}
-	\item \textbf{No correction needed: if d $\leq$ T then S $=$ 1 \\ }(Explanation: No correction is needed because the deviation is within the allowable tolerance.)
+\begin{description}[style=unboxed] % Environment provided enumitem package
+	\item [No correction needed] if $d \le q$ T then $S = 1$\\ (Explanation: No correction is needed because the deviation is within the allowable tolerance.)
 
-	\item \textbf{Correction success: if T < d $\leq$ C\textsubscript{Range}} \\ (Explanation: The deviation is within the range of the correction mechanism and its residual deviation is within the allowable tolerance.)
+	\item [Correction success] if $T < d \leq C_{Range}$ \\ (Explanation: The deviation is within the range of the correction mechanism and its residual deviation is within the allowable tolerance.)
 
-	\item \textbf{Correction failure:} \textbf{if C\textsubscript{Range} < d then S $=$ 0}
+	\item [Correction failure] if $C_{Range} < d$ then $S = 0$
 
-\end{enumerate}
+\end{description}
 The function can be expressed by: 
 
+\begin{subequations} \label{eq:probability_of_success}
+  \begin{empheq}[left={S(d) = }\empheqlbrace]{align}
+     1 &\text{ , if } x\le0\\
+     K_c &\text{ , if } T < d \le C_Range\\
+     0 &\text{ , if } C_Range < D
+  \end{empheq}
+\end{subequations}
 
-MISSINGTABLE
+Note that some correction mechanisms do not correct the deviation to zero but to within a certain range. It is important for this residual deviation after correction to be smaller than $T$, such that it can be accommodated by the allowable tolerance. In practice, the allowable tolerance and residual deviation are physical properties of the mating feature and the correction system, which can always be satisfied by proper design of the correction mechanism. For example, in the camera-marker correction system, the convergence value is designed to ensure successful alignment with the docking adapter.
 
+Using the CDF of $D$ in Equation \ref{eq:probability_of_success} , the probability of $d$ landing inside interval $I$ is 
 
-Note that some correction mechanisms do not correct the deviation to zero but to within a certain range. It is important for this residual deviation after correction to be smaller than \textbf{T}, such that it can be accommodated by the allowable tolerance. In practice, the allowable tolerance and residual deviation are physical properties of the mating feature and the correction system, which can always be satisfied by proper design of the correction mechanism. For example, in the camera-marker correction system, the convergence value is designed to ensure successful alignment with the docking adapter.
+\begin{equation} \label{eq:probability_interval_I}
+    K_I = F_D (T)
+\end{equation}
 
-Using the CDF of D, equation [1] , the probability of \textbf{d} landing inside interval I is 
+For landing in interval $II$, 
 
-\textbf{k\textsubscript{I} $=$ F\textsubscript{D}(T) $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$. [3]}
+\begin{equation} \label{eq:probability_interval_II}
+    K_{II} = F_D (C_{Range}) - F_D (T)
+\end{equation}
 
-For landing in interval II, 
+The following diagram graphically represents the distribution of alignment points around the ground truth graphically. The two circles define the boundary between interval I and II and III. The radius of the inner circle is equal to the upper bound of interval I where $d = T$, the radius of the outer circle is the upper bound of interval II where $d = C_{Range}$. 
 
-\textbf{k\textsubscript{II} $=$ F\textsubscript{D}(C\textsubscript{Range}) - F\textsubscript{D}(T) $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$. [4]}
-
-The following diagram graphically represents the distribution of alignment points around the ground truth graphically. The two circles define the boundary between interval I and II and III. The radius of the inner circle is equal to the upper bound of interval I where d $=$ T, the radius of the outer circle is the upper bound of interval II where d $=$ C\textsubscript{Range}. . 
-
-The graph on the right depicts the same concept, but plots the probability of successful assembly S(d) with respect to d and the labels are the probability of their occurrence from equations [3] and [4].
+The graph on the right depicts the same concept, but plots the probability of successful assembly $S(d)$ with respect to $d$ and the labels are the probability of their occurrence from Equations \ref{eq:probability_interval_I} and \ref{eq:probability_interval_II}.
 
 \input{image_holder_1x2}
 
-We can find the combined probability of success \textbf{S }for all three zones. Note that interval III can be ignored because the probability of success is zero\textsubscript{. }
+We can find the combined probability of success $S$ for all three zones. Note that interval $III$ is ignored because the probability of success is zero. Using the summation of probability:
 
-% \textbf{S $=$ K\textsubscript{I} \times S\textsubscript{I} + K\textsubscript{II} \times S\textsubscript{II}}
+\begin{equation} \label{eq:probability_of_three_intervals}
+    S = K_I \cdot S_I + K_{II} \cdot S_{II}   
+\end{equation}
 
-% \section{= FD(T) \times 1 + (FD(CRange) - FD(T)) \times Kc}
+Expending the terms using Equations \ref{eq:probability_of_success}, \ref{eq:probability_interval_I} and \ref{eq:probability_interval_II}:
+
+\begin{equation} \label{eq:probability_expanded}
+    S = F_D(T) \cdot 1 + (F_D (C_{Range}) - F_D(T)) \cdot K_C
+\end{equation}
 
 After arranging some terms:
 
-% \textbf{S $=$ F\textsubscript{D}(T) + F\textsubscript{D}(C\textsubscript{Range}) \times K\textsubscript{c} - F\textsubscript{D}(T) \times K\textsubscript{c}}
+\begin{align} \label{eq:probability_expanded_rearranged}
+    S &= F_D(T) + F_D (C_{Range}) \cdot K_C - F_D(T) \cdot K_C \nonumber \\
+      &= F_D(T) \cdot (1 - K_C) + F_D(C_{Range}) \cdot K_C 
+\end{align}
 
-% \textbf{S $=$ F\textsubscript{D}(T) (1 - K\textsubscript{c}) + F\textsubscript{D}(C\textsubscript{Range}) \times K\textsubscript{c \ \ \ \ \ \ \ \ }$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$ [5]}
+In this thesis, in the cases where tight fitting joints are aligned with each other, there is zero tolerance $(T = 0)$ , thus $F_D(T) = 0$. In this special case, the formula can be simplified to:
 
-In this thesis, in the cases where tight fitting joints are aligned with each other, there is zero tolerance (T $=$ 0) , thus \textbf{F\textsubscript{D}(T) $=$ 0.} In this special case, the formula can be simplified to:
+\begin{equation} \label{eq:probability_when_zero_tolerance}
+    S = F_D(C_{Range}) \cdot K_C 
+\end{equation}
 
-% \textbf{S $=$ F\textsubscript{D}(C\textsubscript{Range})\times K\textsubscript{C }\ \ \ \ \ \ \ \ $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$ [6]}
-
-\vspace{1\baselineskip}
 \subsection{Application}
 
-There are many ways that the model can be used. For example, to design a robotic system for a given structure with a \textbf{predictable success probability S}, it is possible to check all the alignment scenarios (after TAMP with the given robots and tools and design) within the process to determine its success probability. If we have N steps in a process, and each step has a success probability of S(N), and if success at each step is required for overall success, you can find the total probability of success by multiplying the success probabilities of each step together.
+There are many ways that the model can be used. For example, to design a robotic system for a given structure with a \textbf{predictable success probability}, it is possible to check all the alignment scenarios (after TAMP is performed with the given robots, tool setup and design) within the process to determine its success probability. 
 
-Total Probability of Success $= S(1) \times S(2) \times \cdots \times S(N)$
+Given $N$ steps in a process, and each step has a success probability of $S(i)$ where $i$ is the index of a step. If success at each step is required for an overall success, the total probability of success $S$ can be found by multiplying the success probabilities of each step together.
 
-If we want to determine the average percentage of steps that are likely to succeed, we can do so by finding the average success probability across all steps. This can indicate how frequently an operator has to attend to an anomaly.
+\begin{align} \label{eq:total_probability_success}
+    S &= S(1) \times S(2) \times \cdots \times S(N)\nonumber \\
+      &= \prod_{i=1}^{N} S(i)
+\end{align}
 
-Average Success Probability $=$\textbf{ (S(1) + S(2) + \ldots + S(N)) / N }
+If we want to determine the average percentage of steps that are likely to succeed, we can do so by finding the average success probability $A$ across all steps. This can indicate how frequently an operator has to attend to an anomaly.
 
-Note that the distribution of D is dependent on the states of the robot and parts, and the value of T depends on the alignment scenario. Therefore the value of S is unique for each alignment in the entire process. It is easy for a computer to check all the alignment moments and visualise those with low success probability. This can help the production engineer identify problematic situations and take corrective actions. For example, to reduce the deformation of a partially-assembled structure by adding scaffolding, changing its assembly sequence or introducing diagonal bracing elements.
+\begin{align} \label{eq:average_step_success_probability}
+    A &= (S(1) + S(2) + \ldots + S(N)) \times \frac{1}{N}\nonumber \\
+      &= \left(\sum_{i=1}^{N} S(i)\right) \times \frac{1}{N}
+\end{align}
+
+Note that the distribution of $D$ is dependent on the states of the robot and parts, and the value of $T$ depends on the alignment scenario. Therefore the value of $S$ is unique for each alignment in the entire process. It is easy for a computer to check all the alignment moments and visualise those with low success probability. This can help the production engineer identify problematic situations and take corrective actions. For example, to reduce the deformation of a partially-assembled structure by adding scaffolding, changing its assembly sequence or introducing diagonal bracing elements.
 
 Another application is for designing the assembly details. We can identify if there is a systemically low success rate for a certain type of alignment. This may indicate that the tolerance or the correction mechanism for that type of scenario has to be adjusted. For example, by increasing the size of the edge chamfer or the field of view of the camera system. It is even possible to automatically assign the appropriate amount of edge chamfer to each joint until a satisfactory success rate is achieved.
 
@@ -153,56 +184,100 @@ In conclusion, the Alignment-Correction Model allows us to analyse and predict t
 
 In the previous section, we have assumed the deviation to be a probability distribution. In this section, we talk about the procedures to quantify this distribution. 
 
-Refer to the structural loop diagram. We can see that each side of the open loop consist of a number of components between the fixed ground and the alignment point. Assuming each of these components are affected by random imperfections, each of them contribute to the deviation, and accumulate at the point of alignment. The total deformation on each link can therefore be modelled as a forward kinematics problem where the deviation caused by each component is modelled as a rigid transformation [Z] and the geometrical distance for each link is modelled as rigid transformation [X]. For a given chain P The general kinematic chain equation allows the deviation link to be computed:
+Refer to the structural loop diagram. We can see that each side of the open loop consist of a number of components between the fixed ground and the alignment point. Assuming each of these components are affected by random imperfections, each of them contribute to the deviation, and accumulate at the point of alignment. The total deformation on each link can therefore be modelled as a forward kinematics problem where the deviation caused by each component is modelled as a rigid transformation $[Z]$ and the geometrical distance for each link is modelled as rigid transformation $[X]$. For a given chain $P$ The general kinematic chain equation allows the total chain deviation $T_P$ to be computed:
 
-\textbf{[T\textsubscript{P}] $=$ [Z\textsubscript{P1}][X\textsubscript{P1}][Z\textsubscript{P2}][X\textsubscript{P2}] $\ldots$ [X\textsubscript{Pn-1}][Z\textsubscript{Pn}] $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$.. [7]}
+\begin{equation} \label{eq:one_chain_deviation}
+    [T_P] = [Z_{P1}][X_{P1}][Z_{P2}][X_{P2}] … [X_{P_{n-1}}][Z_{Pn}] 
+\end{equation}
 
-Where total deviation between the two alignment points on chain P and Q can be found by:
+Where total deviation $d$ between the two alignment points on chain $P$ and $Q$ can be found by:
 
-d $=$ [T\textsubscript{P}][T\textsubscript{Q}]\textsuperscript{T}\textbf{ $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$$\ldots$.. [8]}
+\begin{equation} \label{eq:two_chain_deviation}
+    d = [T_P][T_Q]^T 
+\end{equation}
 
-While this representation of d using rigid transformation is quite accurate, the complex representation is hard to be used for statistical analysis. To simplify the analysis, we can consider only the absolute positional deviation in each of these components, which can be represented by a single number. In practice, the rotation component is often small enough and the Abby error associated with it is small. For a conservative analysis, the worst-case combined deviation of N links in the structural chain P can therefore be computed by:
+While this representation of $d$ using rigid transformation is quite accurate, the complex representation is hard to be used for statistical analysis. To simplify the analysis, we can consider only the absolute positional deviation in each of these components, which can be represented by a single number. In practice, the rotation component is often small enough and the Abby error associated with it is small. For a conservative analysis, the worst-case combined deviation of $N$ links in the structural chain $P$ can therefore be computed by:
 
-d\textsubscript{P} $=$ d\textsubscript{P1} + d\textsubscript{P2} + $\ldots$ + d\textsubscript{PN} 
+\begin{equation}
+    d_P = d_{P1} + d_{P2} + … + d_{PN}
+\end{equation}
 
-And the total deviation between the two alignment points on chain P and Q can be found by:
+And the total deviation $d$ between the two alignment points on chain $P$ and $Q$ can be found by:
 
-\textbf{d }$=$ d\textsubscript{P} + d\textsubscript{Q} \textbf{$=$ d\textsubscript{P1} + d\textsubscript{P2} + $\ldots$ + d\textsubscript{PN} + d\textsubscript{Q1} + d\textsubscript{Q2} + $\ldots$ + d\textsubscript{QN} }
+\begin{align} \label{eq:deviation_with_two_links}
+    d &= d_P + d_Q \nonumber\\
+      &= d_{P1} + d_{P2} + … + d_{PN} + d_{Q1} + d_{Q2} + … + dQN 
+\end{align}
 
 Because of the simple summation, there is no more differentiation between the elements in either one of the chains. All the links can be treated in the same way. Therefore, for a structural loop with N links in total, d can be decomposed into:
 
-\textbf{d $=$ d\textsubscript{1} + d\textsubscript{2} + $\ldots$ + d\textsubscript{N} \ \ \ \ \ \ \ \ $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$. [9] }
+\begin{equation} \label{eq:deviation_with_all_links}
+    d = d_1 + d_2 + … + d_N
+\end{equation}
 
-Recall that each of the deviation components is a random statistical distribution, and they are independent of each other. We can expand the CDF of the total d into its constituting components. We can make use of the Joint Cumulative Distribution Function identity:
+Recall that each of the deviation components is a random statistical distribution, and they are independent of each other. We can expand the CDF of the total $d$ into its constituting components. We can make use of the Joint Cumulative Distribution Function identity:
 
-\textbf{F\textsubscript{XY}(x,y)$=$F\textsubscript{X}(x)F\textsubscript{Y}(y)}
+\begin{equation}
+    F_{XY}(x,y) = F_X(x) \cdot F_Y(y)
+\end{equation}
 
-For a structural loop with N links on both chains, the F\textsubscript{D}(d) evaluated at d can be expanded. 
+For a structural loop with $N$ links on both chains, the $F_D(d)$ evaluated at $d$ can be expanded. 
+\begin{equation}  \label{eq:probability_with_all_links}
+    F_D(d) = F_1(d_1) \cdot F_2(d_2) \cdot \cdots \cdot F_N(d_N)
+\end{equation}
 
-% \textbf{F\textsubscript{D}(d) $=$} \textbf{F\textsubscript{1}(d\textsubscript{1}) \times F\textsubscript{2}(d\textsubscript{2}) \times $\ldots$ \times F\textsubscript{N}(d\textsubscript{N}) \ \ \ \ $\ldots$$\ldots$$\ldots$$\ldots$$\ldots$. [10] }
+Where $F_i(d_i)$ is the CDF of the link $i$ evaluated at $d_i$. Each of these distribution functions can be created from statistical measurements or by probabilistic simulation. Details of which will be presented later.
 
-Where F\textsubscript{i}(d\textsubscript{i}) is the CDF of the link i evaluated at d\textsubscript{i}. Each of these distribution functions can be created from statistical measurements or by probabilistic simulation. Details of which will be presented later.
+Finally, this function can be used in Equations \ref{eq:probability_expanded_rearranged} and \ref{eq:probability_when_zero_tolerance} of the model. The relationship of $d$ and $d_1, d_2, \cdots , d_N$ is described in equation \ref{eq:deviation_with_all_links}. During computation, an optimization function can be used to find the values of $d_1, d_2, \cdots , d_N$ such that it will maximise the probability of success in Equations \ref{eq:probability_expanded_rearranged} and \ref{eq:probability_when_zero_tolerance}.
 
-Finally, this function can be used in equations [5] and [6] of the model. The relationship of d and d1, d2, …, dN is described in equation [9]. During computation, an optimization function can be used to find the values of d1, d2, …, dN such that it will maximise the result of the equation [13].
-
-In conclusion, the simplification of the deviation from transformation to measuring only absolute distance, makes the computation of accumulated deviation much simpler. There are two major sources of inaccuracy. The first is an underestimation of error, because Abby error resulting from the chained rotational deviation is not considered. The second is an overestimation of error due to the summation of absolute distance compared to the transformation-based analysis using equations [7] and [8].
+In conclusion, the simplification of the deviation from transformation to measuring only absolute distance, makes the computation of accumulated deviation much simpler. There are two major sources of inaccuracy. The first is an underestimation of error, because Abby error resulting from the chained rotational deviation is not considered. The second is an overestimation of error due to the summation of absolute distance compared to the transformation-based analysis using Equations \ref{eq:one_chain_deviation} and \ref{eq:two_chain_deviation}.
 
 \input{image_holder_1}
 
 Depending on the nature of the deviation in the link, there are different methods of obtaining its statistical distribution. All of them require fitting a probability distribution to a series of measured data or properties. Different distributions can be selected depending on the shape of the measured data as long as an effective CDF can be applied to the distribution. Below are some examples of simple deviations and how they can found:
 
-MISSINGTABLE
+\begin{table}
+    \includegraphics[page=2, trim=25.4mm 130mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Examples of deviations}
+    % \label{table:}
+\end{table}
 
-Consider the following example of a type $\#$1 joint-to-joint alignment scenario. For simplicity sake, this example requires only one joint alignment. The photo depicts the connectivity chain on the robot side P and stationary side Q at the alignment moment. The possible source of deviation and their quantification method for all parts and interfaces are listed in Table $\ldots$ and Table $\ldots$. The estimated deviation d and the probability F(d) in the experiment setup is listed for the purpose of an example, they are not derived from actual measurement.
+\FloatBarrier
 
 \input{image_holder_1}
 
+Consider an example shown in Figure \ref{fig:?} depicting a type \#1 joint-to-joint alignment scenario. For simplicity sake, the beam being assembled contains nly one mating joint. The photo depicts the connectivity chain on the robot side P and stationary side Q at the alignment moment. The possible source of deviation and their quantification method for all parts and interfaces are listed in Table \ref{table:deviation_robot_side} and \ref{table:deviation_stationary_side}. The estimated deviation $d$ and the probability $F(d)$ in the experiment setup is listed for the purpose of an example, they are not derived from actual measurement.
 
-MISSINGTABLE
 
-Combined deviation is chained using equation [9], probability chained using equation [13]. 
+\begin{table}
+    \includegraphics[page=3, trim=25.4mm 30mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Possible deviation and their quantification method on Robot-Side}
+    \label{table:deviation_robot_side}
+\end{table}
 
-Deviation on Chain P $=$ 9.5mm (probability $=$ 0.86). \\ Deviation on Chain Q $=$ 6.5mm (probability $=$ 0.95) \\ Total Deviation $=$ 16mm (probability $=$ 0.82). $\ldots$ This can be understood as F\textsubscript{D}(16) $=$ 0.82
+\begin{table}
+    \includegraphics[page=4, trim=25.4mm 165mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Possible deviation and their quantification method on Stationary-Side}
+    \label{table:deviation_stationary_side}
+\end{table}
+
+\textbf{The total deviation} $d$ (mm) between the two alignment points can be computed using Equation \ref{eq:deviation_with_two_links}:
+
+\begin{align}
+    d &= d_P + d_Q \nonumber\\
+      &= (0.5 + 5 + 0.5 + 0.5 + 0.5 + 1 + 0.5 + 1) + (0.5 + 2 + 2 + 2)\nonumber\\
+      &= 9.5 + 6.5\nonumber\\
+      &= 16\nonumber
+\end{align}
+
+The probability of the deviation $F_D(d)$ can be computed using Equation \ref{eq:probability_with_all_links}:
+
+\begin{align}
+    F_D(d) &= F_x(x) \cdot F_Y(y) \nonumber\\
+      &= (1 \cdot 0.95 \cdot 1 \cdot 1 \cdot 1 \cdot 1 \cdot 0.95 \cdot 0.95) \cdot (1 \cdot 1 \cdot 1 \cdot 0.95)\nonumber\\
+      &= 0.857375 \cdot 0.95\nonumber\\
+      &= 0.814506\nonumber
+\end{align}
 
 Consider that there is no tolerance in this tight joint, tolerance T $=$ 0. Assuming that the correction range of the edge chamfer C\textsubscript{Range} $=$ 16mm, and that it has a K\textsubscript{C} of 0.95. We can apply equation [6] to determine the probability of successful assembly S:
 
@@ -216,11 +291,19 @@ In cases where d is larger than T or a large T is undesirable for the joint, a c
 
 Apart from the joint-to-joint alignment scenario, alignments between other mating pairs are also studied in this thesis. Below is a summary of the correction methods used and their allowable tolerance. 
 
-MISSINGTABLE
+\begin{table}
+    \includegraphics[page=5, trim=25.4mm 132mm 23.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Examples of deviations}
+    % \label{table:}
+\end{table}
 
 The correction methods used in this thesis can be categorised into two types with a slight difference in how C\textsubscript{Range} and C\textsubscript{Residual} are defined.
 
-MISSINGTABLE
+\begin{table}
+    \includegraphics[page=6, trim=25.4mm 160mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Examples of deviations}
+    % \label{table:}
+\end{table}
 
 % The following example (images below) shows how the model agrees with an observation. During the alignment of the screwed joints, the first point of contact is between the screwdriver tip and the screw hole. Image (a) shows that the tapered screw tip alone (C\textsubscript{Range} $=$ 4) is not enough to correct the misalignment. Image (b) shows an additional chamfered entry to the screw hole to increase the correction range (C\textsubscript{Range} $=$ 10), thus increasing F\textsubscript{D}(C\textsubscript{Range}). Using equation [2], S $=$ F\textsubscript{D}(C\textsubscript{Range})\times K\textsubscript{C }, we can see that the assembly success rate S is larger. 
 
@@ -252,19 +335,20 @@ Below is an overview of the variables, D, T, C\textsubscript{Range}, and C\texts
 
 However, it is not the intention of this thesis to model the statistical distribution D, as it requires a massive amount of control samples. Nevertheless, a qualitative estimation of the distribution interval is provided based on operator observation, with a confidence level of ``value is very likely to fall within this range''.
 
-\section{TABLE MISSING}
+\begin{table}
+    \includegraphics[page=7, trim=25.4mm 40mm 14mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Examples of deviations}
+    % \label{table:}
+\end{table}
 
-\vspace{2\baselineskip}
-{\footnotesize $\ast$ \ \ \ \ ATC-R stands for Automatic Tool Changer - Robotic Side}
-
-{\footnotesize \ \ \ \ ATC-T stands for Automatic Tool Changer - Tool Side}
-
-\vspace{1\baselineskip}
 The following table provides an aggregation of T and D values from their estimation in the table above, compare them using the limits in equation [2], and compare it with an empirical observation of the success rate by the operator \textit{(Footnote: the author is the operator in all three demonstrations)}. Despite the very imprecise nature of the estimated values, it still provides a comparative study opportunity between different scenarios.
 
-{\footnotesize TABLE MISSING}
+\begin{table}
+    \includegraphics[page=8, trim=25.4mm 100mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Examples of deviations}
+    % \label{table:}
+\end{table}
 
-\vspace{1\baselineskip}
 The following comparisons show that the observations agree with the predictions from the model.
 
 \begin{itemize}
