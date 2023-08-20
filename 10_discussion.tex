@@ -1,4 +1,5 @@
 \chapter{Discussion}
+\label{chapter:discussion}
 
 This thesis started with the aim of exploring the automatic assembly of timber frame structures with industrial robotic arms. However, as the investigation progressed, unforeseen discoveries and the development of the Distributed Robotic Tool (DiRT) concept, prompted a shift in the research focus. The new findings expanded the scope of the study, going beyond the initial research questions that guided its early stages. Consequently, the original questions were augmented to address the emerging knowledge gaps, reflecting the dynamic and evolving nature of the research.
 
@@ -9,17 +10,17 @@ It is important to note that much of the reasoning and conclusions in this chapt
 Additionally, readers should be aware that the inductive approach used to explain observations in this chapter is subjective and interpretive in nature. The aim is not to prove or disprove a hypothesis but to find meaning through observations, to formulate new problems, to clarify concepts, and to form new hypotheses.
 
 \section{Response to Research Questions}
-
+\label{section:discussion_response-to-research-questions}
 
 	\paragraph{1. What technologies are required to assemble time frame structures?}
 
 The DiRT system developed in this thesis demonstrated a viable method to overcome the challenges of assembling timber frame structures outlined in the introduction \textit{(see Chapter \ul{2 Challenges and Research Goals})}. In particular, the use of modular assembly tools to apply high forces to the joints proved to be a reliable solution for overcoming misalignment \textit{(see \ul{2.1.4 Joint Alignment}) }and high assembly resistance \textit{(see \ul{2.1.1 Sliding Friction}, \ul{2.1.2 Tight Fitting Joints} and \ul{5.6.6 Clamping Joints with Chamfered Edges})}. The flexibility to attach tools where needed allows the system to assemble many types of structures with different joint types, jointing angles, and timber sizes, with and without fasteners. In addition, the local correction effect at each joint was found to be exploitable for preventing global error accumulation.
 
-    \paragraph{2. What are the robotic end effectors needed to assemble the joints?}
+\paragraph{2. What are the robotic end effectors needed to assemble the joints?}
 
 The DiRT concept introduced a significant change to the traditional definition of robotic end-effectors, transforming them into hybrids that incorporate elements traditionally found in mobile robots, such as embedded controllers, batteries and wireless communication. The modular nature of these tools enables various implementations based on specific joint requirements. In this thesis, two families of assembly tools were designed for a variety of lap joints \textit{(see \ul{4.2.1 Lap Joint Classification by Assembly Direction}, \ul{5.2.1 Parametric Variations of Lap Joints}, \ul{7.3.1 Parametric Polyline Lap Joints} and \ul{7.3.2 Parametric Non-Planar Lap Joints})}. One closes a joint by clamping it from the outside \textit{(see 5.3.4 Lap Clamp CL3 Hardware)}, while the other tightens a screw through the joint's centre \textit{(7.3.11 SL1 Screwdriver Electronics)}. The different placement options of the two tools also showcase the flexibility of attaching the DiRT tools either on the robot side or on the stationary side. Both modes of operation are useful depending on the type of joint being assembled.
 
-    \paragraph{3. Can the DiRT tools be general-purpose, or are specific to the type of joint being assembled?}
+\paragraph{3. Can the DiRT tools be general-purpose, or are specific to the type of joint being assembled?}
 
 DiRT is a general-purpose concept that can be extended for assembling different types of joints and other structures. In general, large-scale assemblies, especially ones that require multiple joint alignments and closure, can benefit from using DiRT. The only essential component of a DiRT tool is the docking adapter for the robotic arm to manipulate it. 
 
@@ -87,6 +88,7 @@ Practical experience has shown that some validation checks can be performed duri
 	\item Availability of assembly tools for all mating joints
 
 \end{itemize}
+
 On the other hand, TAMP is a much slower process that cannot provide real-time feedback to the designer. For example, it takes approximately 10 hours to compute TAMP for each demonstrator. The workflow feels like a ‘compile’ process to the designer, similar to the compile process in software development. The designer can only know for certain if the design will be constructible after a long wait \textit{(see \ul{5.2.7.4 MP as a design feasibility check})}. Moreover, due to the highly coupled and linear planning scene, even small design changes necessitate the re-computation of TAMP.
 
 In order to address this, my collaborator and I have discovered different types of validation checks that can be performed, depending on the affordable time. This multiple level-of-detail validation process appears to be a practical approach to evaluating a design. The checks in increasing level of accuracy are:
@@ -101,7 +103,8 @@ In order to address this, my collaborator and I have discovered different types 
 	\item Motion Planning (a few hours) \textit{(see \ul{6.3.7 Non-Sequential Planning Order})}
 
 \end{itemize}
-	\paragraph{10. What are the design constraints resulting from an automatic assembly process?}
+
+\paragraph{10. What are the design constraints resulting from an automatic assembly process?}
 
 In this thesis, DiRT tools have been developed for lap joints only and therefore the demonstrators are also designed exclusively with lap joints. While there are certain design constraints found during demonstrator design, it is hard to evaluate whether these constraints are caused by the specific tool implementation, the absence of other joint types, or if they represent a fundamental limitation with the DiRT concept itself. Especially because DiRT is an open system and new tools can always be added to solve a specific problem.
 
@@ -113,7 +116,7 @@ There are a number of construction details that are used to facilitate automatic
 
 In general, when designing construction details to facilitate automatic assembly, it is essential to examine whether that detail can be fabricated easily. In the case of timber construction, its compatibility with an automatic joinery machine is essential. In addition, reductive features such as registration holes and chamfered edges may have negative impact on structural performance and should be carefully studied.
 
-	\paragraph{12. How will an automated timber construction process be implemented? What are the new domain experts and their responsibilities?}
+\paragraph{12. How will an automated timber construction process be implemented? What are the new domain experts and their responsibilities?}
 
 
 Considering the significant capital investment required for a large-scale robotic platform, it is essential for a DiRT system to be reusable across multiple projects with minimal modifications. A practical implementation would likely involve the development of an initial system prototype, similar to the one demonstrated in this thesis, which would be progressively improved over time. As the initial system becomes operational, additional DiRT tools, scaffolding elements, and sensors can be incorporated from project to project, thereby expanding the range of joint types and building components that can be assembled.
@@ -123,105 +126,104 @@ Based on the experience gained from operating the system, it is possible to spec
 \begin{itemize}
 	\item \textbf{System designer (CAD / CAM)}
 
-\begin{itemize}
-	\item Create modelling tools for designers in CAD environment 
+	\begin{itemize}
+		\item Create modelling tools for designers in CAD environment 
+		\begin{itemize}
 
-\begin{itemize}
-	\item Create parametric models of beams and joints \textit{(see \ul{7.3.1 Parametric Polyline Lap Joints})}
+			\item Create parametric models of beams and joints \textit{(see \ul{7.3.1 Parametric Polyline Lap Joints})}
 
-	\item Create design validation algorithms \textit{(see \ul{6.3.4 Design Software Implementation in Rhino Python})}
+			\item Create design validation algorithms \textit{(see \ul{6.3.4 Design Software Implementation in Rhino Python})}
 
-\end{itemize}
-	\item Formulate assembly logic as TAMP problems
+		\end{itemize}
+		\item Formulate assembly logic as TAMP problems
 
-\begin{itemize}
-	\item Create task planning flowcharts \textit{(see \ul{6.3.5.1 Task Planning with Flowchart})}
+		\begin{itemize}
+			\item Create task planning flowcharts \textit{(see \ul{6.3.5.1 Task Planning with Flowchart})}
 
-	\item Create an action-state description for automatic TAMP \textit{(see \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
+			\item Create an action-state description for automatic TAMP \textit{(see \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
 
-\end{itemize}
-	\item Create process visualisation and reporting tools for designers, engineers and operators. \textit{(see \ul{6.3.5.6 Process Visualization and Adjustment})}
+		\end{itemize}
+		\item Create process visualisation and reporting tools for designers, engineers and operators. \textit{(see \ul{6.3.5.6 Process Visualization and Adjustment})}
 
-\end{itemize}
+	\end{itemize}
 	\item \textbf{System designer (Robotic)}
 
-\begin{itemize}
-	\item Create high-level controllers for integrating and synchronising different controllers of robotic platforms, DiRT tools and sensors. \textit{(see \ul{5.3.12 Clamp Controller (L2)} and)}
+	\begin{itemize}
+		\item Create high-level controllers for integrating and synchronising different controllers of robotic platforms, DiRT tools and sensors. \textit{(see \ul{5.3.12 Clamp Controller (L2)} and)}
 
-	\item Create software for on-site operators to execute pre-planned robotic tasks, monitor progress, and allow certain reactions to on-site conditions. \textit{(see \ul{6.3.8 Standalone Process Execution Controller})}
+		\item Create software for on-site operators to execute pre-planned robotic tasks, monitor progress, and allow certain reactions to on-site conditions. \textit{(see \ul{6.3.8 Standalone Process Execution Controller})}
 
-	\item Design active and passive alignment correction mechanisms. \textit{(see \ul{7.3.14 Camera-Marker Alignment Correction System})}
+		\item Design active and passive alignment correction mechanisms. \textit{(see \ul{7.3.14 Camera-Marker Alignment Correction System})}
 
-\end{itemize}
+	\end{itemize}
 	\item \textbf{System designer (Hardware)}
 
-\begin{itemize}
-	\item Design and fabricate DiRT tools
+	\begin{itemize}
+		\item Design and fabricate DiRT tools
 
-	\item Create digital twin models for the DiRT tools for integration into modelling, planning and control software. 
+		\item Create digital twin models for the DiRT tools for integration into modelling, planning and control software. 
 
-	\item Adapt the on-site robotic platform (gantry and arms arrangement) for project-specific requirements and site conditions. 
+		\item Adapt the on-site robotic platform (gantry and arms arrangement) for project-specific requirements and site conditions. 
 
-	\item Coordinate with the site operation manager, site safety engineer, and system integrator.
+		\item Coordinate with the site operation manager, site safety engineer, and system integrator.
 
-\end{itemize}
+	\end{itemize}
 	\item \textbf{Production engineer}
 
-\begin{itemize}
-	\item Make process decisions and perform assemblability validation
+	\begin{itemize}
+		\item Make process decisions and perform assemblability validation
 
-\begin{itemize}
-	\item Design temporary foundation \textit{(see \ul{7.3.10 Beam to Ground Connection})}
+		\begin{itemize}
+			\item Design temporary foundation \textit{(see \ul{7.3.10 Beam to Ground Connection})}
 
-	\item Design temporary scaffolding positions \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}
+			\item Design temporary scaffolding positions \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}
 
-	\item Decide grasp pose and assembly sequence \textit{(see \ul{6.3.5.6 Process Visualization and Adjustment})}
+			\item Decide grasp pose and assembly sequence \textit{(see \ul{6.3.5.6 Process Visualization and Adjustment})}
 
-\end{itemize}
-	\item Provide design feedback and suggestions to designers for resolving production problems.
+		\end{itemize}
+		\item Provide design feedback and suggestions to designers for resolving production problems.
 
-	\item Provide feedback to system designers if new hardware or software is needed for project-specific requirements.
+		\item Provide feedback to system designers if new hardware or software is needed for project-specific requirements.
 
-\begin{itemize}
-	\item New joint type \textit{(see \ul{7.3.2 Parametric Non-Planar Lap Joints})}
+		\begin{itemize}
+			\item New joint type \textit{(see \ul{7.3.2 Parametric Non-Planar Lap Joints})}
 
-	\item New building element type
+			\item New building element type
 
-	\item New assembly tool or sensor
+			\item New assembly tool or sensor
 
-	\item New scaffolding method
+			\item New scaffolding method
 
-\end{itemize}
-	\item Create robotic programme \textit{(see \ul{6.3.5 Process Design Workflow} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
+		\end{itemize}
+		\item Create robotic programme \textit{(see \ul{6.3.5 Process Design Workflow} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
 
-	\item Create CNC fabrication data for timber components \textit{(see \ul{5.6.1 Execution Plan} and \ul{7.5.1 Execution Plan})}
+		\item Create CNC fabrication data for timber components \textit{(see \ul{5.6.1 Execution Plan} and \ul{7.5.1 Execution Plan})}
 
-	\item Create production schedule, resources list and cost estimation.
+		\item Create production schedule, resources list and cost estimation.
 
-\end{itemize}
+	\end{itemize}
 	\item \textbf{Operator}
 
-\begin{itemize}
-	\item Monitor the automatic system and handle unexpected problems \textit{(see \ul{7.5.7 Screwdriver Dislodge Incident} / \ul{7.5.6 Screwdriver Tip Misalignment})}
+	\begin{itemize}
+		\item Monitor the automatic system and handle unexpected problems \textit{(see \ul{7.5.7 Screwdriver Dislodge Incident} / \ul{7.5.6 Screwdriver Tip Misalignment})}
 
-	\item Perform machine tending and designated manual tasks 
+		\item Perform machine tending and designated manual tasks 
 
-\begin{itemize}
-	\item Sort incoming delivery and check for defects \textit{(see \ul{7.5.3 Missing Cut Problem})}
+		\begin{itemize}
+			\item Sort incoming delivery and check for defects \textit{(see \ul{7.5.3 Missing Cut Problem})}
+			\item Load timber parts to the system
+			\item Perform manual assembly tasks \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}
+		\end{itemize}
 
-	\item Load timber parts to the system
+		\item Perform hardware inspection and maintenance
 
-	\item Perform manual assembly tasks \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}
+		\item Provide feedback to the production engineer and system designer about potential process improvement
 
-\end{itemize}
-	\item Perform hardware inspection and maintenance
-
-	\item Provide feedback to the production engineer and system designer about potential process improvement
-
-\end{itemize}
+	\end{itemize}
 \end{itemize}
 
 \section{Risk Assessment of Robotic Processes}
+\label{section:discussion_risk_assessment_of_robotic_processes}
 
 During the demonstrations, there were multiple incidents where the automatic process failed due to deviation and misalignment. While most of these incidents were minor issues detected by the operator and resolved through manual adjustments, two incidents involving close calls of dropping DiRT tools raised concerns about operational safety and potentially expensive damages. \textit{(see \ul{8.5.6 Clamp Fall Incident} and \ul{7.5.7 Screwdriver Dislodge Incident}) }
 
@@ -245,6 +247,7 @@ Based on the experiences gained during this thesis, several best practices and d
 \end{itemize}
 
 \section{Generalised DiRT system}
+\label{section:discussion_generalised_dirt_system}
 
 The discovery of the DiRT system started from an analysis of the joints used in timber frame structures. Apart from the fact that there are many joint types and irregular jointing angles, the most important observation is that these joints can be located in many different locations along the length of a beam. Moreover, there can be any number of joints that need simultaneous assembly. Through inductive reasoning, I determined that the most important quality of the assembly system is the flexibility for positioning tools wherever a joint is located. This effectively separated the problem of ``... many joint types and irregular jointing angles" from the problem of ``... many different locations". As such, the DiRT concept consists of two main hardware systems, each responsible for one of the two problems:
 
@@ -282,6 +285,7 @@ While the development of each of these tools is presented in the previous chapte
 The photo above shows the construction area before the beginning of the CantiBox. The DiRT Clamps and Screwdrivers are in the foreground. The robotic arm (right) can be seen approaching a parallel gripper. 
 
 \subsection{Designing new DiRT tools}
+\label{subsection:discussion_designing_new_dirt_tools}
 
 DiRT tools are modular in nature which allows them to fulfil different types of roles. For example, the role of the robotic clamps is to create a high compressive force locally at the area of the lap joints; The role of the screwdriver is similar but the assembly force is pulled from the middle of the joint and is also able to place a permanent fastener. While assembly tools are the only type of tools being developed in this thesis, it is possible to develop other types of DiRT tools based on the experience gained from this thesis. 
 
@@ -320,6 +324,7 @@ Finally it is necessary to consider the placement of the docking adapter. The po
 In conclusion, the development of custom DiRT tools is a clearly defined mechatronics design process that is repeatable and adaptable to a wide array of applications. The systematic design approach presented here allows each new tool to be optimised for its specific task, while also maintaining compatibility with the overarching robotic system. By following these design guidelines and principles, engineers can create modular and versatile tools that extend the capabilities of the DiRT assembly system. 
 
 \subsection{Robotic Platform}
+\label{subsection:discussion_robotic_platform}
 
 The robotic platform used for DiRT operations is generic in nature. The specific implementation can be adapted to on-site conditions and the target building size. This is similar to how cranes of different size, payload capacity and base condition (stationary vs mobile) are selected in the current construction practice. 
 
@@ -336,6 +341,7 @@ In this thesis, the gantry-robot arrangement achieves a balance between accuracy
 In conclusion, the selection of an appropriate robotic platform for DiRT operations depends on the construction material and assembly process. While this thesis focused on the assembly of timber frame structures with integral timber joints, it is likely that actual on-site robotic platforms will need to accommodate a wider variety of components and processes. The specification of which will need to integrate and satisfy all requirements while maintaining flexibility.
 
 \subsection{Docking Adapter}
+\label{subsection:discussion_docking_adapter}
 
 In the previous sections, it was discussed that DiRT tools are modular and the robotic manipulator is generic. This leaves the interface between the two being the only unvarying aspect in a DiRT implementation. Much like the International Space Station's docking adapter, which unites and fosters cooperation among various space-faring nations, the DiRT docking adapter stands as a symbol of collaboration. It provides compatibility between new and old tools, those developed by different parties, and different robotic platforms deployed across diverse job sites.
 
@@ -348,6 +354,7 @@ It is worth noting that the payload capacity of a docking adapter is directly re
 During the development of the automatic tool placement procedure, it was found that the docking tolerance of 2mm offered by the tool presented a challenge for robotic alignment. The solution was to add a camera on the robot side, target markers on the tool side, and develop an alignment algorithm to perform correction by moving the robot \textit{(see \ul{7.3.15 Camera-Marker Hardware on Docking Adapter})}. While this method proves to be highly successful, an alternative solution would be to redesign the mechanical interface to allow for more tolerance. In addition to the pneumatic feedthrough, it would also be beneficial to include a power feedthrough for charging the on-board tool batteries while the tools are being handled \textit{(see \ul{8.5.2.2 Combined Operation of DiRT Tools})}. 
 
 \subsection{Wireless Communication System}
+\label{subsection:discussion_wireless_communication_system}
 
 In order to communicate wirelessly with the DiRT tools, it is essential to have a high-performance and robust radio communication system. While there are many matured wireless communication systems like Wi-Fi and ZigBee, they do not fully address the unique challenges and requirements of DiRT systems in a construction environment. For example, ensuring signal reliability in a construction environment with many occlusions is challenging but essential to the robot process. As many of the DiRT movements require synchronising movements with multiple tools and robots, any dropped connection will result in an emergency stop, causing a disruption to the process. The following table lists the general requirements for a wireless communication system designed for DiRT operations:
 
@@ -358,6 +365,7 @@ In this thesis, a custom network is implemented based on a low-cost sub-GHz radi
 Note that the wireless communication system is the software and electronics counterpart of the docking adapter. Once a standard is chosen, subsequent DiRT development is constrained by the choice. Therefore, careful consideration and physical tests are necessary to ensure that the requirements listed above are met. In conclusion, a custom wireless communication solution is needed for DiRT operations to ensure its performance and reliability.
 
 \subsection{Control Systems}
+\label{subsection:discussion_control_systems}
 
 In order to coordinate all the robotic hardware to perform a series of planned tasks, a complex control system is needed. In order to follow a modular development process, a distributed control system (DCS) model is adopted. Specifically, the control, monitor and synchronising tasks are separated into a layered stack of software that communicates with each other \textit{(see \ul{5.2.4 Distributed Control System})}. The diagram below shows the relationship between all the control software used in this thesis, arranged according to a DCS model. The communication channel is labelled on the arrows. In addition, a set of command-response protocols were also developed for two way communication between each layer. 
 
@@ -368,6 +376,7 @@ This software arrangement with an overarching process execution controller is ge
 Experience has shown that the use of compas\_rrc \parencite{fleischmannCOMPASRRCOnline2020} to send commands between Levels 2 and 3 is extremely flexible. Specifically, the `Instructions` class can be used to encapsulate newly developed instruction sets, such as requesting a status report, setting states, or starting an action. It also supports synchronous and asynchronous command modes, which is essential for managing long-running motion tasks. In addition, the use of ROS messaging system by compas\_fab allows easy addition of Level 2 controllers, even if they are running on a different computer. 
 
 \section{Conclusion of Discussion}
+\label{section:conclusion_of_discussion}
 
 In conclusion, this chapter has offered new insights into the automatic timber frame assembly problem and highlighted the discoveries that are relevant beyond the initial scope. Throughout the chapter, several areas have been identified where the DiRT timber assembly system could be improved to increase reliability, flexibility and efficiency. The discussion also covered how the DiRT concept could be implemented on future construction sites and generalised for other construction systems. 
 
