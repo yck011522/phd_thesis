@@ -7,10 +7,10 @@ In order to achieve these goals, the following development was required:
 \begin{itemize}
     \item \textbf{Mechatronics}
     \begin{itemize}
-        \item \textbf{Screw Design -} a screw capable of pulling two joints together and leaving the screw behind.
-        \item \textbf{Screw Driving Mechanism -} a new operation principle for driving the screw into the joint
-        \item \textbf{Screwdriver Hardware - }a integrated solution of the screw driving mechanism and a gripper for it to hand onto the beam
-        \item \textbf{Ground Platform Design - }an improved connection for the initial elements to the foundation platform
+        \item \textbf{Screw Design --} a screw capable of pulling two joints together and leaving the screw behind.
+        \item \textbf{Screw Driving Mechanism --} a new operation principle for driving the screw into the joint
+        \item \textbf{Screwdriver Hardware --} a integrated solution of the screw driving mechanism and a gripper for it to hand onto the beam
+        \item \textbf{Ground Platform Design --} an improved connection for the initial elements to the foundation platform
     \end{itemize}
     \item \textbf{Design Guideline}
     \begin{itemize}
@@ -262,8 +262,8 @@ missingimage
 Two sensors were added to the docking adapter for confirming a successful lock (see 6.5.4 Docking Adapter Fail to Lock). The goal is to eliminate the need for the operator to visually confirm that the docking adapter is securely locked.
 
 \begin{itemize}
-    \item \textbf{Integrated Hall-effect autoswitch -} This is the default sensing solution suggested by Schunk for this tool changer model. This switch senses the internal pneumatic piston position.
-    \item \textbf{Mechanical microswitch (red switch in photo below) - }This confirms the two halves of the tool changer are actually making contact.
+    \item \textbf{Integrated Hall-effect autoswitch --} This is the default sensing solution suggested by Schunk for this tool changer model. This switch senses the internal pneumatic piston position.
+    \item \textbf{Mechanical microswitch (red switch in photo below) --} This confirms the two halves of the tool changer are actually making contact.
 \end{itemize}
 
 The two switches compliment each other because the integrated autoswitch can give a false reading. This happens if the docking adapter were not in good contact before the locking piston is actuated. The locking ball bearings, and the piston will both be able to extend completely without actually locking onto the tool-side. This will still trigger the autoswitch and thus create a false signal. 
@@ -356,8 +356,8 @@ The Camera-Marker Alignment Correction System was developed to provide the abili
 In this new development, Aruco Marker recognition algorithms (Garrido-Jurado et al., 2014) were used to automatically recognise the pose of the alignment target relative to the robot-side device. The system was planned for two alignment scenarios that happen during the construction with the Clamp Assembly and the Screw Assembly Process:
 
 \begin{itemize}
-    \item \textbf{Robot pick-up a Clamp or Screwdriver from the structure -} Alignment between the two sides of the docking adapter. (similar to the movement shown in the picture below).
-    \item \textbf{Robot attach a Clamp to the structure -} Alignment between the clamp gripper pins (robot-side) and the attachment holes on the PA structure (stationary-side). This was planned to be used in the next Dev Round (see 8.3.4 Camera-Marker Hardware on CL3 Clamp).
+    \item \textbf{Robot pick-up a Clamp or Screwdriver from the structure --} Alignment between the two sides of the docking adapter. (similar to the movement shown in the picture below).
+    \item \textbf{Robot attach a Clamp to the structure --} Alignment between the clamp gripper pins (robot-side) and the attachment holes on the PA structure (stationary-side). This was planned to be used in the next Dev Round (see 8.3.4 Camera-Marker Hardware on CL3 Clamp).
 \end{itemize}
 
 missingimage
@@ -555,21 +555,21 @@ There are many goals for the design of the demonstrator in this round:
 \textbf{Process Validation}
 \begin{itemize}
     \item \textbf{Validate stability awareness} (based on my intuition while stepping through each step) to avoid using scaffolding (see 7.1.1 Deformation-Awareness and Error Correction by Triangulation).
-    \item \textbf{Validate operation of SL1 Screwdriver} - (see 7.3.7 Lap Screwdriver SL1 and SL1\_G200 Hardware)
+    \item \textbf{Validate operation of SL1 Screwdriver --} (see 7.3.7 Lap Screwdriver SL1 and SL1\_G200 Hardware)
     \item \textbf{Validate operation of SL1\_G200 Screwdriver as a gripper}
     \item \textbf{Validate the assembly of}
     \begin{itemize}
-        \item \textbf{Polyline lap joints} - Customised with traditional lap joints details (see 7.3.1 Parametric Polyline Lap Joints)
-        \item \textbf{Non-planar lap joints} - Only possible with the Screw Assembly Method (see 7.3.2 Parametric Non-Planar Lap Joints)
-        \item \textbf{Elements with different sizes} - First attempt of different beam sizes according to structural requirements.
+        \item \textbf{Polyline lap joints --} Customised with traditional lap joints details (see 7.3.1 Parametric Polyline Lap Joints)
+        \item \textbf{Non-planar lap joints --} Only possible with the Screw Assembly Method (see 7.3.2 Parametric Non-Planar Lap Joints)
+        \item \textbf{Elements with different sizes --} First attempt of different beam sizes according to structural requirements.
     \end{itemize}
-    \item \textbf{Validate anchoring horizontal elements} - instead of anchoring vertical elements in the previous attempts, to improve initial stability.
+    \item \textbf{Validate anchoring horizontal elements --} instead of anchoring vertical elements in the previous attempts, to improve initial stability.
 \end{itemize}
 \textbf{Architectural Design Demo}
 \begin{itemize}
-    \item \textbf{Demonstrate a Hut Typology} - Post and column framing walls, supporting a roof).
-    \item \textbf{Contains framing structures }- Demonstrate framing of walls, floors using primary and secondary elements.
-    \item \textbf{Hyperbolic Paraboloid Roof Surface} - Demonstrate structural complexity that is achievable with non-planar joints.
+    \item \textbf{Demonstrate a Hut Typology --} Post and column framing walls, supporting a roof).
+    \item \textbf{Contains framing structures --} Demonstrate framing of walls, floors using primary and secondary elements.
+    \item \textbf{Hyperbolic Paraboloid Roof Surface --} Demonstrate structural complexity that is achievable with non-planar joints.
 \end{itemize}
 
 \subsection{Design and Team Information}
@@ -900,12 +900,12 @@ It was found that if I kept the gripper in a top grasp (gripper opening facing d
 
 \paragraph{Possible Solution and Follow-Up}
 \begin{itemize}
-    \item \textbf{Use a stronger robot -} The robotic arm used in the demonstration had only 40kg of payload with a 68Nm torque on joint 6. A bigger robot would likely be more suitable for this beam which is roughly 35 kg.
+    \item \textbf{Use a stronger robot --} The robotic arm used in the demonstration had only 40kg of payload with a 68Nm torque on joint 6. A bigger robot would likely be more suitable for this beam which is roughly 35 kg.
     \begin{itemize}
         \item This is not possible within the scope of the thesis. However, it is a viable scenario for an industrial implementation.
         \item Future work when designing robotics laboratories should consider robots with a larger payload capacity. On the contrary, movement speed is much less relevant.
     \end{itemize}
-    \item \textbf{Constrain the free motion planner - }It is possible to add constraints (soft or hard constraints) for motion planning. For example, to keep the gripper at a top grasp pose.
+    \item \textbf{Constrain the free motion planner --} It is possible to add constraints (soft or hard constraints) for motion planning. For example, to keep the gripper at a top grasp pose.
     \begin{itemize}
         \item The motion planner backend chosen for this study did not support this feature. Custom development was considered by my collaborator but was not tested in favour of time.
         \item Theoretically, a more sophisticated planner could take into consideration of minimising joint torques \parencite{gargOptimizationTechniquesApplied2002}.

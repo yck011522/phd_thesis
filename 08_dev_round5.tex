@@ -5,9 +5,9 @@
 The robotic assembly process has already achieved a high degree of automation by the end of last round. The only exceptions are caused by alignment problems that cannot be resolved with the current robotic setup. The study was therefore expanded to integrate cutting-edge design methods with collaborators in two different fields. 
 
 \begin{itemize}
-	\item \textbf{Structurally-informed joint design -} Structural analysis and design using a novel method that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. 
+	\item \textbf{Structurally-informed joint design --} Structural analysis and design using a novel method that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. 
 
-	\item \textbf{Automated task and motion planning (TAMP) -} Performing TAMP in unison (instead of task planning before motion planning) using PDDLStream. This allows for the optimisation of redundant tasks and robotic motions \textit{(see \ul{5.6.14 Redundant Robotic Movement in Free Move})}. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. 
+	\item \textbf{Automated task and motion planning (TAMP) --} Performing TAMP in unison (instead of task planning before motion planning) using PDDLStream. This allows for the optimisation of redundant tasks and robotic motions \textit{(see \ul{5.6.14 Redundant Robotic Movement in Free Move})}. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. 
 
 \end{itemize}
 The combined technology was validated with the assembly of a structure with three volumetric modular boxes, each containing clamped and screwed joints. The main differences in this assembly process are,
@@ -190,23 +190,23 @@ In the implementation of this Clamped and Screwed Assembly Process, the abstract
 Here is a summary of how the TAMP is performed with PDDLStream:
 
 \begin{itemize}
-	\item \textbf{Problem Formulation - }Actions (High-level Tasks), initial state and goal state are represented in a symbolic form using the PDDL (Planning Domain Definition Language) syntax.
+	\item \textbf{Problem Formulation --} Actions (High-level Tasks), initial state and goal state are represented in a symbolic form using the PDDL (Planning Domain Definition Language) syntax.
 
 \begin{itemize}
-	\item \textbf{Initial State - }Identical to the initial state used for sequential planning \textit{(see \ul{6.3.5.5 Compute Object States})}. All the state parameters of all objects are required.
+	\item \textbf{Initial State --} Identical to the initial state used for sequential planning \textit{(see \ul{6.3.5.5 Compute Object States})}. All the state parameters of all objects are required.
 
-	\item \textbf{Actions - }Actions consist of two parts. 
+	\item \textbf{Actions --} Actions consist of two parts. 
 
 \begin{itemize}
-	\item \textbf{Preconditions - }A symbolic criteria that the scene state must meet before the action can be taken. 
+	\item \textbf{Preconditions --} A symbolic criteria that the scene state must meet before the action can be taken. 
 
-	\item \textbf{Effects - }A symbolic change to the scene state if that action is taken. This is conceptually the same as the \textit{task.UpdateState()} function \textit{(see \ul{6.3.5.5 Compute Object States})} but implemented for the High-Level Tasks.
-
-\end{itemize}
-	\item \textbf{Goal State - }The state of all objects which the planner will attempt to achieve. This refers to the state where all beams are assembled, and all tools are placed back at their storage location.
+	\item \textbf{Effects --} A symbolic change to the scene state if that action is taken. This is conceptually the same as the \textit{task.UpdateState()} function \textit{(see \ul{6.3.5.5 Compute Object States})} but implemented for the High-Level Tasks.
 
 \end{itemize}
-	\item \textbf{Stream Functions - }Stream functions are implemented that connect the actions to their geometric constraints. There is one stream Function for each robotic Action. They contain IK solvers that can check whether the targets in the High-Level Task are reachable.
+	\item \textbf{Goal State --} The state of all objects which the planner will attempt to achieve. This refers to the state where all beams are assembled, and all tools are placed back at their storage location.
+
+\end{itemize}
+	\item \textbf{Stream Functions --} Stream functions are implemented that connect the actions to their geometric constraints. There is one stream Function for each robotic Action. They contain IK solvers that can check whether the targets in the High-Level Task are reachable.
 
 \begin{itemize}
 	\item IK solvers have access to the same Robot Model and Tool Models \textit{(see \ul{6.3.5 Process Design Workflow})} for checking IK and collisions.
@@ -214,11 +214,11 @@ Here is a summary of how the TAMP is performed with PDDLStream:
 \end{itemize}
 	\item \textbf{PDDLStream Integration} \textbf{-} The PDDL problem definition and the stream functions are integrated using PDDLStream. PDDLStream extends PDDL by allowing the integration of external procedures (stream functions) into the planning process.
 
-	\item \textbf{Planning - }The PDDLStream planner was used to generate a sequence of high-level tasks while ensuring low-level motions are reachable. The planner explores different task sequences and backtracks automatically during the search. This results in a more efficient and optimised robotic operation while ensuring targets are reachable.
+	\item \textbf{Planning --} The PDDLStream planner was used to generate a sequence of high-level tasks while ensuring low-level motions are reachable. The planner explores different task sequences and backtracks automatically during the search. This results in a more efficient and optimised robotic operation while ensuring targets are reachable.
 
-	\item \textbf{Motion Planning - }During the PDDLStream planning, only the IK result was checked. The motion planning between the targets was performed afterwards to find the trajectory that links between the targets.
+	\item \textbf{Motion Planning --} During the PDDLStream planning, only the IK result was checked. The motion planning between the targets was performed afterwards to find the trajectory that links between the targets.
 
-	\item \textbf{Execution - }The execution of the planned tasks and motion on the robot is the same as before \textit{(see \ul{6.3.8 Standalone Process Execution Controller})}. One side effect is that the planned tasks no longer correspond to a specific beam in a sequential way, but this does not affect operations.
+	\item \textbf{Execution --} The execution of the planned tasks and motion on the robot is the same as before \textit{(see \ul{6.3.8 Standalone Process Execution Controller})}. One side effect is that the planned tasks no longer correspond to a specific beam in a sequential way, but this does not affect operations.
 
 \end{itemize}
 \section{Demonstration}

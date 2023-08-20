@@ -72,10 +72,10 @@ Multimodal Motion Planning (MMMP) is an advanced approach to robotic motion plan
 MMMP addresses these limitations by incorporating the concept of multiple modes into the planning process, enabling the robot to switch between different operational modes as needed to achieve the desired task more efficiently. The mode definition relevant to the DiRT Assembly Process includes the following components:
 
 \begin{itemize}
-	\item \textbf{Kinematic chain configuration -} The attached objects after the kinematic chain of the robot, such as docking adapter, clamps, grippers and beams.
-	\item \textbf{Kinematic tool geometry -} Position of the clamp jaw and gripper fingers depending on whether they are open or close.
-	\item \textbf{ACM -} Objects that are allowed to collide when they perform a certain part of the operation, such as joint closure.
-	\item \textbf{Motion Type -} Linear vs Free motion
+	\item \textbf{Kinematic chain configuration --} The attached objects after the kinematic chain of the robot, such as docking adapter, clamps, grippers and beams.
+	\item \textbf{Kinematic tool geometry --} Position of the clamp jaw and gripper fingers depending on whether they are open or close.
+	\item \textbf{ACM --} Objects that are allowed to collide when they perform a certain part of the operation, such as joint closure.
+	\item \textbf{Motion Type --} Linear vs Free motion
 \end{itemize}
 
 The mode definition allows the planner to understand the difference between different planning requirements in different parts of the operation. The MMMP solver used in this thesis was developed in collaboration with YiJiang Huang. The solver is described in the later development sections (see \ul{6.3.5.7 Multimodal Motion Planning (MMMP) Solver} and \ul{6.3.7 Non-Sequential Planning Order}) and in YiJiang’s PhD dissertation \parencite{huangAlgorithmicPlanningRobotic2022}.
@@ -126,11 +126,11 @@ The solution developed for this round, is to use cable guides to constrain the c
 The newly developed system established three groups for the robot.
 
 \begin{enumerate}
-	\item \textbf{Joint 1 to 3 }- The base and upper arms. The cable slack in this area did not cause problems previously.
+	\item \textbf{Joint 1 to 3 --} The base and upper arms. The cable slack in this area did not cause problems previously.
 
-	\item \textbf{Joint 4 }- Forearm in-line joint where cable slack was more prominent and are often closest to the structure.
+	\item \textbf{Joint 4 --} Forearm in-line joint where cable slack was more prominent and are often closest to the structure.
 
-	\item \textbf{Joint 5 and 6 }- Wrist joints where pinching was a problem
+	\item \textbf{Joint 5 and 6 --} Wrist joints where pinching was a problem
 
 \end{enumerate}
 This new system developed for this test covered Joint 4 to 6, where the tangling problem was most severe in the previous round. This is because the range of motions in these three joints required a lot of extra cable slack to accommodate their movements. 
@@ -266,13 +266,13 @@ The diagram below shows the Process Design Workflow, the highlighted (grey) port
 
 
 \begin{itemize}
-	\item \textbf{Assembly Model} - Obtained from Assembly Design Phase, contains beams, joints and assembly sequence. (see \ul{5.3.13 Assembly Model Data Structure and Functions})
+	\item \textbf{Assembly Model --} Obtained from Assembly Design Phase, contains beams, joints and assembly sequence. (see \ul{5.3.13 Assembly Model Data Structure and Functions})
 
-	\item \textbf{Robot Model} - A comprehensive model that describes the geometry and kinematics of the robot. The implementation used is based on compas\_fab, that is based on URDF and SRDF formats used in ROS moveit! Planning framework \parencite{SrdfROSWiki2023, UrdfROSWiki2023}.
+	\item \textbf{Robot Model --} A comprehensive model that describes the geometry and kinematics of the robot. The implementation used is based on compas\_fab, that is based on URDF and SRDF formats used in ROS moveit! Planning framework \parencite{SrdfROSWiki2023, UrdfROSWiki2023}.
 
-	\item \textbf{Tool Models }- A model similar to the Robot Model. It is able to describe the geometry and kinematics of the tool. It also contains other parameters regarding how the tool can interact with timber beams and joints. The model is conceived to be prepared by the Tool Designer.
+	\item \textbf{Tool Models --} A model similar to the Robot Model. It is able to describe the geometry and kinematics of the tool. It also contains other parameters regarding how the tool can interact with timber beams and joints. The model is conceived to be prepared by the Tool Designer.
 
-	\item \textbf{Construction Environment Model} - A geometrical model describing the static objects in the construction environment. The implementation in this thesis includes columns and floor of the laboratory, furniture and material stockpile. This model was constructed using a measuring probe from the iGPS system to measure the location of objects in the laboratory, and later modelling them using a rough representation. It shares the same frame of reference as the Robot Model. This approach has been used by other large scale projects in the past in the same laboratory \parencite{thomaRoboticFabricationBespoke2018}.
+	\item \textbf{Construction Environment Model --} A geometrical model describing the static objects in the construction environment. The implementation in this thesis includes columns and floor of the laboratory, furniture and material stockpile. This model was constructed using a measuring probe from the iGPS system to measure the location of objects in the laboratory, and later modelling them using a rough representation. It shares the same frame of reference as the Robot Model. This approach has been used by other large scale projects in the past in the same laboratory \parencite{thomaRoboticFabricationBespoke2018}.
 
 \end{itemize}
 Due to the complexity of the entire Process Design workflow, this section is long. This workflow diagram will be repeated as a guide in the beginning of each sub-sections to indicate (grey box) which step is being discussed.
@@ -344,15 +344,15 @@ The diagram below shows all the task groups used in this development round expan
 There are some useful techniques for designing the Low Level Tasks. 
 
 \begin{itemize}
-	\item \textbf{Start with Free Motion} - Notice that all the High Level Tasks start with a Free Motion. This essentially means bringing the robot from wherever it was to this specific target at the beginning of this motion. This effectively allows the High Level Tasks to be decoupled from each other, allowing them to be modular and reusable within the flowchart.
+	\item \textbf{Start with Free Motion --} Notice that all the High Level Tasks start with a Free Motion. This essentially means bringing the robot from wherever it was to this specific target at the beginning of this motion. This effectively allows the High Level Tasks to be decoupled from each other, allowing them to be modular and reusable within the flowchart.
 
-	\item \textbf{Use Approach as First Target} - The target of the first free motion is often set at a small distance away from the actual target of interest. For example, in ‘PickClampFromStorage’, the robot is programmed to first arrive at an ‘approach’ point before moving linearly to insert the docking adapter into the tool-side. This gives the free motion planner (FMP) more ‘room’ for planning the trajectory and results in shorter planning time.
+	\item \textbf{Use Approach as First Target --} The target of the first free motion is often set at a small distance away from the actual target of interest. For example, in ‘PickClampFromStorage’, the robot is programmed to first arrive at an ‘approach’ point before moving linearly to insert the docking adapter into the tool-side. This gives the free motion planner (FMP) more ‘room’ for planning the trajectory and results in shorter planning time.
 
-	\item \textbf{Use Retract as Last Target} - Similar to the approach point, the retract point allows the robot to move freely away to the next task.
+	\item \textbf{Use Retract as Last Target --} Similar to the approach point, the retract point allows the robot to move freely away to the next task.
 
-	\item \textbf{Use Linear Move for Narrow Passages} - The use of linear move can also help to explicitly define how the robot moves through a narrow gap. This is called the Narrow Passage problem in the field of motion planning. In the ‘PlaceClampToStructure’, the robot needs to slot the clamp around a timber beam where the hanging jaw is only slightly larger than the beam. The explicit use of two linear motions reduces the guesswork needed by the motion planner which results in shorter planning time.
+	\item \textbf{Use Linear Move for Narrow Passages --} The use of linear move can also help to explicitly define how the robot moves through a narrow gap. This is called the Narrow Passage problem in the field of motion planning. In the ‘PlaceClampToStructure’, the robot needs to slot the clamp around a timber beam where the hanging jaw is only slightly larger than the beam. The explicit use of two linear motions reduces the guesswork needed by the motion planner which results in shorter planning time.
 
-	\item \textbf{Split Motions for changing Allowable Collision Matrix (ACM)} - Whenever the robot is making or breaking contact during the process, a different ACM is needed for planning purposes. For example in ‘AssembleBeamWithClamps’, the first free motion should not allow the active beam to collide with the clamps. However, in the subsequent linear move where the beam is placed into the clamp jaws, the ACM must allow this contact. Because each motion planning call can only support a fixed ACM, therefore an ACM change can be achieved by splitting the motion.
+	\item \textbf{Split Motions for changing Allowable Collision Matrix (ACM) --} Whenever the robot is making or breaking contact during the process, a different ACM is needed for planning purposes. For example in ‘AssembleBeamWithClamps’, the first free motion should not allow the active beam to collide with the clamps. However, in the subsequent linear move where the beam is placed into the clamp jaws, the ACM must allow this contact. Because each motion planning call can only support a fixed ACM, therefore an ACM change can be achieved by splitting the motion.
 
 \end{itemize}
 The following diagram shows the planned \textbf{Task List} for assembling a beam that requires two clamps. Notice the total number of Low Level Tasks involved and the use of the high level tasks to make designing them easier.
@@ -377,11 +377,11 @@ MISSINGTABLE
 The following three parameters regarding the parallel gripper is an example where parameter values were computed using rule-based logic. This is applied as the initial values before the production engineer reviews them:
 
 \begin{itemize}
-	\item \textbf{Gripper Choice }- The decision between the shorter PG500 and longer PG1000 can be made based on the length of the beam, the threshold was set at 1200mm.
+	\item \textbf{Gripper Choice --} The decision between the shorter PG500 and longer PG1000 can be made based on the length of the beam, the threshold was set at 1200mm.
 
-	\item \textbf{Grasp Face} - The grasp face was selected such that the gripper faced downwards during assembly. For vertical columns, the gripper was chosen to face the centre of the structure.
+	\item \textbf{Grasp Face --} The grasp face was selected such that the gripper faced downwards during assembly. For vertical columns, the gripper was chosen to face the centre of the structure.
 
-	\item \textbf{Grasp Position} - The centre of the beam was used as default. 
+	\item \textbf{Grasp Position --} The centre of the beam was used as default. 
 
 \end{itemize}
 Based on the three parameters, the \textbf{Grasp Pose} (a transformation that relates between Gripper Grasp Frame and Beam Base Frame) is automatically computed. Note that there are numerous grasp pose possibilities. However, most of them are not viable because of collisions with the structure or the clamps. Nevertheless, this rule set was designed to maximise the chance of selecting a viable solution and helped reduce the work needed when the production engineer reviews them and makes changes to them. 
@@ -618,9 +618,9 @@ The red arrow denotes a fixed configuration input to the motion planner. It typi
 The following solution was considered but was not successful:
 
 \begin{itemize}
-	\item \textbf{Remove this Linear Motion }- it is not possible because of the narrow passage problem (see \ul{5.5.3 Narrow Passage Problem}). 
+	\item \textbf{Remove this Linear Motion --} it is not possible because of the narrow passage problem (see \ul{5.5.3 Narrow Passage Problem}). 
 
-	\item \textbf{Plan Sequentially Backwards} - the over constraint scenario will still be encountered.
+	\item \textbf{Plan Sequentially Backwards --} the over constraint scenario will still be encountered.
 
 \end{itemize}
 The solution that successfully addressed the problem consist of three parts:
@@ -687,13 +687,13 @@ There are two types of Operator Tasks in the process, OperatorLoadBeam and Visua
 The controller maintains an execution pointer that points to a selected task in the list (the blue row in the image above). The controller has four states:
 
 \begin{itemize}
-	\item \textbf{Stopped }- The initial state, no task is being executed
+	\item \textbf{Stopped --} The initial state, no task is being executed
 
-	\item \textbf{Stepping }- This can be activated by the \textbf{Step Button}. The selected task will be executed immediately by the corresponding lower-level controllers. When the task is finished, the pointer will advance to point to the next task and the controller will go back to the Stopped state. This effectively executes only one task.
+	\item \textbf{Stepping --} This can be activated by the \textbf{Step Button}. The selected task will be executed immediately by the corresponding lower-level controllers. When the task is finished, the pointer will advance to point to the next task and the controller will go back to the Stopped state. This effectively executes only one task.
 
-	\item \textbf{Running }- This can be activated by the \textbf{Run Button}. Similar to the stepping state, but after a task is finished, the controller will continue to execute the remaining tasks in the task list.
+	\item \textbf{Running --} This can be activated by the \textbf{Run Button}. Similar to the stepping state, but after a task is finished, the controller will continue to execute the remaining tasks in the task list.
 
-	\item \textbf{Error }- This state is entered automatically if the executing task has failed.
+	\item \textbf{Error --} This state is entered automatically if the executing task has failed.
 
 \end{itemize}
 If the operator presses the \textbf{Stop Button}, the current task will be stopped immediately. The operator can also change from the Running state to the Step State at any time by using the \textbf{Step Button}. This effectively means the current task will be allowed to finish but the next one will not be started. 
@@ -818,13 +818,13 @@ Theoretically, this screw is not bearing the structural load of the structure, b
 The process execution controller (see \ul{6.3.8 Standalone Process Execution Controller}) was found to be very helpful during the execution of the planned tasks. 
 
 \begin{itemize}
-	\item \textbf{Rewind and try again - }Using the task list in the table view, it is easy to select an earlier state to rewind the robot and tools back to an earlier state for debugging purposes.
+	\item \textbf{Rewind and try again --} Using the task list in the table view, it is easy to select an earlier state to rewind the robot and tools back to an earlier state for debugging purposes.
 
-	\item \textbf{Reprogramme the execution behaviour} - Because the \textit{execute() }function for each type of task is only binded when the L3 controller loads the planned tasks and motion. The execution behaviour can be changed easily during the debugging phase by modifying the execution code and reloading the planned motions. For example, the \textit{Lock Tool }task by the docking adapter was modified this way to include checking new sensors (see \ul{7.3.9 Docking Adapter Lock Sensor}).
+	\item \textbf{Reprogramme the execution behaviour --} Because the \textit{execute() }function for each type of task is only binded when the L3 controller loads the planned tasks and motion. The execution behaviour can be changed easily during the debugging phase by modifying the execution code and reloading the planned motions. For example, the \textit{Lock Tool }task by the docking adapter was modified this way to include checking new sensors (see \ul{7.3.9 Docking Adapter Lock Sensor}).
 
-	\item \textbf{Table view provided a good overview - }The table view of tasks provided a good overview of what is about to be executed, This increased the confidence of the operator to not worry about incorrect programming causing dangerous execution.
+	\item \textbf{Table view provided a good overview --} The table view of tasks provided a good overview of what is about to be executed, This increased the confidence of the operator to not worry about incorrect programming causing dangerous execution.
 
-	\item \textbf{Logging - }The data that can be logged with this system was found to be very helpful in debugging. The almost-real-time commands and replies from various controllers would otherwise be impossible to read from a console.
+	\item \textbf{Logging --} The data that can be logged with this system was found to be very helpful in debugging. The almost-real-time commands and replies from various controllers would otherwise be impossible to read from a console.
 
 \end{itemize}
 \subsection{Beam Placement Misalignment}
@@ -865,9 +865,9 @@ Although the data shows the distribution of the deviation, it is not possible to
 Another investigation was conducted for the placement of beams when the misalignment was bad. Two different types of observations were made, to compare real world position and the position in the CAD model. In both cases, gripper-to-beam positions were first checked to ensure it is grasped correctly.
 
 \begin{itemize}
-	\item \textbf{Alignment to the ground platform} - Since the platform is measured with iGPS, its position in the CAD environment is highly accurate. The beam was sent to a known target above the platform, and its deviation is measured against it. In some cases, the error in the vertical direction is more than 10mm from the model in the CAD software. 
+	\item \textbf{Alignment to the ground platform --} Since the platform is measured with iGPS, its position in the CAD environment is highly accurate. The beam was sent to a known target above the platform, and its deviation is measured against it. In some cases, the error in the vertical direction is more than 10mm from the model in the CAD software. 
 
-	\item \textbf{Alignment to other joints on the PA structure} - Since the PA structure sits accurately on the ground platform, and is supported by scaffolding, the location of the joints are reasonably accurate. However, misalignments between mating joints can also exceed 10mm. 
+	\item \textbf{Alignment to other joints on the PA structure --} Since the PA structure sits accurately on the ground platform, and is supported by scaffolding, the location of the joints are reasonably accurate. However, misalignments between mating joints can also exceed 10mm. 
 
 \end{itemize}
 Because of these two observations I concluded that the source of error on the robot-side is so significant that no matter how stable the PA structure is, it is still beyond what the chamfered edges can correct. 
@@ -947,7 +947,7 @@ In the case of PickClampFromStorage, the use of taught configuration, resulting 
 	\item Not pursued because of budget limitations.
 
 \end{itemize}
-	\item \textbf{Active Correction by camera marker guidance} - A camera mounted on the robot-side, looking at a fiducial marker mounted on the tool-side to guide the robot into alignment.
+	\item \textbf{Active Correction by camera marker guidance --} A camera mounted on the robot-side, looking at a fiducial marker mounted on the tool-side to guide the robot into alignment.
 
 \begin{itemize}
 	\item Developed and tested successfully in Dev Round 4 (link)
@@ -990,13 +990,13 @@ Fortunately, this problem has always been detected and stopped at step 4. I can 
 \textbf{\ul{Possible Cause}}
 
 \begin{itemize}
-	\item \textbf{Robotic arm or the clamp attachment being too stiff} - Even though the docking adapter is inserted, the locking action requires at least one of the two sides to be flexible enough to be pulled together. Even though the misalignment may be small, the stiffness on both sides prevents the lock from closing the gap.
+	\item \textbf{Robotic arm or the clamp attachment being too stiff --} Even though the docking adapter is inserted, the locking action requires at least one of the two sides to be flexible enough to be pulled together. Even though the misalignment may be small, the stiffness on both sides prevents the lock from closing the gap.
 
 \begin{itemize}
 	\item Note that automatic tool changers, like this Schunk SWA 040, are designed for tool change at a storage location. The tool-side is often not held down by a stiff attachment.
 
 \end{itemize}
-	\item \textbf{Alignment deviation too large }- Even though the adapter is inserted into each other, the deviation can still be larger than the allowable tolerance.
+	\item \textbf{Alignment deviation too large --} Even though the adapter is inserted into each other, the deviation can still be larger than the allowable tolerance.
 
 \begin{itemize}
 	\item Docking adapter is not oriented accurately.
@@ -1014,19 +1014,19 @@ Fortunately, this problem has always been detected and stopped at step 4. I can 
 	\item Not pursued because of budget limitations.
 
 \end{itemize}
-	\item \textbf{Enable compliance control on robotic arm }- reduce stiffness of the robotic arm side after insertion is successful
+	\item \textbf{Enable compliance control on robotic arm --} reduce stiffness of the robotic arm side after insertion is successful
 
 \begin{itemize}
 	\item Tested with success (link) but only in combination with the camera correction method.
 
 \end{itemize}
-	\item \textbf{Active Correction by camera marker guidance} - Same as mentioned before (see \ul{6.5.3 Docking Adapter Misalignment})
+	\item \textbf{Active Correction by camera marker guidance --} Same as mentioned before (see \ul{6.5.3 Docking Adapter Misalignment})
 
 \begin{itemize}
 	\item Developed and tested successfully in Dev Round 4 (link)
 
 \end{itemize}
-	\item \textbf{Shake the robot-side automatically} - The robot can be programmed to perform a small shaking movement similar to the one performed by hand.
+	\item \textbf{Shake the robot-side automatically --} The robot can be programmed to perform a small shaking movement similar to the one performed by hand.
 
 \begin{itemize}
 	\item Developed and tested successfully in Dev Round 4 (link)
@@ -1078,15 +1078,15 @@ Collisions also happened with the documentation camera on a tripod. However, tha
 \textbf{\ul{Possible Solution and Follow-Up}}
 
 \begin{itemize}
-	\item \textbf{Include scaffolding in motion planning }- in Dev Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. (see \ul{8.3.2 Scaffolding Support During Assembly}).
+	\item \textbf{Include scaffolding in motion planning --} in Dev Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. (see \ul{8.3.2 Scaffolding Support During Assembly}).
 
-	\item \textbf{Sensing collision geometry around robot }- If a dynamic point cloud scanner were to be used for scanning the area surrounding the robot during operation, the robot can potentially navigate around the newfound obstacle and would not be limited to the planned collision geometry. 
+	\item \textbf{Sensing collision geometry around robot --} If a dynamic point cloud scanner were to be used for scanning the area surrounding the robot during operation, the robot can potentially navigate around the newfound obstacle and would not be limited to the planned collision geometry. 
 
 \begin{itemize}
 	\item Existing research literature in autonomous robotics have developed many different techniques for sensing and replanning. \parencite{elbanhawiSamplingBasedRobotMotion2014} However, due to the lack of expertise in these fields, the development was not pursued.
 
 \end{itemize}
-	\item \textbf{Do not use scaffolding }- in Dev Round 4, deformation-aware design principles and error correction method was developed (see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation}). The demonstrator can be designed to be stable and with limited deformation for all the incomplete states in the entire assembly process. This eliminated the need for any scaffolding during assembly. 
+	\item \textbf{Do not use scaffolding --} in Dev Round 4, deformation-aware design principles and error correction method was developed (see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation}). The demonstrator can be designed to be stable and with limited deformation for all the incomplete states in the entire assembly process. This eliminated the need for any scaffolding during assembly. 
 
 \end{itemize}
 \subsection{Redundant Clamp Detach Attach Actions}

@@ -120,15 +120,15 @@ Timber structures are designed by considering various factors such as material p
 Timber structures, particularly those with integral timber joints, present unique challenges in terms of analysis due to the complexity of the joint behaviour, material properties, and load distribution. These challenges can make it difficult to accurately predict the structural performance and ensure the safety and longevity of the structure. Some of the key challenges in analysing integral timber joints are:
 
 \begin{itemize}
-	\item \textbf{Anisotropic material properties} - The mechanical properties of wood material vary along different directions. This anisotropy can affect the behaviour of integral joints, as the strength and stiffness of the joint depend on the direction of the applied loads and the orientation of the wood fibres. Accurate analysis must account for these variations in material properties \parencite{thelanderssonTimberEngineering2003}.
+	\item \textbf{Anisotropic material properties --} The mechanical properties of wood material vary along different directions. This anisotropy can affect the behaviour of integral joints, as the strength and stiffness of the joint depend on the direction of the applied loads and the orientation of the wood fibres. Accurate analysis must account for these variations in material properties \parencite{thelanderssonTimberEngineering2003}.
 
-	\item \textbf{Non-linear behaviour - }The behaviour of timber material and timber joints can be non-linear, particularly under high load levels or in the presence of defects, such as cracks or knots. This non-linear behaviour can complicate the analysis process, as it requires more advanced numerical methods and computational models to accurately predict joint performance \parencite{gustafssonFracturePerpendicularGrain2003, tanadiniAnalysisDesignTimbertotimber2021}.
+	\item \textbf{Non-linear behaviour --} The behaviour of timber material and timber joints can be non-linear, particularly under high load levels or in the presence of defects, such as cracks or knots. This non-linear behaviour can complicate the analysis process, as it requires more advanced numerical methods and computational models to accurately predict joint performance \parencite{gustafssonFracturePerpendicularGrain2003, tanadiniAnalysisDesignTimbertotimber2021}.
 
-	\item \textbf{Moisture content and hygroscopicity -} Wood is hygroscopic, meaning it absorbs and releases moisture in response to changes in environmental conditions. This can cause dimensional changes and affect the mechanical properties of the timber, impacting the behaviour of integral joints. Accurate analysis must account for these moisture-related effects and their potential impact on joint performance \parencite{thelanderssonTimberEngineering2003}.
+	\item \textbf{Moisture content and hygroscopicity --} Wood is hygroscopic, meaning it absorbs and releases moisture in response to changes in environmental conditions. This can cause dimensional changes and affect the mechanical properties of the timber, impacting the behaviour of integral joints. Accurate analysis must account for these moisture-related effects and their potential impact on joint performance \parencite{thelanderssonTimberEngineering2003}.
 
-	\item \textbf{Load distribution and interaction -} Integral timber joints often involve complex load distribution and interaction between multiple components. This can make it difficult to accurately predict the load-carrying capacity and failure modes of the joint. Advanced structural analysis techniques, such as finite element analysis (FEA), are often required to accurately model these interactions and predict joint behaviour .
+	\item \textbf{Load distribution and interaction --} Integral timber joints often involve complex load distribution and interaction between multiple components. This can make it difficult to accurately predict the load-carrying capacity and failure modes of the joint. Advanced structural analysis techniques, such as finite element analysis (FEA), are often required to accurately model these interactions and predict joint behaviour .
 
-	\item \textbf{Uncertainty in material properties and geometric tolerances -} Variability in material properties, such as strength and stiffness, as well as uncertainties in geometric tolerances, can make it challenging to predict the behaviour of integral timber joints with high confidence. Probabilistic approaches, such as reliability analysis \parencite{ranta-maunusReliabilityAnalysisTimber2001} and stochastic finite element methods \parencite{kandlerStochasticFiniteElement2015}, can be used to quantify these uncertainties and assess the impact on joint performance.
+	\item \textbf{Uncertainty in material properties and geometric tolerances --} Variability in material properties, such as strength and stiffness, as well as uncertainties in geometric tolerances, can make it challenging to predict the behaviour of integral timber joints with high confidence. Probabilistic approaches, such as reliability analysis \parencite{ranta-maunusReliabilityAnalysisTimber2001} and stochastic finite element methods \parencite{kandlerStochasticFiniteElement2015}, can be used to quantify these uncertainties and assess the impact on joint performance.
 
 \end{itemize}
 \subsection{Assembly Analysis}
@@ -136,11 +136,11 @@ Timber structures, particularly those with integral timber joints, present uniqu
 Assembly analysis of timber frame structures with integral timber joints is a crucial aspect to ensuring the structure can be assembled, this is known as joint mobility analysis, or assemblability analysis. The assembly analysis can be extended to include automatic sequence planning and motion planning \parencite{wangStateArtComputational2021}. Assembly problems can be further categorised \parencite{wangStateArtComputational2021} by their properties: 
 
 \begin{itemize}
-	\item \textbf{Number of hands -} number of simultaneously moving parts needed for assembly 
+	\item \textbf{Number of hands --} number of simultaneously moving parts needed for assembly 
 
-	\item \textbf{Monotonicity -} whether the parts can be assembled in one simple motion, or whether intermediate movements are needed.
+	\item \textbf{Monotonicity --} whether the parts can be assembled in one simple motion, or whether intermediate movements are needed.
 
-	\item \textbf{Linearity -} whether the assembly motions are linear, rotational, helical or other freeform motions. 
+	\item \textbf{Linearity --} whether the assembly motions are linear, rotational, helical or other freeform motions. 
 
 \end{itemize}
 Most of the precedence robotic assembly projects in the architectural field, including the timber frame assembly problem in this thesis, belong to the simplest option of all (single hand, linear and monotonic movements). Even for projects that have used more than one robot during the process \parencite{paraschoCooperativeRoboticAssembly2019, thomaRoboticFabricationBespoke2018}, unless it involves multiple simultaneous movements in different trajectories, they are still considered one-hand problems.
@@ -151,21 +151,21 @@ Large amount of research has been devoted to the automatic sequence and motion p
 When robots are used to perform an assembly task, the assembly analysis mentioned above also has to consider the actions of the robots and the tools, and their physical limitations. These limitations include
 
 \begin{itemize}
-    \item \textbf{Collision -} The robot and parts attached to the robot must not come into collision among itself or with stationary objects \textit{(see \ul{5.2.7.1 Collision Checking})}.
+    \item \textbf{Collision --} The robot and parts attached to the robot must not come into collision among itself or with stationary objects \textit{(see \ul{5.2.7.1 Collision Checking})}.
 
-	\item \textbf{Reachability -} The robot must be able to reach all the targets that are needed to manipulate the objects for their assembly \textit{(see \ul{5.2.7.2 Inverse Kinematics})}.
+	\item \textbf{Reachability --} The robot must be able to reach all the targets that are needed to manipulate the objects for their assembly \textit{(see \ul{5.2.7.2 Inverse Kinematics})}.
 
-	\item \textbf{Payload and Accuracy -} Certain operations may not be possible due to the mechanical limitations of the robot.
+	\item \textbf{Payload and Accuracy --} Certain operations may not be possible due to the mechanical limitations of the robot.
 \end{itemize}
 
 The extension of these analysis into the design process includes:
 
 \begin{itemize}
-	\item \textbf{Automatic Sequence Planning -} Identical to the sequence planning above, concerned with the sequence among parts.
+	\item \textbf{Automatic Sequence Planning --} Identical to the sequence planning above, concerned with the sequence among parts.
 
-	\item \textbf{Automatic Task Planning -} Planning the discrete actions of the robot to assemble each part (e.g. open gripper, move, close gripper, etc.) \parencite{homemdemelloTaskSequencePlanning1989}
+	\item \textbf{Automatic Task Planning --} Planning the discrete actions of the robot to assemble each part (e.g. open gripper, move, close gripper, etc.) \parencite{homemdemelloTaskSequencePlanning1989}
 
-	\item \textbf{Automatic Motion Planning -} Finding the trajectory for the robot joint to follow, such that the attached end-effector moves from one target to another. \parencite{lavallePlanningAlgorithms2006}
+	\item \textbf{Automatic Motion Planning --} Finding the trajectory for the robot joint to follow, such that the attached end-effector moves from one target to another. \parencite{lavallePlanningAlgorithms2006}
 \end{itemize}
 
 In this thesis, task planning and motion planning are unavoidable for generating the robot programmes. However, sequence planning will not be studied. It is assumed that an experienced timber engineer, designer or carpenter can be tasked to determine the assembly order based on experience and intuition.
@@ -177,13 +177,13 @@ The use of robots for assembling timber structures requires careful planning and
 The basic task of picking up a beam carrying it to the assembly location may sound simple for a human worker. However, the planning work required for a robot to do the same is not only computationally hard, but also complicated to set up correctly. The parameters that have to be planned are:
 
 \begin{itemize}
-	\item \textbf{Tasks} - What are the sequence of operations for moving the robot joints and actuating the attached tools (e.g. opening and closing grippers)?
+	\item \textbf{Tasks --} What are the sequence of operations for moving the robot joints and actuating the attached tools (e.g. opening and closing grippers)?
 
-	\item \textbf{Grasp }- What pose (position and orientation) does the robot use to hold the beam? Does the robot need to change its grasp during the process?
+	\item \textbf{Grasp --} What pose (position and orientation) does the robot use to hold the beam? Does the robot need to change its grasp during the process?
 
-	\item \textbf{Targets }- Where are the targets for the robot to reach at the start and end of a motion to pick or place a workpiece at the correct location.
+	\item \textbf{Targets --} Where are the targets for the robot to reach at the start and end of a motion to pick or place a workpiece at the correct location.
 
-	\item \textbf{Trajectories }- What is the continuous path (a series of static joint angles) that allows the robot and its attached objects to move from one target to the next?
+	\item \textbf{Trajectories --} What is the continuous path (a series of static joint angles) that allows the robot and its attached objects to move from one target to the next?
 
 \end{itemize}
 The main challenge for spatial assembly is that there are many possible directions and orientation for assembling an element. This is in steep contrast to a layer-by-layer construction approach, where new elements can be assembled from the top \parencite{apolinarskaSequentialRoof2016, gramaziokohlerresearchethzurichStackedPavilion2009}. 
@@ -198,7 +198,7 @@ Joint Modeling and Solving refers to the computational process of creating and a
 
 Timber joints are typically modelled as a subtraction from the beam’s geometry. In many joint designs, both halves of the joints are not geometrically similar, therefore the subtraction geometries for the beams on each sides are also different. In order to ensure correct fit, it is necessary to ensure that both sides of the joint will match with each other. While this is relatively straightforward to achieve for one joint instance, a parametric joint model will need to adapt itself to different jointing angles between the beams. Because of the continuous nature of the joining angles, the model requires defining parametric geometrical relationships in 3D to create the solid models \parencite{vestartasDesigntoFabricationWorkflowRawSawnTimber2021}. In general, a parametric joint model will contain fixed properties that are dependent on the neighbouring beams, and editable properties that can be customised:
 
-\textbf{Adaptation to the intersecting beams' position, size and angle -} This adaptability allows the joint geometry to be computed automatically by the intersecting beams without explicit modelling. Thus, changing the intersecting beams’ locations can trigger an update to snap it to a new position. The images below shows a mortise and tenon joint adapting to different beam intersection angles.
+\textbf{Adaptation to the intersecting beams' position, size and angle --} This adaptability allows the joint geometry to be computed automatically by the intersecting beams without explicit modelling. Thus, changing the intersecting beams’ locations can trigger an update to snap it to a new position. The images below shows a mortise and tenon joint adapting to different beam intersection angles.
 
 \begin{figure}[H]
     \centering
@@ -286,15 +286,15 @@ The alternative is a human-computer collaborative design process, or computer-ai
 The primary goal for such an interface is to provide designers with real-time feedback and guidance while allowing them to explore the design space and make informed decisions \parencite{frichMappingLandscapeCreativity2019, puentesMakingGesturesDesign2015}. This involves visualising and communicating various constraints, warnings, and possible solutions through a well-designed interface that is both intuitive and user-friendly. To achieve this, the interface for designing a robotically-assemble timber structure should consider the following features: 
 
 \begin{itemize}
-	\item \textbf{Interactive 3D visualisation - }Enables navigation of the model over each assembly step for the human designer to understand temporal and spatial relationships between the beams, joints and robots.
+	\item \textbf{Interactive 3D visualisation --} Enables navigation of the model over each assembly step for the human designer to understand temporal and spatial relationships between the beams, joints and robots.
 
-	\item \textbf{Constraint visualisation - }Visualise constraint violations and fabrication limitations. 
+	\item \textbf{Constraint visualisation --} Visualise constraint violations and fabrication limitations. 
 
-	\item \textbf{Solution suggestions - }Offers ways to address constraint issues and improve the design.
+	\item \textbf{Solution suggestions --} Offers ways to address constraint issues and improve the design.
 
-	\item \textbf{Integrated robotic assembly planning -} Seamlessly incorporates assembly feasibility within the design environment.
+	\item \textbf{Integrated robotic assembly planning --} Seamlessly incorporates assembly feasibility within the design environment.
 
-	\item \textbf{Interactive parametric modelling workflow - }Facilitates quick iterations between different solutions when solving problems.
+	\item \textbf{Interactive parametric modelling workflow --} Facilitates quick iterations between different solutions when solving problems.
 
 \end{itemize}
 In summary, a user interface for fabrication-aware design should facilitate effective communication between the human designer and the computational tools, enabling a seamless and efficient design process. 
