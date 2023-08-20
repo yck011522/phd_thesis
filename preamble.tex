@@ -56,6 +56,12 @@
 % Symbols for fancy bullet points 
 % \usepackage{amssymb}
 
+% For aligning math equations
+\usepackage{amsmath}
+\usepackage{empheq}
+
+% Allowing itemized list with long text labels to nest neatly 
+\usepackage{enumitem}
 
 % Select the Helvetica font
 \renewcommand{\familydefault}{\sfdefault}
@@ -63,6 +69,9 @@
 % Hyperlink package
 \usepackage{hyperref} % This shows a box around the clickable links, good for debugging.
 % \usepackage[hidelinks]{hyperref} % This hides the ugly hyperlink box in the resulting PDF
+
+% Provides \textquote{} for managing quotations
+\usepackage{csquotes}
 
 % -------------------------
 % Custom macro to create a (See ... ) section label 
