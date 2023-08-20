@@ -92,7 +92,7 @@ On the other hand, TAMP is a much slower process that cannot provide real-time f
 In order to address this, my collaborator and I have discovered different types of validation checks that can be performed, depending on the affordable time. This multiple level-of-detail validation process appears to be a practical approach to evaluating a design. The checks in increasing level of accuracy are:
 
 \begin{itemize}
-	\item Collision Check (< 1 minute)
+	\item Collision Check ($<$ 1 minute)
 
 	\item IK + CC (a few minutes) \textit{(see \ul{7.3.21 Fast Design Validation with IK Check})}
 
@@ -276,9 +276,7 @@ None of these ideas are novel on their own. For example, robotic arms are common
 
 While the development of each of these tools is presented in the previous chapters, the following section aims to describe the general properties of the tools and the robotic platform with the goal to inspire future development. For example, to design new assembly tools for more timber joint types, or even for other material and structural systems.
 
-\begin{figure}[H]
-\includegraphics[width=15.92cm,height=8.96cm]{./images/image1.jpeg}
-\end{figure}
+\input{image_holder_1}
 
 
 The photo above shows the construction area before the beginning of the CantiBox. The DiRT Clamps and Screwdrivers are in the foreground. The robotic arm (right) can be seen approaching a parallel gripper. 
@@ -289,60 +287,11 @@ DiRT tools are modular in nature which allows them to fulfil different types of 
 
 This section presents a systemic design approach for designing new DiRT tools. In order to demonstrate the design procedures and considerations, I will attempt to redesign the temporary scaffolding in CantiBox (see photo below) such that it can be attached and detached automatically. I refer to this process of converting existing manual tools to a DiRT tool - DiRTify or DiRT-ification.
 
-\begin{figure}[H]
-\includegraphics[width=15.92cm,height=8.96cm]{./images/image2.jpeg}
-\end{figure}
-
+\input{image_holder_1}
 
 The design process starts by drafting the specifications of the tool, which corresponds to two main operational aspects - the task to be completed and how the tool is attached. The table below contains an example of the specifications drafted for the DiRT scaffolding:
 
-\begin{table}[H]
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{p{3.52cm}p{12.35cm}}
-\hline
-\multicolumn{1}{|p{3.52cm}}{{\footnotesize \textbf{Features to identify}}} & 
-\multicolumn{1}{|p{12.35cm}|}{{\footnotesize \textbf{Example: Hypothetical DiRT-ified temporary scaffolding }}} \\ 
-\hline
-\multicolumn{1}{|p{3.52cm}}{{\footnotesize Task to be completed}} & 
-\multicolumn{1}{|p{12.35cm}|}{\begin{itemize}
-	\item {\footnotesize Provide support between two already-assembled timber elements. } \newline
-\begin{itemize}
-	\item {\footnotesize The two elements are always joined by a planar joint. } \newline
-\begin{itemize}
-	\item {\footnotesize No need to support non-planar joints } \newline
-\end{itemize}
-	\item {\footnotesize Since two elements are joined together, the addition of this scaffolding completes the third side of a rigid triangle.\par} \newline
-\end{itemize}
-	\item {\footnotesize If possible, one side of the scaffolding should be able to attach to the base platform.}\end{itemize}
-} \\ 
-\hline
-\multicolumn{1}{|p{3.52cm}}{{\footnotesize Flexibility of the task}} & 
-\multicolumn{1}{|p{12.35cm}|}{	\item {\footnotesize The two timber elements may be joined with different angles from 40 to 140 degrees.} \newline
-	\item {\footnotesize The supporting bar length is fixed (different lengths should be available in the toolset but not adjustable on each tool)\par}} \\ 
-\hline
-\multicolumn{1}{|p{3.52cm}}{{\footnotesize Attachment Method}} & 
-\multicolumn{1}{|p{12.35cm}|}{\begin{itemize}
-	\item {\footnotesize Direction of attachment is to be determined, two possibilities exist:} \newline
-\begin{itemize}
-	\item {\footnotesize Enter from the gap between the two timber and pushed towards the timber joint.} \newline
-	\item {\footnotesize Enter from the side of the two timber pieces, } \newline
-\end{itemize}
-	\item {\footnotesize Registration features may be needed on the timber at the attachment point. }} \\ 
-\hline
-\multicolumn{1}{|p{3.52cm}}{{\footnotesize How deviation affects the attachment process}} & 
-\multicolumn{1}{|p{12.35cm}|}{	\item {\footnotesize Deviations between two beams are expected to be low because the scaffolding is attached while the weak beam is still held by the other robot. \par} \newline
-	\item {\footnotesize Deviation analysis is performed to determine the following.} \newline
-\begin{itemize}
-	\item {\footnotesize Deviation of each attachment point from ground truth is <5mm @98$\%$ confidence. } \newline
-	\item {\footnotesize Deviation between the distance of the two attachment point is <3mm @98$\%$ confidence. } \newline
-\end{itemize}
-	\item {\footnotesize The attachment process is not expected to push incorrect structures back to correctness. }\end{itemize}
-} \\ 
-\hline
-\end{tabular}
-\end{adjustbox}
-\end{table}
-{\footnotesize $\ast$ All numerical values in this table are for illustrative purposes only.}
+MISSINGTABLE
 
 When describing the task, it is necessary to analyse what kinematic actions are needed to perform the task, and if any essential parts are required. In this example, the scaffolding bar does not require any kinematic movement. However, in the screwdriver development, the screwdriver head and the pull screw were essential components.
 
@@ -353,17 +302,17 @@ When designing the attachment method, it is best to first identify the direction
 Based on the specifications, a design study can generate different design options. The following list provides a guideline for important metrics to evaluate when deciding which option to pursue:
 
 \begin{itemize}
-	\item \textbf{Choice of power source --} Typically electric power is provided by an onboard battery. When the tool is attached to the robot, high-power electricity and pneumatic power can be provided through the docking adapter. Evaluate cost and power consumption per operation cycle.
+	\item \textbf{Choice of power source} - Typically electric power is provided by an onboard battery. When the tool is attached to the robot, high-power electricity and pneumatic power can be provided through the docking adapter. Evaluate cost and power consumption per operation cycle.
 
-	\item \textbf{Weight of the tool --} Perform additional deviation analysis for typical attachment scenarios to make sure the tools can be hung from their intended locations without causing excessive deformation.
+	\item \textbf{Weight of the tool }- Perform additional deviation analysis for typical attachment scenarios to make sure the tools can be hung from their intended locations without causing excessive deformation.
 
-	\item \textbf{Implementation complexity and cost --} Evaluate the choice of actuators and the required drivers and controllers. Typically, fewer actuators make the device simpler and lighter.
+	\item \textbf{Implementation complexity and cost - }Evaluate the choice of actuators and the required drivers and controllers. Typically, fewer actuators make the device simpler and lighter.
 
-	\item \textbf{Chance of successful attachment --} Based on the alignment mechanism and the choice of alignment correction mechanism, estimate the allowable tolerance and correction range. Evaluate the chance of successful alignment for typical attachment operations using the alignment-correction model. 
+	\item \textbf{Chance of successful attachment - }Based on the alignment mechanism and the choice of alignment correction mechanism, estimate the allowable tolerance and correction range. Evaluate the chance of successful alignment for typical attachment operations using the alignment-correction model. 
 
-	\item \textbf{Risk of collision --} Perform collision check for every key step during attachment, operation and detachment process. All collision objects should be considered, such as, robots, other tools, already-assembled structure, and ground foundation. If the tool is flexible to interact with geometrically different workpieces, perform multiple checks for each degree of freedom (at least one checks at each extreme of the flexibility and at the neutral position). Not all scenarios need to be collision free, for example, cases where multiple flexible dimensions are at their extremes can be exempted. The purpose of this evaluation is to get a sense of the design freedom. 
+	\item \textbf{Risk of collision} - Perform collision check for every key step during attachment, operation and detachment process. All collision objects should be considered, such as, robots, other tools, already-assembled structure, and ground foundation. If the tool is flexible to interact with geometrically different workpieces, perform multiple checks for each degree of freedom (at least one checks at each extreme of the flexibility and at the neutral position). Not all scenarios need to be collision free, for example, cases where multiple flexible dimensions are at their extremes can be exempted. The purpose of this evaluation is to get a sense of the design freedom. 
 
-	\item \textbf{Command and control --} Evaluate whether the standard wireless command control framework can be used. Evaluate if bandwidth and latency is sufficient, especially if camera feed is required.
+	\item \textbf{Command and control }- Evaluate whether the standard wireless command control framework can be used. Evaluate if bandwidth and latency is sufficient, especially if camera feed is required.
 
 \end{itemize}
 Finally it is necessary to consider the placement of the docking adapter. The position of the adapter directly determines the position of the robot flange and the position of the robot wrist when the tool is attached. For spherical wrist robots, such as the one used in this thesis, the wrist can be approximated by a sphere. A special property of these robots is that the sphere’s position relative to the flange does not change with the movement of Joint 5 or Joint 6. Therefore, we can use this sphere as a rule-of-thumb guidance to make sure there are no collisions with the parts being assembled.
@@ -376,83 +325,11 @@ The robotic platform used for DiRT operations is generic in nature. The specific
 
 The following table provides a list of robot specifications for DiRT operations that are crucial for achieving reasonable design freedom, efficiency, and safety during the construction process. It also includes how each specification can be determined according to the construction task in a generalised scenario. For timber frame construction, the values used for this thesis is included for reference, together with the recommended values concluded from the experience gained.
 
-\begin{table}[H]
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{p{3.04cm}p{6.3cm}p{3.41cm}p{3.41cm}}
-\hline
-\multicolumn{1}{|p{3.04cm}}{\multirow{2}{*}{\parbox{3.04cm}{{\footnotesize \textbf{Specification}}}}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize \textbf{Generalised Construction Scenario}}} & 
-\multicolumn{2}{|p{6.83cm}|}{{\footnotesize \textbf{Timber Frame Construction}}} \\ 
-\hhline{~---}
-\multicolumn{1}{|p{3.04cm}}{} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize \textbf{Determination of Specification}}} & 
-\multicolumn{1}{|p{3.41cm}}{{\footnotesize \textbf{Ideal Values}}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize \textbf{Used This Thesis}}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Robot Payload Capacity}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize Depends on weight of workpiece to be lifted}} & 
-\multicolumn{1}{|p{3.41cm}}{{\footnotesize 100kg}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize 60kg} \newline
-} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Robot Wrist Torque}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize Depends on workpiece geometry and how it is held}} & 
-\multicolumn{1}{|p{3.41cm}}{{\footnotesize 1000Nm}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize 105Nm (Joint 6)} \newline
-{\footnotesize 200Nm (Joint 4, 5)}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Robotic DOF}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize At least 4 (top down construction) } \newline
-{\footnotesize At least 6 (spatial construction)  \\ 9 (Ideal)}} & 
-\multicolumn{2}{|p{6.83cm}|}{{\footnotesize 9 (3 Cartesian + 6 Robot Joints) Refer to \ul{5.2.2 RFL Robotic Platform}}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Repeatability}} & 
-\multicolumn{2}{|p{9.71cm}}{{\footnotesize Not very relevant. See Answer 5 of \ul{10.1 Response to Research Questions}}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize 0.06 (Not very relevant)}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Cartesian Accuracy}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize Depends on alignment requirements}} & 
-\multicolumn{1}{|p{3.41cm}}{{\footnotesize 2mm (worst case)}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize 10mm (worst case)} \newline
-{\footnotesize 5mm (typical)}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Robotic Arm Reach}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize Depends on the assembly task. } \newline
-{\footnotesize E.g. Distance of one structural bay (structural assembly), height of one floor (facade assembly)}} & 
-\multicolumn{1}{|p{3.41cm}}{{\footnotesize 2.5m}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize 2.55m}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Compactness}} & 
-\multicolumn{2}{|p{9.71cm}}{{\footnotesize Depends on the assembly task, but in general: \\ Wrist - Small enough to attach and retrieve tools on structure\par} \newline
-{\footnotesize Elbow - Small enough to reach into openings of partially-assembled structure}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize Refer to the geometry of ABB IRB 4600-40/2.55.}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Coordinate System}} & 
-\multicolumn{3}{|p{13.12cm}|}{{\footnotesize Fixed coordinate reference for the entire job site (especially relevant for robot platforms with mobile base). Ideally aligned with the reference used by the surveyor.\par}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Working Envelope of Gantry}} & 
-\multicolumn{1}{|p{6.3cm}}{{\footnotesize Depends on size of the workpiece}} & 
-\multicolumn{1}{|p{3.41cm}}{{\footnotesize 2m offset larger than building size}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize 1.5m offset larger than building size}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize DiRT Docking Adapter}} & 
-\multicolumn{2}{|p{9.71cm}}{{\footnotesize Standardised docking interface include power feedthrough (see next section - Docking Adapter for details)\par}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize Schunk - SWA-040 (with pneumatic feedthrough)}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Robot Impedance Control}} & 
-\multicolumn{3}{|p{13.12cm}|}{{\footnotesize Impedance control is useful for allowing the robot to be slightly compliant during docking and passive correction.\par}} \\ 
-\hline
-\multicolumn{1}{|p{3.04cm}}{{\footnotesize Weather Protection}} & 
-\multicolumn{2}{|p{9.71cm}}{{\footnotesize IP 67, rust protection on all weather exposed parts.}} & 
-\multicolumn{1}{|p{3.41cm}|}{{\footnotesize Not required}} \\ 
-\hline
-\end{tabular}
-\end{adjustbox}
-\end{table}
-\vspace{3\baselineskip}
-The primary consideration in implementing the robotic platform is the kinematic arrangement. A popular approach, that is also used in this thesis, is the overhead gantry with an inverted robot arrangement. This arrangement offers overhead clearance to facilitate navigation in congested assembly areas. It is also the most common arrangement used in many of the integrated automated construction sites found in Japan \href{https://www.zotero.org/google-docs/?EF3GMo}{(Linner, 2013; Potter, 2022)} . Apart from its sturdiness, it provides other benefits such as attachment of vertical material transport robots and weather cover over the gantry.
+MISSINGTABLE
 
-There are alternative arrangements to the gantry-robot approach, one of which is crane-based robots, such as tower cranes or crawler cranes. They offer high lifting capabilities but face challenges controlling sway \href{https://www.zotero.org/google-docs/?Cg17jt}{(Neupert et al., 2010)} and rotation \href{https://www.zotero.org/google-docs/?xytkc0}{(Liang et al., 2017)}; Another alternative is robots based on articulating boom lifts, which provide good reachability but have lower payload capacities. These may be suitable for attaching and detaching DiRT tools but insufficient for lifting building components. 
+The primary consideration in implementing the robotic platform is the kinematic arrangement. A popular approach, that is also used in this thesis, is the overhead gantry with an inverted robot arrangement. This arrangement offers overhead clearance to facilitate navigation in congested assembly areas. It is also the most common arrangement used in many of the integrated automated construction sites found in Japan \parencite{linnerAutomatedRoboticConstruction2013, potterJapanSkyscraperFactories2022}. Apart from its sturdiness, it provides other benefits such as attachment of vertical material transport robots and weather cover over the gantry.
+
+There are alternative arrangements to the gantry-robot approach, one of which is crane-based robots, such as tower cranes or crawler cranes. They offer high lifting capabilities but face challenges controlling sway \parencite{neupertTrackingAntiswayControl2010} and rotation \parencite{liangRASRoboticAssembly2017}; Another alternative is robots based on articulating boom lifts, which provide good reachability but have lower payload capacities. These may be suitable for attaching and detaching DiRT tools but insufficient for lifting building components. 
 
 In this thesis, the gantry-robot arrangement achieves a balance between accuracy, reachability and payload capacity suitable for timber frame assembly. However, for heavier construction components such as prefab-concrete and steel, it is likely that the role of heavy lifting and manipulating DiRT tools are distributed to two different robotic platforms, each optimised for their specific tasks.
 
@@ -474,58 +351,8 @@ During the development of the automatic tool placement procedure, it was found t
 
 In order to communicate wirelessly with the DiRT tools, it is essential to have a high-performance and robust radio communication system. While there are many matured wireless communication systems like Wi-Fi and ZigBee, they do not fully address the unique challenges and requirements of DiRT systems in a construction environment. For example, ensuring signal reliability in a construction environment with many occlusions is challenging but essential to the robot process. As many of the DiRT movements require synchronising movements with multiple tools and robots, any dropped connection will result in an emergency stop, causing a disruption to the process. The following table lists the general requirements for a wireless communication system designed for DiRT operations:
 
-\begin{table}[H]
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{p{2.33cm}p{8.25cm}p{5.34cm}}
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize \textbf{Property}}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize \textbf{Requirements}}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize \textbf{Purpose}}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Wireless Range}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize The system should offer an adequate communication range to cover the entire construction site. }} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Avoid disruption to the automatic construction process.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Energy Efficiency}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize Energy-efficient endpoint on the tool-side as DiRT tools rely on battery power for extended periods of time.\par}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Extend DiRT battery operation time.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Low latency}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize Sufficiently low latency to ensure real-time control and monitoring of DiRT tools.}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Allow quick detection and responses to emergency conditions.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize High Data Rate}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize Sufficiently high data rates to accommodate control commands and telemetry data from all active tools.\par}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Enable high telemetry frame rate.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Reliability}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize The system should maintain a stable connection in harsh and dynamic construction site environments, overcoming occlusions, radio interference, and signal degradation due to other machineries.\par}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Avoid disruption to the automatic construction process.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Security}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize The system should incorporate encryption and authentication mechanisms }} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Protect against malicious control, eavesdropping and spoofing, }} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Fail-safe}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize The communication system and the DiRT tool controllers should be designed to be fail safe if one or more DiRT tool connections are lost during operation. \par}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Avoid dangerous operations resulting from the loss of signal.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Cost Effectiveness}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize Low cost, particularly for the tool-side.}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize To ensure DiRT tools can be implemented with low cost.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Ease of deployment}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize Wireless routers or access points should be easy to install, configure, and maintain in a construction site. The number of network devices and physical wiring should be minimised.\par}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Minimise the need for specialised technical expertise and reduce maintenance cost.}} \\ 
-\hline
-\multicolumn{1}{|p{2.33cm}}{{\footnotesize Scalability}} & 
-\multicolumn{1}{|p{8.25cm}}{{\footnotesize As construction sites may require multiple DiRT tools and robotic platforms to work simultaneously, the system should be scalable without compromising performance.\par}} & 
-\multicolumn{1}{|p{5.34cm}|}{{\footnotesize Accommodate potentially many DiRT devices on-site.}} \\ 
-\hline
-\end{tabular}
-\end{adjustbox}
-\end{table}
-\vspace{1\baselineskip}
+MISSINGTABLE
+
 In this thesis, a custom network is implemented based on a low-cost sub-GHz radio transceiver (CC1101 by Texas Instruments) installed on each DiRT tool. \textit{(see \ul{5.3.10 Radio Network}) }The frequency and encoding is chosen to maximise signal reliability, and the radio is set to the maximum allowable power under licence-free operation. Although this was shown to be sufficient for operating the DiRT system in the lab, there are many shortcomings that should be improved in future implementation \textit{(see \ul{8.5.5 Wireless Radio Latency})}.
 
 Note that the wireless communication system is the software and electronics counterpart of the docking adapter. Once a standard is chosen, subsequent DiRT development is constrained by the choice. Therefore, careful consideration and physical tests are necessary to ensure that the requirements listed above are met. In conclusion, a custom wireless communication solution is needed for DiRT operations to ensure its performance and reliability.
@@ -534,14 +361,11 @@ Note that the wireless communication system is the software and electronics coun
 
 In order to coordinate all the robotic hardware to perform a series of planned tasks, a complex control system is needed. In order to follow a modular development process, a distributed control system (DCS) model is adopted. Specifically, the control, monitor and synchronising tasks are separated into a layered stack of software that communicates with each other \textit{(see \ul{5.2.4 Distributed Control System})}. The diagram below shows the relationship between all the control software used in this thesis, arranged according to a DCS model. The communication channel is labelled on the arrows. In addition, a set of command-response protocols were also developed for two way communication between each layer. 
 
-\begin{figure}[H]
-\includegraphics[width=15.92cm,height=14.36cm]{./images/image3.jpeg}
-\end{figure}
-
+\input{image_holder_1}
 
 This software arrangement with an overarching process execution controller is generic for any multi-controller scenarios. Level 1 or Level 2 controllers can be added if additional hardware is needed for the process. In this case, the Level 3 Process Execution Controller only needs to be revised to manage the new connection and to support the new commands \textit{(see \ul{6.3.8 Standalone Process Execution Controller})}. 
 
-Experience has shown that the use of compas\_rrc \href{https://www.zotero.org/google-docs/?svtqbp}{(Fleischmann et al., 2020)} to send commands between Levels 2 and 3 is extremely flexible. Specifically, the `Instructions` class can be used to encapsulate newly developed instruction sets, such as requesting a status report, setting states, or starting an action. It also supports synchronous and asynchronous command modes, which is essential for managing long-running motion tasks. In addition, the use of ROS messaging system by compas\_fab allows easy addition of Level 2 controllers, even if they are running on a different computer. 
+Experience has shown that the use of compas\_rrc \parencite{fleischmannCOMPASRRCOnline2020} to send commands between Levels 2 and 3 is extremely flexible. Specifically, the `Instructions` class can be used to encapsulate newly developed instruction sets, such as requesting a status report, setting states, or starting an action. It also supports synchronous and asynchronous command modes, which is essential for managing long-running motion tasks. In addition, the use of ROS messaging system by compas\_fab allows easy addition of Level 2 controllers, even if they are running on a different computer. 
 
 \section{Conclusion of Discussion}
 
