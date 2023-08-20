@@ -1,11 +1,11 @@
 \input{preamble.tex}
 
-\title{My LaTeX Test Document}
+\title{DiRT: Distributed Robotic Tools for Spatial Timber Assembly with Integral Timber Joints}
 \author{Pok Yin Leung}
 \date{01 September 2023}
 
 % DEBUG: Compile ony a specific chapter
-\includeonly{06_dev_round3}
+\includeonly{00_abstract, 01_introduction, 09_new_hypothesis}
 
 \begin{document}
 \renewcommand{\labelitemi}{\raisebox{.10ex}{\large$\bullet$}}
@@ -14,23 +14,29 @@
 
 % Drawing the layout debugging
 % \layout 
-\maketitle
 
+\maketitle
 \include{00_abstract}
+
+\tableofcontents
+
 \include{01_introduction}
 \include{02_challenges}
 \include{03_methodology}
 \include{04_dev_round1}
 \include{05_dev_round2}
 \include{06_dev_round3}
-% \include{07_dev_round4}
-% \include{08_dev_round5}
-% \include{09_new_hypothesis}
-% \include{10_discussion}
-% \include{11_conclusion}
+\include{07_dev_round4}
+\include{08_dev_round5}
+\include{09_new_hypothesis} % Missing
+% \include{10_discussion} % Need Fix
+\include{11_conclusion}
 
 
-\printbibliography
+\printbibliography[
+heading=bibintoc,
+title={Bibliography}
+]
 
 
 \end{document}
