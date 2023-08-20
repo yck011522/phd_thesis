@@ -1,4 +1,4 @@
-\chapter{Dev Round 5 - Cantibox}
+\chapter{Exploration Round 5 - Cantibox}
 
 \section{Goal}
 
@@ -31,7 +31,7 @@ The following task planning flow chart describes the combined operation of the C
 \input{image_holder_1}
 
 
-As evident, this is a rather complex flow chart. However, the task planning that is implemented in this development round will utilise a bottom-up planning method instead of this flowchart method \textit{(see \ul{8.2.2 TAMP with PDDLStream} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}.
+As evident, this is a rather complex flow chart. However, the task planning that is implemented in this exploration round will utilise a bottom-up planning method instead of this flowchart method \textit{(see \ul{8.2.2 TAMP with PDDLStream} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}.
 
 \section{Literature Review}
 
@@ -53,7 +53,7 @@ In the previous planning workflow \textit{(see \ul{6.3.5 Process Design Workflow
 
 In a TAMP workflow, the tasks and motions are planned at the same time. This allows the geometrical constraints that are detected by the MP to be used as feedback for planning a different, and potentially more optimised, task sequence. However, in order to let the computer decide on the task list automatically, it is necessary to give it the freedom to compose tasks in different sequences. 
 
-In contrast, the flowchart method can be seen as a top-down decision-making logic that has fixed the sequence of tasks. In other words, using the flowchart method will only lead to one deterministic task list with no freedom to try anything different. One of the apparent downsides of using the flowchart method was the inability to make a good long-term plan (also known as long-horizon plan). For example, in the previous clamped operation in Dev Round 3, the used clamps were always retrieved from the structure back to the storage (image below). This was the only way to ensure that the clamp could still be accessible by the robot at a later step for a different beam in the assembly process. 
+In contrast, the flowchart method can be seen as a top-down decision-making logic that has fixed the sequence of tasks. In other words, using the flowchart method will only lead to one deterministic task list with no freedom to try anything different. One of the apparent downsides of using the flowchart method was the inability to make a good long-term plan (also known as long-horizon plan). For example, in the previous clamped operation in Exploration Round 3, the used clamps were always retrieved from the structure back to the storage (image below). This was the only way to ensure that the clamp could still be accessible by the robot at a later step for a different beam in the assembly process. 
 
 \input{image_holder_1}
 
@@ -113,7 +113,7 @@ After the implementation of the vision-guided docking procedure \textit{(see \ul
 
 In the last demonstration, the operator found that it was possible to fix the problem remotely by jogging the gantry linearly back and forth, while keeping the robotic arm in a low-stiffness model. 
 
-In this development round, a shaking routine was developed to automatically perform the movement whenever the docking switches did not return a locked signal. The following pseudocode describes the procedure:
+In this exploration round, a shaking routine was developed to automatically perform the movement whenever the docking switches did not return a locked signal. The following pseudocode describes the procedure:
 
 \begin{enumerate}
 	\item Check lock signal
@@ -265,7 +265,7 @@ The pavilion is additionally furnished with a manually assembled floor system si
 
 \section{Lessons Learnt}
 
-Note that this was the last development round. Any potential follow-up actions can only be pursued by future works.
+Note that this was the last exploration round. Any potential follow-up actions can only be pursued by future works.
 
 \subsection{Execution Plan}
 
@@ -281,7 +281,7 @@ The preparation of the execution was similar to the previous round (see 7.5.1 Ex
 	\item Robotic assembly is a combination of the clamped and screwed process \textit{(refer to \ul{8.1.1 Combined Operation of Clamps and Screwdrivers})}
 
 \end{itemize}
-The photo below shows the tool storage location, which consists of 4 clamps and 4 screwdrivers. The storage pads for the clamps are different from the ones used in Dev Round 3. These new ones have a top-facing flange direction that is easier for operator alignment.
+The photo below shows the tool storage location, which consists of 4 clamps and 4 screwdrivers. The storage pads for the clamps are different from the ones used in Exploration Round 3. These new ones have a top-facing flange direction that is easier for operator alignment.
 
 \input{image_holder_1}
 
@@ -397,9 +397,9 @@ Further discussions can be found in the later chapter about alignment and correc
 
 \subsection{Beam Placement Misalignment Problem}
 
-In this development round, the beam placement (Joint-to-joint alignment) remains the only alignment scenario that did not have any active correction strategy. The alignment accuracy therefore relies on the accuracy of the robot and the partially-assembled (PA) structure. 
+In this exploration round, the beam placement (Joint-to-joint alignment) remains the only alignment scenario that did not have any active correction strategy. The alignment accuracy therefore relies on the accuracy of the robot and the partially-assembled (PA) structure. 
 
-Since the construction in Dev Round 3, the accuracy of the robot-side have been improved by calibration \textit{(see \ul{6.5.10 RFL Robot Inaccuracy and Calibration})} and the accuracy on the stationary-side PA structure have also been improved by deformation-aware design principles \textit{(see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation})} and the use of scaffoldings \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}.
+Since the construction in Exploration Round 3, the accuracy of the robot-side have been improved by calibration \textit{(see \ul{6.5.10 RFL Robot Inaccuracy and Calibration})} and the accuracy on the stationary-side PA structure have also been improved by deformation-aware design principles \textit{(see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation})} and the use of scaffoldings \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}.
 
 The alignment accuracy has seen some improvement (a subjective observation because accurate measurement was difficult) but alignment failure is still frequent. It also became clear that the amplitude of deviation is hard to be corrected by purely passive methods alone, such as the chamfered edges. The images below show a substantial misalignment that cannot be corrected with the chamfer. 
 
@@ -412,7 +412,7 @@ Apply active correction methods, such as camera based systems, to detect misalig
 
 \subsection{Wireless Radio Latency}
 
-In this development round, up to eight DiRT tools are placed on standby at the same time. It was found that the time needed for communicating with each individual device can add up to substantial latency. This latency did not cause a problem in the current implementation because only a maximum of 4 devices were used at the same time and that their movement speed is very slow. However, if the system were to scale up for more devices to operate simultaneously, it can cause a substantial amount of out-of-sync error that cannot be ignored.
+In this exploration round, up to eight DiRT tools are placed on standby at the same time. It was found that the time needed for communicating with each individual device can add up to substantial latency. This latency did not cause a problem in the current implementation because only a maximum of 4 devices were used at the same time and that their movement speed is very slow. However, if the system were to scale up for more devices to operate simultaneously, it can cause a substantial amount of out-of-sync error that cannot be ignored.
 
 The following screen-capture image shows the L2 Tool Controller overseeing eight devices. Seven devices can be seen, showing their latest telemetry. SL1\_G200 is offline. Notice the \textit{last\_com }field showing the last communication latency that has values ranging from 38ms to 122ms. This indicated the delay between a status update request from the L2 controller, and the reception of the values from the devices. The staggering time reflects the one-by-one communication nature of the communication protocol. The 122ms response time being the last device to report back. If these seven devices were to operate simultaneously, this latency would become substantial out-of-sync error. 
 

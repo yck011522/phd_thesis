@@ -1,4 +1,4 @@
-\chapter{Development Round 3 - Automatic Clamp Placement}
+\chapter{Exploration Round 3 - Automatic Clamp Placement}
 
 \section{Goal}
 
@@ -197,7 +197,7 @@ The image below (left) shows the UI for editing the \textbf{assembly model}; com
 
 \input{image_holder_1}
 
-While there was no need to recreate the BusStop Assembly Model for this Dev Round, the newly developed process design workflow (see the next section) benefited greatly from this improvement. The visualisation and interactive UI for process design is also accessible from the toolbar in Rhino. More screen capture can be found in the later sections (see \ul{6.3.5.6 Process Visualization and Adjustment}).
+While there was no need to recreate the BusStop Assembly Model for this Exploration Round, the newly developed process design workflow (see the next section) benefited greatly from this improvement. The visualisation and interactive UI for process design is also accessible from the toolbar in Rhino. More screen capture can be found in the later sections (see \ul{6.3.5.6 Process Visualization and Adjustment}).
 
 \subsection{Process Design Workflow}
 
@@ -286,7 +286,7 @@ Task planning refers to the creation of a list of tasks to accomplish a goal. Th
 
 In order to formalise the description such that it can be processed by a computer automatically. The flowchart planning method was developed for automating the creation of an assembly-task list according to the design specified in the Assembly Model \parencite{huangNewAnalogProtocol2021}.
 
-In the DiRT Clamping Assembly Process, different sets of assembly tasks are required depending on the number of joints a beam has with its neighbours. For example, the tools implemented in this round contains two gripper choices (PG1000 and PG1500) and two clamp choices (CL3 and CL3M). There are even more choices in later Dev Rounds. When combined, there are many possible combinations of gripper and clamps for each beam. For example,
+In the DiRT Clamping Assembly Process, different sets of assembly tasks are required depending on the number of joints a beam has with its neighbours. For example, the tools implemented in this round contains two gripper choices (PG1000 and PG1500) and two clamp choices (CL3 and CL3M). There are even more choices in later Exploration Rounds. When combined, there are many possible combinations of gripper and clamps for each beam. For example,
 
 \begin{itemize}
 	\item Beam assembled with Gripper, placing on the ground platform, fixed manually. No clamps used.
@@ -315,7 +315,7 @@ MISSINGTABLE
 
 \subsubsection{Expanding Task Groups}
 
-The list of tasks planned by the flowchart method is considered \textbf{High-Level Tasks }or \textbf{Task Groups}. Each of which can be expanded to a list of \textbf{Low-Level Tasks} that are directly related to the functions provided by the L2 and L3 controllers (see 5.2.4 Distributed Control System). The following table lists all the low-level tasks used in this development round and the \textbf{Task Agents }(including the human operator) and Controller that are responsive for their execution.
+The list of tasks planned by the flowchart method is considered \textbf{High-Level Tasks }or \textbf{Task Groups}. Each of which can be expanded to a list of \textbf{Low-Level Tasks} that are directly related to the functions provided by the L2 and L3 controllers (see 5.2.4 Distributed Control System). The following table lists all the low-level tasks used in this exploration round and the \textbf{Task Agents }(including the human operator) and Controller that are responsive for their execution.
 
 MISSINGTABLE
 
@@ -329,7 +329,7 @@ Note the following properties:
 	\item Other L2 tasks are also executed through the L3 Process Controller because it provides flow control (see \ul{5.3.15 Process Execution Controller}). 
 
 \end{itemize}
-The diagram below shows all the task groups used in this development round expanded into its constituting low-level tasks. Those that are marked with ``TC" means that a Taught Configuration was used for its target pose.
+The diagram below shows all the task groups used in this exploration round expanded into its constituting low-level tasks. Those that are marked with ``TC" means that a Taught Configuration was used for its target pose.
 
 \input{image_holder_1}
 
@@ -542,13 +542,13 @@ In the images below, there are no collisions in the clamped keyframe (left), but
 
 \input{image_holder_1x2}
 
-In the next development round, an automatic collision check is implemented and the engineer only has to go through the problematic steps (see \ul{7.3.21 Fast Design Validation with IK Check}).
+In the next exploration round, an automatic collision check is implemented and the engineer only has to go through the problematic steps (see \ul{7.3.21 Fast Design Validation with IK Check}).
 
 Aside from collisions, the engineer can also make adjustments to avoid potentially difficult situations, such as beam grasp that are too close to other neighbours or the ground, or highly eccentric grasp that are prone to deflection. The ground platform can also be adjusted if necessary and updates the environment model. Once the engineer is happy with the Process Model, it can be passed on for motion planning. 
 
 \subsubsection{Multimodal Motion Planning (MMMP) Solver}
 
-The MMMP solver implemented for this development round is responsible for planning the robotic motions in the tasks list. It has access to the Linear Motion planner and Free Motion Planner for planning the two different types of motion accordingly. Non-robotic motions in the task list are ignored.
+The MMMP solver implemented for this exploration round is responsible for planning the robotic motions in the tasks list. It has access to the Linear Motion planner and Free Motion Planner for planning the two different types of motion accordingly. Non-robotic motions in the task list are ignored.
 
 \input{image_holder_1}
 
@@ -564,7 +564,7 @@ This downside of this sequential planning method was discovered not long after i
 
 This problem was addressed by separating the task list into smaller \textbf{task groups }organised by each beam, this created 40 groups for the 40 beams that could be planned in parallel, or skipped when being stuck. When the task lists had to be stitched back together, the Free Movement in the beginning of each beam can be replanned using the two neighbouring configurations to ensure their continuity. In conclusion, this discovery led to a generalizable approach of using \textbf{Free Motion as a ‘glue’} that can connect separately planned segments together \parencite{lozanoperezConstraintBasedMethodSolving2014}.
 
-At a later stage of this Development Round, taught configuration was introduced for repetitive targets (see \ul{6.3.6 Taught configuration for Repetitive Targets}). This worsened the ‘stuck’ problem even within a Task Group. Another technique was subsequently developed to plan non-sequentially within a task group (see \ul{6.3.7 Non-Sequential Planning Order}).
+At a later stage of this Exploration Round, taught configuration was introduced for repetitive targets (see \ul{6.3.6 Taught configuration for Repetitive Targets}). This worsened the ‘stuck’ problem even within a Task Group. Another technique was subsequently developed to plan non-sequentially within a task group (see \ul{6.3.7 Non-Sequential Planning Order}).
 
 \subsubsection{Short Discussion about Process Design}
 
@@ -676,7 +676,7 @@ In addition to the previous capability of sending pre-planned motions to the L2 
 \end{itemize}
 The tasks that were supported by the Execution Controller are listed in the task table in \ul{6.3.5.2 Expansion to Low Level Tasks}. Each task has a corresponding execution function that specifies how it should be executed. They were developed according to the protocols provided by the controllers that provided the execution capability, in this case, compas\_rrc (L2) and the L2 Clamp Controller. 
 
-In theory each controller should provide a method to start a task, to query the state of the task, and to stop an ongoing task. However, the stopping function was not implemented in compas\_rrc until the next Dev Round. This means that it was still not possible to stop an ongoing motion or to keep the two controllers in sync during an error stop (see \ul{5.6.9 Arm and Clamps Out-of-Sync after Error}).
+In theory each controller should provide a method to start a task, to query the state of the task, and to stop an ongoing task. However, the stopping function was not implemented in compas\_rrc until the next Exploration Round. This means that it was still not possible to stop an ongoing motion or to keep the two controllers in sync during an error stop (see \ul{5.6.9 Arm and Clamps Out-of-Sync after Error}).
 
 \paragraph{Operator Tasks}
 
@@ -706,7 +706,7 @@ MISSINGTABLE
 
 An workaround was implemented to solve this problem, providing some improvement. The approach is to send only a small amount of targets in a short horizon and upon detection of a stop condition, discontinue the commands. However, this approach still causes a small amount of out-of-sync distance after the stop signal. 
 
-This problem was only truly resolved after this Dev Round when developers of compas\_rrc upgraded the system to support real-time commands being passed on a second channel. The second channel allows the Level 3 controller to query the system status of the Level 2 controllers and can be performed frequently enough to detect emergency signals.
+This problem was only truly resolved after this Exploration Round when developers of compas\_rrc upgraded the system to support real-time commands being passed on a second channel. The second channel allows the Level 3 controller to query the system status of the Level 2 controllers and can be performed frequently enough to detect emergency signals.
 
 MISSINGTABLE
 
@@ -811,7 +811,7 @@ After the clamping operation of a beam and during the release of the clamp, the 
 
 Despite the small size of the screw, it was found to be sufficient in holding the joint in place, preventing them from opening up. They also appeared to have helped stiffen the structure. However, this effect was not conclusive.
 
-Theoretically, this screw is not bearing the structural load of the structure, but only to prevent joints from accidentally opening up. This discovery provided useful information for later development of a screwdriver for closing joints in the next Dev Round (see 7.1 Goal). 
+Theoretically, this screw is not bearing the structural load of the structure, but only to prevent joints from accidentally opening up. This discovery provided useful information for later development of a screwdriver for closing joints in the next Exploration Round (see 7.1 Goal). 
 
 \subsubsection{Debugging with the Process Execution Controller}
 
@@ -911,7 +911,7 @@ The following list explored the possible source of error on the robot-side in th
 
 \paragraph{Possible Solution and Follow-Up}
 
-The only possible explanation of the large deviation (in the range of >10mm) is the error from the robotic platform. This led to a separate investigation in the next Dev Round (link) to determine the severity of the robot’s inaccuracy.
+The only possible explanation of the large deviation (in the range of >10mm) is the error from the robotic platform. This led to a separate investigation in the next Exploration Round (link) to determine the severity of the robot’s inaccuracy.
 
 \subsection{Docking Adapter Misalignment}
 
@@ -950,7 +950,7 @@ In the case of PickClampFromStorage, the use of taught configuration, resulting 
 	\item \textbf{Active Correction by camera marker guidance --} A camera mounted on the robot-side, looking at a fiducial marker mounted on the tool-side to guide the robot into alignment.
 
 \begin{itemize}
-	\item Developed and tested successfully in Dev Round 4 (link)
+	\item Developed and tested successfully in Exploration Round 4 (link)
 
 \end{itemize}
 	\item  \textbf{Active Correction by docking probe} - A two-axis joystick like probe can be used to guide the robot into alignment.
@@ -1023,13 +1023,13 @@ Fortunately, this problem has always been detected and stopped at step 4. I can 
 	\item \textbf{Active Correction by camera marker guidance --} Same as mentioned before (see \ul{6.5.3 Docking Adapter Misalignment})
 
 \begin{itemize}
-	\item Developed and tested successfully in Dev Round 4 (link)
+	\item Developed and tested successfully in Exploration Round 4 (link)
 
 \end{itemize}
 	\item \textbf{Shake the robot-side automatically --} The robot can be programmed to perform a small shaking movement similar to the one performed by hand.
 
 \begin{itemize}
-	\item Developed and tested successfully in Dev Round 4 (link)
+	\item Developed and tested successfully in Exploration Round 4 (link)
 
 \end{itemize}
 \end{itemize}
@@ -1060,7 +1060,7 @@ This method was tested 59 times.  It often takes a few attempts for the operator
 
 \paragraph{Possible Solution and Follow-Up}
 
-This experiment indicated that the visual docking method is a promising approach. Leading to the development of a fully automatic camera marker correction mechanism in the next Dev Round (link). 
+This experiment indicated that the visual docking method is a promising approach. Leading to the development of a fully automatic camera marker correction mechanism in the next Exploration Round (link). 
 
 After this positional correction and successful insertion, the docking adapter is still suffering from failure to lock. This indicated that the locking problem is likely the result of orientation error and overly stiff docking pair. Refer to Section\ul{ 6.5.4 Docking Adapter Fail to Lock} for the follow-up actions taken.
 
@@ -1078,7 +1078,7 @@ Collisions also happened with the documentation camera on a tripod. However, tha
 \textbf{\ul{Possible Solution and Follow-Up}}
 
 \begin{itemize}
-	\item \textbf{Include scaffolding in motion planning --} in Dev Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. (see \ul{8.3.2 Scaffolding Support During Assembly}).
+	\item \textbf{Include scaffolding in motion planning --} in Exploration Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. (see \ul{8.3.2 Scaffolding Support During Assembly}).
 
 	\item \textbf{Sensing collision geometry around robot --} If a dynamic point cloud scanner were to be used for scanning the area surrounding the robot during operation, the robot can potentially navigate around the newfound obstacle and would not be limited to the planned collision geometry. 
 
@@ -1086,7 +1086,7 @@ Collisions also happened with the documentation camera on a tripod. However, tha
 	\item Existing research literature in autonomous robotics have developed many different techniques for sensing and replanning. \parencite{elbanhawiSamplingBasedRobotMotion2014} However, due to the lack of expertise in these fields, the development was not pursued.
 
 \end{itemize}
-	\item \textbf{Do not use scaffolding --} in Dev Round 4, deformation-aware design principles and error correction method was developed (see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation}). The demonstrator can be designed to be stable and with limited deformation for all the incomplete states in the entire assembly process. This eliminated the need for any scaffolding during assembly. 
+	\item \textbf{Do not use scaffolding --} in Exploration Round 4, deformation-aware design principles and error correction method was developed (see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation}). The demonstrator can be designed to be stable and with limited deformation for all the incomplete states in the entire assembly process. This eliminated the need for any scaffolding during assembly. 
 
 \end{itemize}
 \subsection{Redundant Clamp Detach Attach Actions}
@@ -1167,7 +1167,7 @@ Conceptually, this is a simple elimination step. However, because the flow chart
 
 This problem is a classical reason for using automatic task planning that is developed by the robotics community \parencite{ghallabAutomatedPlanningActing2016}. The idea is to create rules for the computer to automatically search for an assembly task list. During a search, the computer can plan out when and how the clamps are moved, and whether it is necessary to place the clamp back to storage. 
 
-The implementation of automated task planning is developed and tested in the next Dev Round (see \ul{8.2.2 TAMP with PDDLStream} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream}). The results showed that a large amount of clamp transfer does not need to go back to storage (see \ul{8.5.2.3 Optimised Clamp Transfer Tasks}).
+The implementation of automated task planning is developed and tested in the next Exploration Round (see \ul{8.2.2 TAMP with PDDLStream} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream}). The results showed that a large amount of clamp transfer does not need to go back to storage (see \ul{8.5.2.3 Optimised Clamp Transfer Tasks}).
 
 \subsection{Difficulty in attaching beam to platform}
 

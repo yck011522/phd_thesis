@@ -1,7 +1,9 @@
-\chapter{Development Round 1}
+\chapter{Exploration Round 1}
+\label{cha:exploration_round_1}
+
 \section{Goal}
 
-The goal of the first round of development was to analyse the assembly challenges related to the robotic assembly of timber frame structures and to create a hypothetical solution that can address them (see 4.1.2 Distributed Robotic Tool (DiRT) Approach). Similar to the concept of a minimum viable product (MVP) in the field of product development, only the most critical component in the system was developed (see 4.1.3 Scope for Initial Development Round).
+The goal of the first round of development was to analyse the assembly challenges related to the robotic assembly of timber frame structures and to create a hypothetical solution that can address them (see 4.1.2 Distributed Robotic Tool (DiRT) Approach). Similar to the concept of a minimum viable product (MVP) in the field of product development, only the most critical component in the system was developed (see 4.1.3 Scope for Initial Exploration Round).
 \subsection{Analysing Assembly Challenges}
 
 Based on the challenges introduced earlier, I created the following hierarchical list by recursively asking for their root cause. It was evident that some of the root causes, such as the low stiffness of timber material, could not be solved easily (marked in red). Similarly, the tightness and rotational stiffness of timber joints are hard to control because they are sensitive to small changes in the joint cutting quality and material imperfections. I believe these causes are fundamentally unchangeable by the nature of timber frame construction and should be dealt with by alternative strategies (highlighted in green). 
@@ -88,12 +90,12 @@ From the insights gained from challenges 3.2 to 3.4, it became evident that depl
 Therefore, I hypothesised a scenario in which the actuators are attached to and hanging from the Partially Assembled (PA) structure. The attachment and detachment of the tools can therefore be performed one by one, using as few as one robotic arm. After all the actuators are in place, the robotic arm can bring the next piece of timber towards the joints, and perform the assembly with all the actuators exerting force locally at each joint. Because these actuators are no longer tethered to the rest of the robotic system, I called this a “Distributed Robotic Tool” (DiRT) approach. 
 This distributed approach does not only address the robot congestion issue but also enhances the scalability and flexibility of the system, making it better suited for timber assembly tasks with varying levels of complexity. The modularity of distributed tools allows for the development of different tools tailored to different joint types and assembly requirements. The system can intelligently select the appropriate tool based on the design of a structure, joint types, and joint angles. This adaptability ensures that the DiRT approach can effectively address a wide range of timber frame structures.
 
-\subsection{Scope for Initial Development Round}
+\subsection{Scope for Initial Exploration Round}
 Because the design of a DiRT assembly tool is specific to the joint type, I have to make a decision on which joint type to be developed first. Among the popular types of timber joints used in timber frame structures, I decided to start the investigation with lap joints. This is because lap joints are the most versatile type of joints that can be used to join many structural members. For details, please see 4.2.1 Lap Joint Classification regarding the definition of Lap Joints used in this thesis and their versatility.
 
 Based on a review of the manual tools used for assembling lap joints, I have shortlisted two promising actuator arrangements. The first arrangement is a clamping mechanism similar to carpentry clamps, which apply a compression force to the outside of the lap joints. The second arrangement is a screwing mechanism that uses a screw to pull the two sides of a joint together. I decided to start the development with the clamping mechanism because it is mechanically simpler. 
 
-In this development round, the focus is to:
+In this exploration round, the focus is to:
 \begin{itemize}
     \item Demonstrate the robotic clamping movement for the assembly of lap joints, starting with an orthogonal lap joint.
     \item Explore how the clamping device can be hanging from the structure.
@@ -198,7 +200,7 @@ Lap joints are formed by overlapping two pieces of timber, with one piece lying 
 The diagram below shows two types of lap joints, cross-shape and tee-shape, both conform to the lap joint definition used in this thesis. It also shows a counter-example, a mortise and tenon joint, where the assembly direction is parallel to one of the element’s axes. 
 
 
-Note that in some classifications, lap joints are not necessarily planar or assembled perpendicular to the flush face. However, this narrower definition simplified the initial development. Later in Dev Round 2, the definition of lap joints was expanded to include joints that have parametric angle variation (see 5.2.1 Planar Lap Joints and 7.3.1 Parametric Polyline Lap Joints) for details. In Dev Round 5, it is further expanded to compound angles out-of-plane (see 7.3.2 Parametric Non-Planar Lap Joints). 
+Note that in some classifications, lap joints are not necessarily planar or assembled perpendicular to the flush face. However, this narrower definition simplified the initial development. Later in Exploration Round 2, the definition of lap joints was expanded to include joints that have parametric angle variation (see 5.2.1 Planar Lap Joints and 7.3.1 Parametric Polyline Lap Joints) for details. In Exploration Round 5, it is further expanded to compound angles out-of-plane (see 7.3.2 Parametric Non-Planar Lap Joints). 
 \subsection{Joint Tightness}
 For the purpose of developing robotic actuators, it is necessary to quantify the force needed to assemble the lap joint. Based on my own carpentry experience and the report from a related timber joint study (Robeller et al., 2017), the assembly force for an architectural scale joint is not only related to but also highly sensitive to the fit of joint geometry. 
 Due to the lack of relevant literature, a test was conducted to identify the force required for different joint tightness.
@@ -240,7 +242,7 @@ The contact surface between the clamp jaw and the timber has a 3D-printed plasti
 
 The photo below shows the parallel gripper mechanism and alignment features (the black area) being tested separately from the rest of the clamp. The position of the pins and their geometry were iterated for a few times before settling on this design. The challenge is that the external geometry of the timber beams have a large production tolerance, the location of the drilled holes can also be inaccurate. Therefore, the geometry of the L-shaped pad and the pins must accommodate this error such that the gripper can close completely and maintain a rigid hanging hold afterwards.
 
-The registration holes on the beam are intended to be drilled by the automatic joinery machine. However, during this development round, they are drilled manually using a precision-made drilling guide shown in the picture below. This guide would be securely  clamped around the 100mm x 100mm timber beam before all the necessary holes are drilled. A depth stopper was used to ensure the drilling depth. Different drilling positions can be seen on the guide used during testing and development.
+The registration holes on the beam are intended to be drilled by the automatic joinery machine. However, during this exploration round, they are drilled manually using a precision-made drilling guide shown in the picture below. This guide would be securely  clamped around the 100mm x 100mm timber beam before all the necessary holes are drilled. A depth stopper was used to ensure the drilling depth. Different drilling positions can be seen on the guide used during testing and development.
 
 
 \subsubsection{Beam Rest Feature}
@@ -383,7 +385,7 @@ The Arduino Uno is later switched to Arduino Nano, which has the same functional
 \begin{itemize}
     \item The motor drivers require three digital signals, one of which requires PWM output, for controlling each motor channel. The two channels occupied 6 pins. 
     \item There are two encoder channels from each motor, one of which is connected to the external interrupt pin. In total, both motor encoders occupied 4 pins.
-    \item There are provisions for connecting to the CC1101 radio module and two load cells. This was tested during development but was not implemented for the demonstration. The integration with the radio module is continued in the next Dev Round.
+    \item There are provisions for connecting to the CC1101 radio module and two load cells. This was tested during development but was not implemented for the demonstration. The integration with the radio module is continued in the next Exploration Round.
     \item One of the Analog-to-Digital Converter (ADC) input pins is used for monitoring battery voltage.
 \end{itemize}
 
@@ -490,7 +492,7 @@ The image below shows the timber joint used for validating the clamping movement
 
 It requires approximately 0.9kN force to be assembled, confirmed using a setup similar to the test conducted in 4.2.2 Joint Tightness but oriented horizontally.
 \subsection{Execution Plan}
-The list below shows a number of planned tests, however the clamped is damaged at the stall test and it cannot be continued. Nevertheless, the lessons learnt from this clamp design and construction experience is sufficient to move on to the next development round. Therefore the damaged clamp was not repaired to continue the test.
+The list below shows a number of planned tests, however the clamped is damaged at the stall test and it cannot be continued. Nevertheless, the lessons learnt from this clamp design and construction experience is sufficient to move on to the next exploration round. Therefore the damaged clamp was not repaired to continue the test.
 \begin{itemize}
     \item Construct column setup
     \begin{itemize}
@@ -515,7 +517,7 @@ The list below shows a number of planned tests, however the clamped is damaged a
 \subsection{Successful Validations}
 During the setup, a manual valve was used to actuate the hanging gripper and there was no difficulty positioning the clamp on the column. The photo below shows the clamp hanging from the column. The spring loaded grip between them was firm and stable. 
 
-The clamp’s weight is 4.9kg without a battery. This raised a concern for its future when it is not hanging in a perfectly vertical column because this much mass may cause a lot of deformation to the partially-assembled structure. Nothing was done to address this problem in this Dev Round because it did not cause a problem for the test. In the next rounds, the weight issue was gone because of the new clamp designs. 
+The clamp’s weight is 4.9kg without a battery. This raised a concern for its future when it is not hanging in a perfectly vertical column because this much mass may cause a lot of deformation to the partially-assembled structure. Nothing was done to address this problem in this Exploration Round because it did not cause a problem for the test. In the next rounds, the weight issue was gone because of the new clamp designs. 
 
 The photo below shows the manual placement of the beam into the clamp jaws. It was carefully placed to align the two halves of the lap joint. The horizontal surface in the clamp jaw was found capable of supporting the beam steadily. However, it was also apparent that this would not have been possible if the beam had been tilted at an angle. (for detailed elaboration, see 4.5.5 Beam Support Needed During Clamping)
 
@@ -553,7 +555,7 @@ A quick search revealed that off-the-shelf linear actuators capable of pulling a
     \end{itemize}
     \item Design and build a custom screw mechanism for linear actuation
     \begin{itemize}
-        \item Implemented and tested with success in the next Dev Round (see 5.3.1 Ball Screw Linear Actuator). 
+        \item Implemented and tested with success in the next Exploration Round (see 5.3.1 Ball Screw Linear Actuator). 
     \end{itemize}
 \end{itemize}
 
@@ -573,11 +575,11 @@ Possible Solution and Follow-Up
 \begin{itemize}
     \item Add diode before regulator input capacitors - This should help prevent the motor driver from drawing power from the regulator capacitor. The capacitor placed before the regulator should provide sufficient buffering capacity for maintaining regulated voltage on the digital side during maximum motor output.
     \begin{itemize}
-        \item This was implemented and tested in Dev Round 2 (see 5.3.7 CL3 Clamp Electronics)
+        \item This was implemented and tested in Exploration Round 2 (see 5.3.7 CL3 Clamp Electronics)
     \end{itemize}
     \item Add digital stall protection in motor controller firmware to limit stall duration. 
     \begin{itemize}
-        \item This was implemented and tested successfully in Dev Round 2 (see 5.3.8 Motion Control for DC Servo Motor)
+        \item This was implemented and tested successfully in Exploration Round 2 (see 5.3.8 Motion Control for DC Servo Motor)
     \end{itemize}
     \item Use a separate battery for microcontroller - This could be a very stable solution and can potentially be very robust. However, this also adds an extra battery on-board and would increase operator workload to replace and recharge. 
     \begin{itemize}
@@ -598,7 +600,7 @@ Possible Solution and Follow-Up
     \end{itemize}
     \item Use linear guide rails with square or rectangular profiles with recirculating ball bearings.
     \begin{itemize}
-        \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Dev Round 2 (see 5.3.1 Ball Screw Linear Actuator)
+        \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Exploration Round 2 (see 5.3.1 Ball Screw Linear Actuator)
     \end{itemize}
 \end{itemize}
         
@@ -613,7 +615,7 @@ The most obvious solution to this issue was to use the robotic arm to support th
     \item The design of clamps can be simplified because it no longer has to support the beam, making them easier to build and lighter weight.
     \item The movement of the robot and the clamps will have to be synchronised. This is known to be possible in industrial settings where external axes are integrated with the robot arm’s motion controller. However, synchronising it with an experimental remote-controlled device has no precedence, tThe programming and control implementation is likely to be difficult.
 \end{itemize}
-After trying to find alternative solutions with no avail. The decision was made to pursue the synchronisation and control problem. Although a working hypothesis was created and tested in the next Dev Round 2 (see 5.2.3 Synchronisation between Clamp and RFL Robot). This pursuit would eventually lead to the discovery of many technical problems that were rarely discussed in the field of digital fabrication. Nevertheless, the Clamp and Arm synchronised Motion would be solved in Dev Round 4 and 5.
+After trying to find alternative solutions with no avail. The decision was made to pursue the synchronisation and control problem. Although a working hypothesis was created and tested in the next Exploration Round 2 (see 5.2.3 Synchronisation between Clamp and RFL Robot). This pursuit would eventually lead to the discovery of many technical problems that were rarely discussed in the field of digital fabrication. Nevertheless, the Clamp and Arm synchronised Motion would be solved in Exploration Round 4 and 5.
 
 \subsection{Design Study using Orthogonal Lap Joint}
 Because of the demonstration of the CL1 Clamp design, a design study was conducted to determine if it is possible to create a demonstrator structure with only orthogonal lap joints. Below are some images of the design sketches.  

@@ -1,4 +1,4 @@
-\chapter{Dev Round 4 - HyparHut}
+\chapter{Exploration Round 4 - HyparHut}
 
 \section{Goal}
 The main goal of the fourth round is to address the accuracy, stability and alignment problems observed in the previous round, especially through the use of structural triangulation. In addition, a new Screwdriver DiRT tool is developed to address the problem observed in 5.6.15 Joints Loosening after Assembly. This also enabled the assembly of non-planar (NP) lap joints and beams with different section sizes. 
@@ -303,7 +303,7 @@ The main challenge of this development is to design a compact PCB to accommodate
 
 Pin assignment is very easy compared to the previous designs because the Arduino Mega Pro provided many more GPIO pins. It included 6 external interrupt pins, which are perfectly suited for the three motor encoders.  
 
-The table below shows the main components. The underlined items are new component choices in this development round. 
+The table below shows the main components. The underlined items are new component choices in this exploration round. 
 
 missingtable
 
@@ -357,7 +357,7 @@ In this new development, Aruco Marker recognition algorithms (Garrido-Jurado et 
 
 \begin{itemize}
     \item \textbf{Robot pick-up a Clamp or Screwdriver from the structure --} Alignment between the two sides of the docking adapter. (similar to the movement shown in the picture below).
-    \item \textbf{Robot attach a Clamp to the structure --} Alignment between the clamp gripper pins (robot-side) and the attachment holes on the PA structure (stationary-side). This was planned to be used in the next Dev Round (see 8.3.4 Camera-Marker Hardware on CL3 Clamp).
+    \item \textbf{Robot attach a Clamp to the structure --} Alignment between the clamp gripper pins (robot-side) and the attachment holes on the PA structure (stationary-side). This was planned to be used in the next Exploration Round (see 8.3.4 Camera-Marker Hardware on CL3 Clamp).
 \end{itemize}
 
 missingimage
@@ -437,7 +437,7 @@ A better method would have been to split the synchronised motion into two, separ
 \subsection{Beam Feature Model}
 In the previous Assembly Model, the geometry of the beam only contained the subtraction of the joint's geometry. However, during the design of the BusStop, it was found that extra subtractive models were needed to trim the ends of the tilted columns to match the ground.
 
-The model was updated in this development round to be more inclusive of other geometrical features. The complete list includes
+The model was updated in this exploration round to be more inclusive of other geometrical features. The complete list includes
 
 \begin{itemize}
     \item Joint Features - The integral joint volumes and the holes for the clamps or screwdrivers to attach to.
@@ -485,7 +485,7 @@ This means that there is a dual relationship between the task and the states. Gi
 
 missingimage
 
-This concept, although simple, is essential for the implementation of automatic Task and Motion Planning (TAMP) in the next Dev Round (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream).
+This concept, although simple, is essential for the implementation of automatic Task and Motion Planning (TAMP) in the next Exploration Round (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream).
 
 \subsection{Flowchart for Screwdriver Assembly}
 
@@ -662,7 +662,7 @@ The photo below shows the screws prepared for the construction. The short screws
 missingimage
 
 \subsection{Successful Validation}
-The pavilion was successfully constructed with a high degree of automation (see 7.5.2.12 Automated Process). It validated many new developments in this Dev Round and showed progressive improvement in reducing manual interventions required during the robotic process. This section will elaborate on these successful validations, while later sections will describe the more problematic issues.
+The pavilion was successfully constructed with a high degree of automation (see 7.5.2.12 Automated Process). It validated many new developments in this Exploration Round and showed progressive improvement in reducing manual interventions required during the robotic process. This section will elaborate on these successful validations, while later sections will describe the more problematic issues.
 The photo below shows the completed pavilion, including the manually assembled floor.
 
 \subsubsection{Screwdriver Joint Closure}
@@ -826,7 +826,7 @@ The anchoring of a horizontal beam instead of a vertical one in the BusStop (see
 
 \subsubsection{Task Planning and Motion Planning}
 The flowchart task planning method (see 6.3.5.1 Task Planning with Flowchart) and the non-sequential planning solver (see 6.3.7 Non-Sequential Planning Order) was validated once again. However, the design of the flowchart (see 7.3.20 Flowchart for Screwdriver Assembly) was substantially more challenging than the Clamp Process due to more conditional statements used to handle different gripper choices. 
-In the next Dev Round, the flowchart was anticipated to be even more complex because it will contain both clamped and screwed tools. AI task planning tools were therefore explored to overcome this limitation (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream). 
+In the next Exploration Round, the flowchart was anticipated to be even more complex because it will contain both clamped and screwed tools. AI task planning tools were therefore explored to overcome this limitation (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream). 
 
 \subsubsection{Highly Automatic Process}
 As the operator, I find the overall experience of the construction process is highly automated. The only planned operator actions are to load the beam and the screwdrivers at the beginning of each assembly cycle. The operator’s role is to monitor the system and to react to unexpected problems.
@@ -920,7 +920,7 @@ Misalignment is still present when the robot aligns at the beginning of the scre
     \item Pointy tip of the screwdriver more likely to land inside the hole
 \end{itemize}
 
-During the robotic assembly process, the operator stopped the system motion at around the moment where the screwdriver tip engages with the hole to visually check if the alignment is successful. The pause and resume feature was only possible in this development round because of the synchronisation development (see 7.5.2.8 Synchronised Robot and Tool Stop Signal)
+During the robotic assembly process, the operator stopped the system motion at around the moment where the screwdriver tip engages with the hole to visually check if the alignment is successful. The pause and resume feature was only possible in this exploration round because of the synchronisation development (see 7.5.2.8 Synchronised Robot and Tool Stop Signal)
 
 If the alignment was not successful, the operator can manually push the beam to help with the alignment. As long as the tip of the screw can enter the hole, the motion can be continued, and the rest of the joint closure was always a success. The photos below show some of the alignment failures where the screw tip did not enter the hole successfully. 
 missingimage
