@@ -187,7 +187,7 @@ In the previous section, we have assumed the deviation to be a probability distr
 Refer to the structural loop diagram. We can see that each side of the open loop consist of a number of components between the fixed ground and the alignment point. Assuming each of these components are affected by random imperfections, each of them contribute to the deviation, and accumulate at the point of alignment. The total deformation on each link can therefore be modelled as a forward kinematics problem where the deviation caused by each component is modelled as a rigid transformation $[Z]$ and the geometrical distance for each link is modelled as rigid transformation $[X]$. For a given chain $P$ The general kinematic chain equation allows the total chain deviation $T_P$ to be computed:
 
 \begin{equation} \label{eq:one_chain_deviation}
-    [T_P] = [Z_{P1}][X_{P1}][Z_{P2}][X_{P2}] … [X_{P_{n-1}}][Z_{Pn}] 
+    [T_P] = [Z_{P1}][X_{P1}][Z_{P2}][X_{P2}] \cdots [X_{P_{n-1}}][Z_{Pn}] 
 \end{equation}
 
 Where total deviation $d$ between the two alignment points on chain $P$ and $Q$ can be found by:
@@ -199,20 +199,20 @@ Where total deviation $d$ between the two alignment points on chain $P$ and $Q$ 
 While this representation of $d$ using rigid transformation is quite accurate, the complex representation is hard to be used for statistical analysis. To simplify the analysis, we can consider only the absolute positional deviation in each of these components, which can be represented by a single number. In practice, the rotation component is often small enough and the Abby error associated with it is small. For a conservative analysis, the worst-case combined deviation of $N$ links in the structural chain $P$ can therefore be computed by:
 
 \begin{equation}
-    d_P = d_{P1} + d_{P2} + … + d_{PN}
+    d_P = d_{P1} + d_{P2} + \cdots + d_{PN}
 \end{equation}
 
 And the total deviation $d$ between the two alignment points on chain $P$ and $Q$ can be found by:
 
 \begin{align} \label{eq:deviation_with_two_links}
     d &= d_P + d_Q \nonumber\\
-      &= d_{P1} + d_{P2} + … + d_{PN} + d_{Q1} + d_{Q2} + … + dQN 
+      &= d_{P1} + d_{P2} + \cdots + d_{PN} + d_{Q1} + d_{Q2} + \cdots + dQN 
 \end{align}
 
 Because of the simple summation, there is no more differentiation between the elements in either one of the chains. All the links can be treated in the same way. Therefore, for a structural loop with N links in total, d can be decomposed into:
 
 \begin{equation} \label{eq:deviation_with_all_links}
-    d = d_1 + d_2 + … + d_N
+    d = d_1 + d_2 + \cdots + d_N
 \end{equation}
 
 Recall that each of the deviation components is a random statistical distribution, and they are independent of each other. We can expand the CDF of the total $d$ into its constituting components. We can make use of the Joint Cumulative Distribution Function identity:
