@@ -302,17 +302,17 @@ When designing the attachment method, it is best to first identify the direction
 Based on the specifications, a design study can generate different design options. The following list provides a guideline for important metrics to evaluate when deciding which option to pursue:
 
 \begin{itemize}
-	\item \textbf{Choice of power source} - Typically electric power is provided by an onboard battery. When the tool is attached to the robot, high-power electricity and pneumatic power can be provided through the docking adapter. Evaluate cost and power consumption per operation cycle.
+	\item \textbf{Choice of power source --} Typically electric power is provided by an onboard battery. When the tool is attached to the robot, high-power electricity and pneumatic power can be provided through the docking adapter. Evaluate cost and power consumption per operation cycle.
 
-	\item \textbf{Weight of the tool }- Perform additional deviation analysis for typical attachment scenarios to make sure the tools can be hung from their intended locations without causing excessive deformation.
+	\item \textbf{Weight of the tool --} Perform additional deviation analysis for typical attachment scenarios to make sure the tools can be hung from their intended locations without causing excessive deformation.
 
-	\item \textbf{Implementation complexity and cost - }Evaluate the choice of actuators and the required drivers and controllers. Typically, fewer actuators make the device simpler and lighter.
+	\item \textbf{Implementation complexity and cost --} Evaluate the choice of actuators and the required drivers and controllers. Typically, fewer actuators make the device simpler and lighter.
 
-	\item \textbf{Chance of successful attachment - }Based on the alignment mechanism and the choice of alignment correction mechanism, estimate the allowable tolerance and correction range. Evaluate the chance of successful alignment for typical attachment operations using the alignment-correction model. 
+	\item \textbf{Chance of successful attachment --} Based on the alignment mechanism and the choice of alignment correction mechanism, estimate the allowable tolerance and correction range. Evaluate the chance of successful alignment for typical attachment operations using the alignment-correction model. 
 
-	\item \textbf{Risk of collision} - Perform collision check for every key step during attachment, operation and detachment process. All collision objects should be considered, such as, robots, other tools, already-assembled structure, and ground foundation. If the tool is flexible to interact with geometrically different workpieces, perform multiple checks for each degree of freedom (at least one checks at each extreme of the flexibility and at the neutral position). Not all scenarios need to be collision free, for example, cases where multiple flexible dimensions are at their extremes can be exempted. The purpose of this evaluation is to get a sense of the design freedom. 
+	\item \textbf{Risk of collision --} Perform collision check for every key step during attachment, operation and detachment process. All collision objects should be considered, such as, robots, other tools, already-assembled structure, and ground foundation. If the tool is flexible to interact with geometrically different workpieces, perform multiple checks for each degree of freedom (at least one checks at each extreme of the flexibility and at the neutral position). Not all scenarios need to be collision free, for example, cases where multiple flexible dimensions are at their extremes can be exempted. The purpose of this evaluation is to get a sense of the design freedom. 
 
-	\item \textbf{Command and control }- Evaluate whether the standard wireless command control framework can be used. Evaluate if bandwidth and latency is sufficient, especially if camera feed is required.
+	\item \textbf{Command and control --} Evaluate whether the standard wireless command control framework can be used. Evaluate if bandwidth and latency is sufficient, especially if camera feed is required.
 
 \end{itemize}
 Finally it is necessary to consider the placement of the docking adapter. The position of the adapter directly determines the position of the robot flange and the position of the robot wrist when the tool is attached. For spherical wrist robots, such as the one used in this thesis, the wrist can be approximated by a sphere. A special property of these robots is that the sphere’s position relative to the flange does not change with the movement of Joint 5 or Joint 6. Therefore, we can use this sphere as a rule-of-thumb guidance to make sure there are no collisions with the parts being assembled.
