@@ -73,9 +73,12 @@
 % Provides \textquote{} for managing quotations
 \usepackage{csquotes}
 
+% Provides \color{} for managing colors
+\usepackage{xcolor}
+
 % -------------------------
-% Custom macro to create a (See ... ) section label 
-\newcommand{\seeref}[1]{(See \ref{#1} \nameref{#1})}
+% Custom macro to create a (see ... ) section label 
+\newcommand{\seeref}[1]{{\color{gray}(see \S\ref{#1} \nameref{#1})}}
 
 \usepackage[at]{easylist}
 
@@ -83,7 +86,7 @@
 %------------------------
 %  Header & Footer 
 %------------------------
-% \usepackage{color}
+
 \usepackage[]{fancyhdr}
 
 \setlength{\headheight}{14pt}
