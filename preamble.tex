@@ -67,8 +67,8 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 % Hyperlink package
-\usepackage{hyperref} % This shows a box around the clickable links, good for debugging.
-% \usepackage[hidelinks]{hyperref} % This hides the ugly hyperlink box in the resulting PDF
+% \usepackage{hyperref} % This shows a box around the clickable links, good for debugging.
+\usepackage[hidelinks]{hyperref} % This hides the ugly hyperlink box in the resulting PDF
 
 % Provides \textquote{} for managing quotations
 \usepackage{csquotes}
@@ -82,7 +82,9 @@
 \newcommand{\seerefii}[2]{{\color{gray}(see \S\ref{#1} \nameref{#1} and \S\ref{#2} \nameref{#2})}}
 \newcommand{\seerefiii}[3]{{\color{gray}(see \S\ref{#1} \nameref{#1}, \S\ref{#2} \nameref{#2} and \S\ref{#3} \nameref{#3})}}
 
-\usepackage[at]{easylist}
+\newcommand{\noseeref}[1]{{\color{gray} \S\ref{#1} \nameref{#1}}}
+
+% \usepackage[at]{easylist}
 
 
 %------------------------

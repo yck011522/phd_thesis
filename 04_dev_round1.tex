@@ -96,7 +96,7 @@ This distributed approach does not only address the robot congestion issue but a
 \subsection{Scope for Initial Exploration Round}
 \label{subsection:exploration-1-scope-for-initial-exploration-round}
 
-Because the design of a DiRT assembly tool is specific to the joint type, I have to make a decision on which joint type to be developed first. Among the popular types of timber joints used in timber frame structures, I decided to start the investigation with lap joints. This is because lap joints are the most versatile type of joints that can be used to join many structural members. For details, please see 4.2.1 Lap Joint Classification regarding the definition of Lap Joints used in this thesis and their versatility.
+Because the design of a DiRT assembly tool is specific to the joint type, I have to make a decision on which joint type to be developed first. Among the popular types of timber joints used in timber frame structures, I decided to start the investigation with lap joints. This is because lap joints are the most versatile type of joints that can be used to join many structural members. For details, please see \noseeref{subsection:exploration-1-lap-joint-classification-by-assembly-direction} regarding the definition of Lap Joints used in this thesis and their versatility.
 
 Based on a review of the manual tools used for assembling lap joints, I have shortlisted two promising actuator arrangements. The first arrangement is a clamping mechanism similar to carpentry clamps, which apply a compression force to the outside of the lap joints. The second arrangement is a screwing mechanism that uses a screw to pull the two sides of a joint together. I decided to start the development with the clamping mechanism because it is mechanically simpler. 
 
@@ -248,7 +248,7 @@ In addition, it contains a spring-loaded parallel gripper mechanism to allow it 
 \subsubsection{Linear Actuator and Jaw Design}
 \label{subsubsection:exploration-1-linear-actuator-and-jaw-design}
 
-The robotic clamp jaw is designed around a linear actuator typically used for movable furniture (see image below), it has a compact design and is rated for 2000N of force at 5mm/s. Despite the force being lower than the 3000N requirement established in 4.2.2 Joint Tightness, using two jaws combined would likely be sufficient to overcome the tightest joint. The motor contains a 2-channel hall effect encoder fixed to the motor shaft, this is needed for closed loop position control \seeref{subsubsection:exploration-1-bang-bang-motion-control}. 
+The robotic clamp jaw is designed around a linear actuator typically used for movable furniture (see image below), it has a compact design and is rated for 2000N of force at 5mm/s. Despite the force being lower than the 3000N requirement established in \noseeref{subsection:exploration-1-joint-tightness}, using two jaws combined would likely be sufficient to overcome the tightest joint. The motor contains a 2-channel hall effect encoder fixed to the motor shaft, this is needed for closed loop position control \seeref{subsubsection:exploration-1-bang-bang-motion-control}. 
 
 
 The clamp jaw is made from aluminium plates bolted together. It has two open-type bronze linear bushing paired with a 12mm round shaft to act as linear motion guide. The bronze bearing was chosen over ball-type linear bearings to maximise load capacity. The front side of the actuator is mounted with an in-line load cell for collecting force data for analysis. The photos below show the detached clamp jaw from the guide shaft and linear actuator. 
@@ -267,7 +267,7 @@ The registration holes on the beam are intended to be drilled by the automatic j
 \subsubsection{Beam Rest Feature}
 \label{subsubsection:exploration-1-beam-rest-feature}
 
-The clamp is designed with a jaw that can be fitted with different plastic inserts for exploring different registration features. The features are intended to assist the alignment between the two beams. The images below show the initial design of a wedge-shaped alignment feature for guiding the beam in the horizontal direction. However, the plastic insert was never fabricated or tested because the observation in 4.5.5 Beam Support Needed During Clamping has already invalidated the resting principle.
+The clamp is designed with a jaw that can be fitted with different plastic inserts for exploring different registration features. The features are intended to assist the alignment between the two beams. The images below show the initial design of a wedge-shaped alignment feature for guiding the beam in the horizontal direction. However, the plastic insert was never fabricated or tested because the experimental observation \seeref{subsection:exploration-1-beam-support-needed-during-clamping} has already invalidated the resting principle.
 
 \subsubsection{Hardware Integration}
 \label{subsubsection:exploration-1-hardware-integration}
@@ -311,7 +311,7 @@ Typical discharge rate
 Common package cell count
 1S, 2S, 3S, 4S, 6S
 
-Considering that most of the common DC motors are either 12V or 24V, I decided the best motor and battery combination would be a 12V motor with a 4S battery. The battery voltage can range between 12.8V (discharged) and 16.8V (fully charged), which leaves some margin for voltage drop during operation and can be throttled by PWM control over the driver if necessary. The linear actuator selected in 4.3.1.1 Linear Actuator and Jaw Design also runs on 12V.
+Considering that most of the common DC motors are either 12V or 24V, I decided the best motor and battery combination would be a 12V motor with a 4S battery. The battery voltage can range between 12.8V (discharged) and 16.8V (fully charged), which leaves some margin for voltage drop during operation and can be throttled by PWM control over the driver if necessary. The selected linear actuator also runs on 12V \seeref{subsubsection:exploration-1-linear-actuator-and-jaw-design}.
 
 \subsubsection{Motor Driver}
 \label{subsubsection:exploration-1-motor-driver}
@@ -528,9 +528,9 @@ The motion control algorithm is validated with the CL1 hardware and its position
 \subsection{Design considerations}
 \label{subsection:exploration-1-design-considerations}
 
-The image below shows the timber joint used for validating the clamping movement. The column and the beam have a 100mm x 100mm profile size. The half-lap joints are orthogonal, each being 50mm thick. The joints were cut manually with a pull saw very carefully. Four 10mm x 10mm registration holes for the hanging gripper were drilled using the drill guide shown in 4.3.1.2 Gripper for Hanging Clamp.
+The image below shows the timber joint used for validating the clamping movement. The column and the beam have a 100mm x 100mm profile size. The half-lap joints are orthogonal, each being 50mm thick. The joints were cut manually with a pull saw very carefully. Four 10mm x 10mm registration holes for the hanging gripper were drilled using the drill guide shown in \noseeref{subsubsection:exploration-1-gripper-for-hanging-clamp}.
 
-It requires approximately 0.9kN force to be assembled, confirmed using a setup similar to the test conducted in 4.2.2 Joint Tightness but oriented horizontally.
+It requires approximately 0.9kN force to be assembled, confirmed using a setup similar to the test conducted in \noseeref{subsection:exploration-1-joint-tightness} but oriented horizontally.
 \subsection{Execution Plan}
 \label{subsection:exploration-1-execution-plan}
 
@@ -547,7 +547,7 @@ The list below shows a number of planned tests, however the clamped is damaged a
         \item Manually place horizontal beam into clamp jaw 
         \item Clamp jaw set to move towards clamped position (0mm), automatically start closing at 2mm/s.
     \end{itemize}
-    \item Clamp Stall Test (tested to failure, see 4.5.2 Damaged actuator gearbox)
+    \item Clamp Stall Test (tested to failure, see \noseeref{subsection:exploration-1-damaged-actuator-gearbox})
     \item Clamping Speed Test (cannot be performed)
     \item Load Cell Data Collection (cannot be performed)
     \item Clamping in Different Orientations (cannot be performed)
@@ -565,7 +565,7 @@ During the setup, a manual valve was used to actuate the hanging gripper and the
 
 The clamp’s weight is 4.9kg without a battery. This raised a concern for its future when it is not hanging in a perfectly vertical column because this much mass may cause a lot of deformation to the partially-assembled structure. Nothing was done to address this problem in this Exploration Round because it did not cause a problem for the test. In the next rounds, the weight issue was gone because of the new clamp designs. 
 
-The photo below shows the manual placement of the beam into the clamp jaws. It was carefully placed to align the two halves of the lap joint. The horizontal surface in the clamp jaw was found capable of supporting the beam steadily. However, it was also apparent that this would not have been possible if the beam had been tilted at an angle. (for detailed elaboration, see 4.5.5 Beam Support Needed During Clamping)
+The photo below shows the manual placement of the beam into the clamp jaws. It was carefully placed to align the two halves of the lap joint. The horizontal surface in the clamp jaw was found capable of supporting the beam steadily. However, it was also apparent that this would not have been possible if the beam had been tilted at an angle \seeref{subsection:exploration-1-beam-support-needed-during-clamping}.
 
 There was no alignment features used between the beam and the clamp jaw, as was intended in the initial design. The plan was to first test without the features before introducing them. However, the instability problem if the beam were to be tilted, makes this exploration obsolete as it is clear that a different alignment solution is needed.
 During the robotic motion, both jaws maintained steady and synchronous movement at 2.5mm/s, the total distance travelled was 105mm. The horizontal beam can be seen moving steadily without slip-stick behaviour while closing the joint.  
@@ -612,7 +612,7 @@ This reflection also led to the realisation of a new protection concept for all 
 \subsection{Electronics Brownout}
 \label{subsection:exploration-1-electronics-brownout}
 
-The electronics brownout problem refers to the microcontroller resetting its program (the firmware developed in 4.3.3 CL1 Clamp Firmware) during operation due to a drop in supply voltage. This happened on a few occasions during unit tests of the actuator.
+The electronics brownout problem refers to the microcontroller resetting its program \seeref{subsection:exploration-1-cl1-firmware} during operation due to a drop in supply voltage. This happened on a few occasions during unit tests of the actuator.
 
 Possible Cause
 
