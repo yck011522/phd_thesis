@@ -1,12 +1,12 @@
 \chapter{Exploration Round 1}
-\label{chapter:exploration_round_1}
+\label{chapter:exploration-round-1}
 
 \section{Goal}
-\label{section:exploration_1_goal}
+\label{section:exploration-1-goal}
 
-The goal of the first round of development was to analyse the assembly challenges related to the robotic assembly of timber frame structures and to create a hypothetical solution that can address them \seeref{subsection:exploration_1_distributed_robotic_tool_approach}. Similar to the concept of a minimum viable product (MVP) in the field of product development, only the most critical component in the system was developed \seeref{subsection:exploration_1_scope_for_initial_exploration_round}.
+The goal of the first round of development was to analyse the assembly challenges related to the robotic assembly of timber frame structures and to create a hypothetical solution that can address them \seeref{subsection:exploration-1-distributed-robotic-tool-approach}. Similar to the concept of a minimum viable product (MVP) in the field of product development, only the most critical component in the system was developed \seeref{subsection:exploration-1-scope-for-initial-exploration-round}.
 \subsection{Analysing Assembly Challenges}
-\label{subsection:exploration_1_analysing_assembly_challenges}
+\label{subsection:exploration-1-analysing-assembly-challenges}
 
 Based on the challenges introduced earlier, I created the following hierarchical list by recursively asking for their root cause. It was evident that some of the root causes, such as the low stiffness of timber material, could not be solved easily (marked in red). Similarly, the tightness and rotational stiffness of timber joints are hard to control because they are sensitive to small changes in the joint cutting quality and material imperfections. I believe these causes are fundamentally unchangeable by the nature of timber frame construction and should be dealt with by alternative strategies (highlighted in green). 
 
@@ -86,7 +86,7 @@ The third is a clamp-type tool. It is often used for lap joints where parallel s
 For beams that require the assembly of multiple joints, it is common for multiple workers to actuate the assembly tools synchronously. Because the assembly tools can only apply local forces to each pair of joints, if the assembly motion is not synchronised, the overall beam will deviate from the assembly trajectory (e.g. starts to rotate) and can get stuck due to the jamming effect. This problem is similar to the peg-hole insertion jamming problem studied in robotic assembly. (cite paper explaining the robotic peg-hole problem and survey paper about various robotic assembly solutions) Therefore, assembly workers need to keep an eye on the overall progress of the entire beam and adjust their actuation speed or hammering force accordingly. 
 
 \subsection{Distributed Robotic Tool (DiRT) Approach}
-\label{subsection:exploration_1_distributed_robotic_tool_approach}
+\label{subsection:exploration-1-distributed-robotic-tool-approach}
 
 From the insights gained from challenges 3.2 to 3.4, it became evident that deploying multiple high-force assembly actuators on each mating joint is a promising approach. Moreover, these actuators should not be fixed together such that it is flexible to position them where the joints are. However, it is challenging to use one robotic arm to hold each end-effector during operation as the number of robots needed may result in congestion near the active beam. Furthermore, this approach is not scalable when working with timber elements that have a large number of joints. 
 
@@ -94,7 +94,7 @@ Therefore, I hypothesised a scenario in which the actuators are attached to and 
 This distributed approach does not only address the robot congestion issue but also enhances the scalability and flexibility of the system, making it better suited for timber assembly tasks with varying levels of complexity. The modularity of distributed tools allows for the development of different tools tailored to different joint types and assembly requirements. The system can intelligently select the appropriate tool based on the design of a structure, joint types, and joint angles. This adaptability ensures that the DiRT approach can effectively address a wide range of timber frame structures.
 
 \subsection{Scope for Initial Exploration Round}
-\label{subsection:exploration_1_scope_for_initial_exploration_round}
+\label{subsection:exploration-1-scope-for-initial-exploration-round}
 
 Because the design of a DiRT assembly tool is specific to the joint type, I have to make a decision on which joint type to be developed first. Among the popular types of timber joints used in timber frame structures, I decided to start the investigation with lap joints. This is because lap joints are the most versatile type of joints that can be used to join many structural members. For details, please see 4.2.1 Lap Joint Classification regarding the definition of Lap Joints used in this thesis and their versatility.
 
@@ -125,7 +125,7 @@ For the timber species and processing, I chose glue-laminated spruce as the inte
 \end{itemize}
 
 \subsection{DiRT Clamping Assembly Process Task List (v1)}
-\label{subsection:exploration_1_dirt_clamping_assembly_process_task_list_v1}
+\label{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1}
 
 The working hypothesis of the Distribute Robotic Tool (DiRT) System for timber frame assembly consists of two main hardware components:
 \begin{itemize}
@@ -195,24 +195,24 @@ The moment after ClampSyncAssembly
 The moment before the first PickClampFromStructure
 The moment at the end of the cycle, after the last PlaceClampToStorage
 
-In this initial working hypothesis, the system requires manually assembling the first few columns to the ground before the subsequent process can become fully automatic. At this point, I have not considered how to assemble non-vertical elements. However, this became clear at the end of this round. \seeref{subsection:exploration_1_beam_support_needed_during_clamping}.
+In this initial working hypothesis, the system requires manually assembling the first few columns to the ground before the subsequent process can become fully automatic. At this point, I have not considered how to assemble non-vertical elements. However, this became clear at the end of this round. \seeref{subsection:exploration-1-beam-support-needed-during-clamping}.
 
 \section{Background}
-\label{section:exploration_1_background}
+\label{section:exploration-1-background}
 
 \subsection{Lap Joint Classification by Assembly Direction}
-\label{subsection:exploration_1_lap_joint_classification_by_assembly_direction}
+\label{subsection:exploration-1-lap-joint-classification-by-assembly-direction}
 
-Timber frame buildings utilize a variety of joints to connect structural elements and create a stable, load-bearing framework. Various categorization methods have been developed to group them based on their characteristics, functions, or cultural background \seeref{subsection:introduction_defining_characteristics}. As the primary objective of this thesis is to investigate the assembly process of timber frame structures, we will adopt a classification method that focuses on the assembly direction of the joints, because it is closely related to the kinematics of the assembly tools.
+Timber frame buildings utilize a variety of joints to connect structural elements and create a stable, load-bearing framework. Various categorization methods have been developed to group them based on their characteristics, functions, or cultural background \seeref{subsection:introduction-defining-characteristics}. As the primary objective of this thesis is to investigate the assembly process of timber frame structures, we will adopt a classification method that focuses on the assembly direction of the joints, because it is closely related to the kinematics of the assembly tools.
 Assembly Direction
 Lap joints, mortise and tenon joints, and splice joints are three common types of joints found in timber frame construction, each with different assembly directions in relation to the neighbouring elements' arrangements. In this thesis, we will primarily focus on the assembly of lap joints, as they represent a straightforward and widely used connection method in timber frame construction. 
 Lap joints are formed by overlapping two pieces of timber, with one piece lying on top of the other. The overlapping sections are typically cut to half the thickness of the timber, creating a flush surface. Lap joints are widely used in timber frame construction due to their versatility and ability to transfer loads between connected elements effectively. These joints are relatively simple to assemble, as they involve linear assembly motion that is perpendicular to the flush surface. 
 The diagram below shows two types of lap joints, cross-shape and tee-shape, both conform to the lap joint definition used in this thesis. It also shows a counter-example, a mortise and tenon joint, where the assembly direction is parallel to one of the element’s axes. 
 
 
-Note that in some classifications, lap joints are not necessarily planar or assembled perpendicular to the flush face. However, this narrower definition simplified the initial development. Later in Exploration Round 2, the definition of lap joints was expanded to include joints that have parametric angle variation \seerefii{subsection:exploration_2_parametric_variations_of_lap_joints}{subsection:exploration_4_parametric_polyline_lap_joints}. In Exploration Round 5, it is further expanded to compound angles out-of-plane \seeref{subsection:exploration_4_parametric_non_planar_lap_joints}. 
+Note that in some classifications, lap joints are not necessarily planar or assembled perpendicular to the flush face. However, this narrower definition simplified the initial development. Later in Exploration Round 2, the definition of lap joints was expanded to include joints that have parametric angle variation \seerefii{subsection:exploration-2-parametric-variations-of-lap-joints}{subsection:exploration-4-parametric-polyline-lap-joints}. In Exploration Round 5, it is further expanded to compound angles out-of-plane \seeref{subsection:exploration-4-parametric-non-planar-lap-joints}. 
 \subsection{Joint Tightness}
-\label{subsection:exploration_1_joint_tightness}
+\label{subsection:exploration-1-joint-tightness}
 
 For the purpose of developing robotic actuators, it is necessary to quantify the force needed to assemble the lap joint. Based on my own carpentry experience and the report from a related timber joint study (Robeller et al., 2017), the assembly force for an architectural scale joint is not only related to but also highly sensitive to the fit of joint geometry. 
 Due to the lack of relevant literature, a test was conducted to identify the force required for different joint tightness.
@@ -237,24 +237,24 @@ It is not necessary to assume a correlation between the two quantities. The test
 Note that the sample size is 80mm x 80mm, but the timber intended for this thesis is 100mm x 100mm. However, the result is good enough for the purpose of specifying the clamping force.
 
 \section{Development}
-\label{section:exploration_1_development}
+\label{section:exploration-1-development}
 
 \subsection{Lap Clamp CL1 - Proof of Concept}
-\label{subsection:exploration_1_lap_clamp_cl1_proof_of_concept}
+\label{subsection:exploration-1-lap-clamp-cl1-proof-of-concept}
 
 The Lap Clamp CL1 was designed as a proof of concept clamp to demonstrate the robotic clamping action. The goal is to assemble a single orthogonal half-lap joint on a 100mm timber profile. 
 In addition, it contains a spring-loaded parallel gripper mechanism to allow it to hang onto the structure. The drawing below is an early sketch of the clamp design, showing a U-shape configuration that surrounds a beam.
 
 \subsubsection{Linear Actuator and Jaw Design}
-\label{subsubsection:exploration_1_linear_actuator_and_jaw_design}
+\label{subsubsection:exploration-1-linear-actuator-and-jaw-design}
 
-The robotic clamp jaw is designed around a linear actuator typically used for movable furniture (see image below), it has a compact design and is rated for 2000N of force at 5mm/s. Despite the force being lower than the 3000N requirement established in 4.2.2 Joint Tightness, using two jaws combined would likely be sufficient to overcome the tightest joint. The motor contains a 2-channel hall effect encoder fixed to the motor shaft, this is needed for closed loop position control \seeref{subsubsection:exploration_1_bang_bang_motion_control}. 
+The robotic clamp jaw is designed around a linear actuator typically used for movable furniture (see image below), it has a compact design and is rated for 2000N of force at 5mm/s. Despite the force being lower than the 3000N requirement established in 4.2.2 Joint Tightness, using two jaws combined would likely be sufficient to overcome the tightest joint. The motor contains a 2-channel hall effect encoder fixed to the motor shaft, this is needed for closed loop position control \seeref{subsubsection:exploration-1-bang-bang-motion-control}. 
 
 
 The clamp jaw is made from aluminium plates bolted together. It has two open-type bronze linear bushing paired with a 12mm round shaft to act as linear motion guide. The bronze bearing was chosen over ball-type linear bearings to maximise load capacity. The front side of the actuator is mounted with an in-line load cell for collecting force data for analysis. The photos below show the detached clamp jaw from the guide shaft and linear actuator. 
 
 \subsubsection{Gripper for Hanging Clamp}
-\label{subsubsection:exploration_1_gripper_for_hanging_clamp}
+\label{subsubsection:exploration-1-gripper-for-hanging-clamp}
 
 The clamp consists of two symmetrically designed jaws and actuators. They are connected to a common body through a pneumatic parallel gripper. This parallel gripper allows a linear closing motion for the two sides of the clamp jaw to close onto a beam.
 The contact surface between the clamp jaw and the timber has a 3D-printed plastic plate with pin features to allow better grappling and secure hanging. A tension spring is used to keep the gripper closed and it can only be opened when the device is docked to the robotic arm and compressed air is provided through the docking adapter. This is intended to be a safety feature, such that the clamp cannot fall on its own due to control error.
@@ -265,12 +265,12 @@ The registration holes on the beam are intended to be drilled by the automatic j
 
 
 \subsubsection{Beam Rest Feature}
-\label{subsubsection:exploration_1_beam_rest_feature}
+\label{subsubsection:exploration-1-beam-rest-feature}
 
 The clamp is designed with a jaw that can be fitted with different plastic inserts for exploring different registration features. The features are intended to assist the alignment between the two beams. The images below show the initial design of a wedge-shaped alignment feature for guiding the beam in the horizontal direction. However, the plastic insert was never fabricated or tested because the observation in 4.5.5 Beam Support Needed During Clamping has already invalidated the resting principle.
 
 \subsubsection{Hardware Integration}
-\label{subsubsection:exploration_1_hardware_integration}
+\label{subsubsection:exploration-1-hardware-integration}
 
 The following drawings show the combined design of all the CL1 components. There is an intended location for the position of electronics. During the test, it was not installed at that location.
 
@@ -282,7 +282,7 @@ The set of three images below shows how the clamp is intended to be attached to 
 
 
 \subsection{CL1 Clamp Electronics}
-\label{subsection:exploration_1_cl1_clamp_electronics}
+\label{subsection:exploration-1-cl1-clamp-electronics}
 
 Being the first DiRT electronic controller, the CL1 Clamp controller was designed together with the creation of the motor control algorithms, which had a large influence on the choice of components. The initial goal of the electronics development is to identify a combination of control algorithms, choice of motor, encoder, and motor driver that allows controlled movement of the two motors following a predefined trajectory.
 After the initial goal is successful, the setup is also added with other features as part of a validation test to confirm major systems:
@@ -294,7 +294,7 @@ After the initial goal is successful, the setup is also added with other feature
 \end{itemize}
 
 \subsubsection{System Voltage}
-\label{subsubsection:exploration_1_system_voltage}
+\label{subsubsection:exploration-1-system-voltage}
 
 The development started by identifying the system voltage, which depended on the choice of battery and actuator motor. In order to maximise the power available in short-burst output, I decided the best battery chemistry choice is Lithium Polymer (LiPo) because of its high power density. The following table listed some of LiPo properties at the time of writing:
 
@@ -314,7 +314,7 @@ Common package cell count
 Considering that most of the common DC motors are either 12V or 24V, I decided the best motor and battery combination would be a 12V motor with a 4S battery. The battery voltage can range between 12.8V (discharged) and 16.8V (fully charged), which leaves some margin for voltage drop during operation and can be throttled by PWM control over the driver if necessary. The linear actuator selected in 4.3.1.1 Linear Actuator and Jaw Design also runs on 12V.
 
 \subsubsection{Motor Driver}
-\label{subsubsection:exploration_1_motor_driver}
+\label{subsubsection:exploration-1-motor-driver}
 
 The choice of motor driver is a Dual H-Bridge Motor Controller XY160D manufactured by Handson Technology (See table below for its specifications) which weighted only 32 grams. The H-Bridge configuration allows bi-directional DC motor control that is necessary for clamp jaw retraction and extension. This type of H-Bridge motor driver is very common and is made by many different companies with different current ratings. The intention of choosing this type of driver is to facilitate future upgrades if necessary. 
 
@@ -359,7 +359,7 @@ Motor rotate CCW (OUT1 <OUT2)
 
 
 \subsubsection{LiPo Battery}
-\label{subsubsection:exploration_1_lipo_battery}
+\label{subsubsection:exploration-1-lipo-battery}
 
 Based on the specification of the chosen linear actuator, the 12V option is rated at 60W with 5mm/s at 2000N output. It will draw 5A at constant maximum power, which should be compatible with this 7A driver. It will take approximately 20 seconds to traverse 120mm, assuming 80% driver efficiency, each full stroke which will consume about 35mAh. A complete cycle of clamping and retraction can consume roughly 70mAh. Based on this rough calculation, a 1000mAh battery was chosen, as it will support approximately 10 cycles, assuming the battery has only 80%-90% usable capacity.   
 The following table surveyed some of the 4S LiPo batteries on the market as of April 2023. 
@@ -404,7 +404,7 @@ ZIPPY Compact
 Different capacities were tested with no major performance difference being observed, the only difference is that larger capacity would provide more operation cycles between recharge.
 
 \subsubsection{Microcontroller}
-\label{subsubsection:exploration_1_microcontroller}
+\label{subsubsection:exploration-1-microcontroller}
 
 The Arduino family of microcontroller boards was selected for this development due to their extensive library support for integrated and external hardware. 
 Arduino Uno was chosen for initial tests development, the reason being:
@@ -440,7 +440,7 @@ The Motor Driver and the Arduino Uno were validated in a test setup before the d
 \end{itemize}
 
 \subsubsection{Voltage Regulation}
-\label{subsubsection:exploration_1_voltage_regulation}
+\label{subsubsection:exploration-1-voltage-regulation}
 
 During remote-controlled operation, the 16.8V battery power had to be regulated to 5V for the Arduino microcontroller. A simple linear regulation circuitry based on LM7805 was used for the regulation. Due to the large voltage drop (11.8V), the efficiency of the regulation was expected to be low. However, the low current drawn from the microcontroller (19 mA) and the encoders (4 mA) should not create a power and heat dissipation problem.
 
@@ -460,25 +460,25 @@ The junction temperature of the chip $T_J = 49.1^{\circ}C$, which is far below t
 The following schematic shows the assignment of pins on the Arduino controller:
 
 \subsubsection{Construction}
-\label{subsubsection:exploration_1_construction}
+\label{subsubsection:exploration-1-construction}
 
 Only one copy of this design was constructed for the test. It was soldered on a 50mm x 70mm protoboard with a female pin header connector for stacking it above the motor driver module (red). All connections were wired manually with small wires. The four wires with green plugs were intended for connecting to a future wireless communication module. However, it was never tested.
 
 \subsection{CL1 Clamp Firmware}
-\label{subsection:exploration_1_cl1_firmware}
+\label{subsection:exploration-1-cl1-firmware}
 
 The CL1 Clamp Firmware is an Arduino-based motor controller system written in C++ that can control two linear actuators and accepts serial communication for command and control. The main control loop contains three subroutines:
 
 \begin{description}[style=unboxed] % Environment provided enumitem package
-    \item[Read and Process Serial Command] Process command received from USB serial interface. This is used only for debugging. \seeref{subsubsection:exploration_1_control_commands}
-    \item[Motor Motion Control] Only active when there is an active motion target. A separate timer is used to fix the motion control frequency. \seeref{subsubsection:exploration_1_bang_bang_motion_control}
-    \item[Battery Monitor] Check battery level using integrated ADC in microcontroller. \seeref{subsubsection:exploration_1_microcontroller}
+    \item[Read and Process Serial Command] Process command received from USB serial interface. This is used only for debugging. \seeref{subsubsection:exploration-1-control-commands}
+    \item[Motor Motion Control] Only active when there is an active motion target. A separate timer is used to fix the motion control frequency. \seeref{subsubsection:exploration-1-bang-bang-motion-control}
+    \item[Battery Monitor] Check battery level using integrated ADC in microcontroller. \seeref{subsubsection:exploration-1-microcontroller}
 \end{description}
 
 The main control loop implements non-preemptive scheduling for sharing time between the subroutines. All three subroutines are visited sequentially in each cycle and are allowed to run until it yields control. If needed, each subroutine can implement its own timer to determine how frequently it should be executed, but this was not used in this development. The diagram below describes the main control loop.
 
 \subsubsection{Control Commands}
-\label{subsubsection:exploration_1_control_commands}
+\label{subsubsection:exploration-1-control-commands}
 
 The CL1 Clamp Firmware was designed to receive serial commands from the integrated USB serial adapter and provide responses when necessary. Since the USB messaging protocol is completely transparent to the Arduino microcontroller, the serial interface is purely a stream of bytes transmitting at 115200 baud. Command messages are terminated by a '\textbackslash n' character and without start-of-message header. The Command Processing Subroutine monitors the receive buffer and triggers a response when a command is received.
 All commands received by the firmware are treated as real-time commands, allowing motion to be started, modified, or stopped at any time. This is crucial for upper-level controllers (on PC) to assert full control over the hardware behavior and stop it in emergency situations. This behavior is inspired by many embedded real-time CNC motion controllers, such as tinyg2 (cite) and grbl (cite).
@@ -486,11 +486,11 @@ The following table lists the commands that the controller support:
 
 MISSINGTABLE
 
-In order to avoid blocking the main control loop, all motion commands are processed in an asynchronous manner. This is achieved by setting an internal state in the controller, such as a target position, and defer the execution to the motion control subroutine in the main control loop. The Motion Control Subroutine can then be executed regularly to perform motion control \seeref{section:exploration_1_demonstration}.
+In order to avoid blocking the main control loop, all motion commands are processed in an asynchronous manner. This is achieved by setting an internal state in the controller, such as a target position, and defer the execution to the motion control subroutine in the main control loop. The Motion Control Subroutine can then be executed regularly to perform motion control \seeref{section:exploration-1-demonstration}.
 For other commands, such as the settings \verb|(\$)| commands, the status report \verb|(?)| and the stop command, are executed immediately. 
 
 \subsubsection{Bang Bang Motion Control}
-\label{subsubsection:exploration_1_bang_bang_motion_control}
+\label{subsubsection:exploration-1-bang-bang-motion-control}
 
 A linear profile motion controller was implemented to control the motion of the two motors based on encoder readings (Tan et al., 2007). The motion profile is defined by the following parameters:
 \begin{itemize}
@@ -523,16 +523,16 @@ MISSINGTABLE
 The motion control algorithm is validated with the CL1 hardware and its positioning repeatability is within 0.2mm.
 
 \section{Demonstration}
-\label{section:exploration_1_demonstration}
+\label{section:exploration-1-demonstration}
 
 \subsection{Design considerations}
-\label{subsection:exploration_1_design_considerations}
+\label{subsection:exploration-1-design-considerations}
 
 The image below shows the timber joint used for validating the clamping movement. The column and the beam have a 100mm x 100mm profile size. The half-lap joints are orthogonal, each being 50mm thick. The joints were cut manually with a pull saw very carefully. Four 10mm x 10mm registration holes for the hanging gripper were drilled using the drill guide shown in 4.3.1.2 Gripper for Hanging Clamp.
 
 It requires approximately 0.9kN force to be assembled, confirmed using a setup similar to the test conducted in 4.2.2 Joint Tightness but oriented horizontally.
 \subsection{Execution Plan}
-\label{subsection:exploration_1_execution_plan}
+\label{subsection:exploration-1-execution-plan}
 
 The list below shows a number of planned tests, however the clamped is damaged at the stall test and it cannot be continued. Nevertheless, the lessons learnt from this clamp design and construction experience is sufficient to move on to the next exploration round. Therefore the damaged clamp was not repaired to continue the test.
 \begin{itemize}
@@ -556,10 +556,10 @@ The list below shows a number of planned tests, however the clamped is damaged a
     The image below shows the vertical column mounted on a rigid base on the ground in preparation of the clamping motion test.
 
 \section{Lessons Learnt}
-\label{section:exploration_1_lessions_learnt}
+\label{section:exploration-1-lessions-learnt}
 
 \subsection{Successful Validations}
-\label{subsection:exploration_1_successful_validations}
+\label{subsection:exploration-1-successful-validations}
 
 During the setup, a manual valve was used to actuate the hanging gripper and there was no difficulty positioning the clamp on the column. The photo below shows the clamp hanging from the column. The spring loaded grip between them was firm and stable. 
 
@@ -581,7 +581,7 @@ The following design features are validated:
 \end{itemize}
 
 \subsection{Damaged actuator gearbox}
-\label{subsection:exploration_1_damaged_actuator_gearbox}
+\label{subsection:exploration-1-damaged-actuator-gearbox}
 
 During the second test - Stall Test, a solid piece of timber was placed in the jaw to prevent the clamp from closing. This is to validate whether the mechanical parts can survive a full strength motor stall. The maximum power limit on the driver was set to 100%.
 
@@ -602,15 +602,15 @@ A quick search revealed that off-the-shelf linear actuators capable of pulling a
     \end{itemize}
     \item Design and build a custom screw mechanism for linear actuation
     \begin{itemize}
-        \item Implemented and tested with success in the next Exploration Round \seeref{subsection:exploration_2_ball_screw_linear_actuator}. 
+        \item Implemented and tested with success in the next Exploration Round \seeref{subsection:exploration-2-ball-screw-linear-actuator}. 
     \end{itemize}
 \end{itemize}
 
-Upon reflection, it is likely that if the motor were stalled long enough, the motor driver would also overheat and become damaged. The solution would require the firmware to include stall detection and cut power to the driver if a stall is detected. This is implemented when designing the next motion control algorithm \seeref{subsection:exploration_2_motion_control_for_dc_servo_motor}
+Upon reflection, it is likely that if the motor were stalled long enough, the motor driver would also overheat and become damaged. The solution would require the firmware to include stall detection and cut power to the driver if a stall is detected. This is implemented when designing the next motion control algorithm \seeref{subsection:exploration-2-motion-control-for-dc-servo-motor}
 This reflection also led to the realisation of a new protection concept for all DiRT tools: The design of any DiRT tool should protect against self-destruction. The actions of the DiRT tool, even under incorrect control, should never cause irreversible damage to its own components. This concept remained relevant for the rest of the thesis guiding the mechatronics development of later tools and systems.
 
 \subsection{Electronics Brownout}
-\label{subsection:exploration_1_electronics_brownout}
+\label{subsection:exploration-1-electronics-brownout}
 
 The electronics brownout problem refers to the microcontroller resetting its program (the firmware developed in 4.3.3 CL1 Clamp Firmware) during operation due to a drop in supply voltage. This happened on a few occasions during unit tests of the actuator.
 
@@ -624,11 +624,11 @@ Possible Solution and Follow-Up
 \begin{itemize}
     \item Add diode before regulator input capacitors - This should help prevent the motor driver from drawing power from the regulator capacitor. The capacitor placed before the regulator should provide sufficient buffering capacity for maintaining regulated voltage on the digital side during maximum motor output.
     \begin{itemize}
-        \item This was implemented and tested in Exploration Round 2 \seeref{subsection:exploration_2_cl3_clamp_electronics}
+        \item This was implemented and tested in Exploration Round 2 \seeref{subsection:exploration-2-cl3-clamp-electronics}
     \end{itemize}
     \item Add digital stall protection in motor controller firmware to limit stall duration. 
     \begin{itemize}
-        \item This was implemented and tested successfully in Exploration Round 2 \seeref{subsection:exploration_2_motion_control_for_dc_servo_motor}
+        \item This was implemented and tested successfully in Exploration Round 2 \seeref{subsection:exploration-2-motion-control-for-dc-servo-motor}
     \end{itemize}
     \item Use a separate battery for microcontroller - This could be a very stable solution and can potentially be very robust. However, this also adds an extra battery on-board and would increase operator workload to replace and recharge. 
     \begin{itemize}
@@ -637,7 +637,7 @@ Possible Solution and Follow-Up
 \end{itemize}
 
 \subsection{Unstable Clamp Jaw}
-\label{subsection:exploration_1_unstable_clamp_jaw}
+\label{subsection:exploration-1-unstable-clamp-jaw}
 
 The unstable clamp jaw problem was discovered almost immediately after the CL1 design was constructed. It is caused by a design error of using a round linear bushing and assuming the linear actuator can act as the second linear guide. 
 
@@ -651,12 +651,12 @@ Possible Solution and Follow-Up
     \end{itemize}
     \item Use linear guide rails with square or rectangular profiles with recirculating ball bearings.
     \begin{itemize}
-        \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Exploration Round 2 \seeref{subsection:exploration_2_ball_screw_linear_actuator}
+        \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Exploration Round 2 \seeref{subsection:exploration-2-ball-screw-linear-actuator}
     \end{itemize}
 \end{itemize}
         
 \subsection{Beam Support Needed During Clamping}
-\label{subsection:exploration_1_beam_support_needed_during_clamping}
+\label{subsection:exploration-1-beam-support-needed-during-clamping}
 
 To further elaborate the problem observed in 4.5.1 Successful Validation, the clamp jaw was able to support the moving beam only in a horizontal position. However, the DiRT assembly system was envisioned to be able to assemble columns, beams and diagonal bracings. Therefore it would be necessary for the moving beam to be stable in other orientations too.
 
@@ -668,10 +668,10 @@ The most obvious solution to this issue was to use the robotic arm to support th
     \item The design of clamps can be simplified because it no longer has to support the beam, making them easier to build and lighter weight.
     \item The movement of the robot and the clamps will have to be synchronised. This is known to be possible in industrial settings where external axes are integrated with the robot arm’s motion controller. However, synchronising it with an experimental remote-controlled device has no precedence, tThe programming and control implementation is likely to be difficult.
 \end{itemize}
-After trying to find alternative solutions with no avail. The decision was made to pursue the synchronisation and control problem. Although a working hypothesis was created and tested in the next Exploration Round 2 \seeref{subsection:exploration_2_synchronisation_between_clamp_and_rfl_robot}. This pursuit would eventually lead to the discovery of many technical problems that were rarely discussed in the field of digital fabrication. Nevertheless, the Clamp and Arm synchronised Motion would be solved in Exploration Round 4 and 5.
+After trying to find alternative solutions with no avail. The decision was made to pursue the synchronisation and control problem. Although a working hypothesis was created and tested in the next Exploration Round 2 \seeref{subsection:exploration-2-synchronisation-between-clamp-and-rfl-robot}. This pursuit would eventually lead to the discovery of many technical problems that were rarely discussed in the field of digital fabrication. Nevertheless, the Clamp and Arm synchronised Motion would be solved in Exploration Round 4 and 5.
 
 \subsection{Design Study using Orthogonal Lap Joint}
-\label{subsection:exploration_1_design_study_using_orthogonal_lap_joint}
+\label{subsection:exploration-1-design-study-using-orthogonal-lap-joint}
 
 Because of the demonstration of the CL1 Clamp design, a design study was conducted to determine if it is possible to create a demonstrator structure with only orthogonal lap joints. Below are some images of the design sketches.  
 

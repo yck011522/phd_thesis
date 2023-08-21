@@ -1,8 +1,8 @@
 \chapter{Exploration Round 4 - HyparHut}
-\label{chapter:exploration_round_4}
+\label{chapter:exploration-round-4}
 
 \section{Goal}
-\label{section:exploration_4_goal}
+\label{section:exploration-4-goal}
 
 The main goal of the fourth round is to address the accuracy, stability and alignment problems observed in the previous round, especially through the use of structural triangulation. In addition, a new Screwdriver DiRT tool is developed to address the problem observed in 5.6.15 Joints Loosening after Assembly. This also enabled the assembly of non-planar (NP) lap joints and beams with different section sizes. 
 
@@ -33,7 +33,7 @@ In order to achieve these goals, the following development was required:
 \end{itemize}
 
 \subsection{Deformation-Awareness and Error Correction by Triangulation}
-\label{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}
+\label{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}
 
 This is a new framework developed from the observation in 5.6.5 Corrective Effects of Adding Elements. The observation provided an indication that the addition of more elements helped correct the deformation in the partial structure. This effect was present as long as there were more than one joint being assembled, and the effect is more pronounced when a new triangle is formed. 
 
@@ -68,13 +68,13 @@ In general, the correction goal is to minimise the risk of alignment error. This
     \item Adding diagonal bracing to introduce triangles.
 \end{itemize}
 
-The details of how this is applied to the demonstrator in this round can be found in a later section \seeref{subsubsection:exploration_4_global_correction_approach}.
+The details of how this is applied to the demonstrator in this round can be found in a later section \seeref{subsubsection:exploration-4-global-correction-approach}.
 
 \section{Literature Review}
-\label{section:exploration_4_literature_review}
+\label{section:exploration-4-literature-review}
 
 \subsection{CNC Limitation in Cutting Lap Joints}
-\label{subsection:exploration_4_cnc_limitation_in_cutting_lap_joints}
+\label{subsection:exploration-4-cnc-limitation-in-cutting-lap-joints}
 
 There is a wide variety of automatic joinery machines in the market. Depending on the kinematics of the spindle and the tools that it has, it can produce different types of joints. There are three main types of cutting tools used in an automatic joinery machine, saws, planar mills (photo below, left) and end mills. 
 
@@ -87,7 +87,7 @@ Depending on the joint type, angles and sizes, different tools are selected for 
 Many of the cutting tools used by an automatic joinery machine (image above, left and right) have a cylindrical profile with a flat end. This geometry is imparted on the timber material as the cutter moves along the wood. Even a saw blade has its thickness, and the front side can be seen as a right-angle face to its sides. Therefore the most acute angle that can be created with these tools is a right angle.
 \footnote{The exception to this is to use a profile cutter that does not have a cylindrical cutting shape. Such as a dovetail cutter or a conical end mill. However, they are not suitable for creating lap joints.}
 
-When cutting a lap joint, the planar mill is the most common tool choice (image above, left). Therefore, when designing a complex lap joint \seerefii{subsection:exploration_4_parametric_polyline_lap_joints}{subsection:exploration_4_parametric_non_planar_lap_joints}, it is important to avoid creating interior corners that are less than 90 degrees. In addition, it is necessary to ensure that the flat area inside the lap joint (a.k.a. The trench that is left over from the mill) is at least as wide as the planar mill’s width and the depth of the cut can be made by the cutter.
+When cutting a lap joint, the planar mill is the most common tool choice (image above, left). Therefore, when designing a complex lap joint \seerefii{subsection:exploration-4-parametric-polyline-lap-joints}{subsection:exploration-4-parametric-non-planar-lap-joints}, it is important to avoid creating interior corners that are less than 90 degrees. In addition, it is necessary to ensure that the flat area inside the lap joint (a.k.a. The trench that is left over from the mill) is at least as wide as the planar mill’s width and the depth of the cut can be made by the cutter.
 
 The images below (left) shows a non planar lap joint with compound angles. The cut-away path of the planar mill is visualised by the green and cyan rectangular boxes (image below, right). The 25mm indicated in the drawing referred to an hypothetical width of a planar mill, in this case, four parallel passes would be needed to create one of the 100mm faces. The 80mm indicated in the drawing refers to the maximum depth of the cutter. Joints that are deeper than this cut are still possible, but will have to use an end mill instead of a planar mill.
 
@@ -98,10 +98,10 @@ The following image shows a generalised checking routine for the joint geometry 
 missingimage
 
 \section{Development}
-\label{section:exploration_4_development}
+\label{section:exploration-4-development}
 
 \subsection{Parametric Polyline Lap Joints}
-\label{subsection:exploration_4_parametric_polyline_lap_joints}
+\label{subsection:exploration-4-parametric-polyline-lap-joints}
 
 The polyline lap joint is an extended version of the simple lap joint that was used in the previous round. The intention is to create a parametric model that is able to include historical lap joint designs.
 
@@ -109,12 +109,12 @@ The model consists of four polylines that are used to describe the geometry on e
 
 missingimage
 
-Because of the morph, there is no inherent protection against modelling a joint that cannot be machined. However, a simple machinability check can be performed after the morph by measuring the angles at the polyline kinks. There are no automatic solutions included to make the joint machinable. The image below shows the same polyline definition morphed into different intersection angles. The joint on the left is machinable because all machining angles are larger than 90 degrees. The joint on the right is not because one of the angles is less than 90 degrees. \seeref{subsection:exploration_4_cnc_limitation_in_cutting_lap_joints}
+Because of the morph, there is no inherent protection against modelling a joint that cannot be machined. However, a simple machinability check can be performed after the morph by measuring the angles at the polyline kinks. There are no automatic solutions included to make the joint machinable. The image below shows the same polyline definition morphed into different intersection angles. The joint on the left is machinable because all machining angles are larger than 90 degrees. The joint on the right is not because one of the angles is less than 90 degrees. \seeref{subsection:exploration-4-cnc-limitation-in-cutting-lap-joints}
 
 missingimage
 
 \subsection{Parametric Non-Planar Lap Joints}
-\label{subsection:exploration_4_parametric_non_planar_lap_joints}
+\label{subsection:exploration-4-parametric-non-planar-lap-joints}
 
 The non-planar lap joint was created to model the non-planar intersection of two beams forming a lap joint. The model is able to adapt to all three types of intersection angles (planar angle, out-of-plane angle, and axial angle). The joint has a fixed assembly direction that is perpendicular to the beam that is moving with the robot (in the diagrams below, the top side of the beam is the moving beam). The assembly direction also equates to the axis of the attached screwdriver because that is the only possible way it can assemble the joint.
 
@@ -137,7 +137,7 @@ The interaction of the three angles produces different joint results that have d
 missingimage
 
 \subsection{Screw Design}
-\label{subsection:exploration_4_screw_design}
+\label{subsection:exploration-4-screw-design}
 
 The design of the screw precedes the design of the screwdriver. The goal of the screw design consists of two parts. 
 
@@ -159,7 +159,7 @@ In the subsequent movement, the two screws will rotate together and move towards
 missingimage
 
 
-As the motion continues, the left-in screw will engage with the receiving hole, it will be threaded to the larger step of the hole (3). The screwing motion is continued until the joint is tightly assembled (4). Afterwards, the centre screw will unscrew from the joint while the left-in screw will stay with the joint \seeref{subsection:exploration_4_screw_driving_mechanism}.
+As the motion continues, the left-in screw will engage with the receiving hole, it will be threaded to the larger step of the hole (3). The screwing motion is continued until the joint is tightly assembled (4). Afterwards, the centre screw will unscrew from the joint while the left-in screw will stay with the joint \seeref{subsection:exploration-4-screw-driving-mechanism}.
 
 missingimage
 
@@ -170,7 +170,7 @@ missingimage
 The screw design and the screw prototypes are made by Luca Steiner (Luca Stephan Steiner, 2020) under the supervision of Prof. Dr. Agathe Koller-Hodac and Marco Rossi.
 
 \subsection{Screw Driving Mechanism}
-\label{subsection:exploration_4_screw_driving_mechanism}
+\label{subsection:exploration-4-screw-driving-mechanism}
 
 The screw driving mechanism was designed to actuate the two-screw design (see the previous chapter). The goal of the mechanical movements consist of two tasks:
 
@@ -194,7 +194,7 @@ The two photos below show the detail of the centre pull screw. The left image sh
 missingimage
 
 \subsection{Pin Gripper Mechanism}
-\label{subsection:exploration_4_pin_gripper_mechanism}
+\label{subsection:exploration-4-pin-gripper-mechanism}
 
 The pin gripper mechanism is developed for attaching the robotic screwdriver to the beam. The motivation is to avoid the limitation of parallel grippers, where the jaws need to open towards the two sides and limit beams from being placed next to each other. 
 
@@ -224,7 +224,7 @@ missingimage
 The holding capacity of the gripper was tested empirically to be stiff and secure for a 20 kg beam held at centre. The spacing between the two pins was only tested to ensure that their relatively close distance, when used in the screwdriver, would not cause the timber material to fail. 
 
 \subsection{Pin Gripper Holes Drilling Jig}
-\label{subsection:exploration_4_pin_gripper_holes_drilling_jig}
+\label{subsection:exploration-4-pin-gripper-holes-drilling-jig}
 
 A drilling jig was created for drilling the angled holes used by the pin grippers. This device is used during the testing phase of the gripper but also used for the final demonstrator. The reason for manually drilling the holes for the demonstrator beams is because of the steep angle of the holes. 
 
@@ -248,15 +248,15 @@ missingimage
 During operation, the predrilled hole by the automatic joinery machine was found to occasionally be non-centered. A compromise had to be made to drill the gripper holes following the non-centered screw hole.
 
 \subsection{Lap Screwdriver SL1 and SL1\_G200 Hardware}
-\label{subsection:exploration_4_lap_screwdriver_sl1_and_sl1_g200_hardware}
+\label{subsection:exploration-4-lap-screwdriver-sl1-and-sl1-g200-hardware}
 
 The Lap Screwdriver SL1 is an integration of the three hardware components (described in the previous sections) and the electronics controller.
 
 \begin{itemize}
     \item Docking Adapter - same design as before (see 5.3.5 Docking adapter)
-    \item Screw Driving Mechanism \seeref{subsection:exploration_4_screw_driving_mechanism}
-    \item Pin Gripper \seeref{subsection:exploration_4_pin_gripper_mechanism}
-    \item SL1 Electronics \seeref{subsection:exploration_4_sl1_screwdriver_electronics}
+    \item Screw Driving Mechanism \seeref{subsection:exploration-4-screw-driving-mechanism}
+    \item Pin Gripper \seeref{subsection:exploration-4-pin-gripper-mechanism}
+    \item SL1 Electronics \seeref{subsection:exploration-4-sl1-screwdriver-electronics}
 \end{itemize}
 
 The main body of the screwdriver is the worm gearbox. There are two main connector pieces: A circular piece that connects between the top of the gearbox to the docking adapter; A rectangular piece that connects the bottom of the gearbox, supports the screw driving hub and connects to the pin gripper blocks. The photo below shows the prototype of the two connector pieces and the pin gripper block made with a 3D printer.
@@ -277,7 +277,7 @@ An extended version of the screwdriver was also made, with a spacer bar between 
 missingimage
 
 \subsection{Parallel Gripper PG1500 for Long Beams}
-\label{subsection:exploration_4_parallel_gripper_pg1500_for_long_beams}
+\label{subsection:exploration-4-parallel-gripper-pg1500-for-long-beams}
 
 A longer version of the parallel gripper (1500mm) was made to accommodate longer timber beams. The design is the same as before (see 5.3.6 Parallel Gripper PG500 and PG1000). This increased the total number of parallel grippers to three options: PG500, PG1000 and PG1500. The photo below shows the three grippers during operations.
 
@@ -288,9 +288,9 @@ Instead of using sandpaper on the flat gripper fingers, pins were added to them 
 missingimage
 
 \subsection{Docking Adapter Lock Sensor}
-\label{subsection:exploration_4_docking_adapter_lock_sensor}
+\label{subsection:exploration-4-docking-adapter-lock-sensor}
 
-Two sensors were added to the docking adapter for confirming a successful lock (\seeref{subsection:exploration_3_docking_adapter_fail_to_lock}. The goal is to eliminate the need for the operator to visually confirm that the docking adapter is securely locked.
+Two sensors were added to the docking adapter for confirming a successful lock (\seeref{subsection:exploration-3-docking-adapter-fail-to-lock}. The goal is to eliminate the need for the operator to visually confirm that the docking adapter is securely locked.
 
 \begin{itemize}
     \item \textbf{Integrated Hall-effect autoswitch --} This is the default sensing solution suggested by Schunk for this tool changer model. This switch senses the internal pneumatic piston position.
@@ -304,7 +304,7 @@ This is one of the compromises of using a tool changer for the purpose of dockin
 missingimage
 
 \subsection{Beam to Ground Connection}
-\label{subsection:exploration_4_beam_to_ground_connection}
+\label{subsection:exploration-4-beam-to-ground-connection}
 
 In response to the difficulty of fixing initial beams to the platform (see 6.5.8 Difficulty in attaching beam to platform), the new beam-to-ground connection is redesigned to fix horizontal beams instead of vertical columns. 
 
@@ -316,10 +316,10 @@ The photo below (left) shows a threaded insert placed in the initial beams for t
 
 missingimage
 
-For detailed operation instruction of the attachment, see the later observation chapter describing its operation \seeref{subsubsection:exploration_4_ground_platform_attachment}.
+For detailed operation instruction of the attachment, see the later observation chapter describing its operation \seeref{subsubsection:exploration-4-ground-platform-attachment}.
 
 \subsection{SL1 Screwdriver Electronics}
-\label{subsection:exploration_4_sl1_screwdriver_electronics}
+\label{subsection:exploration-4-sl1-screwdriver-electronics}
 
 The SL1 Screwdriver electronics is based on the experience learnt from the CL1 and CL3 Clamp electronics. The major difference is a different microcontroller and the control of three DC servo motors instead of one. The main difference are:
 \begin{itemize}
@@ -366,13 +366,13 @@ The photo below (left) shows the wired control board installed in its plastic en
 missingimage
 
 \subsection{Screwdriver Firmware (L1 Control)}
-\label{subsection:exploration_4_screwdriver_firmware_l1_control}
+\label{subsection:exploration-4-screwdriver-firmware-l1-control}
 
 The Screwdriver Firmware for SL1 and SL1\_G200 is similar to the L1 firmware of the clamps (see 5.3.9 CL3 Firmware). The main difference is that it is able to control two more servo motors for the pin grippers.
 The main motor no longer needs to support homing because the centre screw can spin indefinitely. The pin gripper motors have homing functions on the retracted direction.
 
 \subsection{Screwdriver Controller (L2 Control)}
-\label{subsection:exploration_4_screwdriver_controller_l2_control}
+\label{subsection:exploration-4-screwdriver-controller-l2-control}
 
 The previous L2 clamp controller was modified to control the screwdrivers (see 5.3.12 Clamp Controller (L2)). The main difference is the addition of the commands for controlling the pin grippers. 
 During testing, it was found that a position-control method was not able to drive the hollow screw all the way to the bottom of the pre-drilled holes. Two reasons were discovered: 
@@ -390,9 +390,9 @@ The tightening motion service is provided by the L2 controller because it is res
 At the L1 level, there is no concept of success or failure, the motion controller simply stops upon reaching the maximum power. This distribution of work between the three controllers was found to be easily implementable.
 
 \subsection{Camera-Marker Alignment Correction System}
-\label{subsection:exploration_4_camera_marker_alignment_correction_system}
+\label{subsection:exploration-4-camera-marker-alignment-correction-system}
 
-The Camera-Marker Alignment Correction System was developed to provide the ability to adjust the planned robotic trajectory on-line for correcting critical alignments. It continues the successful test performed in the previous round \seeref{subsection:exploration_3_docking_adapter_alignment_with_camera} where the marker image was interpreted by the operator. 
+The Camera-Marker Alignment Correction System was developed to provide the ability to adjust the planned robotic trajectory on-line for correcting critical alignments. It continues the successful test performed in the previous round \seeref{subsection:exploration-3-docking-adapter-alignment-with-camera} where the marker image was interpreted by the operator. 
 
 In this new development, Aruco Marker recognition algorithms (Garrido-Jurado et al., 2014) were used to automatically recognise the pose of the alignment target relative to the robot-side device. The system was planned for two alignment scenarios that happen during the construction with the Clamp Assembly and the Screw Assembly Process:
 
@@ -438,9 +438,9 @@ The system consists of the following components:
 \end{itemize}
 
 \subsection{Camera-Marker Hardware on Docking Adapter}
-\label{subsection:exploration_4_camera_marker_hardware_on_docking_adapter}
+\label{subsection:exploration-4-camera-marker-hardware-on-docking-adapter}
 
-The photo below (left) shows the camera assembly for the robot-side of the docking adapter. The power supply cable can be seen leading out of the enclosure. The photo below (right) shows the installation position of the camera on one of the attachment points of the docking adapter. The other attachment point was already occupied by the cable guide \seeref{subsection:exploration_3_robot_cable_guides}. The white LED of the camera can be seen turned on.
+The photo below (left) shows the camera assembly for the robot-side of the docking adapter. The power supply cable can be seen leading out of the enclosure. The photo below (right) shows the installation position of the camera on one of the attachment points of the docking adapter. The other attachment point was already occupied by the cable guide \seeref{subsection:exploration-3-robot-cable-guides}. The white LED of the camera can be seen turned on.
 
 missingimage
 
@@ -457,9 +457,9 @@ The following photo shows the plastic bracket for installing the marker on the d
 missingimage
 
 \subsection{Compliant Control for Robotic Arm}
-\label{subsection:exploration_4_compliant_control_for_robotic_arm}
+\label{subsection:exploration-4-compliant-control-for-robotic-arm}
 
-A compliant control mode was implemented for the robotic arm to address the overly-stiff problem observed when interacting with constrained objects \seerefii{subsection:exploration_2_robotic_arm_overload_error_during_clamping}{subsection:exploration_3_docking_adapter_fail_to_lock}.
+A compliant control mode was implemented for the robotic arm to address the overly-stiff problem observed when interacting with constrained objects \seerefii{subsection:exploration-2-robotic-arm-overload-error-during-clamping}{subsection:exploration-3-docking-adapter-fail-to-lock}.
 
 The basic compliant control function was provided by the ABB robot controller, called softmove (ABB, 2022). The control method does not rely on a force sensor but is based on force estimation from control error (Stolt et al., 2012). The function allows the selection of compliant control directions with respect to the flange’s principle axis. This includes translation in X, Y, Z axes and rotation around the Z axis. 
 
@@ -480,7 +480,7 @@ One problem that was observed during testing is that the current design of the s
 A better method would have been to split the synchronised motion into two, separating the portion before and after contact and allowing different parameters for each portion. However, this was not implemented due to time constraints. The implementation would be rather complicated because the separation distance is different for each joint, which depends on beam size and the cheek depth of each joint, both of which are variable in this round. Furthermore, if different joints along the same beam have different cheeks depths, the screwdriver tips would be engaging with the hole at different moments. 
 
 \subsection{Beam Feature Model}
-\label{subsection:exploration_4_beam_feature_model}
+\label{subsection:exploration-4-beam-feature-model}
 
 In the previous Assembly Model, the geometry of the beam only contained the subtraction of the joint's geometry. However, during the design of the BusStop, it was found that extra subtractive models were needed to trim the ends of the tilted columns to match the ground.
 
@@ -507,9 +507,9 @@ missingimage
 Note that all the geometrical features are modelled as the negative volume, including the end trims. The image below shows the negative models of the joints used to create the non-planar joints (blue), polyline-lap joints (brown), and simple half-lap joints (purple).
 
 \subsection{Process Design Interface for Screw Assembly Process}
-\label{subsection:exploration_4_process_design_interface_for_screw_assembly_process}
+\label{subsection:exploration-4-process-design-interface-for-screw-assembly-process}
 
-The process design backend and the design interface were updated to allow for the design of the screwdriver process. The concept is the same as the Clamp Assembly Workflow \seeref{subsection:exploration_3_process_design_workflow}. The main difference is that the clamps are attached to the robot-side moving beam and that the screwdriver can be used as a dripper too.
+The process design backend and the design interface were updated to allow for the design of the screwdriver process. The concept is the same as the Clamp Assembly Workflow \seeref{subsection:exploration-3-process-design-workflow}. The main difference is that the clamps are attached to the robot-side moving beam and that the screwdriver can be used as a dripper too.
 
 The images below show the visualisation of the assembly process during process design. For these two beams, a parallel gripper (deep blue) was used to hold the beams.
 
@@ -525,28 +525,28 @@ The planned trajectory visualisation interface was also improved with a slider t
 missingimage
 
 \subsection{Action as State Diff Model} 
-\label{subsection:exploration_4_action_as_state_diff_model}
+\label{subsection:exploration-4-action-as-state-diff-model}
 
-Since the implementation of Object States in the Process Design workflow \seeref{subsubsection:exploration_3_compute_object_states}, the serialised Process Model became very large and caused an unpleasant slowdown during serialisation and deserialisation. A new solution was developed to eliminate storing the states explicitly. 
+Since the implementation of Object States in the Process Design workflow \seeref{subsubsection:exploration-3-compute-object-states}, the serialised Process Model became very large and caused an unpleasant slowdown during serialisation and deserialisation. A new solution was developed to eliminate storing the states explicitly. 
 This is achieved by storing only the planned tasks and parsing the tasks dynamically to retrieve the object states at a specific step. This was found to be no different from the already implemented UpdateState() function in each task (diagram below), where the ending state of a task can be computed from the starting state. 
 
 missingimage
 
-This means that there is a dual relationship between the task and the states. Given an initial state, and the task list, it is possible to derive all the intermediate states and the final state. The following diagrams are the same as before \seeref{subsubsection:exploration_3_compute_object_states}. The only difference is that except for the initial state (yellow box), all the other states are not stored (hatched yellow boxes). In practice, the dynamic parsing was found to be much faster than serialisation and deserialisation.
+This means that there is a dual relationship between the task and the states. Given an initial state, and the task list, it is possible to derive all the intermediate states and the final state. The following diagrams are the same as before \seeref{subsubsection:exploration-3-compute-object-states}. The only difference is that except for the initial state (yellow box), all the other states are not stored (hatched yellow boxes). In practice, the dynamic parsing was found to be much faster than serialisation and deserialisation.
 
 missingimage
 
 This concept, although simple, is essential for the implementation of automatic Task and Motion Planning (TAMP) in the next Exploration Round (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream).
 
 \subsection{Flowchart for Screwdriver Assembly}
-\label{subsection:exploration_4_flowchart_for_screwdriver_assembly}
+\label{subsection:exploration-4-flowchart-for-screwdriver-assembly}
 
-The flowchart method \seeref{subsubsection:exploration_3_task_planning_with_flowchart} was used for planning the Screw Assembly Process. The diagram below shows the flowchart used for this round. It supports using either a parallel gripper or a screwdriver to hold the beam. The process design and planning workflow is the same as the last round.
+The flowchart method \seeref{subsubsection:exploration-3-task-planning-with-flowchart} was used for planning the Screw Assembly Process. The diagram below shows the flowchart used for this round. It supports using either a parallel gripper or a screwdriver to hold the beam. The process design and planning workflow is the same as the last round.
 
 missingimage
 
 \subsection{Fast Design Validation with IK Check}
-\label{subsection:exploration_4_fast_design_validation_with_ik_check}
+\label{subsection:exploration-4-fast-design-validation-with-ik-check}
 
 The Fast Design Validation by IK was developed to extend the checking function developed in 5.5.2 Checking Incorrect Planning Inputs. 
 
@@ -554,14 +554,14 @@ In the previous iteration, the check was developed as a developer tool for ident
 
 The new extension to the original checking function includes the option to also check for reachability. Reachability refers to whether the robot can reach the defined start and end location for the motion request, taking also into account the collision of the robot body. This is achieved by computing IK for the robot pose at the start and end of the robotic motion. Similar to MP, IK is also stochastic in nature and therefore maximum computation time or maximum retries has to be specified. If the IK solver cannot find a solution within the limits, the motion can be flagged as ‘potentially unreachable’.
 
-This validation check was for the current and next demonstrators. It is used during the transition from the Assembly Design to Process Design Phase to quickly validate the constructability of the design. It provided a better estimation compared to performing CC alone but at a fraction of the time needed for complete MP. The table below shows a comparison of the computation time needed to check the demonstrator for this DevRound \seeref{subsection:exploration_4_demonstrator_design_hyparhut_pavilion}:
+This validation check was for the current and next demonstrators. It is used during the transition from the Assembly Design to Process Design Phase to quickly validate the constructability of the design. It provided a better estimation compared to performing CC alone but at a fraction of the time needed for complete MP. The table below shows a comparison of the computation time needed to check the demonstrator for this DevRound \seeref{subsection:exploration-4-demonstrator-design-hyparhut-pavilion}:
 
 missingtable
 
 \subsection{Planning Order by Motion Group}
-\label{subsection:exploration_4_planning_order_by_motion_group}
+\label{subsection:exploration-4-planning-order-by-motion-group}
 
-The non-sequential planning method \seeref{subsection:exploration_3_non_sequential_planning_order} was improved and generalised to automatic planning priority. This removed the need for the Process Engineer to manually designate the ‘priority flag’ in the High-Level Task template. 
+The non-sequential planning method \seeref{subsection:exploration-3-non-sequential-planning-order} was improved and generalised to automatic planning priority. This removed the need for the Process Engineer to manually designate the ‘priority flag’ in the High-Level Task template. 
 
 The idea is to group the tasks in the planned task list into \textbf{Linear Motion Group (LMG)} and \textbf{Free Motion Group (FMG)} and plan them separately. Refer to the diagram below, which depicts a hypothetical task list that consists of LM (green) and FM (blue) while all the non-robotic movements are hidden. The left column shows the groupings, which are simply created by slicing the list wherever LM and FM meet. 
 
@@ -595,10 +595,10 @@ This non-sequential planning order was tested extensively during the Process Des
     \item LMG typically only contains a few LMs, they can also be planned very fast because no FM are involved. This is potentially useful for real-time design checking for a small group of actions (this use is not tested).
 \end{itemize}
 
-During the Process Design phase of the two demonstrators, LMG planning (without proceeding to FMG) was used as a more detailed check than the CC+IK method \seeref{subsection:exploration_4_fast_design_validation_with_ik_check}. The computing time is roughly 10 to 15 minutes (depending on how many failures) for the HyparHut Pavilion. This duration is found to be acceptable as a final check before the rest of the FMG is planned, which requires significantly longer time (~ 8 hours).
+During the Process Design phase of the two demonstrators, LMG planning (without proceeding to FMG) was used as a more detailed check than the CC+IK method \seeref{subsection:exploration-4-fast-design-validation-with-ik-check}. The computing time is roughly 10 to 15 minutes (depending on how many failures) for the HyparHut Pavilion. This duration is found to be acceptable as a final check before the rest of the FMG is planned, which requires significantly longer time (~ 8 hours).
 
 \subsection{Post-Planning Trajectory Smoothing}
-\label{subsection:exploration_4_post_planning_trajectory_smoothing}
+\label{subsection:exploration-4-post-planning-trajectory-smoothing}
 
 In order to address the problem related to low-quality motion planning results from RRT-Connect. Trajectory smoothing using Random Shortcut \parencite{zhaoTrajectorySmoothingUsing2015} was implemented in the planning workflow for reducing the robot travel distance and time.
 
@@ -607,22 +607,22 @@ The image below shows an example of the robot travelling with the PG1000 gripper
 missingimage
 
 \section{Demonstration}
-\label{section:exploration_4_demonstration}
+\label{section:exploration-4-demonstration}
 
 \subsection{Design Goal}
-\label{subsection:exploration_4_design_goal}
+\label{subsection:exploration-4-design-goal}
 
 There are many goals for the design of the demonstrator in this round:
 
 \textbf{Process Validation}
 \begin{itemize}
-    \item \textbf{Validate stability awareness} (based on my intuition while stepping through each step) to avoid using scaffolding \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}.
-    \item \textbf{Validate operation of SL1 Screwdriver --} \seeref{subsection:exploration_4_lap_screwdriver_sl1_and_sl1_g200_hardware}
+    \item \textbf{Validate stability awareness} (based on my intuition while stepping through each step) to avoid using scaffolding \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}.
+    \item \textbf{Validate operation of SL1 Screwdriver --} \seeref{subsection:exploration-4-lap-screwdriver-sl1-and-sl1-g200-hardware}
     \item \textbf{Validate operation of SL1\_G200 Screwdriver as a gripper}
     \item \textbf{Validate the assembly of}
     \begin{itemize}
-        \item \textbf{Polyline lap joints --} Customised with traditional lap joints details \seeref{subsection:exploration_4_parametric_polyline_lap_joints}
-        \item \textbf{Non-planar lap joints --} Only possible with the Screw Assembly Method \seeref{subsection:exploration_4_parametric_non_planar_lap_joints}
+        \item \textbf{Polyline lap joints --} Customised with traditional lap joints details \seeref{subsection:exploration-4-parametric-polyline-lap-joints}
+        \item \textbf{Non-planar lap joints --} Only possible with the Screw Assembly Method \seeref{subsection:exploration-4-parametric-non-planar-lap-joints}
         \item \textbf{Elements with different sizes --} First attempt of different beam sizes according to structural requirements.
     \end{itemize}
     \item \textbf{Validate anchoring horizontal elements --} instead of anchoring vertical elements in the previous attempts, to improve initial stability.
@@ -635,12 +635,12 @@ There are many goals for the design of the demonstrator in this round:
 \end{itemize}
 
 \subsection{Design and Team Information}
-\label{subsection:exploration_4_design_and_team_information}
+\label{subsection:exploration-4-design-and-team-information}
 
 missingtable
 
 \subsection{Demonstrator Design  - HyparHut Pavilion}
-\label{subsection:exploration_4_demonstrator_design_hyparhut_pavilion}
+\label{subsection:exploration-4-demonstrator-design-hyparhut-pavilion}
 
 The designed structure is a column grid framing with a hyperbolic roof. The typology is similar to a hut. The grid consists of 2 rows of 3 columns. However, one of the columns is stopped short and does not touch the roof. This creates a cantilevered corner for the curved roof.
 
@@ -670,10 +670,10 @@ The design of the joints using the polyline lap customization allows sophisticat
 
 
 \section{Lessons Learnt}
-\label{section:exploration_4_lessons_learnt}
+\label{section:exploration-4-lessons-learnt}
 
 \subsection{Execution Plan}
-\label{subsection:exploration_4_execution_plan}
+\label{subsection:exploration-4-execution-plan}
 
 Similar to the BusStop demonstrator, the preparation procedures were similar. However, unexpected discovery of CNC error in the prefabricated added some complexity to the preparation. The preparation consisted of the following tasks:
 \begin{enumerate}
@@ -683,17 +683,17 @@ Similar to the BusStop demonstrator, the preparation procedures were similar. Ho
     \item Inspect the received CNC machined beams
     \begin{enumerate}
         \item Test fit planar frame on the ground
-        \item Adjust inaccurate joints \seeref{subsection:exploration_4_missing_cut_problem}
+        \item Adjust inaccurate joints \seeref{subsection:exploration-4-missing-cut-problem}
     \end{enumerate}
-    \item Adjust inaccurate machined-holes \seeref{subsection:exploration_4_inaccurate_screw_hole_problem}
+    \item Adjust inaccurate machined-holes \seeref{subsection:exploration-4-inaccurate-screw-hole-problem}
     \begin{enumerate}
         \item Test fit entire pavilion (see notes below)
         \item Redrill misaligned holes
         \item Chamfer screw hole entry
-        \item Drilled pin gripper attachment holes (similar procedure to previous process \seeref{subsection:exploration_4_pin_gripper_holes_drilling_jig})
+        \item Drilled pin gripper attachment holes (similar procedure to previous process \seeref{subsection:exploration-4-pin-gripper-holes-drilling-jig})
     \end{enumerate}
     \item Chamfer joint edges (similar to the method used in 5.6.6 Clamping Joints with Chamfered Edges, except 4mm was used)
-    \item Robotic Assembly \seeref{subsection:exploration_4_flowchart_for_screwdriver_assembly}
+    \item Robotic Assembly \seeref{subsection:exploration-4-flowchart-for-screwdriver-assembly}
     \begin{enumerate}
         \item Robot picks up a parallel gripper or uses a screwdriver as a gripper.
         \item Operator load material.
@@ -708,7 +708,7 @@ Similar to the BusStop demonstrator, the preparation procedures were similar. Ho
     \end{enumerate}
 \end{enumerate}
 
-The preparation period for this demonstrator was long because of the various manual drilling operations (planned and expected) and adjustment of inaccurate CNC machined features (unexpected). Moreover, the hole misalignment problem required a complete test fit of the whole pavilion for diagnosing and correction. In total, the diagnosis and adjustment process took almost 10 days \seeref{subsubsection:exploration_4_correction_of_the_screw_holes}. 
+The preparation period for this demonstrator was long because of the various manual drilling operations (planned and expected) and adjustment of inaccurate CNC machined features (unexpected). Moreover, the hole misalignment problem required a complete test fit of the whole pavilion for diagnosing and correction. In total, the diagnosis and adjustment process took almost 10 days \seeref{subsubsection:exploration-4-correction-of-the-screw-holes}. 
 
 The photo below (left) shows the timber beams received from the fabricator before any adjustments. The photo on the right shows the CLT plates for the manually-assembled floor.
 
@@ -724,7 +724,7 @@ The photos below show the four screwdrivers (left) and the three parallel grippe
 missingimage
 The images below show the collision models (CM) used for the screwdriver storage area. The plastic storage pads (left image, blue under orange) can be seen covered by a static box-shape CM (orange) to protect them. When the tools are placed in the storage location (right image), the CM of the tools (from the Tool Model) will protect itself.
 
-Note that the CM of the storage pad is in collision with the tool at the stored location (right image). This is only possible because the ACM of the planning call is programmed to ignore these collisions \seeref{subsubsection:exploration_2_collision_checking}. This is set in the High-Level Task templates \seeref{subsubsection:exploration_3_expanding_task_groups} for the Linear Motions going to and from the storage location.
+Note that the CM of the storage pad is in collision with the tool at the stored location (right image). This is only possible because the ACM of the planning call is programmed to ignore these collisions \seeref{subsubsection:exploration-2-collision-checking}. This is set in the High-Level Task templates \seeref{subsubsection:exploration-3-expanding-task-groups} for the Linear Motions going to and from the storage location.
 
 missingimage
 The photo below shows the screws prepared for the construction. The short screws (lower left box) are used for all the planar lap joints. The long screws (other boxes) are used for all the non-planar lap joints.
@@ -732,13 +732,13 @@ The photo below shows the screws prepared for the construction. The short screws
 missingimage
 
 \subsection{Successful Validation}
-\label{subsection:exploration_4_successful_validation}
+\label{subsection:exploration-4-successful-validation}
 
-The pavilion was successfully constructed with a high degree of automation \seeref{subsubsection:exploration_4_highly_automatic_process}. It validated many new developments in this Exploration Round and showed progressive improvement in reducing manual interventions required during the robotic process. This section will elaborate on these successful validations, while later sections will describe the more problematic issues.
+The pavilion was successfully constructed with a high degree of automation \seeref{subsubsection:exploration-4-highly-automatic-process}. It validated many new developments in this Exploration Round and showed progressive improvement in reducing manual interventions required during the robotic process. This section will elaborate on these successful validations, while later sections will describe the more problematic issues.
 The photo below shows the completed pavilion, including the manually assembled floor.
 
 \subsubsection{Screwdriver Joint Closure}
-\label{subsubsection:exploration_4_screwdriver_joint_closure}
+\label{subsubsection:exploration-4-screwdriver-joint-closure}
 
 This demonstration was the first time the SL1 and SL1\_G200 Screwdriver were tested with a robot. The following functions have been validated:
 \textbf{Joint Closure and Left-In Screw}
@@ -756,7 +756,7 @@ The photos below show a \textbf{typical operation sequence }of the closure:
 missingimage
 
 \subsubsection{Screwdriver as a Gripper}
-\label{subsubsection:exploration_4_screwdriver_as_a_gripper}
+\label{subsubsection:exploration-4-screwdriver-as-a-gripper}
 
 The screwing assembly process supported two different gripping modes. Both of them performed as intended. Refer to the two photos below:
 \begin{enumerate}
@@ -774,19 +774,19 @@ The following gripper selection guide summarised the lesson learnt during the de
     \item If parallel gripper cannot be used, use the longer SL1\_G200 if possible. Pick a joint near the middle of the beam length to avoid imbalance deflection.
     \item If collision is still a problem, SL1 can be used. However, it is not recommended for long elements.
 \end{itemize}
-The following images show the imbalance grasp caused by using the screwdriver as a gripper. In this case, the spacing between the four joints does not permit the use of any parallel grippers. The even number of joints on the beam also means that it is not possible to hold it near the centre using the screwdriver as a gripper method. This type of scenarios occurred 5 times during construction and they often suffer from misalignment problems \seeref{subsection:exploration_4_screwdriver_tip_misalignment}.
+The following images show the imbalance grasp caused by using the screwdriver as a gripper. In this case, the spacing between the four joints does not permit the use of any parallel grippers. The even number of joints on the beam also means that it is not possible to hold it near the centre using the screwdriver as a gripper method. This type of scenarios occurred 5 times during construction and they often suffer from misalignment problems \seeref{subsection:exploration-4-screwdriver-tip-misalignment}.
 
 missingimage
 
 \subsubsection{Fastener Kept Joints From Loosening}
-\label{subsubsection:exploration_4_fastener_kept_joints_from_loosening}
+\label{subsubsection:exploration-4-fastener-kept-joints-from-loosening}
 
 The hollow screws performed their intended role to keep the structure stable during construction. None of the joints have been found to be loosened after they are assembled. This successfully addressed the loosening problem observed in clamped joints (see 5.6.15 Joints Loosening after Assembly) and contributed to the overall stability during construction. The photos below show the hollow screw being revealed during (left) and after (right) the screwdriver is retracted with the robot.
 
 missingimage
 
 \subsubsection{Loading Beam and Screwdriver}
-\label{subsubsection:exploration_4_loading_beam_and_screwdriver}
+\label{subsubsection:exploration-4-loading-beam-and-screwdriver}
 
 The operator tasks for loading the beam and the screwdrivers can be observed in the photos below. 
 \begin{enumerate}
@@ -810,13 +810,13 @@ missingimage
 \begin{itemize}
     \item Step 5a is prone to operator error of selecting the wrong screw, an indication would be beneficial for the future.
     \item Step 5b is prone to operator error of using the wrong orientation (occurred two times), a geometrical registration feature can be used to prevent this in the future.
-    \item Step 6 is prone to the operator over-tightening the pins and causing jamming after the assembly \seeref{subsection:exploration_4_pin_gripper_jammed_in_locked_state}. The screwdriver firmware can be improved in the future to provide indication and to stop the pin motion automatically when the correct torque is reached.
+    \item Step 6 is prone to the operator over-tightening the pins and causing jamming after the assembly \seeref{subsection:exploration-4-pin-gripper-jammed-in-locked-state}. The screwdriver firmware can be improved in the future to provide indication and to stop the pin motion automatically when the correct torque is reached.
 \end{itemize}
 
 Alternatively, the hollow screw and screwdriver attachment tasks can be automated. A small robot with 10 kg payload would be sufficient for this task.
 
 \subsubsection{Visual-guided Docking Process}
-\label{subsubsection:exploration_4_visual_guided_docking_process}
+\label{subsubsection:exploration-4-visual-guided-docking-process}
 
 The camera-marker alignment system developed for aligning the docking adapters performed as intended. The photo belows shows the moment during alignment (left) and the moment after the linear movement docks the two halves. 
 
@@ -841,7 +841,7 @@ The camera-marker alignment system provided not only the active guidance, but al
 The combination of the camera-marker alignment system and the newly added docking lock sensor eliminated the need for the operator to perform a visual check. The two functions performed very reliably when combined and would only notify the operator if the locking action failed. The only minor problem was that the WiFi signal for the wireless video feed was not always reliable and would occasionally drop. In most cases, the connection would be reestablished after randomly adjusting the WiFi access point antennas. 
 
 \subsubsection{Global Correction Approach}
-\label{subsubsection:exploration_4_global_correction_approach}
+\label{subsubsection:exploration-4-global-correction-approach}
 
 The deformation-aware design practice was used in different areas of the structure. The principle relies on identifying high-risk elements that can suffer from deformation (performed by intuition in this demo) and apply strategies that can mitigate the risk:
 \begin{itemize}
@@ -879,7 +879,7 @@ The first layer of roof elements were assembled starting from those that are loc
 In summary, there are no visually significant deformation in the PA structure during the assembly process. The stiffness of the structure was also much higher in all the steps when compared to the BusStop design. However, it is worth noting that the hollow screw also contributed to the joint stiffness and hence its rotational stiffness. Therefore it is hard to differentiate the effect of the two strategies. 
 
 \subsubsection{No Robot Collisions Found}
-\label{subsubsection:exploration_4_no_robot_collisions_found}
+\label{subsubsection:exploration-4-no-robot-collisions-found}
 
 No serious collisions were found during the robotic assembly process. This validated the adjusted collision geometry around the robotic arm for accommodating the attachments and cables. The photo belows shows the cable chain being pinched during the development test. The collision mesh for the robot wrist was increased before planning the motion for the actual execution.
 
@@ -890,9 +890,9 @@ The photo below shows a close encounter between two beams. This is likely the re
 missingimage
 
 \subsubsection{Synchronised Robot and Tool Stop Signal}
-\label{subsubsection:exploration_4_synchronised_robot_and_tool_stop_signal}
+\label{subsubsection:exploration-4-synchronised-robot-and-tool-stop-signal}
 
-The \textbf{Synchronized Stop} function \seeref{subsection:exploration_3_standalone_process_execution_controller} performed as designed:
+The \textbf{Synchronized Stop} function \seeref{subsection:exploration-3-standalone-process-execution-controller} performed as designed:
 \begin{itemize}
     \item Emergency stops that are raised by one of the two L2 controllers (tools or robot) can be propagated to the other controller. The delay is not noticeable for the screwdriver operation speed .
     \item It is possible for the operator to stop any robotic motion (including the synchronised motion) from the Process Execution Controller.
@@ -900,16 +900,16 @@ The \textbf{Synchronized Stop} function \seeref{subsection:exploration_3_standal
 \end{itemize}
 
 \subsubsection{Robot Compliant Control and Passive Alignment}
-\label{subsubsection:exploration_4_robot_compliant_control_and_passive_alignment}
+\label{subsubsection:exploration-4-robot-compliant-control-and-passive-alignment}
 
-The compliant control function \seeref{subsection:exploration_4_compliant_control_for_robotic_arm} successfully eliminated all the robot overload errors related to over-constrained motions. 
+The compliant control function \seeref{subsection:exploration-4-compliant-control-for-robotic-arm} successfully eliminated all the robot overload errors related to over-constrained motions. 
 
 Experience from the operations indicated that a general rule can be applied: Whenever the robot is interacting with objects that are also connected to the ground in a restrained way, the selective compliant control can be applied. In this demonstration, this referred to the motion during joint closure and the motion to dock with the docking adapter.
 
 \subsubsection{Ground Platform Attachment}
-\label{subsubsection:exploration_4_ground_platform_attachment}
+\label{subsubsection:exploration-4-ground-platform-attachment}
 
-The adjustable ground platform \seeref{subsection:exploration_4_beam_to_ground_connection} was found to be quick and effective during operations. The photo below (left) shows one of the three “Ground Beams' positioned by the robot, notice that the brackets were initially lowered to avoid touching the beam. The photo on the rough shows the operator raising the bracket, connecting it to the beam, and fixing it to the aluminium profiles below.
+The adjustable ground platform \seeref{subsection:exploration-4-beam-to-ground-connection} was found to be quick and effective during operations. The photo below (left) shows one of the three “Ground Beams' positioned by the robot, notice that the brackets were initially lowered to avoid touching the beam. The photo on the rough shows the operator raising the bracket, connecting it to the beam, and fixing it to the aluminium profiles below.
 missingimage
 
 The following photos show the same operation from a different angle. A ratcheting wrench can be seen on the right for tightening the screw to the wood.
@@ -918,29 +918,29 @@ missingimage
 The anchoring of a horizontal beam instead of a vertical one in the BusStop (see 6.5.8 Difficulty in attaching beam to platform) provided two or three anchoring points for each beam. This improved the stability of the initial structure substantially.
 
 \subsubsection{Task Planning and Motion Planning}
-\label{subsubsection:exploration_4_task_planning_and_motion_planning}
+\label{subsubsection:exploration-4-task-planning-and-motion-planning}
 
-The flowchart task planning method \seeref{subsubsection:exploration_3_task_planning_with_flowchart} and the non-sequential planning solver \seeref{subsection:exploration_3_non_sequential_planning_order} was validated once again. However, the design of the flowchart \seeref{subsection:exploration_4_flowchart_for_screwdriver_assembly} was substantially more challenging than the Clamp Process due to more conditional statements used to handle different gripper choices. 
+The flowchart task planning method \seeref{subsubsection:exploration-3-task-planning-with-flowchart} and the non-sequential planning solver \seeref{subsection:exploration-3-non-sequential-planning-order} was validated once again. However, the design of the flowchart \seeref{subsection:exploration-4-flowchart-for-screwdriver-assembly} was substantially more challenging than the Clamp Process due to more conditional statements used to handle different gripper choices. 
 In the next Exploration Round, the flowchart was anticipated to be even more complex because it will contain both clamped and screwed tools. AI task planning tools were therefore explored to overcome this limitation (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream). 
 
 \subsubsection{Highly Automatic Process}
-\label{subsubsection:exploration_4_highly_automatic_process}
+\label{subsubsection:exploration-4-highly-automatic-process}
 
 As the operator, I find the overall experience of the construction process is highly automated. The only planned operator actions are to load the beam and the screwdrivers at the beginning of each assembly cycle. The operator’s role is to monitor the system and to react to unexpected problems.
 
-The process that was most prone to failure is the alignment of the screwdriver tips at the beginning of the joint closure process \seeref{subsection:exploration_4_screwdriver_tip_misalignment}. However, it is possible that the visual guidance technique can also be applied to solve this alignment problem. 
+The process that was most prone to failure is the alignment of the screwdriver tips at the beginning of the joint closure process \seeref{subsection:exploration-4-screwdriver-tip-misalignment}. However, it is possible that the visual guidance technique can also be applied to solve this alignment problem. 
 
 missingimage
 
 \subsection{Missing Cut Problem}
-\label{subsection:exploration_4_missing_cut_problem}
+\label{subsection:exploration-4-missing-cut-problem}
 
 Machining error was discovered in the CNC machined beams during test fit. The problem affected three joints at the top of the columns. The photo below shows one of the incorrect joints, they all appear to be missing some cuts. The blue line was marked after the inspection at the location where the cut should be located. In all three cases, the extra material was removed manually using a saw and chisels. 
 
 The cause of these errors was not enquired with the manufacturer but was likely due to a human error when interpreting the 3D model. Notice that the interior sharp corner in the incorrect joint was a detail that cannot be made by the automatic joinery machine. 
 
 \subsection{Inaccurate Screw Hole Problem}
-\label{subsection:exploration_4_inaccurate_screw_hole_problem}
+\label{subsection:exploration-4-inaccurate-screw-hole-problem}
 
 The pre-drilled holes for the hollow screws were found to be inaccurate during test fit. The problem affected almost all the screw holes and are more severe for short elements.
 Consider the drawing below that shows the size of the screw hole across the two sides of the joint. It consists of four steps:
@@ -978,7 +978,7 @@ Future work should consider working closely with the machine operator to determi
 See the next section for the correction taken in this thesis.
 
 \subsubsection{Correction of the Screw Holes}
-\label{subsubsection:exploration_4_correction_of_the_screw_holes}
+\label{subsubsection:exploration-4-correction-of-the-screw-holes}
 
 A correction method was devised to fix the misaligned hole by drilling them bigger. It is a compromise because the holes have to be made bigger than they should be. 
 The method was to keep the 10mm portion untouched and correct the other portions until they were concentric. This is done because the 10mm portion is responsible for generating the pull force for closing the joint. In the photos below, a custom-made tool (bronze part) was inserted into the 10mm portion of the hole and used as guidance for re-drilling the 16mm portion.
@@ -995,7 +995,7 @@ missingimage
 During the robotic assembly, the corrected holes did not appear to cause any jamming problems. The hollow screw was still able to hold the joints tightly even though the 16mm portion of the hole was enlarged. It is likely that there is still a sufficient amount of thread engagement with the screw.
 
 \subsection{Heavy Beam Caused Robot Overload}
-\label{subsection:exploration_4_heavy_beam_caused_robot_overload}
+\label{subsection:exploration-4-heavy-beam-caused-robot-overload}
 
 The two larger section beams (100mm x 140mm)were found to be too heavy for the robot to carry it from the pickup to the assembly location. It was not possible even without the screwdrivers attached.
 missingimage
@@ -1018,21 +1018,21 @@ It was found that if I kept the gripper in a top grasp (gripper opening facing d
 \end{itemize}
 
 \subsection{Screwdriver Tip Misalignment}
-\label{subsection:exploration_4_screwdriver_tip_misalignment}
+\label{subsection:exploration-4-screwdriver-tip-misalignment}
 
 Misalignment is still present when the robot aligns at the beginning of the screwing process. The problem is less severe than the previous round with the BusStop, likely because of a number of improvements:
 \begin{itemize}
-    \item Stiffer Partial Structure due to deformation-aware design \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}
-    \item Calibrated URDF for RFL robot \seeref{subsection:exploration_3_rfl_robot_inaccuracy_and_calibration}
+    \item Stiffer Partial Structure due to deformation-aware design \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}
+    \item Calibrated URDF for RFL robot \seeref{subsection:exploration-3-rfl-robot-inaccuracy-and-calibration}
     \item Pointy tip of the screwdriver more likely to land inside the hole
 \end{itemize}
 
-During the robotic assembly process, the operator stopped the system motion at around the moment where the screwdriver tip engages with the hole to visually check if the alignment is successful. The pause and resume feature was only possible in this exploration round because of the synchronisation development \seeref{subsubsection:exploration_4_synchronised_robot_and_tool_stop_signal}.
+During the robotic assembly process, the operator stopped the system motion at around the moment where the screwdriver tip engages with the hole to visually check if the alignment is successful. The pause and resume feature was only possible in this exploration round because of the synchronisation development \seeref{subsubsection:exploration-4-synchronised-robot-and-tool-stop-signal}.
 
 If the alignment was not successful, the operator can manually push the beam to help with the alignment. As long as the tip of the screw can enter the hole, the motion can be continued, and the rest of the joint closure was always a success. The photos below show some of the alignment failures where the screw tip did not enter the hole successfully. 
 missingimage
 
-The photo below shows one of the two long and heavy beams during assembly. After the compliant motion was engaged \seeref{subsection:exploration_4_compliant_control_for_robotic_arm}, the robot deviated substantially from the trajectory and had to be helped by manually supporting some of its weight.
+The photo below shows one of the two long and heavy beams during assembly. After the compliant motion was engaged \seeref{subsection:exploration-4-compliant-control-for-robotic-arm}, the robot deviated substantially from the trajectory and had to be helped by manually supporting some of its weight.
 missingimage
 
 During the assembly of the roof elements, especially during the 4-screwdriver pieces, the alignment was often poor. I suspect that this is caused by the low stiffness of Joint 6, and the payload (including the 4 screwdrivers) being close to overload. 
@@ -1042,7 +1042,7 @@ missingimage
 Similar to the problem observed in the previous section. A stronger robot will likely solve these problems.
 
 \subsection{Screwdriver Dislodge Incident}
-\label{subsection:exploration_4_screwdriver_dislodge_incident}
+\label{subsection:exploration-4-screwdriver-dislodge-incident}
 
 During the assembly of a beam with two screwdrivers, misalignment prevented the tip of one of the screwdrivers to land inside the hole (refer to the image below). This problem was not detected by the operator and the linear movement was allowed to continue. This caused one of the screwdrivers to break free from the pin gripper and come loose from the beam. Fortunately, the screwdriver was still hanging in the screw hole and did not fall out.
 
@@ -1070,10 +1070,10 @@ The operator visual check was never meant to be a permanent solution but was int
     \item Distance sensor - Ultrasound or laser time-of-flight distance sensor can be used to constantly monitor the distance between the screwdriver and the neighbouring beam.
 
 \end{itemize}
-None of these solutions was pursued within this thesis. Future work should consider risk assessment and mitigation more seriously. A more detailed discussion can be found in the discussion chapter \seeref{section:discussion_risk_assessment_of_robotic_processes}
+None of these solutions was pursued within this thesis. Future work should consider risk assessment and mitigation more seriously. A more detailed discussion can be found in the discussion chapter \seeref{section:discussion-risk-assessment-of-robotic-processes}
 
 \subsection{Pin Gripper Jammed in Locked State}
-\label{subsection:exploration_4_pin_gripper_jammed_in_locked_state}
+\label{subsection:exploration-4-pin-gripper-jammed-in-locked-state}
 
 The pin grippers were occasionally found to be stuck in the locked state after assembly. This prevented the automatic retrieval of the screwdriver using the robot. This problem occurred about ten times. In about half of those cases, the pin gripper can be remotely actuated to wiggle it back and forth, and it has a chance to free itself.
 
@@ -1092,12 +1092,12 @@ missingimage
 The pin extension mechanism and gearbox would have to be redesigned to overcome this problem. This solution was not pursued further within this thesis. Future work should consider the effect of the bending of the pin.
 
 \subsection{Screwdriver Operation was Very Slow}
-\label{subsection:exploration_4_screwdriver_operation_was_very_slow}
+\label{subsection:exploration-4-screwdriver-operation-was-very-slow}
 
 The selection of the screwdriver main motor and the worm gearbox was very conservative to ensure the motor would not suffer from the stalling problem that the clamps had (see 5.6.7 Clamp Overload). This resulted in a screw-tightening speed of only 0.7mm/s and an unscrewing speed of 0.8mm/s. 
 
 For a typical 250mm of travel, this requires 6 minutes to tighten a beam and 5.2 minutes to rewind each screwdriver during retrieval. This was the largest bottleneck of the entire demonstration.
 
 \paragraph{Possible Solution and Follow-Up}
-A better gearbox and motor choice would be able to increase the speed without sacrificing the torque output. This solution was not pursued further within this thesis. Future work should consider acquiring a torque testing machine to better characterise the torque required for tightening the screw with the joints. Note that a large safety margin is needed to accommodate the corrective force during alignment and correction \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}. 
+A better gearbox and motor choice would be able to increase the speed without sacrificing the torque output. This solution was not pursued further within this thesis. Future work should consider acquiring a torque testing machine to better characterise the torque required for tightening the screw with the joints. Note that a large safety margin is needed to accommodate the corrective force during alignment and correction \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}. 
 
