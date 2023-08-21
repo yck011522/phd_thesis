@@ -17,34 +17,33 @@ Finally, research questions are formulated in \textbf{Section 2.3 Research Quest
 \subsection{Sliding Friction}
 \label{subsection:challenges-sliding-friction}
 
-During the closure of a timber joint, surfaces between each pair of joints start to make contact. Apart from butt joints\footnote{ Definition of butt joints for this thesis are joints that do not have rubbing contact surfaces. Contact force only appears when the beam reaches its final, assembled position}, most of the joints are designed with a substantial amount of contact surfaces that will slide and rub against each other during assembly. The diagram below shows the increasing amount of rubbing surfaces in a pair of half lap joints during assembly. 
+During the closure of a timber joint, surfaces between each pair of joints start to make contact. Apart from butt joints\footnote{ Definition of butt joints for this thesis are joints that do not have rubbing contact surfaces. Contact force only appears when the beam reaches its final, assembled position}, most of the joints are designed with a substantial amount of contact surfaces that will slide and rub against each other during assembly. For example (Figure \ref{fig:rubbing-surface-in-lap-during-assembly}) , the amount of rubbing surfaces in a pair of half lap joints increases during assembly. 
 
-\begin{figure}
+\begin{figure}[h]
      \centering
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{example-image-a}
-         \caption{Sub figure caption}
+         \includegraphics[width=\textwidth]{images/02/LapJoint_4.jpg}
+         % \caption{Sub figure caption}
          %\label{fig:unique-subfigure-label}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{example-image-b}
-         \caption{Sub figure caption}
+         \includegraphics[width=\textwidth]{images/02/LapJoint_5.jpg}
+         % \caption{Sub figure caption}
          %\label{fig:unique-subfigure-label}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{example-image-c}
-         \caption{Sub figure caption}
+         \includegraphics[width=\textwidth]{images/02/LapJoint_6.jpg}
+         % \caption{Sub figure caption}
          %\label{fig:unique-subfigure-label}
      \end{subfigure}
-        \caption{Figure Caption}
-        %\label{fig:unique-figure-label}
+        \caption{Diagram of rubbing surfaces in a pair of half lap joints during assembly}
+        \label{fig:rubbing-surface-in-lap-during-assembly}
 \end{figure}
-
 
 The design of these contact surfaces are used for many different purposes. For example to introduce geometrical interlock \parencite{larssonTsugiteInteractiveDesign2020, songRecursiveInterlockingPuzzles2012}, improve load transfer \parencite{likosEffectTenonGeometry2012}, improve structural stiffness \parencite{fangJoineryConnectionsTimber2018} or to improve stability against live load \parencite{jacksobonHistoricAmericanTimber2014}. Depending on the geometry of the sliding surface (e.g. tapered vs parallel) and the quality of the machined surface (e.g. rough vs smooth surface) these rubbing surfaces introduce different amounts of sliding friction that must be overcome by force.
 
@@ -211,74 +210,145 @@ Joint Modeling and Solving refers to the computational process of creating and a
 
 Timber joints are typically modelled as a subtraction from the beam’s geometry. In many joint designs, both halves of the joints are not geometrically similar, therefore the subtraction geometries for the beams on each sides are also different. In order to ensure correct fit, it is necessary to ensure that both sides of the joint will match with each other. While this is relatively straightforward to achieve for one joint instance, a parametric joint model will need to adapt itself to different jointing angles between the beams. Because of the continuous nature of the joining angles, the model requires defining parametric geometrical relationships in 3D to create the solid models \parencite{vestartasDesigntoFabricationWorkflowRawSawnTimber2021}. In general, a parametric joint model will contain fixed properties that are dependent on the neighbouring beams, and editable properties that can be customised:
 
-\textbf{Adaptation to the intersecting beams' position, size and angle --} This adaptability allows the joint geometry to be computed automatically by the intersecting beams without explicit modelling. Thus, changing the intersecting beams’ locations can trigger an update to snap it to a new position. The images below shows a mortise and tenon joint adapting to different beam intersection angles.
+\textbf{Adaptation to the intersecting beams' position, size and angle --} This adaptability allows the joint geometry to be computed automatically by the intersecting beams without explicit modelling. Thus, changing the intersecting beams’ locations can trigger an update to snap it to a new position. Figure \ref{fig:mortise_tenon_different_angles} shows a mortise and tenon joint adapting to different beam intersection angles.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{example-image-a}
+
+
+\begin{figure}[htb]
+     \centering
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_3.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_1.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_0.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_4.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_6.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+        \caption{Example of a mortise and tenon joint adapting to different beam intersection angles}
+        \label{fig:mortise_tenon_different_angles}
 \end{figure}
 
-\textbf{Customization of detail sizes or proportions - }Even a simple lap joint model can include an adjustable parameter for the cheek depth. More complex joint topology can have many adjustable parameters. \textit{(refer to the diagram of a housed dovetail T Lap having many parameters) }These adjustments are often useful for changing the structural behaviour of the joint and may be specified or changed at a later stage of the design process during engineering calculations. The images below show a mortise and tenon joint having the same intersection angles but different topologies. The proportion of the details in each topology would require a parametric definition.
+\paragraph{Customization of detail sizes or proportions}
+Even a simple lap joint model can include an adjustable parameter for the cheek depth. More complex joint topology can have many adjustable parameters. \textit{(refer to the diagram of a housed dovetail T Lap having many parameters) }These adjustments are often useful for changing the structural behaviour of the joint and may be specified or changed at a later stage of the design process during engineering calculations. Figure \ref{fig:mortise_tenon_different_topologies} show a mortise and tenon joint having the same intersection angles but different topologies. The proportion of the details in each topology would require a parametric definition.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{example-image-a}
+\begin{figure}[htb]
+     \centering
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_0.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_9.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_10.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_7.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.19\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{images/02/Tenon_8.jpg}
+         % \caption{Sub figure caption}
+         %\label{fig:unique-subfigure-label}
+     \end{subfigure}
+        \caption{Example of a mortise and tenon joint having different topologies}
+        \label{fig:mortise_tenon_different_topologies}
 \end{figure}
 
 Different ways to parametrise a joint model can result in different behaviour during size and angle adaptations. The choice of parameterization affects not only the structural behaviour of the joint but also the range of which a joint model can deform before it becomes invalid. For example, an intersection angle adaptation may result in an undercut geometry that cannot be cut with an automatic joinery machine.
 
-Therefore it is common to consider the fabrication process and its constraints when creating a parametric joint model \parencite{vestartasDesigntoFabricationWorkflowRawSawnTimber2021}. Some joint designs are even dependent on the shape of the cutting tool. For example, the dovetail joint in the images below (left) is created by a dovetail milling cutter (below image, right). In those scenarios, it is necessary to contact the fabricator for a list of possible joint feature dimensions. 
+Therefore it is common to consider the fabrication process and its constraints when creating a parametric joint model \parencite{vestartasDesigntoFabricationWorkflowRawSawnTimber2021}. Some joint designs are even dependent on the shape of the cutting tool. For example, the dovetail joint in Figure \ref{fig:dovetail-joint} is created by a dovetail milling cutter (Figure \ref{fig:dovetail-cutter}). In those scenarios, it is necessary to contact the fabricator for a list of possible joint feature dimensions. 
 
 % 2 Horizontal Image  
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \begin{subfigure}[b]{0.49\textwidth}
+        \begin{subfigure}[b]{0.59\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image-a}
-        \caption{Sub figure caption}
-        %\label{fig:unique-subfigure-label}
+        \includegraphics[width=\textwidth]{images/02/dovetailjoint.jpg}
+        \caption{Example of a joint cut with a dovetail cutter}
+        \label{fig:dovetail-joint}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.49\textwidth}
+    \begin{subfigure}[b]{0.39\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{example-image-b}
-        \caption{Sub figure caption}
-        %\label{fig:unique-subfigure-label}
+        \includegraphics[trim=0mm 17mm 0mm 40mm, clip, width=\textwidth]{images/02/dovetailcutter.jpg}
+        \caption{Example of a dovetail cutter}
+        \label{fig:dovetail-cutter}
     \end{subfigure}
-    \caption{Figure Caption}
-    %\label{fig:unique-figure-label}
+    \caption{Example of a joint cut with a shaped cutter 
+        \footnotesize{(Photo by Hannes Plackner \parencite{HightechDovetails2014})}}
+    \label{fig:dovetail-cutter-and-joint}
 \end{figure}
 
-
-\footnotesize Photo by Hannes Plackner \parencite{HightechDovetails2014}
-
-Parametric joint models can be categorised according to what beam intersection topology it can adapt to. For example, side-side, side-end, and end-end types \parencite{vestartasJoinerySolverWhole2020}This grouping allows automatic determination of what parametric model can be used for a given beam intersection type. In addition, the grouping can also include the assembly direction of the beams relative to each other. For example, the images below show assembly direction (red) being perpendicular to the beam axis (a and b) and parallel to the beam axis (c).
+Parametric joint models can be categorised according to what beam intersection topology it can adapt to. For example, side-side, side-end, and end-end types \parencite{vestartasJoinerySolverWhole2020}This grouping allows automatic determination of what parametric model can be used for a given beam intersection type. In addition, the grouping can also include the assembly direction of the beams relative to each other. Figure \ref{fig:joint_assembly_direction} shows different joints where the assembly directions is perpendicular to the beam axis (\ref{fig:assembly-direction-tee-lap} and \ref{fig:assembly-direction-cross-lap}) and parallel to the beam axis (\ref{fig:assembly-direction-mortise-tenon}).
 
 % 3 Horizontal Image  
-\begin{figure}
+\begin{figure}[htb]
      \centering
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{example-image-a}
-         \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         \includegraphics[width=\textwidth]{images/02/TeeLap_6_witharrows.jpg}
+         \caption{Tee Lap Joint}
+         \label{fig:assembly-direction-tee-lap}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{example-image-b}
-         \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         \includegraphics[width=\textwidth]{images/02/CrossLap_6_witharrows.jpg}
+         \caption{Cross Lap Joint}
+         \label{fig:assembly-direction-cross-lap}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{example-image-c}
-         \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         \includegraphics[width=\textwidth]{images/02/Tenon_6_witharrows.jpg}
+         \caption{Mortise Tenon Joint}
+         \label{fig:assembly-direction-mortise-tenon}
      \end{subfigure}
-     \caption{Figure Caption}
-     %\label{fig:unique-figure-label}
+     \caption{Assembly direction of different joint types. Red arrow indicates the direction of movement of the light-blue piece during assembly.}
+     \label{fig:joint_assembly_direction}
 \end{figure}
 
 

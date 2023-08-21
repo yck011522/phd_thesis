@@ -45,10 +45,18 @@ Additionally, it is possible to include metal components in integral timber join
 This is more common in contemporary design, where metal screws, dowels and tie rods are used to improve joint capacity or to reduce the need to cut complicated joinery.
 For the purpose of studying automatic assembly, integral timber joints provide a unique advantage because they can be prefabricated with high accuracy \seeref{subsubsection:introduction-automatic-machining-of-timber-joints} and are quick to install.
 In this thesis, the assembly of dry-fitted joints both with and without fasteners is explored.
-As of today, there is no single consensus in the nomenclature of timber joints as different cultures have historically named their joints using different methods \parencite{satoCompleteJapaneseJoinery1995,seikeArtJapaneseJoinery1977a,sumiyoshiWoodJointsClassical1991}. The first naming convention (commonly used in American and European traditions) is based on the location of the joint and the structural elements it connects to, for example, ‘floor joist joint’ or ‘tying joint below plate’. The second naming convention is based on the joint's geometrical features, for example, ‘dovetail joint’ or ‘scarf lap joint’. Some unique joint designs could also be named according to the use in a famous building. For example, Osaka-jo-otemon-hikae-bashira-tsugite refers to Osaka Castle-Otemon Gate's pillar splice. For the purpose of studying assembly problems, this thesis proposes the use of a different convention that is based on the assembly direction related to the joint \seeref{subsection:exploration-1-lap-joint-classification-by-assembly-direction}.
-The photo below shows timber frame components being assembled on the ground. Notice the use of large timber sizes and integral timber joints. 
 
-(Credits: CC AS 4.0 Licence photo by Georg Hefter - Traditionelles Fachwerk und Timberframe im Vergleich auf georghefter.de)
+As of today, there is no single consensus in the nomenclature of timber joints as different cultures have historically named their joints using different methods \parencite{satoCompleteJapaneseJoinery1995,seikeArtJapaneseJoinery1977a,sumiyoshiWoodJointsClassical1991}. The first naming convention (commonly used in American and European traditions) is based on the location of the joint and the structural elements it connects to, for example, ‘floor joist joint’ or ‘tying joint below plate’. The second naming convention is based on the joint's geometrical features, for example, ‘dovetail joint’ or ‘scarf lap joint’. Some unique joint designs could also be named according to the use in a famous building. For example, Osaka-jo-otemon-hikae-bashira-tsugite refers to Osaka Castle-Otemon Gate's pillar splice. For the purpose of studying assembly problems, this thesis proposes the use of a different convention that is based on the assembly direction related to the joint \seeref{subsection:exploration-1-lap-joint-classification-by-assembly-direction}.
+
+Figure \ref{fig:example-timber-frame-on-ground} shows timber frame components being assembled on the ground. Notice the use of large timber sizes and integral timber joints. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\textwidth]{images/01/Fachwerk_Abbund.jpg}
+    \caption{Example of timber frame components being assembled on the ground. \\
+        \footnotesize{(Credits: CC AS 4.0 Licence photo by Georg Hefter - Traditionelles Fachwerk und Timberframe im Vergleich auf georghefter.de)}}
+    \label{fig:example-timber-frame-on-ground}
+\end{figure}
 
 \subsubsection{Post and Beam Structure}
 \label{subsubsection:introduction-post-and-beam-structure}
@@ -56,13 +64,17 @@ The photo below shows timber frame components being assembled on the ground. Not
 The third defining characteristic of timber frame construction is post-and-beam structural framing \parencite{jacksobonHistoricAmericanTimber2014,sobonTimberFrameConstruction1984}. The use of large timber sizes in timber frame structures allows them to be strong enough without the use of continuous load-bearing walls. The main benefit is the flexible arrangement of floors and walls to suit different architectural programmes. 
 On the other hand, integral timber joints are generally weak in rotational stiffness, causing the joints to behave kinematically. Therefore, diagonal bracing is often introduced to fully or partially triangulate the structure to improve structural stiffness. Being limited by the joint design, these bracings function primarily in compression. It is, therefore, common to design the bracings in complementary pairs to resist dynamic wind loads coming from opposing directions. While some architectural designs may find the intrusion of diagonal bracings obtrusive to usable space, these diagonal bracings are highlighted on the facade as ornamentation in half timber designs \parencite{gernerFachwerkEntwicklungGefuege1979}. In this thesis, the demonstration structures are designed with similar structural principles, specifically the use of structural triangulation in the design offered unique stability advantages during the robotic construction process \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation} \seeref{subsubsection:exploration-4-global-correction-approach}.
 
-The image below shows an example of a half-timber style timber frame house in Soest, Germany. Notice the exposed diagonal elements on the facade.
+Figure \ref{fig:half-timber-frame-example} shows an example of a half-timber style timber frame house in Soest, Germany. Notice the exposed diagonal elements on the facade.
 
-\begin{figure}[ht]
-    \includegraphics[width=1.0\textwidth]{example-image-a}
-    \caption{
-        Credits: Licence-free photo, retrieved from \url{https://www.hippopx.com/en/germany-soest-architecture-timber-framed-half-timbered-house-square-city-402214} , n.d.}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\textwidth]{images/01/germany-soest-architecture-timber-framed-preview.jpg}
+    \caption{example of a half-timber style timber frame house. \\
+        \footnotesize{(Credits: Licence-free photo, retrieved from \url{https://www.hippopx.com/en/germany-soest-architecture-timber-framed-half-timbered-house-square-city-402214} , n.d.)}}
+    \label{fig:half-timber-frame-example}
 \end{figure}
+
+
     
 \subsection{Current Practice of Timber Frame Construction}
 \label{subsection:introduction-current-practice-of-timber-frame-construction}
@@ -125,7 +137,7 @@ This section will present a brief history of how the timber construction industr
 \subsection{Automation from Manufacturing to Construction}
 \label{subsection:introduction-automation-from-manufacturing-to-construction}
 
-The beginning of automation started with the manufacturing industry. It involves the use of machinery or computer systems to perform tasks that would otherwise be done by human labour. Without going into details, it typically involves the use of sensors, actuators and control systems to reduce or eliminate the need for human intervention \parencite{nofSpringerHandbookAutomation2009}. It has become a widely adopted practice in the manufacturing industry due to its benefits such as increased efficiency, improved quality, and reduced costs. With automation, the production process can run 24/7, leading to a predictable production schedule and reducing the need for manual labour. 
+The beginning of automation started with the manufacturing industry. It involves the use of machinery or computer systems to perform tasks that would otherwise be done by human labour. Without going into details, it typically involves the use of sensors, actuators and control systems to reduce or eliminate the need for human intervention \parencite{nofSpringerHandbookAutomation2009}. It has become a widely adopted practice in the manufacturing industry due to its benefits such as increased efficiency, improved quality, and reduced costs. With automation, the production process can run continuously with a predictable production schedule.
 
 The successful implementation of automation is closely tied to the design and operation of production machines. Since the beginning of industrial automation, automatic machines have undergone several evolutions that are characterised by their features, modes of operations and benefits. Early automatic machines were mechanical systems that performed repetitive fixed operations. Their motions were often defined mechanically through the use of components such as linkages, cams and conveyor belts. Because of this, their motions cannot be easily modified without changing parts. These machines favour high-volume, low variability products that represent the mass-production paradigm of Industry 2.0
 \footnote{ The First Industrial Revolution, aka. Industry 1.0, began in the late 18th century where mass production was carried out by machines powered by water and steam.}.
@@ -135,7 +147,8 @@ Invented in the 1950s and popularised in the 1960s, Computer Numeric Control (CN
 
 The adoption of automatic machines has changed the nature of work from labourers to operators and increasingly towards engineers and programmers \parencite{nobleForcesProductionSocial1986}. While this shift may be difficult for workers unable to acquire a new skill set, it improves the general labour working conditions in the longer term \parencite{stromquistWorldDevelopmentReport2019}. For example, by reducing repetitive manual tasks or avoiding working in dangerous environments. 
 
-\subsubsection{A Factory for Making Buildings}
+\paragraph{A Factory for Making Buildings}
+
 \label{subsubsection:introduction-a-factory-for-making-buildings}
 
 At a larger scale, the concept of automation can be applied to connect different machines together to autonomously regulate production flow. There are two types of connections involved, the first is physical connections, such as using conveyor belts and robotic arms to move parts between machines. The second is logical connections, such as programmable logic controllers forming complex logic networks. In extreme cases, the term ‘lights-out factory’ or ‘automatic factory’ was used to describe large production facilities that are able to sustain continuous production with very few or infrequent operator involvements \parencite{nobleForcesProductionSocial1986,walkerAutomaticFactoryCase1957}. 

@@ -14,19 +14,21 @@ In this thesis, an exploratory research method was used. The first reason is the
 \section{Research by Iterative Development}
 \label{section:methodology-research-by-iterative-development}
 
-The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \seeref{subsection:methodology-setting-research-goals}. The following flowchart summarises the iterative loops across the development rounds. 
+The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \seeref{subsection:methodology-setting-research-goals}. The flowchart in figure \ref{fig:thesis-exploration-flowchart} summarises the iterative process in the exploration rounds. 
 
+\FloatBarrier
 % 1 Image  
-\begin{figure}
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.99\textwidth]{example-image-a}
-    \caption{Figure Caption}
-    %\label{fig:unique-figure-label}
+    \includegraphics[width=0.99\textwidth]{images/03/Research by Iterative Exploration.pdf}
+    \caption{Thesis Exploration Flowchart}
+    \label{fig:thesis-exploration-flowchart}
 \end{figure}
+\FloatBarrier
 
 Within each \textbf{Development Phase}, small scale tests were performed and the technology was improved until it was ready for a full systematic test \seeref{subsection:methodology-technology-development}. 
 
-The full full systematic test was performed by designing and constructing a \textbf{Demonstrator Structure} \seeref{subsection:methodology-demonstraror-design}. 
+The full systematic test was performed by designing and constructing a \textbf{Demonstrator Structure} \seeref{subsection:methodology-demonstraror-design}. 
 
 During the \textbf{Construction Phase}, certain adjustments of the process parameters are also possible. Afterwhich, the follow-up actions are determined for the next exploration round \seeref{subsection:methodology-observations-and-interpretation}.
 
@@ -35,85 +37,67 @@ During the \textbf{Construction Phase}, certain adjustments of the process param
 
 At the beginning of the first iteration, the goal was to design and prototype an assembly process and to test it with experiments. As new insights and discoveries are made, subsequent development iterations are guided by the discoveries and include follow-up explorations whenever necessary. Below is a summary of the goals in each phase:
 
-\begin{itemize}
+\newcommand{\explorationbullet}{\raisebox{.10ex}{\large$\bullet$}}
+
+\begin{description}[style=standard] % Environment provided enumitem package
+
+    \item [Exploration Round 1 - Clamp Prototype] A minimal demonstration of the robotic clamp concept is developed to verify the process. The hardware being developed is only capable of assembling one type of lap joints with fixed dimensions. Nevertheless, it successfully performed the task and revealed opportunities for further improvements. \seeref{chapter:exploration-round-1}
     
-    \item \textbf{Exploration Round 1 - Clamp Prototype --} A minimal demonstration of the robotic clamp concept is developed to verify the process. The hardware being developed is only capable of assembling one type of lap joints with fixed dimensions. Nevertheless, it successfully performed the task and revealed opportunities for further improvements. \textit{(link to Chapter \ul{4 Exploration Round 1 - Clamp Prototype)}}
+    \item [Exploration Round 2 - Bus Stop Demonstrator] The initial proof-of-concept clamp is redesigned to accommodate joints with different angles. Software is also developed to generate robot trajectory, control the robot arm, and control the robotic clamps wirelessly. Finally, a high level controller is developed to synchronise motion between the robotic arm and robotic clamps - an important aspect of the assembly process. The entire system was validated through the construction of a timber frame structure with 40 elements. \seeref{chapter:exploration-round-2}
     
-    \item \textbf{Exploration Round 2 - Bus Stop Demonstrator --} The initial proof-of-concept clamp is redesigned to accommodate joints with different angles. Software is also developed to generate robot trajectory, control the robot arm, and control the robotic clamps wirelessly. Finally, a high level controller is developed to synchronise motion between the robotic arm and robotic clamps - an important aspect of the assembly process. The entire system was validated through the construction of a timber frame structure with 40 elements. \textit{(link to Chapter \ul{5 Exploration Round 2 - Bus Stop Demonstrator)}}
-    
-    \item \textbf{Exploration Round 3 - Automatic Clamp Placement --} This phase completes the automation for mechanical tasks that are identified as low priority in the previous two phases. One of the highlights is the automatic placement and retrieval of robotic clamps on the structure. In addition, task planning and motion planning algorithms were introduced to study the automation of parsing designs to create robotic assembly programmes. The completed fully automatic assembly system was validated by reassembling the last demonstrator in a fully automatic manner.  \textit{(link to Chapter \ul{6 Exploration Round 3 - Automatic Clamp Placement)}}
+    \item [Exploration Round 3 - Automatic Clamp Placement] This phase completes the automation for mechanical tasks that are identified as low priority in the previous two phases. One of the highlights is the automatic placement and retrieval of robotic clamps on the structure. In addition, task planning and motion planning algorithms were introduced to study the automation of parsing designs to create robotic assembly programmes. The completed fully automatic assembly system was validated by reassembling the last demonstrator in a fully automatic manner.  \seeref{chapter:exploration-round-3}
  
-    \item \textbf{Exploration Round 4 - HyparHut Demonstrator --} This phase consists of a UI upgrade to improve interactive modelling in the CAD environment, the introduction of a fabrication-aware design workflow, and the introduction of a new robotic screwdriver. The new screwdriver allows the assembly of non-planar lap joints and can accommodate timber beams with different profile sizes. This vastly expands the design possibilities for timber frame structures that can be assembled by the automatic process. The new system was validated with the assembly of a structure with a hyperbolic paraboloid roof. One other highlight was the introduction of a vision based alignment process for improving the success rate for the robotic arm to pick up and place tools. \textit{(link to Chapter \ul{7 Exploration Round 4 - HyparHut) }}
-    \item \textbf{Exploration Round 5 - CantiBox Demonstrator --} By this round, the robotic assembly process had already achieved a high degree of automation and required little human intervention. The study was therefore expanded to integrate cutting-edge design methods with collaborators in two different fields. The first is structurally-informed joint design using novel design methods that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. The second is automated task and motion planning using PDDLStream to optimise redundant tasks and robotic motions. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. The combined technology was validated with the assembly of a structure with three modular boxes, each containing clamped and screwed joints. This also saw the largest amount of tools being used by the robotic assembly process, which provided insight for the future of the system. \textit{(link to Chapter \ul{8 Exploration Round 5 - Cantibox)}}
+    \item [Exploration Round 4 - HyparHut Demonstrator] This phase consists of a UI upgrade to improve interactive modelling in the CAD environment, the introduction of a fabrication-aware design workflow, and the introduction of a new robotic screwdriver. The new screwdriver allows the assembly of non-planar lap joints and can accommodate timber beams with different profile sizes. This vastly expands the design possibilities for timber frame structures that can be assembled by the automatic process. The new system was validated with the assembly of a structure with a hyperbolic paraboloid roof. One other highlight was the introduction of a vision based alignment process for improving the success rate for the robotic arm to pick up and place tools. \seeref{chapter:exploration-round-4}
+    
+    \item [Exploration Round 5 - CantiBox Demonstrator] By this round, the robotic assembly process had already achieved a high degree of automation and required little human intervention. The study was therefore expanded to integrate cutting-edge design methods with collaborators in two different fields. The first is structurally-informed joint design using novel design methods that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. The second is automated task and motion planning using PDDLStream to optimise redundant tasks and robotic motions. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. The combined technology was validated with the assembly of a structure with three modular boxes, each containing clamped and screwed joints. This also saw the largest amount of tools being used by the robotic assembly process, which provided insight for the future of the system. \seeref{chapter:exploration-round-5}
  
-\end{itemize}
+\end{description}
 \subsection{Technology Development}
 \label{subsection:methodology-technology-development}
 
 The robotic assembly process required the development of novel hardware and software that form systems and subsystems that are interdependent in their operations. Below is an overview of the development categories showing their multidisciplinary nature. The software tools that are used for their development are listed in the bracket. 
 
-\begin{itemize}
-	\item \textbf{Mechatronics}
-
+\begin{description}[nosep]
+	\item \textbf{Mechatronics Design}
     \begin{itemize}
     	\item Robotic arm attachment hardware design (Rhinoceros 3D) 
-    
     	\item Robotic clamp and screwdriver hardware design (Rhinoceros 3D) 
-    
     	\item Robotic clamp and screwdriver electronics design (EAGLE)
-    
     	\item Other static hardware supporting construction (Rhinoceros 3D) 
-    
     \end{itemize}
     
-	\item \textbf{Software for CAD}
-
+	\item \textbf{Software for Computer-Aided-Design (CAD)}
     \begin{itemize}
     	\item CAD library for modelling timber parts and their assembly (Python)
-    
     	\item Design validation tools (Python)
-    
     	\item User Interface (UI) for interactive design modelling and validation (Python in Rhinoceros 3D) 
-    
     	\item CAM library for modelling robotic tools and their actions (Python)
-    
     \end{itemize}
     
-    \item \textbf{Software for CAM}
-
+    \item \textbf{Software for Computer-Aided-Manufacturing (CAM)}
     \begin{itemize}
-    	\item Interface with task and motion planning software (Python) \textit{(footnote: in collaboration with YiJiang Huang)}
-    
+    	\item Interface with task and motion planning software (Python) \footnote{In collaboration with YiJiang Huang (MIT)}
     \end{itemize}
     
-     \item \textbf{Software for control and execution}
-
+    \item \textbf{Software for control and execution}
     \begin{itemize}
     	\item Robotic clamp and screwdriver firmware (C++)
-    
     	\item Wireless communication firmware (C++)
-    
     	\item Robotic arm and robotic tools synchronisation controller (Python, ROS)
-    
     	\item Task execution and process monitoring software (Python)
-    
     \end{itemize}
-\end{itemize}
+\end{description}
 
 During development, multiple technical solutions can often be used to achieve a particular goal. The principle for selecting a specific option included the following criteria: 
 
-\begin{enumerate}
+\begin{enumerate}[nosep]
 	\item The cost of implementation is reasonable in the architectural construction context, and testing costs can be afforded by the given research budget.
-
 	\item The implementation can be tested and observed within our laboratory.
-
 	\item Software and hardware dependency is open source.
-
-	\item The implementation is potentially generalisable. (e.g. a tool that can assemble more types of joints)
-
+	\item The implementation is potentially generalisable (e.g. a tool that can assemble more types of joints).
 	\item The implementation is compatible with existing industrial practices or norms. (e.g. working with existing construction-grade tolerance instead of demanding a car-component-like accuracy) 
-
 \end{enumerate}
+
 Given the complexity of the AEC industry and its tendency to resist systematic changes, these principles guided the research direction towards finding implementable solutions with high impact.
 
 \subsection{Demonstrator Design}
@@ -121,15 +105,11 @@ Given the complexity of the AEC industry and its tendency to resist systematic c
 
 At the end of development phase 2, 4 and 5, the developed assembly process was observed and evaluated by the construction of a prototype structure. This is often called a demonstrator in the field of digital fabrication research. In total, there were three real-scale (1-to-1) demonstrators designed for this thesis. For the purpose of technical evaluation, the use of real-scale experiments revealed issues that were otherwise not observable in a computer simulation or a small-scale test. From the perspective of architectural design, the demonstrators served as a design study that can be experienced in person. Because of the high material cost and long preparation time required to construct such a demonstrator, each of them serves multiple investigation purposes to maximise the knowledge that can be extracted. Below is a list of design guidelines used when designing the demonstrators:
 
-\begin{enumerate}
+\begin{enumerate}[nosep]
 	\item The structure can be constructed with the developed system.
-
 	\item The structure fits within our laboratory.
-
 	\item The structure can demonstrate the flexibility of the assembly system (e.g. different types of joints, different joint angles, different element sizes, and different numbers of elements).
-
 	\item The structures should present various difficulties for the assembly system (e.g. assembling very long elements, reaching into a congested space, joints very close to the ground or very high, many simultaneously assembled joints).
-
 	\item The structures should contain various types of load-bearing elements (e.g. columns, floor beams, joists, diagonal bracings, rafters).
 
 \end{enumerate}
@@ -144,17 +124,21 @@ The timber parts used for the demonstrators were ordered from an industrial timb
 \subsection{Observations and Interpretation}
 \label{subsection:methodology-observations-and-interpretation}
 
-The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters 6 to 10). Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \seerefii{section:methodology-epistemological-assumptions}{section:methodology-axiological-assumptions}. 
+The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters \ref{chapter:exploration-round-1} to \ref{chapter:exploration-round-5}). 
+
 
 % 1 Image  
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.99\textwidth]{example-image-a}
-    \caption{Figure Caption}
-    %\label{fig:unique-figure-label}
+    \includegraphics[width=0.99\textwidth]{images/03/Observation to followup actions.pdf}
+    \caption{Workflow from observation to interpretation and follow-up actions}
+    \label{fig:observation_andinterpretation_workflow}
 \end{figure}
 
-The diagram above shows different types of follow-up actions. For example, an observation may suggest new technology developments to improve the robotic assembly system. In some cases, further studies may be necessary to verify a causal relationship where the interpretations may be inconclusive. This can be caused by the scarcity of observations or the lack of scientific controls. Some other problems may require a design solution rather than a technological one, which can be addressed by formulating design guidelines or by creating automatic design checks. 
+
+Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \seerefii{section:methodology-epistemological-assumptions}{section:methodology-axiological-assumptions}. 
+
+Figure \ref{fig:observation_andinterpretation_workflow} shows different types of follow-up actions. For example, an observation may suggest new technology developments to improve the robotic assembly system. In some cases, further studies may be necessary to verify a causal relationship where the interpretations may be inconclusive. This can be caused by the scarcity of observations or the lack of scientific controls. Some other problems may require a design solution rather than a technological one, which can be addressed by formulating design guidelines or by creating automatic design checks. 
 
 Note that some of the follow-up actions, such as adjusting software and tuning operation parameters, can be performed within the same exploration round. On the other hand, during the construction phase, the prefabricated timber parts cannot be modified easily and issues related to the demonstrator design can only be addressed in the next iteration. In addition, mechatronic and hardware issues often require substantially longer time to resolve. These problems were mostly addressed in the next round. 
 
@@ -209,54 +193,51 @@ Throughout this thesis, I collaborated with domain experts for some technologica
 
 The following five chapters (chapter 4 to 8) are written in chronological order corresponding to five development rounds. This is important for understanding the exploration as an evolution between experiments and observations.  Each chapter contains the following sections:
 
-\begin{itemize}
-    % 
-	\item \textbf{Goal --} Identify the goal and scope for the entire exploration round
-
-	\item \textbf{Background --} Background knowledge needed to understand the rationale for some of the development.
-
-	\item \textbf{Development --} Technical description of the developed hardware and software. Some topics include the tests that were performed during development.
-
-	\item \textbf{Lesson Learnt --} Observations, findings and interpretations related to the robotic construction demonstration. Some topics include hypotheses of possible cause(s), possible solution(s) and the follow-up action(s) taken. 
+\begin{description}
+	\item [1. Goal] Identify the goal and scope for the entire exploration round
+	\item [2. Background] Background knowledge needed to understand the rationale for some of the development.
+	\item [3. Development] Technical description of the developed hardware and software. Some topics include the tests that were performed during development.	
+    \item [4. Demonstration] Systematic test was performed by designing and constructing a demonstrator structure.
+	\item [5. Lesson Learnt] Observations, findings and interpretations related to the robotic construction demonstration. Some topics include hypotheses of possible cause(s), possible solution(s) and the follow-up action(s) taken. 
+\end{description}
 
 Readers who are interested only in a specific theme may find the following guide helpful for identifying a specific section. Note that this list is not exhaustive. 
 
+\begin{itemize}
+
 	\item \textbf{Distribute Robotic Tools (DiRT) assembly method}
 
-\begin{itemize}
-	\item \textbf{Initial working hypothesis} of the DiRT clamps assembly method \seeref{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1}
-
-	\item \textbf{Operation method revised} after initial test \seeref{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2}
-
-	\item \textbf{Operation method with screwdrivers} \seeref{subsection:exploration-4-flowchart-for-screwdriver-assembly}
-
-	\item \textbf{Operation method with clamps and screwdrivers }\seeref{subsection:exploration-5-combined-operation-of-clamps-and-screwdrivers}
-
-	\item \textbf{Generalised operation principle} \seeref{section:discussion-generalised-dirt-system}
-
-\end{itemize}
+    \begin{itemize}
+    	\item \textbf{Initial working hypothesis} of the DiRT clamps assembly method \seeref{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1}
+    
+    	\item \textbf{Operation method revised} after initial test \seeref{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2}
+    
+    	\item \textbf{Operation method with screwdrivers} \seeref{subsection:exploration-4-flowchart-for-screwdriver-assembly}
+    
+    	\item \textbf{Operation method with clamps and screwdrivers }\seeref{subsection:exploration-5-combined-operation-of-clamps-and-screwdrivers}
+    
+    	\item \textbf{Generalised operation principle} \seeref{section:discussion-generalised-dirt-system}
+    
+    \end{itemize}
 	\item \textbf{Two Types of DiRT Assembly Tools}
 
-\begin{itemize}
-
-	\item \textbf{Clamp }for planar lap joints
-
     \begin{itemize}
-    	\item Hardware \seeref{subsection:exploration-2-lap-clamp-cl3-hardware}
-    	\item Electronics \seeref{subsection:exploration-2-cl3-clamp-electronics}
-    	\item Firmware \seeref{subsection:exploration-2-cl3-firmware}
+
+        \item \textbf{Clamp }for planar lap joints
+
+        \begin{itemize}[nosep]
+        	\item Hardware \seeref{subsection:exploration-2-lap-clamp-cl3-hardware}
+        	\item Electronics \seeref{subsection:exploration-2-cl3-clamp-electronics}
+        	\item Firmware \seeref{subsection:exploration-2-cl3-firmware}
+        \end{itemize}
+        \item \textbf{Screwdriver }for planar and non-planar lap joints 
+
+        \begin{itemize}[nosep]
+        	\item Hardware \seeref{subsection:exploration-4-lap-screwdriver-sl1-and-sl1-g200-hardware}
+        	\item Electronics \seeref{subsection:exploration-4-sl1-screwdriver-electronics}
+        	\item Firmware \seeref{subsection:exploration-4-screwdriver-firmware-l1-control}
+        \end{itemize}
     \end{itemize}
-    \item \textbf{Screwdriver }for planar and non-planar lap joints 
-
-\begin{itemize}
-	\item Hardware \seeref{subsection:exploration-4-lap-screwdriver-sl1-and-sl1-g200-hardware}
-
-	\item Electronics \seeref{subsection:exploration-4-sl1-screwdriver-electronics}
-
-	\item Firmware \seeref{subsection:exploration-4-screwdriver-firmware-l1-control}
-
-\end{itemize}
-\end{itemize}
 	\item \textbf{Other DiRT supporting hardware}
 
 \begin{itemize}
@@ -264,7 +245,7 @@ Readers who are interested only in a specific theme may find the following guide
 
 	\item \textbf{Gripper}
 
-\begin{itemize}
+\begin{itemize}[nosep]
 	\item Short Parallel Gripper \seeref{subsection:exploration-2-parallel-gripper-pg500-and-pg1000}
 
 	\item Long Parallel Gripper \seeref{subsection:exploration-4-parallel-gripper-pg1500-for-long-beams}
@@ -275,70 +256,58 @@ Readers who are interested only in a specific theme may find the following guide
 	\item \textbf{Docking Adapter}
 
 \begin{itemize}
-	\item \seeref{subsection:exploration-4-docking-adapter-lock-sensor}
+	\item Docking Sensor \seeref{subsection:exploration-4-docking-adapter-lock-sensor}
 
 \end{itemize}
 	\item \textbf{Camera Alignment System}
 
-\begin{itemize}
-	\item \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}
-
-	\item \seeref{subsection:exploration-4-camera-marker-hardware-on-docking-adapter}
-
-	\item \seeref{subsection:exploration-5-camera-marker-hardware-on-cl3-clamp}
-
-	\item \seeref{subsubsection:exploration-4-visual-guided-docking-process}
-
-\end{itemize}
+        \begin{itemize}[nosep]
+        	\item Alignment and Correction Concept \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}
+        	\item Camera on Docking Adapter \seeref{subsection:exploration-4-camera-marker-hardware-on-docking-adapter}
+        	\item Camera on CL3 Clamp \seeref{subsection:exploration-5-camera-marker-hardware-on-cl3-clamp}
+        	\item Docking Process \seeref{subsubsection:exploration-4-visual-guided-docking-process}
+        
+        \end{itemize}
 \end{itemize}
 	\item \textbf{Design Software and Workflow}
 
-\begin{itemize}
-	\item \textbf{Design and Modeling Frontend}
+    \begin{itemize}
+    	\item \textbf{Design and Modeling Frontend}
+    
+        \begin{itemize}[nosep]
+        	\item \textbf{Design UI in Rhino Grasshopper} \seeref{subsection:exploration-2-cad-cam-user-interface}
+        	\item \textbf{Design UI (revised) in Rhino Python } \seeref{subsection:exploration-3-design-software-implementation-in-rhino-python}
+        	\item \textbf{Process Design Visualization} \seeref{subsubsection:exploration-3-process-visualization-and-adjustment}
+        \end{itemize}
+        
+    	\item \textbf{Backend}
+        \begin{itemize}[nosep]
+            \item \textbf{Assembly Model} \seeref{subsection:exploration-2-assembly-model-data-structure-and-functions}
+            \item \textbf{Process Model} \seeref{subsection:exploration-3-process-design-workflow}
+        \end{itemize}
+        
+    	\item \textbf{Conceptual}
+        \begin{itemize}[nosep]
+        	\item Deformation Awareness and Error Correction \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}
+        	\item Global Error Correction \seeref{subsubsection:exploration-4-global-correction-approach}
+        \end{itemize}
+    \end{itemize}
 
-\begin{itemize}
-	\item \textbf{Design UI in Rhino Grasshopper} \seeref{subsection:exploration-2-cad-cam-user-interface}
-
-	\item \textbf{Design UI (revised) in Rhino Python } \seeref{subsection:exploration-3-design-software-implementation-in-rhino-python}
-
-	\item \textbf{Process Design Visualization} \seeref{subsubsection:exploration-3-process-visualization-and-adjustment}
-
-\end{itemize}
-	\item \textbf{Backend}
-
-\begin{itemize}
-	\item \textbf{Assembly Model} \seeref{subsection:exploration-2-assembly-model-data-structure-and-functions}
-
-	\item \textbf{Process Model} \seeref{subsection:exploration-3-process-design-workflow}
-
-\end{itemize}
-	\item \textbf{Conceptual}
-
-\begin{itemize}
-	\item \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}
-
-	\item \seeref{subsubsection:exploration-4-global-correction-approach}
-
-\end{itemize}
-\end{itemize}
-\end{itemize}
-
-\begin{itemize}
 	\item \textbf{Task and Motion Planning }workflow \seeref{subsection:exploration-3-process-design-workflow}
 
-\begin{itemize}
-	\item \textbf{Narrow Passage Problem } \seeref{subsection:exploration-2-narrow-passage-problem}
-
-	\item \textbf{Fast Check by IK} \seeref{subsection:exploration-4-fast-design-validation-with-ik-check}
-
-	\item \textbf{Fast Check by LMG Planning} \seeref{subsection:exploration-4-planning-order-by-motion-group}
-
-	\item \textbf{Non-sequential MMMP Solver} \seeref{subsection:exploration-3-taught-configuration-for-repetitive-targets}
-
-\end{itemize}
+    \begin{itemize}
+    	\item \textbf{Narrow Passage Problem } \seeref{subsection:exploration-2-narrow-passage-problem}
+    
+    	\item \textbf{Fast Check by IK} \seeref{subsection:exploration-4-fast-design-validation-with-ik-check}
+    
+    	\item \textbf{Fast Check by LMG Planning} \seeref{subsection:exploration-4-planning-order-by-motion-group}
+    
+    	\item \textbf{Non-sequential MMMP Solver} \seeref{subsection:exploration-3-taught-configuration-for-repetitive-targets}
+    
+    \end{itemize}
 	\item \textbf{Three Demonstration Structures Constructed}
 
-\begin{itemize}
+\begin{itemize}[nosep]
 	\item \textbf{BusStop }Pavilion \seeref{subsection:exploration-2-demonstrator-design-busstop-pavilion}
 
 	\item \textbf{HyparHut }Pavilion \seeref{subsection:exploration-4-demonstrator-design-hyparhut-pavilion}
