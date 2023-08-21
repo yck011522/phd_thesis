@@ -9,9 +9,9 @@ The key contribution of this thesis are
 \begin{enumerate}
 	\item Developed the \textbf{distributed robotic tool (DiRT) concept} into a proof-of-concept system for the \textbf{assembly of timber frame structures with integral timber joints}. 
 	\begin{enumerate}
-		\item Explored the \textbf{flexibility of the DiRT concept} in accommodating different variations of lap joints and different timber sizes, with and without fasteners. \textit{(see \ul{5.3.4 Lap Clamp CL3 Hardware} and \ul{7.3.7 Lap Screwdriver SL1 and SL1\_G200 Hardware})}
+		\item Explored the \textbf{flexibility of the DiRT concept} in accommodating different variations of lap joints and different timber sizes, with and without fasteners \seerefii{subsection:exploration_2_lap_clamp_cl3_hardware}{subsection:exploration_4_lap_screwdriver_sl1_and_sl1_g200_hardware}.
 
-		\item Identified two different solutions to improve structural \textbf{stability during construction}. \textit{(see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation}, \ul{7.5.2.6 Global Correction Approach}, and \ul{8.3.2 Scaffolding Support During Assembly})}
+		\item Identified two different solutions to improve structural \textbf{stability during construction}. \seerefiii{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}{subsubsection:exploration_4_global_correction_approach}{subsection:exploration_5_scaffolding_support_during_assembly}
 
 		\item Formalised the basic mechatronic components of a \textbf{generalised DiRT system} that can be applied beyond the scope of timber assembly. \textit{(see \ul{10.3.1 Designing new DiRT Tools})}
 
@@ -21,7 +21,7 @@ The key contribution of this thesis are
 
 		\item Identified tasks and responsibilities for\textbf{ system designers, production engineers, and operators} for deploying the DiRT system. \textit{(see \ul{10.1 Response to Research Questions})}
 
-		\item Developed a vision-based docking alignment strategy that is compatible with \textbf{offline pre-planned robotic trajectory} by making \textbf{localised adjustments} online. \textit{(see \ul{7.3.14 Camera-Marker Alignment Correction System})}
+		\item Developed a vision-based docking alignment strategy that is compatible with \textbf{offline pre-planned robotic trajectory} by making \textbf{localised adjustments} online \seeref{subsection:exploration_4_camera_marker_alignment_correction_system}.
 
 	\end{enumerate}
 
@@ -29,12 +29,12 @@ The key contribution of this thesis are
 	\begin{enumerate}
 		\item Identified data structures for modelling robotically fabricated structures, allowing effective modelling of the robotic process at different levels of detail down to each joint. \textit{(see \ul{5.3.13 Assembly Model Data Structure and Functions})}
 
-		\item Identified key software features to support fabrication-aware design workflows, such as process simulation, visualisation and design validation. \textit{(see \ul{5.3.14 CAD / CAM User Interface} and \ul{6.3.5.6 Process Visualization and Adjustment})}
+		\item Identified key software features to support fabrication-aware design workflows, such as process simulation \seeref{subsection:exploration_2_cad_cam_user_interface}, visualisation \seeref{subsubsection:exploration_3_process_visualization_and_adjustment} and design validation \seeref{subsection:exploration_4_fast_design_validation_with_ik_check}.
 
 		\item Developed methods for formulating robotic assembly problems for task and motion planning. \textit{(in collaboration with Yijiang Huang)} 
 
 		\begin{enumerate}
-			\item An easy-to-use flowchart method for manual task planning in combination with an automatic non-sequential solver for coupled motion planning problems. (Manual task planning with automated motion planning) \textit{(see \ul{6.3.5.1 Task Planning with Flowchart})}
+			\item An easy-to-use flowchart method for manual task planning \seeref{subsubsection:exploration_3_task_planning_with_flowchart} in combination with an automatic non-sequential solver \seeref{subsection:exploration_3_non_sequential_planning_order} for coupled motion planning problems. (Manual task planning with automated motion planning)
 
 			\item An action and state modelling method to interface with TAMP algorithms. (Automated task and motion planning) \textit{(see \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
 
@@ -43,9 +43,9 @@ The key contribution of this thesis are
 
 	\item Designed \textbf{three real-scale demonstrators} and assembled them robotically using the DiRT system.
 	\begin{enumerate}
-		\item Confirmed the feasibility of a highly automated timber frame assembly process. \textit{(see \ul{7.5.2.12 Highly Automatic Process})}
+		\item Confirmed the feasibility of a highly automated timber frame assembly process. \seeref{subsubsection:exploration_4_highly_automatic_process}
 
-		\item Demonstrated different possible architectural typologies, such as column grid structure \textit{(see \ul{5.4.4 Demonstrator Design - BusStop Pavilion})}, hut typology \textit{(see \ul{7.4.3 Demonstrator Design  - HyparHut Pavilion}) }and prefabricated spatial frames \textit{(see \ul{8.4.3 Demonstrator Design  - CantiBox Pavilion})}.
+		\item Demonstrated different possible architectural typologies, such as column grid structure \textit{(see \ul{5.4.4 Demonstrator Design - BusStop Pavilion})}, hut typology \seeref{subsection:exploration_4_demonstrator_design_hyparhut_pavilion} and prefabricated spatial frames \textit{(see \ul{8.4.3 Demonstrator Design  - CantiBox Pavilion})}.
 
 		\item Demonstrated possible integration with structurally informed joint design, such as the ability to assemble a wide range of customised joint profiles. \textit{(see \ul{8.3.1 Structurally Informed Polyline Lap Joint})}
 	\end{enumerate}
@@ -77,7 +77,7 @@ In the broader context of construction robotics, the kinematic combination used 
 \subsection{Limitation of the Demonstrators}
 \label{subsection:limitation_of_the_demonstrators}
 
-Throughout this thesis, five development iterations were conducted, with only three large scale construction experiments. Due to the high cost of each demonstrator, it was not possible to conduct additional assembly experiments within the budget of this thesis. This limited the practical observations and development feedback to be based on only a handful of cases, resulting in scarce data. While smaller experiments were considered as a means to shorten the feedback cycle, they were found to be impractical due to the fixed fee for the digital services and transportation costs being a significant portion of the machining cost. For some of the problems presented in the previous chapters, drawing meaningful conclusions based solely on a few observations was not possible \textit{(see ending summary in \ul{7.5.2.6 Global Correction Approach})}, and further study is required to confirm causal relationships. 
+Throughout this thesis, five development iterations were conducted, with only three large scale construction experiments. Due to the high cost of each demonstrator, it was not possible to conduct additional assembly experiments within the budget of this thesis. This limited the practical observations and development feedback to be based on only a handful of cases, resulting in scarce data. While smaller experiments were considered as a means to shorten the feedback cycle, they were found to be impractical due to the fixed fee for the digital services and transportation costs being a significant portion of the machining cost. For some of the problems presented in the previous chapters, drawing meaningful conclusions based solely on a few observations was not possible \textit{(see ending summary in \seeref{subsubsection:exploration_4_global_correction_approach})}, and further study is required to confirm causal relationships. 
 
 Each demonstrator included a wide variety of timber parts that function as columns, beams, and diagonal bracings, with each part possessing a unique combination of orientation, load condition, number of joints, neighbours, and type of robotic assembly tool used. While it is advantageous to observe a wide variety of assembly conditions, it is challenging to pinpoint the precise cause of any problems observed during execution due to the numerous uncontrolled variables, leading to some unexplored problems being deferred to future work.
 

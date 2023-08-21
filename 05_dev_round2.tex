@@ -60,7 +60,7 @@ In order to simplify the clamping method, these intersecting beams have to conta
 \subsection{RFL Robotic Platform}
 \label{subsection:exploration_2_rfl_robotic_platform}
 
-The demonstration of this Exploration Round was performed in the Robotic Fabrication Laboratory (RFL) (see also 3.3.2 Laboratory Context). The RFL robotic platform consists of four ABB IRB 4600-40-2.55 six-axis spherical wrist robotic arms, mounted on a custom 3-axis gantry system developed by Güdel Group AG, Switzerland. It covers a large free space (43 by 16 by 8 metres) where robotic manipulations can be tested. The maximum reach of the robotic arm is 2.55m from its base at the gantry, and its maximum payload is 40kg.
+The demonstration of this Exploration Round was performed in the Robotic Fabrication Laboratory (RFL) \seeref{subsection:methodology_laboratory_context}. The RFL robotic platform consists of four ABB IRB 4600-40-2.55 six-axis spherical wrist robotic arms, mounted on a custom 3-axis gantry system developed by Güdel Group AG, Switzerland. It covers a large free space (43 by 16 by 8 metres) where robotic manipulations can be tested. The maximum reach of the robotic arm is 2.55m from its base at the gantry, and its maximum payload is 40kg.
 
 The picture below shows the industrial robotic arms and the gantry. The four Z-axis telescopic axis can be seen extended to a low position. Two robotic arms and their Z-axis are grouped to share the same gantry, which can move in the longitudinal X direction. In total, there are two gantries.
 
@@ -113,7 +113,7 @@ MISSINGTABLE
 
 * Controllers and protocol with an asterisk are open source software and were not implemented by the author.
 
-The L3 Process Execution Controller (see 5.3.15 Process Execution Controller) and L2 Clamp Controller (see 5.3.12 Clamp Controller (L2)) are new developments in this round. The L1 Clamp Firmware (see 5.3.9 CL3 Firmware) requires an upgrade from the one developed in the previous round. 
+The L3 Process Execution Controller \seeref{subsection:exploration_2_process_execution_controller} and L2 Clamp Controller \seeref{subsection:exploration_2_clamp_controller_l2} are new developments in this round. The L1 Clamp Firmware \seeref{subsection:exploration_2_cl3_firmware} requires an upgrade from the one developed in the previous round. 
 
 The use of \verb|compas_rrc|, which contains the ROS-RRC Driver and the RRC Server in RobotWare, was dictated by the laboratory setup and is outside of the author’s control. However, its functionality is appreciated by the needs of this project as it provides an abstracted communication layer over the ABB robot controller. It offers an easy-to-use interface that can be accessed by the Level 3 Process Controller to stream commands to the robot.
 
@@ -190,14 +190,14 @@ COMPAS framework
 
 The problem of closed data structures and closed computing frameworks has been a major obstacle to interdisciplinary collaboration. One of the most promising solutions to address it is the COMPAS computational framework \parencite{meleCOMPASFrameworkComputational2017}. Its development stems from the need to address the limitations of existing software programs in the field of architecture, engineering, and construction.
 
-It revolves around the idea of using transparent, accessible, and standardised data formats that can be easily shared, manipulated, and understood by various software tools and users. In other words, the encoding of data is not dependent on any specific CAD software implementation. This enables smooth integration and communication between diverse software systems for user interface, graphical visualisation, and computational algorithms, catering for different fields of expertise. In addition, COMPAS offers a wide range of libraries and tools for computational geometry, structural analysis, and robotic control, which can be combined and customised for the purpose of this thesis. The L2 robot control library mentioned earlier, \verb|compas_rrc| \parencite{fleischmannCOMPASRRCOnline2020} (see 5.2.4 Distributed Control System), is also based on the COMPAS framework.
+It revolves around the idea of using transparent, accessible, and standardised data formats that can be easily shared, manipulated, and understood by various software tools and users. In other words, the encoding of data is not dependent on any specific CAD software implementation. This enables smooth integration and communication between diverse software systems for user interface, graphical visualisation, and computational algorithms, catering for different fields of expertise. In addition, COMPAS offers a wide range of libraries and tools for computational geometry, structural analysis, and robotic control, which can be combined and customised for the purpose of this thesis. The L2 robot control library mentioned earlier, \verb|compas_rrc| \parencite{fleischmannCOMPASRRCOnline2020} \seeref{subsection:exploration_2_distributed_control_system}, is also based on the COMPAS framework.
 
 Given the flexible and collaborative nature of the COMPAS framework, I have chosen to adopt it for developing the computational software in this thesis. By leveraging COMPAS, I can create an integrated CAD / CAM programme that allows:
 \begin{itemize}
-    \item CAD modelling - joints, beams and assembly details
-    \item CAM modelling - robots, tools and their details (see next section: CAM Modelling)
-    \item Simulation and visualisation
-    \item Interfaces with robotic planning algorithms that are needed to create the robotic programmes (see the following sections for details)
+    \item CAD modelling - joints, beams and assembly details \seerefii{subsection:exploration_2_parametric_variations_of_lap_joints}{subsection:exploration_4_parametric_polyline_lap_joints}
+    \item CAM modelling - robots, tools and their details \seeref{subsection:exploration_3_workflow_for_generating_assembly_programmes}
+    \item Simulation and visualisation \seeref{subsection:exploration_3_process_design_workflow}
+    \item Interfaces with robotic planning algorithms that are needed to create the robotic programmes \seeref{subsection:exploration_3_multimodal_motion_planning_mmmp}
 \end{itemize}
 
 \subsection{Motion Planning}
@@ -290,7 +290,7 @@ The inputs for LMP are similar, but typically only one of the two targets is pro
 
 After the motion planning stage, the trajectory is saved for later execution on the RFL robotic platform. The trajectory is a sequence of robot configurations that are designed to achieve the desired collision-free motion specified during the planning phase.
 
-In order to execute the trajectory, the L3 Process Controller (see 5.2.4 Distributed Control System) sends the list of configurations to the L2 Robot Controller via \verb|compas_rrc|, and finally to the L1 RRC Server running on the ABB IRC5 Robot Controller. The L1 controller controls the robot to perform an interpolated joint motion (see 5.2.2 RFL Robotic Platform) between each configuration, effectively moving the robot from one configuration to the next.
+In order to execute the trajectory, the L3 Process Controller \seeref{subsection:exploration_2_distributed_control_system} sends the list of configurations to the L2 Robot Controller via \verb|compas_rrc|, and finally to the L1 RRC Server running on the ABB IRC5 Robot Controller. The L1 controller controls the robot to perform an interpolated joint motion \seeref{subsection:exploration_2_rfl_robotic_platform} between each configuration, effectively moving the robot from one configuration to the next.
 
 At the beginning of each trajectory, it is important to ensure that the robot starts from the same configuration as the first configuration in the trajectory. Otherwise, the robot will begin with an unplanned motion to reach the first configuration, which may cause collisions.
 
@@ -425,7 +425,7 @@ The result was a similar amount of deflection of the clamp jaw as the previous t
 \subsection{Lap Clamp CL2 Hardware}
 \label{subsection:exploration_2_lap_clamp_cl2_hardware}
 
-The Lap Clamp CL2 is a progressive improvement from CL1 (see 4.3.1 Lap Clamp CL1 - Proof of Concept). The following list shows the major improvements and the means to achieve them. Details can be found in the descriptions that followed:
+The Lap Clamp CL2 is a progressive improvement from CL1 \seeref{subsection:exploration_1_lap_clamp_cl1_proof_of_concept}. The following list shows the major improvements and the means to achieve them. Details can be found in the descriptions that followed:
 \begin{enumerate}
 \item Strong linear actuator that will not damage itself
     \begin{itemize}
@@ -472,7 +472,7 @@ Pull Force with LiPo Battery
 
 Since the pull force can reach 4900N, which is more than the 3000N target. The 1:54 gearbox is therefore selected for use in the CL2 clamp.
 Construction 
-The construction of the clamp began with the linear actuators and clamp jaws. 4 clamps (8 jaws in total) were intended to be made for the demonstration. However, during this time, the CL3 clamp design was pursued (see next section), the decision was to adapt the actuator and jaw parts to construct CL3. Therefore the CL2 was never completed. The photo below shows the actuator and jaw assembled for CL2 but later adapted to CL3.
+The construction of the clamp began with the linear actuators and clamp jaws. 4 clamps (8 jaws in total) were intended to be made for the demonstration. However, during this time, the CL3 clamp design was pursued \seeref{subsection:exploration_2_lap_clamp_cl3_hardware}, the decision was to adapt the actuator and jaw parts to construct CL3. Therefore the CL2 was never completed. The photo below shows the actuator and jaw assembled for CL2 but later adapted to CL3.
 
 
 \subsection{Lap Clamp CL3 Hardware}
@@ -507,11 +507,11 @@ The photo below shows the constructed CL3 clamp before the docking adapter was a
 \subsection{Docking adapter}
 \label{subsection:exploration_2_docking_adapter}
 
-The docking adapter is the mechanical interface that serves as the connection between the robotic arm and the DiRT tools. In the initial concept, this is similar to a robotic quick changer that is commonly used in the manufacturing industry for switching between tools. Because there was a set of robotic quick changers (SWK / SWA 040 series by Schunk GmbH \& Co. KG, Global) available in the lab donated by previous projects, it was adopted for this role. The photo below shows the quick changer mounted on the flange of the robot. Two pneumatic feed through can be seen connected for the parallel grippers (see next section).
+The docking adapter is the mechanical interface that serves as the connection between the robotic arm and the DiRT tools. In the initial concept, this is similar to a robotic quick changer that is commonly used in the manufacturing industry for switching between tools. Because there was a set of robotic quick changers (SWK / SWA 040 series by Schunk GmbH \& Co. KG, Global) available in the lab donated by previous projects, it was adopted for this role. The photo below shows the quick changer mounted on the flange of the robot. Two pneumatic feed through can be seen connected for the parallel grippers \seeref{subsection:exploration_2_parallel_gripper_pg500_and_pg1000}.
 
 It was only after using this robotic quick changer, that its property was found to be unideal for the docking adapter role for DiRT operations, especially for timber assembly. Despite its limitations, this robotic quick changer is used until the end of this thesis.
 
-The related problems are documented in 6.5.2 Docking Adapter Misalignment and 6.5.4 Docking Adapter Fail to Lock. This eventually led to the development of multiple workarounds to bridge the gap. These workarounds are documented in 6.5.5 Docking Adapter Alignment with Camera, 7.3.14 Camera-Marker Alignment Correction System, 7.3.16 Compliant Control for Robotic Arm and 8.3.3 Automatic Shake when Docking with Tools. 
+The related problems are documented \seerefii{subsection:exploration_3_docking_adapter_misalignment}{subsection:exploration_3_docking_adapter_fail_to_lock}. This eventually led to the development of multiple workarounds for improving alignment accuracy \seerefii{subsection:exploration_3_docking_adapter_alignment_with_camera}{subsection:exploration_4_camera_marker_alignment_correction_system} and lock actuation reliability \seerefii{subsection:exploration_4_compliant_control_for_robotic_arm}{subsection:exploration_5_automatic_shake_when_docking_with_tools}.
 
 \subsection{Parallel Gripper PG500 and PG1000}
 \label{subsection:exploration_2_parallel_gripper_pg500_and_pg1000}
@@ -533,10 +533,10 @@ The photo below shows the constructed PG500 gripper. Sandpaper can be seen linin
 The CL3 Clamp Electronics was based on the experience learnt from the CL1 electronics. The new design features the following improvements:
 \begin{itemize}
     \item Arduino Uno was replaced with an Arduino Nano. It offers the same capabilities in a more compact form factor.
-    \item Buffer diode is added before battery voltage regulation to address the brownout problem (see 4.5.3 Electronics Brownout).
+    \item Buffer diode is added before battery voltage regulation to address the brownout problem \seeref{subsection:exploration_1_electronics_brownout}.
     \item Supports controlling 1 or 2 DC Servo motors. 
     \begin{itemize}
-        \item The one-motor scenario is designed for CL3 hardware with one clamp jaw. (see 5.3.4 Lap Clamp CL3 Hardware)
+        \item The one-motor scenario is designed for CL3 hardware with one clamp jaw. \seeref{subsection:exploration_2_lap_clamp_cl3_hardware}
         \item The two-motor scenario is reserved for CL2 hardware but was never needed or tested because CL3 was successful.
     \end{itemize}
     \item A ribbon cable is used to connect the controller and motor driver to be more flexible with positioning.
@@ -544,7 +544,7 @@ The CL3 Clamp Electronics was based on the experience learnt from the CL1 electr
 
 The CL3 clamp electronics were designed with the following new features:
 \begin{itemize}
-    \item Control and communicate through CC1101 radio module over SPI bus. (see 5.3.10 Radio Network)
+    \item Control and communicate through CC1101 radio module over SPI bus. \seeref{subsection:exploration_2_radio_network}
     \item DIP Switch for physically setting device MAC address
     \item Input for monitoring end/homing switch
     \item Integrated plastic enclosure
@@ -609,10 +609,10 @@ Strategy
 
 Real-time monitoring of the motor position.
 Current position is obtained by counting encoder signals using external interrupts of the microcontroller.
-Computing the error with the intended motion profile (see 5.2.3 Synchronisation between Clamp and RFL Robot).
+Computing the error with the intended motion profile \seeref{subsection:exploration_2_synchronisation_between_clamp_and_rfl_robot}.
 Position error is monitored between current position and target position. 
 Target position is computed from the motion profile.
-Producing control signals to the H-bridge motor driver (see 4.3.2.2 Motor Driver) that can minimise tracking error. 
+Producing control signals to the H-bridge motor driver \seeref{subsubsection:exploration_1_motor_driver} that can minimise tracking error. 
 The motor control signal is a PWM signal generated by the microcontroller. 
 The duty cycle of the PWM signal is determined by a PID controller monitoring the positional error.
 
@@ -700,9 +700,9 @@ The DiRT radio network is developed to create a reliable communication network w
 The initial attempt of using a 2.4Ghz WiFi network from an Arduino microcontroller yielded poor results. The main problem is the reconnection time after a dropped connection is too long for the robotic operation, and its high frequency is fairly sensitive to occlusion by metallic objects. ZigBee technologies were considered for creating this network because of their integrated solution for the physical radio and network layer. However, I decided to implement the network for the opportunity to understand the underlying mechanism better and to have more control over the parameters of the radio and the network.
 
 
-My custom implementation consists of a single-chip digital packet radio, CC1101 by Texas Instrument, that is capable of managing the physical layer \parencite{texasinstrumentsCC1101LowPowerSub12023}. The surface mount ship can be interfaced easily through an integrated module manufactured by Telesky (see image). The network is implemented with a star topology with a PC acting as the network coordinator. This PC connects to the network through an Arduino-based network adapter (see next section 5.3.10 Radio Network USB adapter). All the clamps are connected to the network by a direct connection between the CC1101 chip and the Arduino microcontroller. 
+My custom implementation consists of a single-chip digital packet radio, CC1101 by Texas Instrument, that is capable of managing the physical layer \parencite{texasinstrumentsCC1101LowPowerSub12023}. The surface mount ship can be interfaced easily through an integrated module manufactured by Telesky (see image). The network is implemented with a star topology with a PC acting as the network coordinator. This PC connects to the network through an Arduino-based network adapter \seeref{subsection:exploration_2_radio_network_usb_dongle_adapter}. All the clamps are connected to the network by a direct connection between the CC1101 chip and the Arduino microcontroller. 
 
-Communication over the network is always initiated by the controlling PC, even for telemetry updates. Every clamp has a fixed MAC (Media Access Control) address that is registered to the L2 Clamp Controller (see 5.3.12 Clamp Controller (L2)) on the PC and their identity is known by it. Therefore, there is no need for any network discovery or handshake for the clamps to join the network. During the robotic assembly operation, all clamps are expected to be present in the network, and their response to a telemetry request is sufficient to prove their existence on the network. This design eliminated the overhead and delay for a clamp to rejoin the network.
+Communication over the network is always initiated by the controlling PC, even for telemetry updates. Every clamp has a fixed MAC (Media Access Control) address that is registered to the L2 Clamp Controller \seeref{subsection:exploration_2_clamp_controller_l2} on the PC and their identity is known by it. Therefore, there is no need for any network discovery or handshake for the clamps to join the network. During the robotic assembly operation, all clamps are expected to be present in the network, and their response to a telemetry request is sufficient to prove their existence on the network. This design eliminated the overhead and delay for a clamp to rejoin the network.
 
 The transport layer design is also customised to the unique operation of the devices. In order to reduce latency and maximise throughput, all the commands and response over the network is designed to fit within one single flexible-length data packet that is between 10 to 30 bytes long. This avoided the delay when reassembling messages. 
 
@@ -765,7 +765,7 @@ The development of the network is tested with a throughput tester inside the RFL
     \end{itemize}
 \end{itemize}
 
-The development of this radio network ended after these validation tests and it was used without issues for all subsequent demonstrations. However, later observation may indicate that this implementation can hit a latency limit with more tools (see 8.5.5 Wireless Radio Latency).
+The development of this radio network ended after these validation tests and it was used without issues for all subsequent demonstrations. However, later observation may indicate that this implementation can hit a latency limit with more tools \seeref{subsection:exploration_5_wireless_radio_latency}.
 
 \subsection{Radio Network USB Dongle Adapter}
 \label{subsection:exploration_2_radio_network_usb_dongle_adapter}
@@ -844,7 +844,7 @@ In this implementation, all the commands between Level 3 and Level 2 and Level 1
 \subsection{Assembly Model Data Structure and Functions}
 \label{subsection:exploration_2_assembly_model_data_structure_and_functions}
 
-A data structure was developed to support CAD modelling of the beams, joints and their assembly. It was designed to facilitate various geometrical operations, such as inferring joints from beam arrangements, and topographical operations among beams and neighbours (see 5.2.6 CAD Modelling). The data structure is based on the object-oriented programming paradigm and implemented in Python. 
+A data structure was developed to support CAD modelling of the beams, joints and their assembly. It was designed to facilitate various geometrical operations, such as inferring joints from beam arrangements, and topographical operations among beams and neighbours \seeref{subsection:exploration_2_cad_modelling}. The data structure is based on the object-oriented programming paradigm and implemented in Python. 
 There are three main entities in the data structure:
 \begin{itemize}
     \item Beam - Represents the physical beam, with a one-to-one correspondence.
@@ -890,7 +890,7 @@ This swapping logic can be extended to pick a node and insert it at an arbitrary
 \subsubsection{AssemblyModel Implementation}
 \label{subsubsection:exploration_2_assemblymodel_implementation}
 
-The AssemblyModel structure was implemented in this DevRound by extending the DirectedGraph class in the compas library. However, the advanced functions for addition, deletion and changing sequence were not implemented until Exploration Round 3 to support the more advanced User Interface (see 6.3.4 Design Software Implementation in Rhino Python).
+The AssemblyModel structure was implemented in this DevRound by extending the DirectedGraph class in the compas library. However, the advanced functions for addition, deletion and changing sequence were not implemented until Exploration Round 3 to support the more advanced User Interface \seeref{subsection:exploration_3_design_software_implementation_in_rhino_python}.
 The serialisation of the BeamModel, JointModel and AssemblyModel uses an open-data structure where all the internal attributes are serialised. This is a trade-off for maximising compatibility, with no loss of computational data but resulting in a rather large file. 
 
 \subsection{CAD / CAM User Interface}
@@ -988,14 +988,14 @@ The GH script was able to pass these inputs to the motion planning backend using
 
 The planning process is initiated manually for each beam. The BeamTransfer motion is planned first, and the RobotClampSyncLM is planned next. The ending robot configuration of the BeamTransfer motion is used as the start configuration of the RobotClampSyncLM.
 
-Planning was not always successful, and debugging was problematic due to the lack of feedback that indicated the problem (see 5.5.2 Checking Incorrect Planning Inputs). Sometimes it takes a few tries for the planner to find a solution. In general, the free motion took longer to plan than the linear motion. This is likely caused by the number of collision geometry between the start and end targets. However, if the ending configuration of the robot were in a difficult position (see image below, left) it would be difficult for the linear motion planner to continue the motion. In this case, the free motion would be replanned to see if it ends at a better solution (see image below, right).
+Planning was not always successful, and debugging was problematic due to the lack of feedback that indicated the problem \seeref{subsection:exploration_2_checking_incorrect_planning_inputs}. Sometimes it takes a few tries for the planner to find a solution. In general, the free motion took longer to plan than the linear motion. This is likely caused by the number of collision geometry between the start and end targets. However, if the ending configuration of the robot were in a difficult position (see image below, left) it would be difficult for the linear motion planner to continue the motion. In this case, the free motion would be replanned to see if it ends at a better solution (see image below, right).
 
 When the planning was successful, a visualisation tool was available from \verb|compas_fab| to replay the planned trajectory by animating the robot model in the Rhino/GH environment. Successful trajectories were stored for later retrieval during execution. Separate files were used to store each trajectory for each beam. This allowed easy version control for individually planned motion. 
 
 \subsection{Process Execution Controller}
 \label{subsection:exploration_2_process_execution_controller}
 
-An interface was created in the Rhino/GH environment to retrieve the planned trajectory from files for a selected beam and motion. When it is triggered by the operator (me, the author) using a button. It can issue motion commands to the L2 robot controller and L2 Clamp Controller (see 5.2.4 Distributed Control System) and issue motion commands. 
+An interface was created in the Rhino/GH environment to retrieve the planned trajectory from files for a selected beam and motion. When it is triggered by the operator (me, the author) using a button. It can issue motion commands to the L2 robot controller and L2 Clamp Controller \seeref{subsection:exploration_2_distributed_control_system} and issue motion commands. 
 \begin{itemize}
 \item BeamTransfer (Free Motion)
     \begin{itemize}
@@ -1006,7 +1006,7 @@ An interface was created in the Rhino/GH environment to retrieve the planned tra
     \end{itemize}
     \item RobotClampSyncLM (Linear Motion)
     \begin{itemize}
-        \item Implements the Start Together Synchronisation method (see 5.2.3 Synchronisation between Clamp and RFL Robot)
+        \item Implements the Start Together Synchronisation method \seeref{subsection:exploration_2_synchronisation_between_clamp_and_rfl_robot}
         \item Begin - Motion commands sent to the clamps first
     \end{itemize}
     \begin{itemize}
@@ -1062,27 +1062,12 @@ Limited Joint combinations - There were only two CL3 and two CL3M clamps availab
 Limited to only planar joints - The limit of using only planar joints largely dictated the topology of the structure consisting of planar frames. 
 Limited number of timber pieces - In favour of time, and budget cost the demonstration material was limited to 40 pieces. This was decided somewhat arbitrarily considering the diminishing amount of knowledge gained after a certain number of pieces.
 Distance between two joints - Two joints being too close to each other increases the chance of structural failure by splitting along the grain. The distance between two neighbouring joints was kept roughly 2 to 3 times the beam width (200 to 300mm).
-Beams cannot be too close - The parallel gripper fingers occupy the two external faces of the beam. Their existence during the placement process mandates a gap of 75mm (including 10mm buffer for operational inaccuracy) with neighbouring beams (refer to the image below). An alternative internal gripper mechanism was explored during Exploration Round 4, which eliminated the collision on the side (see 7.3.5 Pin Gripper Mechanism).
+Beams cannot be too close - The parallel gripper fingers occupy the two external faces of the beam. Their existence during the placement process mandates a gap of 75mm (including 10mm buffer for operational inaccuracy) with neighbouring beams (refer to the image below). An alternative internal gripper mechanism was explored during Exploration Round 4, which eliminated the collision on the side \seeref{subsection:exploration_4_pin_gripper_mechanism}.
 
 \subsection{Design and Team Information}
 \label{subsection:exploration_2_design_and_team_information}
 
-Role
-Person
-Relationship
-Structure Design
-Frédéric Brisson
-Student (see next section)
-Structural Advice
-Davide Tanadini
-Research Collaborator
-Mechanical Design
-Victor Leung Pok Yin
-Author
-Process Design
-Victor Leung Pok Yin
-Author
-
+MISSINGTABLE
 
 \subsection{Demonstrator Design - BusStop Pavilion}
 \label{subsection:exploration_2_demonstrator_design_busstop_pavilion}
@@ -1105,18 +1090,18 @@ Details regarding how the pavilion was designed to study the assembly process wi
 
 The following is a list of feedback from the main designer (Fred) and the author (myself) after interacting with the design interface for Assemble Design (AD) and Process Design (PD) Phase.
 
-Cannot modify beams location or assembly sequence - The linear workflow implemented did not allow adding, modifying or removing beams in the graph structure of the Assembly Model. While this was provisioned by the design of the data structure, the function was not implemented. During the design exercise, it was found that designers would often need to go from PD back to AD to adjust the arrangement of beams. This validated the need to develop these functions in the next Exploration Round. (see 6.3.4 Design Software Implementation in Rhino Python) In this Exploration Round, whenever an adjustment is needed for the Assembly mode, the adjustment to the Gripper and Clamps would be lost.
+Cannot modify beams location or assembly sequence - The linear workflow implemented did not allow adding, modifying or removing beams in the graph structure of the Assembly Model. While this was provisioned by the design of the data structure, the function was not implemented. During the design exercise, it was found that designers would often need to go from PD back to AD to adjust the arrangement of beams. This validated the need to develop these functions in the next Exploration Round. \seeref{subsection:exploration_3_design_software_implementation_in_rhino_python} In this Exploration Round, whenever an adjustment is needed for the Assembly mode, the adjustment to the Gripper and Clamps would be lost.
 
 Centerline Input was not useful - Because of the repeated need to restart the workflow from the geometry input, the BRep Box input was found to be much superior than using centerlines. This is because the centerline input would require additional specification of the minor axis using another set of grasshopper input. Additionally, modelling with a solid model allows better visualisation of the structure during interactive modelling. In later software workflow centerline input was removed. However, it was still necessary to be able to extract centerline models from Assembly Model for structural analysis purposes.
 
-Slow recomputation - In the PD implementation, changing the processing parameters of one beam would cause a downstream recomputation that included all beams. However, most of these beams were unrelated to the change, and therefore the effort was unnecessary. However, the implementation relied on the GH Interface to compose various computation functions, and it was not possible to trigger only a subset of data within the function graph. This problem was addressed in the next Exploration Round when the interface moved beyond GH to a procedurally executed code, in which the control flow can be more sophisticated. (see 6.3.4 Design Software Implementation in Rhino Python)
+Slow recomputation - In the PD implementation, changing the processing parameters of one beam would cause a downstream recomputation that included all beams. However, most of these beams were unrelated to the change, and therefore the effort was unnecessary. However, the implementation relied on the GH Interface to compose various computation functions, and it was not possible to trigger only a subset of data within the function graph. This problem was addressed in the next Exploration Round when the interface moved beyond GH to a procedurally executed code, in which the control flow can be more sophisticated \seeref{subsection:exploration_3_design_software_implementation_in_rhino_python}.
 
-No Undo Function - There was no undo function provided by the GH interface. This was shown to be annoying to designers when exploring design. This issue was not followed up because later development introduced an easily modifiable Assembly Model and Process Parameters, improved recomputation speed and reduced the chance of requiring an undo (see 6.3.5.6 Process Visualization and Adjustment). However, this would qualify as an important feature for production software. 
+No Undo Function - There was no undo function provided by the GH interface. This was shown to be annoying to designers when exploring design. This issue was not followed up because later development introduced an easily modifiable Assembly Model and Process Parameters, improved recomputation speed and reduced the chance of requiring an undo \seeref{subsubsection:exploration_3_process_visualization_and_adjustment}. However, this would qualify as an important feature for production software. 
 
 \subsection{Checking Incorrect Planning Inputs}
 \label{subsection:exploration_2_checking_incorrect_planning_inputs}
 
-The motion planning was conducted by the author (myself) while developing the functions to perform motion planning automatically (see 5.3.14.2 Motion Planning). I went through a debugging period where mistakes would cause the planning to fail. Unfortunately, the black-box nature of the motion planner often provided no indication of what the mistakes were. It was also difficult to differentiate whether I made a mistake in the input or whether the planning trajectory was too difficult because of obstacles. 
+The motion planning was conducted by the author (myself) while developing the functions to perform motion planning automatically \seeref{subsubsection:exploration_2_motion_planning}. I went through a debugging period where mistakes would cause the planning to fail. Unfortunately, the black-box nature of the motion planner often provided no indication of what the mistakes were. It was also difficult to differentiate whether I made a mistake in the input or whether the planning trajectory was too difficult because of obstacles. 
 
 Cause
 
@@ -1133,7 +1118,7 @@ Looking back at the mistakes that I made, a significant portion of them were rel
 
 In order to provide myself with more clarity during development, a checking function was created to check for collisions in the start and end state of each planning call. It was first implemented in Rhino with its Collision detection function, and later implemented in the PyBullet planning backend \parencite{coumansPyBulletPythonModule2016, huangCompas_fab_pychoreo2023} with its default Collision Check service for better performance. The function provided feedback about which object pairs were in collision, such as between a specific Gripper ID and Beam ID thus providing insight of any input error.
 The insight provided by this feedback was so helpful that it was also used in future Exploration Round when new DiRT tools and new robot attachments are added and for checking new assembly designs and ground platform designs. 
-Note that collision of the robot body cannot be checked in this function, because the robot motion has not yet been planned and therefore its configuration is unknown. In Exploration Round 4, this limitation was solved by introducing IK computation during this check (see 7.3.21 Fast Design Validation with IK Check).
+Note that collision of the robot body cannot be checked in this function, because the robot motion has not yet been planned and therefore its configuration is unknown. In Exploration Round 4, this limitation was solved by introducing IK computation during this check \seeref{subsection:exploration_4_fast_design_validation_with_ik_check}.
 
 \subsection{Narrow Passage Problem}
 \label{subsection:exploration_2_narrow_passage_problem}
@@ -1149,7 +1134,7 @@ Possible Solution and Follow-Up
 Considering the limitation of the available Free Motion Planners, the only feasible solution is to avoid narrow passage in the planning request. In this particular BeamTransfer motion, the solution is to move the target outside of the narrow passage, at a location where the Free Motion Planner can have more freedom, I call this the ‘Approach’ target. After this free motion, an extra Linear Motion is used for reaching the intended target inside the narrow passage. The images below show an example of an approach target (1) inserted before the actual target (2).
 12
 Because the narrow passage is created between the beam (moving) and the clamp (stationary), by specifying the path of the beam to move in a straight line, we effectively provided a solution for the planner on how to navigate this passage. 
-Because of time concern, this ‘approach target’ with linear movement method is implemented only in the next Exploration Round (see 6.2.2 Revised Robotic Operations). For the demonstration in this round, the collision geometry of the Clamps are removed from the planning scene. This implies that the clamp cannot be attached to the PA structure before the BeamTransfer motion, a demonstration that would be more representative of the complete robotic motion described in 4.1.4 DiRT Clamping Assembly Process Task List (v1).
+Because of time concern, this ‘approach target’ with linear movement method is implemented only in the next Exploration Round \seeref{subsection:exploration_3_dirt_clamping_assembly_process_task_list_v2}. For the demonstration in this round, the collision geometry of the Clamps are removed from the planning scene. This implies that the clamp cannot be attached to the PA structure before the BeamTransfer motion, a demonstration that would be more representative of the complete robotic motion described before \seeref{subsection:exploration_1_dirt_clamping_assembly_process_task_list_v1}.
 
 \section{Lessons Learnt (During Construction)}
 \label{section:exploration_2_lessons_learnt_during_construction}
@@ -1186,7 +1171,7 @@ The following list shows the actions performed to assemble the BusStop Pavilion 
     \end{enumerate}
 \end{enumerate}
 
-Because of the problem discovered during the motion planning phase (see 5.5.3 Narrow Passage Problem), the clamps have to be attached after, instead of before the BeamTransfer. This is the only deviation from the hypothesised task sequence. (see Section 4.1.4 DiRT Clamping Assembly Process Task List (v1)). 
+Because of the problem discovered during the motion planning phase \seeref{subsection:exploration_2_narrow_passage_problem}, the clamps have to be attached after, instead of before the BeamTransfer. This is the only deviation from the hypothesised task sequence. \seeref{subsection:exploration_1_dirt_clamping_assembly_process_task_list_v1}. 
 
 The photo below shows the initial stage of the construction where the operator (the author) holds the robot control pendant, observing diligently, ready to stop the process in case of danger. Fred (the designer) can be seen holding carpentry clamps ready for fixing a Ground Element to the Ground Platform. A level measure (red on the platform) can be seen on the platform for checking if a vertical element placed by the robot is plumb. The compressed air supply hose (blue) can be seen under the platform, it is connected manually to the clamps when attaching and detaching them.
 
@@ -1196,15 +1181,16 @@ The photo below shows the initial stage of the construction where the operator (
 \subsubsection{Synchronous Movement of Clamp and Robot}
 \label{subsubsection:exploration_2_syncronous_movement_of_clamp_and_robot}
 
-The hypothesis of holding the beam during clamping (see 4.5.5 Beam Support Needed During Clamping) is validated to be a successful strategy, allowing the assembly of beams in arbitrary orientations. The synchronous movement between the clamp and the robot was also validated to be possible using the synchronised start approach with equal motion profiles (see 5.2.3 Synchronisation between Clamp and RFL Robot) . The two photos below show the moments before and after the synchronised motion of two clamps and the robotic arm.
+The hypothesis of holding the beam during clamping \seeref{subsection:exploration_1_beam_support_needed_during_clamping} is validated to be a successful strategy, allowing the assembly of beams in arbitrary orientations. The synchronous movement between the clamp and the robot was also validated to be possible using the synchronised start approach with equal motion profiles \seeref{subsection:exploration_2_synchronisation_between_clamp_and_rfl_robot}. The two photos below show the moments before and after the synchronised motion of two clamps and the robotic arm.
  
-However, a new problem emerged when one of the two systems encountered a stall or overload error, in which case, a synchronous stop was not available. Conceptually, this would be simple, however, the implementation detail proves to be highly challenging. (see 5.6.9 Arm and Clamps Out-of-Sync after Error)
+However, a new problem emerged when one of the two systems encountered a stall or overload error, in which case, a synchronous stop was not available. Conceptually, this would be simple, however, the implementation detail proves to be highly challenging \seeref{subsection:exploration_2_arm_and_clamps_out_of_sync_after_error}.
+
 \subsubsection{CL3 Hanging Gripper}
 \label{subsubsection:exploration_2_cl3_hanging_gripper}
 
 The CL3 hanging gripper was proven to be reliable at keeping the clamp on the structure, regardless of orientation. There was a small amount of movement during operations but did not cause any danger. On the contrary, I speculate that the small flexibility appears to be helpful for distributing the clamping pressure evenly over the two parallel faces of the two beams.  The photo below shows two clamps hanging inverted, ready for clamping.
 
-The manual attachment process was without issue. The photo below shows the moment of attaching a clamp after the BeamTransfer is completed (with a sideway offset). However, it was physically exhausting to climb a ladder to place the clamps and remove the ladder every time for the robot to continue operation. This reconfirmed the idea that the robotic attach and detach operations are of high priority for the next Exploration Round, and subsequently became the main goal of it (see 6.1 Goal).
+The manual attachment process was without issue. The photo below shows the moment of attaching a clamp after the BeamTransfer is completed (with a sideway offset). However, it was physically exhausting to climb a ladder to place the clamps and remove the ladder every time for the robot to continue operation. This reconfirmed the idea that the robotic attach and detach operations are of high priority for the next Exploration Round, and subsequently became the main goal of it \seeref{section:exploration_3_goal}.
 
 \subsubsection{Different Modes of Operation}
 \label{subsubsection:exploration_2_different_modes_of_operation}
@@ -1246,7 +1232,7 @@ The photo below shows the most number of clamps (three) used for the assembly of
 
 One of the anticipated challenging operations is when the gripper is holding the beam around clamps. The close proximity of the tool may cause collision if the RobotClampSyncLM went out of sync. The images below show some of these challenging grasps, the model shown are the collision mesh used for MP. To our surprise, despite looking dangerously close, no problem arised.
 
-The photo below corresponds to the image above (left side). This comparison shows the real-to-sim correspondence, which is important for ensuring the correctness of the CC during Motion Planning. One of the concerns is the location of cables around the robot, because they are flexible and cannot be modelled by the CC and MP backend chosen for the study (see 5.6.11 Robot Cables Problems).
+The photo below corresponds to the image above (left side). This comparison shows the real-to-sim correspondence, which is important for ensuring the correctness of the CC during Motion Planning. One of the concerns is the location of cables around the robot, because they are flexible and cannot be modelled by the CC and MP backend chosen for the study \seeref{subsection:exploration_2_robot_cables_problems}.
 Extra pieces of equipment can also be seen around the docking adapter (where the cable chain is attached. This was a calibrated fixture that could not be unmounted due to concurrent projects in the lab. Its geometry was modelled for MP in this demo. In the later Exploration Rounds, it was removed.
 
 
@@ -1266,13 +1252,13 @@ The ability for the Free Motion Planner to plan motion reaching into the structu
 \subsubsection{Pieces with Non Planar-Joint}
 \label{subsubsection:exploration_2_pieces_with_non_planar_joint}
 
-Six pieces of decorative elements were designed to cover the front of the overhanging structure. These were intentionally designed with non-planar (NP) lap joints for understanding them better in anticipation for future Exploration Round, as they were speculated to become the next development focus (see 7.1 Goal of Exploration Round 4). The image below shows how they were assembled manually with a manual clamp. 
+Six pieces of decorative elements were designed to cover the front of the overhanging structure. These were intentionally designed with non-planar (NP) lap joints for understanding them better in anticipation for future Exploration Round, as they were speculated to become the next development focus \seeref{section:exploration_4_goal}. The image below shows how they were assembled manually with a manual clamp. 
 
 Lessons learn from these element include:
 \begin{itemize}
-    \item CNC cutting limitations when designing a non-planar lap joint. (see 7.2.1 CNC Limitation in Cutting Lap Joints)
-    \item The details to consider when creating a parametric model for them. (see 7.3.2 Parametric Non-Planar Lap Joints)
-    \item Their importance in contributing to interesting spatial designs. (see 7.4.3 Demonstrator Design  - HyparHut Pavilion)
+    \item CNC cutting limitations when designing a non-planar lap joint. \seeref{subsection:exploration_4_cnc_limitation_in_cutting_lap_joints}
+    \item The details to consider when creating a parametric model for them. \seeref{subsection:exploration_4_parametric_non_planar_lap_joints}
+    \item Their importance in contributing to interesting spatial designs. \seeref{subsection:exploration_4_demonstrator_design_hyparhut_pavilion}
     \item Their potential for adding stiffness to the structure.
     \item Clamps were not quite suitable for their assembly (inferred from using the manual clamps).
 \end{itemize}
@@ -1284,7 +1270,7 @@ The 40-pieces structure was assembled in a total of 24 hours, split across multi
 
 The rest of the time (approximately 30 minutes per element) was used for robot transit (motion back to pick up location is via operator jogging), material loading, tool change, attaching and detaching clamps, and various software and hardware debugging. 
 
-An improvement was made later in Exploration Round 4 for recording execution time by implementing automatic logging in the Process Execution Controller (see 5.3.15 Process Execution Controller). 
+An improvement was made later in Exploration Round 4 for recording execution time by implementing automatic logging in the Process Execution Controller \seeref{subsection:exploration_2_process_execution_controller}. 
 
 \subsection{Misalignment between Joints}
 \label{subsection:exploration_2_misalignment_between_joints}
@@ -1308,7 +1294,8 @@ Many factors were suspected to contribute to the misalignment problem, but it wa
         \item Deformation of the robot or tool parts due to load
     \end{itemize}
 \end{itemize}
-    It was also hard to determine a follow-up action from this mixed result. However, in the next Exploration Round, the same demonstration (same parts) is reassembled using much temporary support to ensure the correctness of the stationary-side. As such it was possible to observe only the robot-side error. (see 6.3.1 Ground Platform Redesign and 6.5.1 Isolated Robot Side Error)
+
+It was hard to determine a follow-up action from the mixed result. However, in the next Exploration Round, the same demonstration (same parts) is reassembled using temporary support \seeref{subsubsection:exploration_3_stability_by_scaffolding} to ensure the correctness of the stationary-side. The ground platform was also redesigned \seeref{subsection:exploration_3_ground_platform_redesign} and accurately measured for alignment in the CAD model. As such it was possible to observe only the robot-side error \seerefii{subsection:exploration_3_beam_placement_misalignment}{subsection:exploration_3_docking_adapter_misalignment}.
 
 \subsection{Unstable structure during assembly}
 \label{subsection:exploration_2_unstable_structure_during_assembly}
@@ -1335,16 +1322,16 @@ In general, the deformation related to weight appears to be deterministic, the b
 \begin{itemize}
     \item Perform structural analysis on every step of the assembly process to identify deformation that is outside an acceptable range.
     \begin{itemize}
-        \item The concept is tested empirically by designer intuition when designing the later demo (see 7.4.1 Design Goal for Exploration Round 4).
-        \item The computational implementation was not developed within the scope of this thesis because many of the partial states are considered indeterministic (see 9.2.2 Deformation of Partially Assembled Structure).However, it represents a promising and valuable direction for future work.
+        \item The concept is tested empirically by designer intuition when designing the later demo \seeref{subsection:exploration_4_design_goal}.
+        \item The computational implementation was not developed within the scope of this thesis because many of the partial states are considered indeterministic \seeref{subsection:new_hypo_deformation_of_partially_assembled_structure}. However, it represents a promising and valuable direction for future work.
     \end{itemize}
     \item Add scaffolding - Attach temporary bracing to stabilise elements. This can be attached manually or robotically. The scaffolding material can be timber or metal. 
     \begin{itemize}
         \item This idea was briefly tested in this round with aluminium profiles
-        \item In the next round, more scaffolding was used to minimise deformation (see 6.4.3 Scaffolding and Screw Test). This improves stability but causes collisions with the robotic movements. 
-        \item Further tests were performed in Exploration Round 5 (see 8.3.2 Scaffolding Support During Assembly), where their collision geometry was also taken into account during MP. (see 8.3.2 Scaffolding Support During Assembly)
+        \item In the next round, more scaffolding was used to minimise deformation \seeref{subsection:exploration_3_scaffolding_and_screw_test}. This improves stability but causes collisions with the robotic movements. 
+        \item Further tests were performed in Exploration Round 5, where their collision geometry was also taken into account during MP \seeref{subsection:exploration_5_scaffolding_support_during_assembly}. 
     \end{itemize}
-    \item Design diagonal elements as permanent scaffolding elements - It is common for timber structures to be designed with diagonal bracings for stiffening. It may be possible to use these bracings as a support (see 7.1.1 Deformation-Awareness and Error Correction by Triangulation).
+    \item Design diagonal elements as permanent scaffolding elements - It is common for timber structures to be designed with diagonal bracings for stiffening. It may be possible to use these bracings as a support \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}.
     \begin{itemize}
         \item However, it does not solve the problem before those bracings are assembled. Unless they are assembled simultaneously with the unstable elements.
     \end{itemize}
@@ -1365,7 +1352,7 @@ During the assembly, there are a few cases where a stiff triangle is created. As
 
 Follow-Up
 
-This correction effect was found to be very promising because it can hypothetically provide an error-correction mechanism for counteracting accumulation of assembly error. An hypothetical framework was developed in Exploration Round 4  (see 7.1.1 Error Correction by Triangulation) and was tested in the two subsequent demonstrators with success.
+This correction effect was found to be very promising because it can hypothetically provide an error-correction mechanism for counteracting accumulation of assembly error. An hypothetical framework was developed in Exploration Round 4 \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation} and was tested in the two subsequent demonstrators with success.
 
 \subsection{Clamping Joints with Chamfered Edges}
 \label{subsection:exploration_2_clamping_joints_with_chamfered_edges}
@@ -1376,16 +1363,16 @@ An initial test with no chamfer was found to be impossible to align, and confirm
 The image below shows the clamping process before the chamfer touch (left) and the moment they made contact (right). As the clamp continues to push, the joint can be seen guided towards alignment by the clamping action. This made a significant improvement to the success of the assembly compared to having no chamfer.
 
 Depending on the relative stiffness between the robot-side and the stationary-side structure, either one or both sides would move towards each other. As they move, the stress on both sides would increase because the clamp is forcing them to deform out of their original equilibrium. It was not until after assembly, that the robot gripper releases the beam, the structure relaxes towards a new equilibrium. However, this new equilibrium does not necessarily equate to less deformation or more correctness. In some cases, the structure would make contact with the gripper jaws, and made the subsequent retraction movement difficult. 
-In some cases, when the chamfer engaged, the clamp was not strong enough to force both sides into alignment. The technical explanation is that the misalignment caused the chamfer to behave like a ramp, which induced extra clamping resistance. When this resistance overloads the motor, it causes the clamp controller to enter a stall protection state (see 5.6.7 Clamp Overload). Manual help was needed to push the PA structure when trying the RobotClampSyncLM again. The pushing direction is towards the direction of alignment, not the assembly direction of the joint.
-In some cases, when there are more than one joint being clamped. The alignment is more complex because the joints will also fight with each other on the stationary-side. Very often this side would become more stiff then the robot-side and tries to pull the robot towards the structure. This would cause the robot to throw a collision or overload error. (see 5.6.8 Robotic Arm Overload Error during Clamping)
+In some cases, when the chamfer engaged, the clamp was not strong enough to force both sides into alignment. The technical explanation is that the misalignment caused the chamfer to behave like a ramp, which induced extra clamping resistance. When this resistance overloads the motor, it causes the clamp controller to enter a stall protection state \seeref{subsection:exploration_2_clamp_overload}. Manual help was needed to push the PA structure when trying the RobotClampSyncLM again. The pushing direction is towards the direction of alignment, not the assembly direction of the joint.
+In some cases, when there are more than one joint being clamped. The alignment is more complex because the joints will also fight with each other on the stationary-side. Very often this side would become more stiff then the robot-side and tries to pull the robot towards the structure. This would cause the robot to throw a collision or overload error \seeref{subsection:exploration_2_robotic_arm_overload_error_during_clamping}.
 In some cases, the misalignment of the joints are more than the chamfer amount on both sides combined. Additional cuts were made to increase the chamfer to 8mm. However, the extra correction distance very often came with larger induced resistance and caused the clamps to stall. Therefore it was difficult to determine whether a larger chamfer would have improved the overall outcome. 
 In general, about 80% of all clamping motions required some form of manual help for alignment. As mentioned above, sometimes a small push was sufficient for making the initial alignment, in other cases, a constant help was necessary during the entire clamping.
 
 Follow-up
 
 The chamfer-induced clamping resistance was a new discovery. And a theoretical framework is needed to understand its behaviour. However, this is a large topic and was considered future work beyond the scope of this thesis. The four CL3/M clamps were used again in Exploration Round 3 and 5, and the overload problem persisted in other demos too. 
-The ideal chamfer amount was further investigated in Exploration Round 5. During that time, deformation-control of the PA structure was improved, and the robotic-side accuracy was also improved. In that demonstration, the chamfer was determined again empirically to be 6mm. Despite the alignment having a significantly higher success rate (see 8.5.4 Beam Placement Misalignment Problem), it was still not possible to conclude if the chamfer is the right amount.
-Yet the question remained on how the chamfer amount can be determined theoretically instead of empirically. The discovery made here inspired the development of a theoretical framework to understand tolerance and alignment (see 9.1 Modelling Alignment and Correction).
+The ideal chamfer amount was further investigated in Exploration Round 5. During that time, deformation-control of the PA structure was improved, and the robotic-side accuracy was also improved. In that demonstration, the chamfer was determined again empirically to be 6mm. Despite the alignment having a significantly higher success rate \seeref{subsection:exploration_5_beam_placement_misalignment_problem}, it was still not possible to conclude if the chamfer is the right amount.
+Yet the question remained on how the chamfer amount can be determined theoretically instead of empirically. The discovery made here inspired the development of a theoretical framework to understand tolerance and alignment \seeref{section:new_hypo_modelling_alignment_correction}.
 
 \subsection{Clamp Overload}
 \label{subsection:exploration_2_clamp_overload}
@@ -1407,13 +1394,13 @@ For if the chamfer-not-engaged:
     \item Reduce misalignment 
     \begin{itemize}
         \item Deformation-aware design principles implemented in Exploration Round 4 and 5
-        \item Results observed in Exploration Round 5 for clamped joints are still inconclusive. However, a new theoretical framework was developed to better understand tolerance and alignment (see 9.1 Modelling Alignment and Correction). This remained a hypothesis and was not tested.
+        \item Results observed in Exploration Round 5 for clamped joints are still inconclusive. However, a new theoretical framework was developed to better understand tolerance and alignment \seeref{section:new_hypo_modelling_alignment_correction}. This remained a hypothesis and was not tested.
     \end{itemize}
 \end{itemize}
 
 For if the chamfer is engaged:
 \begin{itemize}
-    \item Increase Clamping Power - When the clamp was designed, the chamfer-induced clamping resistance was not discovered and was not considered in its specifications. The design capacity of the clamp was 3000N, and the finished clamp was tested to produce 4900N (see 5.3.3 Lap Clamp CL2 Hardware). However, this is still insufficient for overcoming the combined resistance.
+    \item Increase Clamping Power - When the clamp was designed, the chamfer-induced clamping resistance was not discovered and was not considered in its specifications. The design capacity of the clamp was 3000N, and the finished clamp was tested to produce 4900N \seeref{subsection:exploration_2_lap_clamp_cl2_hardware}. However, this is still insufficient for overcoming the combined resistance.
     \begin{itemize}
         \item A quick study was performed to see if a bigger motor can be fitted to the existing CL3 design. However, the solution was unsatisfying.
         \item Redesign of the clamping actuator can be explored in future work.
@@ -1423,7 +1410,7 @@ For if the chamfer is engaged:
 \subsection{Robotic Arm Overload Error during Clamping}
 \label{subsection:exploration_2_robotic_arm_overload_error_during_clamping}
 
-The ABB Robotic Arm Controller gives overload/collision error during the RobotClampSyncLM clamping movement. (see 5.6.6 Clamping Joints with Chamfered Edges)
+The ABB Robotic Arm Controller gives overload/collision error during the RobotClampSyncLM clamping movement \seeref{subsection:exploration_2_clamping_joints_with_chamfered_edges}.
 
 Possible Cause
 
@@ -1468,7 +1455,7 @@ Possible Solution
     \end{itemize}
     \item Upgrade the L3 process controller to handle synchronous stop signals
     \begin{itemize}
-        \item The controller is implemented in Exploration Round 3 (see 5.3.15 Process Execution Controller), the stop signal synchronisation is tested in Exploration Round 4 without problems.
+        \item The controller is implemented in Exploration Round 3 \seeref{subsection:exploration_2_process_execution_controller}, the stop signal synchronisation is tested in Exploration Round 4 without problems.
     \end{itemize}
 \end{itemize}
 
@@ -1581,7 +1568,7 @@ Possible Solution and Follow-Up
 
 It is possible to use either a non-invasive mark or a machined feature for the purpose of registration. However, machined geometrical features would have the extra benefit to prevent the beam from slipping. 
 
-Considering that it could be dangerous if the beam could slip entirely out of the gripper. A machined feature would appear to be a more beneficial choice. In Exploration Round 4 and 5, pins similar to those used for hanging the clamps were added to the gripper and a registration hole was machined to the beam (see 7.3.8 Parallel Gripper PG1500 for Long Beams).
+Considering that it could be dangerous if the beam could slip entirely out of the gripper. A machined feature would appear to be a more beneficial choice. In Exploration Round 4 and 5, pins similar to those used for hanging the clamps were added to the gripper and a registration hole was machined to the beam \seeref{subsection:exploration_4_parallel_gripper_pg1500_for_long_beams}.
 
 \subsection{Ground Platform Constraining Process Design}
 \label{subsection:exploration_2_ground_platform_constraining_process_design}
@@ -1632,7 +1619,7 @@ Possible Solution
 \begin{itemize}
     \item Smoothing after path planning
     \begin{itemize}
-        \item Implemented and tested successfully in Exploration Round 4 (see 7.3.23 Post-Planning Trajectory Smoothing)
+        \item Implemented and tested successfully in Exploration Round 4 \seeref{subsection:exploration_4_post_planning_trajectory_smoothing}
     \end{itemize}
     \item Configure the RRT-Connect algorithm to spend more time optimising the result after the first valid solution is found.
     \begin{itemize}
@@ -1655,8 +1642,8 @@ Possible Solution
 \begin{itemize}
     \item Add fasteners to the joint - A fastener can be added to prevent the live load from loosening or opening the joint. It does not have to take the structural load.
     \begin{itemize}
-        \item The fastener concept was tested with a manually placed screw in Exploration Round 3 using the same structure (see 6.4.3 Scaffolding and Screw Test). The result was found to be promising.
-        \item The screw concept was developed further into a DiRT Screwdriver Tool later in Exploration Round 4 (see 7.3.7 Lap Screwdriver SL1 and SL1\textunderscore G200 Hardware)
+        \item The fastener concept was tested with a manually placed screw in Exploration Round 3 using the same structure \seeref{subsection:exploration_3_scaffolding_and_screw_test}. The result was found to be promising.
+        \item The screw concept was developed further into a DiRT Screwdriver Tool later in Exploration Round 4 \seeref{subsection:exploration_4_lap_screwdriver_sl1_and_sl1_g200_hardware}
     \end{itemize}
     \item Design the structure while ensuring interlocking and gravity are always stabilising all elements. 
     \begin{itemize}

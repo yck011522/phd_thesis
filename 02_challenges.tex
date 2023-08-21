@@ -85,7 +85,7 @@ An alternative approach that was considered is to use more than one robotic arm,
 
 During the assembly of timber structures, it is necessary to accurately align the mating joints between the robot-sode and the stationary-side.
 
-On the robot-side, the joints are located on the beam that is being held by the robot. Because these beams have to be assembled in non-repetitive targets, teaching cannot be used (see 1.3.1 Inaccuracy for non-repetitive targets). Therefore the end-effector that holds the beam is subjected to unmonitored deviation. If the timber elements are long, a small orientation error can cause a large positional deviation at the joints that are located far away from the robot wrist. Furthermore, long timber elements may also be slightly bent (permanent and static) or deflect (dynamic) due to its own weight, which further increases the deviation at the location where the joints mate.
+On the robot-side, the joints are located on the beam that is being held by the robot. Because these beams have to be assembled in non-repetitive targets, teaching cannot be used \seeref{subsection:introduction_inaccuracy_for_non_repetitive_targets}. Therefore the end-effector that holds the beam is subjected to unmonitored deviation. If the timber elements are long, a small orientation error can cause a large positional deviation at the joints that are located far away from the robot wrist. Furthermore, long timber elements may also be slightly bent (permanent and static) or deflect (dynamic) due to its own weight, which further increases the deviation at the location where the joints mate.
 
 On the stationary-side, the joints are spread across different elements in the partially constructed structure. Due to accumulated installation error, or deformation of the flexible timber structure, the location of the joints can deviate from where they are supposed to be. Moreover, the deviation among each of the joints may not be towards the same directions, making detection and correction difficult.
 
@@ -162,9 +162,9 @@ Large amount of research has been devoted to the automatic sequence and motion p
 When robots are used to perform an assembly task, the assembly analysis mentioned above also has to consider the actions of the robots and the tools, and their physical limitations. These limitations include
 
 \begin{itemize}
-    \item \textbf{Collision --} The robot and parts attached to the robot must not come into collision among itself or with stationary objects \textit{(see \ul{5.2.7.1 Collision Checking})}.
+    \item \textbf{Collision --} The robot and parts attached to the robot must not come into collision among itself or with stationary objects \seeref{subsubsection:exploration_2_collision_checking}.
 
-	\item \textbf{Reachability --} The robot must be able to reach all the targets that are needed to manipulate the objects for their assembly \textit{(see \ul{5.2.7.2 Inverse Kinematics})}.
+	\item \textbf{Reachability --} The robot must be able to reach all the targets that are needed to manipulate the objects for their assembly \seeref{subsubsection:exploration_2_inverse_kinematics}.
 
 	\item \textbf{Payload and Accuracy --} Certain operations may not be possible due to the mechanical limitations of the robot.
 \end{itemize}

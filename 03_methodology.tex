@@ -4,17 +4,17 @@
 In this thesis, an exploratory research method was used. The first reason is the qualitative nature of the three research questions. The second reason is the novelty of the interdisciplinary topics which have yet to be studied in depth. The exploratory research consists of the following steps:
 
 \begin{enumerate}
-	\item \textbf{Identifying Challenges and Creating a Hypothetical Solution --} Although precedence works have already identified challenges in each subtopic \textit{(see \ul{Chapter 2.2 Computational and Design Challenges }and \ul{Chapter 2.1 Mechanical Challenges})}, a holistic analysis is still needed as certain challenges that are coupled together \textit{(see \ul{4.1.1 Addressing Assembly Challenges})}. This leads to a hypothetical robotic assembly process that is based on the idea of a robotic arm manipulating and collaborating with a set of robotic clamps \textit{(see \ul{4.1.2 Distributed Robotic Tool (DiRT) Approach})}.
+	\item \textbf{Identifying Challenges and Creating a Hypothetical Solution --} Although precedence works have already identified challenges in each subtopic \seerefii{section:challenges_mechanical_challenges}{section:challenges_computational_and_design_challenges}, a holistic analysis is still needed as certain challenges that are coupled together \seeref{subsection:exploration_1_analysing_assembly_challenges}. This leads to a hypothetical robotic assembly process that is based on the idea of a robotic arm manipulating and collaborating with a set of robotic clamps \seeref{subsection:exploration_1_distributed_robotic_tool_approach}.
 
-	\item \textbf{Testing, observing and refining the Hypothetical Solution --} Technical development is performed, and their behaviour is observed with empirical experiments. A number of iterations is performed to refine the hypothetical robotic assembly process and to better understand the problems involved \textit{(see \ul{3.1 Research by Iterative Development})}.
+	\item \textbf{Testing, observing and refining the Hypothetical Solution --} Technical development is performed, and their behaviour is observed with empirical experiments. A number of iterations is performed to refine the hypothetical robotic assembly process and to better understand the problems involved \seeref{section:methodology_research_by_iterative_development}.
 
-	\item \textbf{Formulating relationships --} Critical analysis is performed during the development in each iteration and at the end of the thesis to answer the research questions and to provide possible avenues for future in-depth studies \textit{(see \ul{3.2 Epistemological assumptions})}.
+	\item \textbf{Formulating relationships --} Critical analysis is performed during the development in each iteration and at the end of the thesis to answer the research questions and to provide possible avenues for future in-depth studies \seeref{section:methodology_epistemological_assumptions}.
 
 \end{enumerate}
 \section{Research by Iterative Development}
 \label{section:methodology_research_by_iterative_development}
 
-The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \textit{(further elaboration in \ul{3.1.1 Setting Research Goals})}. The following flowchart summarises the iterative loops across the development rounds. 
+The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \seeref{subsection:methodology_setting_research_goals}. The following flowchart summarises the iterative loops across the development rounds. 
 
 % 1 Image  
 \begin{figure}
@@ -103,7 +103,7 @@ The robotic assembly process required the development of novel hardware and soft
 During development, multiple technical solutions can often be used to achieve a particular goal. The principle for selecting a specific option included the following criteria: 
 
 \begin{enumerate}
-	\item The cost of implementation is reasonable in the architectural construction context, and testing costs can be afforded by the given research budget \textit{(see appendix about the budget)}.
+	\item The cost of implementation is reasonable in the architectural construction context, and testing costs can be afforded by the given research budget.
 
 	\item The implementation can be tested and observed within our laboratory.
 
@@ -144,7 +144,7 @@ The timber parts used for the demonstrators were ordered from an industrial timb
 \subsection{Observations and Interpretation}
 \label{subsection:methodology_observations_and_interpretation}
 
-The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters 6 to 10). Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \textit{(See \ul{3.2 Epistemological assumptions} and \ul{3.3 Axiological assumptions})}. 
+The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters 6 to 10). Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \seerefii{section:methodology_epistemological_assumptions}{section:methodology_axiological_assumptions}. 
 
 % 1 Image  
 \begin{figure}
@@ -182,9 +182,9 @@ I was trained at the undergraduate and graduate levels as an architectural desig
 \subsection{Laboratory Context}
 \label{subsection:methodology_laboratory_context}
 
-The research is conducted in the Robotic Fabrication Lab (RFL) of the Institute of Technology in Architecture (ITA) at the Department of Architecture of ETH Zurich, where four industrial robotic arms are mounted upside-down on two gantry robots (custom design by Güdel Group AG, Switzerland), forming a robotic manipulator that covers a large space\textit{ (see \ul{5.2.2 RFL Robotic Platform for technical details})}. Each robot consists of six articulated joints, an independent vertical linear axis, and two horizontal linear axes on the gantry coupled with neighbouring robots. If only a single robot is concerned, all nine axes can be commanded to move synchronously. This offers kinematic redundancy that allows the robot body to avoid obstacles in dense environments. For this thesis, the robotic manipulator in the RFL represents a hypothetical robotic manipulator that acted as a testbed for developing the robotic assembly process. This also carries the assumption that lessons learnt from this setup can be extrapolated to on-site setups in the future. The details of this extrapolation are further discussed in the conclusion chapter \textit{(see \ul{11.2.1 Extrapolation to On-Site Robotic Systems})}. 
+The research is conducted in the Robotic Fabrication Lab (RFL) of the Institute of Technology in Architecture (ITA) at the Department of Architecture of ETH Zurich, where four industrial robotic arms are mounted upside-down on two gantry robots (custom design by Güdel Group AG, Switzerland), forming a robotic manipulator that covers a large space \seeref{subsection:exploration_2_rfl_robotic_platform}. Each robot consists of six articulated joints, an independent vertical linear axis, and two horizontal linear axes on the gantry coupled with neighbouring robots. If only a single robot is concerned, all nine axes can be commanded to move synchronously. This offers kinematic redundancy that allows the robot body to avoid obstacles in dense environments. For this thesis, the robotic manipulator in the RFL represents a hypothetical robotic manipulator that acted as a testbed for developing the robotic assembly process. This also carries the assumption that lessons learnt from this setup can be extrapolated to on-site setups in the future. The details of this extrapolation are further discussed in the conclusion chapter \seeref{subsection:extrapolation_to_on_site_robots}. 
 
-Our laboratory is also the home to many timber assembly research projects introduced in the context. This undoubtedly influences the research as existing robotic components and software infrastructure are adopted from previous research. For example, the choice of the automatic robotic quick-change system was the result of a donation from previous projects \textit{(see \ul{5.3.5 Docking adapter})}. Another example is the choice of online robot control middleware \textit{(see \ul{5.2.4 Distributed Control System})}, which was determined by our laboratory's standard mode of operations.
+Our laboratory is also the home to many timber assembly research projects introduced in the context. This undoubtedly influences the research as existing robotic components and software infrastructure are adopted from previous research. For example, the choice of the automatic robotic quick-change system was the result of a donation from previous projects \seeref{subsection:exploration_2_docking_adapter}. Another example is the choice of online robot control middleware \seeref{subsection:exploration_2_distributed_control_system}, which was determined by our laboratory's standard mode of operations.
 
 \subsection{Participants in User Interface Study}
 \label{subsection:methodology_participants_in_user_interface_study}
@@ -228,7 +228,7 @@ Readers who are interested only in a specific theme may find the following guide
 
 	\item \textbf{Operation method revised} after initial test (6.1.1 DiRT Clamping Assembly Process Task List (v2))
 
-	\item \textbf{Operation method with screwdrivers} (7.3.20 Flowchart for Screwdriver Assembly)
+	\item \textbf{Operation method with screwdrivers} \seeref{subsection:exploration_4_flowchart_for_screwdriver_assembly}
 
 	\item \textbf{Operation method with clamps and screwdrivers }(8.1.1 Combined Operation of Clamps and Screwdrivers)
 
@@ -249,11 +249,11 @@ Readers who are interested only in a specific theme may find the following guide
     \item \textbf{Screwdriver }for planar and non-planar lap joints 
 
 \begin{itemize}
-	\item Hardware (7.3.7 Lap Screwdriver SL1 and SL1\_G200 Hardware)
+	\item Hardware \seeref{subsection:exploration_4_lap_screwdriver_sl1_and_sl1_g200_hardware}
 
-	\item Electronics (7.3.11 SL1 Screwdriver Electronics)
+	\item Electronics \seeref{subsection:exploration_4_sl1_screwdriver_electronics}
 
-	\item Firmware (7.3.12 Screwdriver Firmware (L1 Control))
+	\item Firmware \seeref{subsection:exploration_4_screwdriver_firmware_l1_control}
 
 \end{itemize}
 \end{itemize}
@@ -267,27 +267,27 @@ Readers who are interested only in a specific theme may find the following guide
 \begin{itemize}
 	\item Short Parallel Gripper (5.3.5 Parallel Gripper PG500 and PG1000)
 
-	\item Long Parallel Gripper (7.3.8 Parallel Gripper PG1500 for Long Beams)
+	\item Long Parallel Gripper \seeref{subsection:exploration_4_parallel_gripper_pg1500_for_long_beams}
 
-	\item Pin Gripper on Screwdriver (7.3.5 Pin Gripper Mechanism)
+	\item Pin Gripper on Screwdriver \seeref{subsection:exploration_4_pin_gripper_mechanism}
 
 \end{itemize}
 	\item \textbf{Docking Adapter}
 
 \begin{itemize}
-	\item 7.3.9 Docking Adapter Lock Sensor
+	\item \seeref{subsection:exploration_4_docking_adapter_lock_sensor}
 
 \end{itemize}
 	\item \textbf{Camera Alignment System}
 
 \begin{itemize}
-	\item 7.3.14 Camera-Marker Alignment Correction System
+	\item \seeref{subsection:exploration_4_camera_marker_alignment_correction_system}
 
-	\item 7.3.15 Camera-Marker Hardware on Docking Adapter
+	\item \seeref{subsection:exploration_4_camera_marker_hardware_on_docking_adapter}
 
 	\item 8.3.4 Camera-Marker Hardware on CL3 Clamp
 
-	\item 7.5.2.5 Visual-guided Docking Process
+	\item \seeref{subsubsection:exploration_4_visual_guided_docking_process}
 
 \end{itemize}
 \end{itemize}
@@ -299,9 +299,9 @@ Readers who are interested only in a specific theme may find the following guide
 \begin{itemize}
 	\item \textbf{Design UI in Rhino Grasshopper} (5.3.13 CAD / CAM User Interface)
 
-	\item \textbf{Design UI (revised) in Rhino Python }(6.3.3 Design Software Implementation in Rhino Python)
+	\item \textbf{Design UI (revised) in Rhino Python } \seeref{subsection:exploration_3_design_software_implementation_in_rhino_python}
 
-	\item \textbf{Process Design Visualization} (6.3.4.6 Process Visualization and Adjustment)
+	\item \textbf{Process Design Visualization} \seeref{subsubsection:exploration_3_process_visualization_and_adjustment}
 
 \end{itemize}
 	\item \textbf{Backend}
@@ -309,31 +309,31 @@ Readers who are interested only in a specific theme may find the following guide
 \begin{itemize}
 	\item \textbf{Assembly Model} (5.3.12 Assembly Model Data Structure and Functions)
 
-	\item \textbf{Process Model} (6.3.4 Process Design Workflow)
+	\item \textbf{Process Model} \seeref{subsection:exploration_3_process_design_workflow}
 
 \end{itemize}
 	\item \textbf{Conceptual}
 
 \begin{itemize}
-	\item 7.1.1 Deformation-Awareness and Error Correction by Triangulation)
+	\item \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}
 
-	\item 7.5.2.6 Global Correction Approach
+	\item \seeref{subsubsection:exploration_4_global_correction_approach}
 
 \end{itemize}
 \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-	\item \textbf{Task and Motion Planning }workflow (6.3.4 Process Design Workflow)
+	\item \textbf{Task and Motion Planning }workflow \seeref{subsection:exploration_3_process_design_workflow}
 
 \begin{itemize}
 	\item \textbf{Narrow Passage Problem }(5.5.3 Narrow Passage Problem)
 
-	\item \textbf{Fast Check by IK} (7.3.21 Fast Design Validation with IK Check)
+	\item \textbf{Fast Check by IK} \seeref{subsection:exploration_4_fast_design_validation_with_ik_check}
 
-	\item \textbf{Fast Check by LMG Planning} (7.3.22 Planning Order by Motion Group)
+	\item \textbf{Fast Check by LMG Planning} \seeref{subsection:exploration_4_planning_order_by_motion_group}
 
-	\item \textbf{Non-sequential MMMP Solver} (6.3.6 Non-Sequential Planning Order)
+	\item \textbf{Non-sequential MMMP Solver} \seeref{subsection:exploration_3_taught_configuration_for_repetitive_targets}
 
 \end{itemize}
 	\item \textbf{Three Demonstration Structures Constructed}
@@ -341,7 +341,7 @@ Readers who are interested only in a specific theme may find the following guide
 \begin{itemize}
 	\item \textbf{BusStop }Pavilion (5.4.4 Demonstrator Design - BusStop Pavilion)
 
-	\item \textbf{HyparHut }Pavilion (7.4.3 Demonstrator Design  - HyparHut Pavilion)
+	\item \textbf{HyparHut }Pavilion \seeref{subsection:exploration_4_demonstrator_design_hyparhut_pavilion}
 
 	\item \textbf{CantiBox }Pavilion (8.4.3 Demonstrator Design  - CantiBox Pavilion)
 

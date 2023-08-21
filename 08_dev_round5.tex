@@ -29,7 +29,7 @@ These new attempts further validate the flexibility and modularity of the DiRT c
 \subsection{Combined Operation of Clamps and Screwdrivers}
 \label{subsection:exploration_5_combined_operation_of_clamps_and_screwdrivers}
 
-The following task planning flow chart describes the combined operation of the Clamps and Screwdrivers. It is the result of merging the two previous flow charts (see 6.3.5.1 Task Planning with Flowchart and 7.3.20 Flowchart for Screwdriver Assembly).
+The following task planning flow chart describes the combined operation of the Clamps and Screwdrivers. It is the result of merging the two previous flow charts \seerefii{subsubsection:exploration_3_task_planning_with_flowchart}{subsection:exploration_4_flowchart_for_screwdriver_assembly}.
 
 \input{image_holder_1}
 
@@ -55,7 +55,7 @@ While this thesis does not specifically focus on computational engineering metho
 
 TAMP with PDDLStream \parencite{garrettPDDLStreamIntegratingSymbolic2020}is a more advanced planning workflow that can create a more optimised task list than using the flowchart method.
 
-In the previous planning workflow \textit{(see \ul{6.3.5 Process Design Workflow})} tasks were planned using the flowchart method \textit{(see \ul{6.3.5.1 Task Planning with Flowchart})} without considering the geometrical constraints, such as reachability and collision. Motion planning happens only at a later stage with the already fixed task list. 
+In the previous planning workflow \seeref{subsection:exploration_3_process_design_workflow} tasks were planned using the flowchart method \seeref{subsubsection:exploration_3_task_planning_with_flowchart} without considering the geometrical constraints, such as reachability and collision. Motion planning happens only at a later stage with the already fixed task list. 
 
 In a TAMP workflow, the tasks and motions are planned at the same time. This allows the geometrical constraints that are detected by the MP to be used as feedback for planning a different, and potentially more optimised, task sequence. However, in order to let the computer decide on the task list automatically, it is necessary to give it the freedom to compose tasks in different sequences. 
 
@@ -81,7 +81,7 @@ Joint design is a human-in-the-loop process that is assisted by a computer simul
 \input{image_holder_1}
 
 
-The polyline lap joint was used as the parametric model that describes a design space \textit{(see \ul{7.3.1 Parametric Polyline Lap Joints})}. Fabrication checks were performed during the joint design process to ensure that the results did not violate the 90-degree rule \textit{(see \ul{7.2.1 CNC Limitation in Cutting Lap Joints})}. 
+The polyline lap joint was used as the parametric model that describes a design space \seeref{subsection:exploration_4_parametric_polyline_lap_joints}. Fabrication checks were performed during the joint design process to ensure that the results did not violate the 90-degree rule \seeref{subsection:exploration_4_cnc_limitation_in_cutting_lap_joints}. 
 
 The diagram below shows how the polyline lap joint parametric model is decomposed into different contact areas for analysis. Each area contributes to a different force transfer resistance depending on its location and angle. The controls used for adjusting the joint geometry can be seen in the Grasshopper interface. The fabrication check can be seen returning an ``OK" message.
 
@@ -102,14 +102,14 @@ The images below show some of the customised joints used in the demonstrator. Th
 \subsection{Scaffolding Support During Assembly}
 \label{subsection:exploration_5_scaffolding_support_during_assembly}
 
-The deformation-aware design principle was applied to the design of the structure \textit{(see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation})}. However, because the reciprocal structural system was the design focus, and diagonal bracing would have defeated the idea. Therefore, the previous error correction method of adding diagonal bracings elements was not used.
+The deformation-aware design principle was applied to the design of the structure \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation}. However, because the reciprocal structural system was the design focus, and diagonal bracing would have defeated the idea. Therefore, the previous error correction method of adding diagonal bracings elements was not used.
 
 Temporary scaffolding was used instead to create the structural triangles during assembly before the structure is stable. The scaffolding is made from aluminium profiles, each of them consists of three hinged segments. The middle segment is the longest portion that acts at one of the rigi triangle sides, while the two segments at the ends provide clamping surfaces between the timber structure and the scaffolding. The photo below shows one end of the scaffolding, the short segments can be clamped to the timber structure using a carpentry clamp.
 
 \input{image_holder_1}
 
 
-In order to avoid collision during the robotic operation \textit{(see \ul{6.5.6 Robot Collision with Scaffolding})}, the estimated size of the scaffolding bar and the carpentry clamps are added to the 3D model as collision geometry for motion planning.
+In order to avoid collision during the robotic operation \seeref{subsection:exploration_3_robot_collision_with_scaffolding}, the estimated size of the scaffolding bar and the carpentry clamps are added to the 3D model as collision geometry for motion planning.
 
 The image below shows the collision geometry of the scaffolding bars (yellow) in the Process Model. From the task planning perspective, this is treated as an element that is assembled manually. Hence they also contain a sequence number. In practice, they are assembled after the unstable beam is clamped and before the robot gripper lets go of it.
 
@@ -119,7 +119,7 @@ The image below shows the collision geometry of the scaffolding bars (yellow) in
 \subsection{Automatic Shake when Docking with Tools}
 \label{subsection:exploration_5_automatic_shake_when_docking_with_tools}
 
-After the implementation of the vision-guided docking procedure \textit{(see \ul{7.3.15 Camera-Marker Hardware on Docking Adapter})} and the compliant robotic arm control \textit{(see \ul{7.3.16 Compliant Control for Robotic Arm})}, there are still cases where the docking adapter failed to lock \textit{(see \ul{6.5.4 Docking Adapter Fail to Lock})}.
+After the implementation of the vision-guided docking procedure \seeref{subsection:exploration_4_camera_marker_hardware_on_docking_adapter} and the compliant robotic arm control \seeref{subsection:exploration_4_compliant_control_for_robotic_arm}, there are still cases where the docking adapter failed to lock \seeref{subsection:exploration_3_docking_adapter_fail_to_lock}.
 
 In the last demonstration, the operator found that it was possible to fix the problem remotely by jogging the gantry linearly back and forth, while keeping the robotic arm in a low-stiffness model. 
 
@@ -197,7 +197,7 @@ The markers are implemented using an ink-jet printed label that is waterproof. A
 
 Task and Motion Planning (TAMP) with PDDLStream is a method for integrating high-level planning and low-level motion planning in a single, unified framework \textit{(see \ul{8.2.2 TAMP with PDDLStream})}. The approach enables the automatic generation of optimised task sequences, considering both abstract actions and their geometric constraints. 
 
-In the implementation of this Clamped and Screwed Assembly Process, the abstract actions refer to the High-Level Tasks, identical to those used in the flow chart. They are defined as groups of Low-Level Tasks \textit{(see 6.3.5.2 Expanding Task Groups)}. The geometric constraints refer to the Inverse Kinematic (IK) check that ensures reachability. 
+In the implementation of this Clamped and Screwed Assembly Process, the abstract actions refer to the High-Level Tasks, identical to those used in the flow chart. They are defined as groups of Low-Level Tasks \seeref{subsubsection:exploration_3_expanding_task_groups}. The geometric constraints refer to the Inverse Kinematic (IK) check that ensures reachability. 
 
 Here is a summary of how the TAMP is performed with PDDLStream:
 
@@ -205,14 +205,14 @@ Here is a summary of how the TAMP is performed with PDDLStream:
 	\item \textbf{Problem Formulation --} Actions (High-level Tasks), initial state and goal state are represented in a symbolic form using the PDDL (Planning Domain Definition Language) syntax.
 
 \begin{itemize}
-	\item \textbf{Initial State --} Identical to the initial state used for sequential planning \textit{(see \ul{6.3.5.5 Compute Object States})}. All the state parameters of all objects are required.
+	\item \textbf{Initial State --} Identical to the initial state used for sequential planning \seeref{subsubsection:exploration_3_compute_object_states}. All the state parameters of all objects are required.
 
 	\item \textbf{Actions --} Actions consist of two parts. 
 
 \begin{itemize}
 	\item \textbf{Preconditions --} A symbolic criteria that the scene state must meet before the action can be taken. 
 
-	\item \textbf{Effects --} A symbolic change to the scene state if that action is taken. This is conceptually the same as the \textit{task.UpdateState()} function \textit{(see \ul{6.3.5.5 Compute Object States})} but implemented for the High-Level Tasks.
+	\item \textbf{Effects --} A symbolic change to the scene state if that action is taken. This is conceptually the same as the \verb{task.UpdateState()} function \seeref{subsubsection:exploration_3_compute_object_states} but implemented for the High-Level Tasks.
 
 \end{itemize}
 	\item \textbf{Goal State --} The state of all objects which the planner will attempt to achieve. This refers to the state where all beams are assembled, and all tools are placed back at their storage location.
@@ -221,7 +221,7 @@ Here is a summary of how the TAMP is performed with PDDLStream:
 	\item \textbf{Stream Functions --} Stream functions are implemented that connect the actions to their geometric constraints. There is one stream Function for each robotic Action. They contain IK solvers that can check whether the targets in the High-Level Task are reachable.
 
 \begin{itemize}
-	\item IK solvers have access to the same Robot Model and Tool Models \textit{(see \ul{6.3.5 Process Design Workflow})} for checking IK and collisions.
+	\item IK solvers have access to the same Robot Model and Tool Models \seeref{subsection:exploration_3_process_design_workflow} for checking IK and collisions.
 
 \end{itemize}
 	\item \textbf{PDDLStream Integration} \textbf{-} The PDDL problem definition and the stream functions are integrated using PDDLStream. PDDLStream extends PDDL by allowing the integration of external procedures (stream functions) into the planning process.
@@ -230,7 +230,7 @@ Here is a summary of how the TAMP is performed with PDDLStream:
 
 	\item \textbf{Motion Planning --} During the PDDLStream planning, only the IK result was checked. The motion planning between the targets was performed afterwards to find the trajectory that links between the targets.
 
-	\item \textbf{Execution --} The execution of the planned tasks and motion on the robot is the same as before \textit{(see \ul{6.3.8 Standalone Process Execution Controller})}. One side effect is that the planned tasks no longer correspond to a specific beam in a sequential way, but this does not affect operations.
+	\item \textbf{Execution --} The execution of the planned tasks and motion on the robot is the same as before \seeref{subsection:exploration_3_standalone_process_execution_controller}. One side effect is that the planned tasks no longer correspond to a specific beam in a sequential way, but this does not affect operations.
 
 \end{itemize}
 \section{Demonstration}
@@ -287,7 +287,7 @@ Note that this was the last exploration round. Any potential follow-up actions c
 \subsection{Execution Plan}
 \label{subsection:exploration_5_execution_plan}
 
-The preparation of the execution was similar to the previous round (see 7.5.1 Execution Plan). The differences are:
+The preparation of the execution was similar to the previous round \seeref{subsection:exploration_4_execution_plan}. The differences are:
 
 \begin{itemize}
 	\item The aluminium platform was reused from the previous round
@@ -304,7 +304,7 @@ The photo below shows the tool storage location, which consists of 4 clamps and 
 \input{image_holder_1}
 
 
-The joints are chamfered in a similar way as before using a hand plane and chisel \textit{(see \ul{5.6.6 Clamping Joints with Chamfered Edges})}. The amount of chamfer was 6mm. However, the more complex polyline joint shapes made the manual process rather tedious. The pin gripper holes are drilled in a similar way as before using the drilling jig \textit{(see \ul{7.5.4.1 Correction of the Screw Holes})}.
+The joints are chamfered in a similar way as before using a hand plane and chisel \textit{(see \ul{5.6.6 Clamping Joints with Chamfered Edges})}. The amount of chamfer was 6mm. However, the more complex polyline joint shapes made the manual process rather tedious. The pin gripper holes are drilled in a similar way as before using the drilling jig \seeref{subsubsection:exploration_4_correction_of_the_screw_holes}.
 
 \input{image_holder_1x2}
 
@@ -379,7 +379,7 @@ The image below shows the
 \input{image_holder_1}
 
 
-In summary, the TAMP with PDDLStream method was found to offer a more advanced and flexible planning workflow for robotic operations. The theoretical departure from a flowchart was difficult to grasp at first, but the actual implementation was not too different from the geometrical computation and IK checks that were performed before \textit{(see \ul{6.3.5.4 Compute Robot Targets} and \ul{7.3.21 Fast Design Validation with IK Check})}. Furthermore, the Stream part of the PDDLStream can account for other types of constraints that may be useful for future work. 
+In summary, the TAMP with PDDLStream method was found to offer a more advanced and flexible planning workflow for robotic operations. The theoretical departure from a flowchart was difficult to grasp at first, but the actual implementation was not too different from the geometrical computation and IK checks that were performed before \seerefii{subsubsection:exploration_3_compute_robot_targets}{subsection:exploration_4_fast_design_validation_with_ik_check}. Furthermore, the Stream part of the PDDLStream can account for other types of constraints that may be useful for future work. 
 
 \subsubsection{Vision-Guided Clamp Attachment}
 \label{subsubsection:exploration_5_vision_guided_clamp_attachment}
@@ -411,9 +411,9 @@ One practical application of on-line TAMP replanning could be to bring the clamp
 \subsection{Inaccurate Polyline Lap Problem}
 \label{subsection:exploration_5_inaccurate_polyline_lap_problem}
 
-The polyline lap joints used in this round are slightly more complex than the ones used in the HyparHut \textit{(see \ul{7.5.3 Missing Cut Problem})}. During test fitting, the machined joints were found to be too tight that they cannot be assembled manually by hammering. Almost 80$\%$ of the joints have to be adjusted manually. 
+The polyline lap joints used in this round are slightly more complex than the ones used in the HyparHut \seeref{subsection:exploration_4_missing_cut_problem}. During test fitting, the machined joints were found to be too tight that they cannot be assembled manually by hammering. Almost 80$\%$ of the joints have to be adjusted manually. 
 
-The cause of this problem was not identified. However, it is speculated to be related to machining accuracy similar to the previous problem \textit{(see \ul{7.5.4 Inaccurate Screw Hole Problem})}.
+The cause of this problem was not identified. However, it is speculated to be related to machining accuracy similar to the previous problem \seeref{subsection:exploration_4_inaccurate_screw_hole_problem}.
 
 \textbf{\ul{Possible Follow-Up Action}}
 
@@ -424,7 +424,7 @@ Further discussions can be found in the later chapter about alignment and correc
 
 In this exploration round, the beam placement (Joint-to-joint alignment) remains the only alignment scenario that did not have any active correction strategy. The alignment accuracy therefore relies on the accuracy of the robot and the partially-assembled (PA) structure. 
 
-Since the construction in Exploration Round 3, the accuracy of the robot-side have been improved by calibration \textit{(see \ul{6.5.10 RFL Robot Inaccuracy and Calibration})} and the accuracy on the stationary-side PA structure have also been improved by deformation-aware design principles \textit{(see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation})} and the use of scaffoldings \textit{(see \ul{8.3.2 Scaffolding Support During Assembly})}.
+Since the construction in Exploration Round 3, the accuracy of the robot-side have been improved by calibration \seeref{subsection:exploration_3_rfl_robot_inaccuracy_and_calibration} and the accuracy on the stationary-side PA structure have also been improved by deformation-aware design principles \seeref{subsection:exploration_4_deformation_awareness_and_error_correction_by_triangulation} and the use of scaffoldings  \seeref{subsection:exploration_5_scaffolding_support_during_assembly}.
 
 The alignment accuracy has seen some improvement (a subjective observation because accurate measurement was difficult) but alignment failure is still frequent. It also became clear that the amplitude of deviation is hard to be corrected by purely passive methods alone, such as the chamfered edges. The images below show a substantial misalignment that cannot be corrected with the chamfer. 
 
