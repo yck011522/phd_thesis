@@ -12,7 +12,7 @@ The development strategy for this round was to create a minimum viable product (
 \label{subsection:exploration-2-scope-for-the-first-large-scale-demonstration}
 
 Being the first demonstration with the robotic arms, the scope of the robotic assembly demonstration included only the BeamTransfer and the RobotClampSyncLM. The other robotic movements such as material pickup, tool change, attach and detach clamps, gripper retract and gripper transit are performed manually or are guided by an operator using the joystick on the ABB robot controller’s teach pendant.
-These two movements were chosen because they represent two of the most important robotic movements - Free Motion and Linear Motion. See later Section 5.2.2 RFL Robotic Platform and 5.2.7 Motion Planning for details regarding the difference between the two. In addition, the RobotClampSyncLM also requires synchronised motion between the robotic arm and the clamps.
+These two movements were chosen because they represent two of the most important robotic movements - Free Motion and Linear Motion. See later sections for details regarding the difference between the two \seerefii{subsection:exploration-2-rfl-robotic-platform}{subsection:exploration-2-motion-planning}. In addition, the RobotClampSyncLM also requires synchronised motion between the robotic arm and the clamps.
 The following features and functionalities were identified to be essential for this demonstration:
 \begin{itemize}
     \item Mechatronics
@@ -429,11 +429,11 @@ The Lap Clamp CL2 is a progressive improvement from CL1 \seeref{subsection:explo
 \begin{enumerate}
 \item Strong linear actuator that will not damage itself
     \begin{itemize}
-        \item Ball screw actuator (instead of an integrated linear actuator); see 5.3.1 Ball Screw Linear Actuator for details.
+        \item Ball screw actuator (instead of an integrated linear actuator) \seeref{subsection:exploration-2-ball-screw-linear-actuator}
     \end{itemize}
     \item Better stability of the clamp jaw 
     \begin{itemize}
-        \item Linear guide with square rails (instead of round shaft); see 5.3.2 Clamp Jaw design for details.
+        \item Linear guide with square rails (instead of round shaft) \seeref{subsection:exploration-2-clamp-jaw-design}
     \end{itemize}
     \item Faster machining time for custom parts
     \begin{itemize}
@@ -451,11 +451,11 @@ In order to save machining time, the clamp jaw was redesigned. The drawing below
 
 The following drawing shows a preliminary design of the CL2 clamp. The adoption of the motor 36GP-555 with a planetary gearbox resulted in a design where the motor extended behind the docking adapter of the clamp. This was undesirable because the robot arm could damage the motor if there were a collision. 
 
-An alternative solution was found to use a worm gearbox such that the output shaft is rotated by 90 degrees. This resulted in a more compact design shown in the drawings below. In addition, the use of worm gear in the drive train prevents back driving seen in the tests of 5.3.1 Ball Screw Linear Actuator. This will allow the clamp to hold position against external forces without exerting motor power, enhancing the safety of the device to prevent unintended motion.
+An alternative solution was found to use a worm gearbox such that the output shaft is rotated by 90 degrees. This resulted in a more compact design shown in the drawings below. In addition, the use of worm gear in the drive train prevents back driving \seeref{subsection:exploration-2-ball-screw-linear-actuator}. This will allow the clamp to hold position against external forces without exerting motor power, enhancing the safety of the device to prevent unintended motion.
 
 Worm Gearbox Validation
 
-Because worm gearboxes are known to have significantly lower efficiency than planetary gearboxes, additional tests were conducted to select a suitable gearbox and to verify its pull force. The gearbox GW4058 by Chihai Motor models was identified to have a compatible size and is able to interface with the same DC motor 36GP-555. Two gear ratios (1:54 and 1:72) were tested with a setup similar to the last test in 5.3.2 Clamp Jaw design. The following plot shows the result:
+Because worm gearboxes are known to have significantly lower efficiency than planetary gearboxes, additional tests were conducted to select a suitable gearbox and to verify its pull force. The gearbox GW4058 by Chihai Motor models was identified to have a compatible size and is able to interface with the same DC motor 36GP-555. Two gear ratios (1:54 and 1:72) were tested with a setup similar to the previous test \seeref{subsection:exploration-2-clamp-jaw-design}. The following plot shows the result:
 
 It was surprising to see that the 1:54 gearbox performed better than the 1:72 gearbox. This was probably due to the 1:72 gearbox having lower efficiency. Compared with the previous test with the 1:51 planetary gearbox, the pull force is much lower. At 7A 12V the worm gear pulled 2900N, compared to 5100N by the planetary.
 
@@ -478,7 +478,7 @@ The construction of the clamp began with the linear actuators and clamp jaws. 4 
 \subsection{Lap Clamp CL3 Hardware}
 \label{subsection:exploration-2-lap-clamp-cl3-hardware}
 
-The Lap Clamp CL3 was designed almost at the same time as CL2. The main intention is to adapt the clamping mechanism for variable-angle lap joints set forth in 5.2.1 Parametric Variations of Lap Joints. 
+The Lap Clamp CL3 was designed almost at the same time as CL2. The main intention is to adapt the clamping mechanism for variable-angle lap joints \seeref{subsection:exploration-2-parametric-variations-of-lap-joints}. 
 
 The initial goal at the beginning is to create a clamp that can accommodate 45 degrees lap joints that are commonly used in diagonal bracing. However, in the process of adapting the clamp, it is found that the best strategy is to separate the hardware for left-handed joint and right-handed joint angles. This resulted in two clamp designs that are mirror-symmetrical, each able to handle 25 to 90 degrees on each side (measured on the acute angle of the intersection). 
 
@@ -982,7 +982,7 @@ The two robotic motions are planned using the same Rhino interface with a differ
         \item Object States = Current PA Structure + Clamps
     \end{itemize}
 \end{itemize}
-* The clamps are not included because the planner was not able to find results. See 5.5.3 Narrow Passage Problem for details.
+* The clamps are not included because the planner was not able to find results \seeref{subsection:exploration-2-narrow-passage-problem}.
 
 The GH script was able to pass these inputs to the motion planning backend using the \verb|compas_fab| library. The RobotModel used to initiate the backend was prepared from previous projects in the lab that used the same robot. 
 
@@ -1074,7 +1074,7 @@ MISSINGTABLE
 
 The demonstrator structure was designed by Frédéric Brisson (also referred to as Fred), a student from the Master of Advanced Studies programme in Digital Fabrication at ETH Zurich. The Pavilion consisted of 40 pieces of timber beams arranged to form a canopy structure. 
 The inspiration for the structure comes from the One Tokyo storefront (2018) and Sunny Hills (2013) by Kengo Kuma and Associates. The pavilion consists of vertical elements arranged in a column grid, forming a series of gradually changing cantilevering frames. The frames are interconnected in another direction with more timber beams whose angles are also gradually changing.
-The image below shows the finished structure. (This picture was taken at a different location from where it was constructed. See 5.6.2.6 Pieces with Non-Planar Joint for pictures of the pavilion on its original construction platform.)
+The image below shows the finished structure. \footnote{This picture was taken at a different location from where it was constructed. Refer to eariler section for pictures of the pavilion on its original construction platform \seeref{subsubsection:exploration-2-pieces-with-non-planar-joint}.}
 
 The pavilion was intentionally designed with six extra pieces of decorative elements that are not part of the automatic assembly process (see photo below, right). These pieces contained non-planar (NP) joints that could not be clamped. However, their inclusion was intended to understand NP joints better for future development.
  
@@ -1389,7 +1389,7 @@ For if the chamfer-not-engaged:
 \begin{itemize}
     \item Increase joint chamfer
     \begin{itemize}
-        \item As explained in 5.6.6 Clamping Joints with Chamfered Edges, empirical test results are inconclusive.
+        \item As explained before \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}, empirical test results are inconclusive.
     \end{itemize}
     \item Reduce misalignment 
     \begin{itemize}

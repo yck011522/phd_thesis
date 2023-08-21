@@ -9,7 +9,7 @@ The robotic assembly process has already achieved a high degree of automation by
 \begin{itemize}
 	\item \textbf{Structurally-informed joint design --} Structural analysis and design using a novel method that is based on the theory of plasticity. This allows individually customised joints to respond to local load conditions. The main challenge on my part was to negotiate the intersection between assembly limitations, CNC machining limitations and structural optimization. 
 
-	\item \textbf{Automated task and motion planning (TAMP) --} Performing TAMP in unison (instead of task planning before motion planning) using PDDLStream. This allows for the optimisation of redundant tasks and robotic motions \textit{(see \ul{5.6.14 Redundant Robotic Movement in Free Move})}. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. 
+	\item \textbf{Automated task and motion planning (TAMP) --} Performing TAMP in unison (instead of task planning before motion planning) using PDDLStream. This allows for the optimisation of redundant tasks and robotic motions \seeref{subsection:exploration-2-joints-loosening-after-assembly}. The main challenge is to formulate actions that can be understood by the computer algorithm to plan automatically. 
 
 \end{itemize}
 The combined technology was validated with the assembly of a structure with three volumetric modular boxes, each containing clamped and screwed joints. The main differences in this assembly process are,
@@ -34,7 +34,7 @@ The following task planning flow chart describes the combined operation of the C
 \input{image_holder_1}
 
 
-As evident, this is a rather complex flow chart. However, the task planning that is implemented in this exploration round will utilise a bottom-up planning method instead of this flowchart method \textit{(see \ul{8.2.2 TAMP with PDDLStream} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}.
+As evident, this is a rather complex flow chart. However, the task planning that is implemented in this exploration round will utilise a bottom-up planning method instead of this flowchart method \seerefii{subsection:exploration-5-tamp-with-pddlstream}{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}.
 
 \section{Literature Review}
 \label{section:exploration-5-literature-review}
@@ -195,7 +195,7 @@ The markers are implemented using an ink-jet printed label that is waterproof. A
 \subsection{Specifying Actions and Goals for TAMP with PDDLStream}
 \label{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}
 
-Task and Motion Planning (TAMP) with PDDLStream is a method for integrating high-level planning and low-level motion planning in a single, unified framework \textit{(see \ul{8.2.2 TAMP with PDDLStream})}. The approach enables the automatic generation of optimised task sequences, considering both abstract actions and their geometric constraints. 
+Task and Motion Planning (TAMP) with PDDLStream is a method for integrating high-level planning and low-level motion planning in a single, unified framework \seeref{subsection:exploration-5-tamp-with-pddlstream}. The approach enables the automatic generation of optimised task sequences, considering both abstract actions and their geometric constraints. 
 
 In the implementation of this Clamped and Screwed Assembly Process, the abstract actions refer to the High-Level Tasks, identical to those used in the flow chart. They are defined as groups of Low-Level Tasks \seeref{subsubsection:exploration-3-expanding-task-groups}. The geometric constraints refer to the Inverse Kinematic (IK) check that ensures reachability. 
 
@@ -294,9 +294,9 @@ The preparation of the execution was similar to the previous round \seeref{subse
 
 	\item The taught configuration for the clamps are added for motion planning
 
-	\item The test fit inspection discovered another type of inaccuracy \textit{(see \ul{8.5.3 Inaccurate Polyline Lap Problem})}
+	\item The test fit inspection discovered another type of inaccuracy \seeref{subsection:exploration-5-inaccurate-polyline-lap-problem}
 
-	\item Robotic assembly is a combination of the clamped and screwed process \textit{(refer to \ul{8.1.1 Combined Operation of Clamps and Screwdrivers})}
+	\item Robotic assembly is a combination of the clamped and screwed process \seeref{subsection:exploration-5-combined-operation-of-clamps-and-screwdrivers}
 
 \end{itemize}
 The photo below shows the tool storage location, which consists of 4 clamps and 4 screwdrivers. The storage pads for the clamps are different from the ones used in Exploration Round 3. These new ones have a top-facing flange direction that is easier for operator alignment.
@@ -304,7 +304,7 @@ The photo below shows the tool storage location, which consists of 4 clamps and 
 \input{image_holder_1}
 
 
-The joints are chamfered in a similar way as before using a hand plane and chisel \textit{(see \ul{5.6.6 Clamping Joints with Chamfered Edges})}. The amount of chamfer was 6mm. However, the more complex polyline joint shapes made the manual process rather tedious. The pin gripper holes are drilled in a similar way as before using the drilling jig \seeref{subsubsection:exploration-4-correction-of-the-screw-holes}.
+The joints are chamfered in a similar way as before using a hand plane and chisel \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}. The amount of chamfer was 6mm. However, the more complex polyline joint shapes made the manual process rather tedious. The pin gripper holes are drilled in a similar way as before using the drilling jig \seeref{subsubsection:exploration-4-correction-of-the-screw-holes}.
 
 \input{image_holder_1x2}
 
@@ -331,7 +331,7 @@ During process design, the three layers of horizontal beams close to the bottom 
 \input{image_holder_1}
 
 
-The task for the operator to attach the scaffolding was found to be quite tedious because a new aluminium profile has to be fixed to the ground and the structure at precise locations. This was necessary to ensure that it did not violate the collision geometry used during motion planning. Future work should consider adding alignment  marks or geometrical features to the locations where the scaffolding is attached. Alternatively, the scaffolding can also be attached by the robot. This idea is explored in the conclusion chapter \textit{(see \ul{10.3.1 Designing new DiRT tools})}.
+The task for the operator to attach the scaffolding was found to be quite tedious because a new aluminium profile has to be fixed to the ground and the structure at precise locations. This was necessary to ensure that it did not violate the collision geometry used during motion planning. Future work should consider adding alignment  marks or geometrical features to the locations where the scaffolding is attached. Alternatively, the scaffolding can also be attached by the robot. This idea is explored in the conclusion chapter \seeref{subsection:discussion-designing-new-dirt-tools}.
 
 The photos below shows the pavilion after it is moved to a nearby park.
 
@@ -355,14 +355,14 @@ There were two minor problems related to the use of more tools:
 	\item Future work should consider integrating charging solutions in the storage stations, or charging through the docking adapter when the tools are attached.
 
 \end{itemize}
-	\item Increased latency for Wireless DiRT communications\textit{ (see \ul{8.5.5 Wireless Radio Latency})}
+	\item Increased latency for Wireless DiRT communications \seeref{subsection:exploration-5-wireless-radio-latency}
 
 \end{itemize}
 
 \subsubsection{Optimised Clamp Transfer Tasks}
 \label{subsubsection:exploration-5-optimised-clamp-transfer-tasks}
 
-The TAMP with PDDLStream implementation overcomes the limitation imposed by the previous flowchart method \textit{(see \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}. By allowing the planner to explore multiple task sequences while considering the motion planning constraints simultaneously, the TAMP approach generated a more efficient and optimised task list that significantly reduced the number of clamp transfers going back and forth between the tool storage. 
+The TAMP with PDDLStream implementation overcomes the limitation imposed by the previous flowchart method \seeref{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}. By allowing the planner to explore multiple task sequences while considering the motion planning constraints simultaneously, the TAMP approach generated a more efficient and optimised task list that significantly reduced the number of clamp transfers going back and forth between the tool storage. 
 
 The table below compares the number of tool transfers using the flowchart method, compared to the TAMP planned tasks.
 
@@ -417,7 +417,7 @@ The cause of this problem was not identified. However, it is speculated to be re
 
 \textbf{\ul{Possible Follow-Up Action}}
 
-Further discussions can be found in the later chapter about alignment and correction \textit{(see \ul{9.2.1 Accuracy of Timber Parts})}.
+Further discussions can be found in the later chapter about alignment and correction \seeref{subsection:new-hypo-accuracy-of-timber-parts}.
 
 \subsection{Beam Placement Misalignment Problem}
 \label{subsection:exploration-5-beam-placement-misalignment-problem}
@@ -447,7 +447,7 @@ The following screen-capture image shows the L2 Tool Controller overseeing eight
 
 \textbf{Follow-up}
 
-Using the correct hardware, it is likely that the communication protocol can be optimised specifically for synchronous commands. For example by taking advantage of broadcast packets. However, if the system is to be expanded to industrial construction scale, the whole radio system should be redesigned to handle the traffic while maintaining low latency. Further discussion can be found in the chapter about a generalised DiRT system \textit{(see \ul{10.3.4 Wireless Communication System})}. 
+Using the correct hardware, it is likely that the communication protocol can be optimised specifically for synchronous commands. For example by taking advantage of broadcast packets. However, if the system is to be expanded to industrial construction scale, the whole radio system should be redesigned to handle the traffic while maintaining low latency. Further discussion can be found in the chapter about a generalised DiRT system \seeref{subsection:discussion-wireless-communication-system}. 
 
 \subsection{Clamp Fall Incident}
 \label{subsection:exploration-5-clamp-fall-incident}
@@ -461,7 +461,7 @@ The photo below showed a similar collision that occurred on another beam. The de
 
 \textbf{\ul{Cause}}
 
-As explained before \textit{(see \ul{8.5.4 Beam Placement Misalignment Problem})}, the alignment during the placement of the beam is relying only on the accuracy of the robot-side and the stationary-side. It has been demonstrated many times that this accuracy is not high enough to be accurate. 
+As explained before \seeref{subsection:exploration-5-beam-placement-misalignment-problem}, the alignment during the placement of the beam is relying only on the accuracy of the robot-side and the stationary-side. It has been demonstrated many times that this accuracy is not high enough to be accurate. 
 
 The opening of the clamp jaw only allowed 10mm of clearance on each side of the jaw during this alignment. The deviation for the beam, particularly at the end of a long beam, could occasionally be too big for entering the narrow passage.
 
@@ -471,4 +471,4 @@ In this implementation, there are no sensors included for detecting the beam-to-
 
 The specific collision was a very mild collision that would have been difficult for the robot to sense, even if force-torque sensors would be available. Another approach is to include sensors on the clamp to constantly monitor whether the gripper is properly closed. This would have triggered an alarm during the collision that dislodged the clamps and stopped the automatic process before the tool became dangerous. In fact, this sensor was planned during development but was not implemented for the demonstration due to insufficient development time. 
 
-This incident also raised the awareness of the importance of risk assessment in an automatic robotic process. Further discussions can be found in a later chapter \textit{(see \ul{10.2 Risk Assessment of Robotic Processes})}.
+This incident also raised the awareness of the importance of risk assessment in an automatic robotic process. Further discussions can be found in a later chapter \seeref{section:discussion-risk-assessment-of-robotic-processes}.

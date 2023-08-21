@@ -4,7 +4,7 @@
 \section{Goal}
 \label{section:exploration-4-goal}
 
-The main goal of the fourth round is to address the accuracy, stability and alignment problems observed in the previous round, especially through the use of structural triangulation. In addition, a new Screwdriver DiRT tool is developed to address the problem observed in 5.6.15 Joints Loosening after Assembly. This also enabled the assembly of non-planar (NP) lap joints and beams with different section sizes. 
+The main goal of the fourth round is to address the accuracy, stability and alignment problems observed in the previous round, especially through the use of structural triangulation. In addition, a new Screwdriver DiRT tool is developed to address the joint loosening problem \seeref{subsection:exploration-2-joints-loosening-after-assembly}. This also enabled the assembly of non-planar (NP) lap joints and beams with different section sizes. 
 
 In order to achieve these goals, the following development was required:
 \begin{itemize}
@@ -35,7 +35,7 @@ In order to achieve these goals, the following development was required:
 \subsection{Deformation-Awareness and Error Correction by Triangulation}
 \label{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}
 
-This is a new framework developed from the observation in 5.6.5 Corrective Effects of Adding Elements. The observation provided an indication that the addition of more elements helped correct the deformation in the partial structure. This effect was present as long as there were more than one joint being assembled, and the effect is more pronounced when a new triangle is formed. 
+This is a new framework developed from the observation in previous experiments \seeref{subsection:exploration-2-corrective-effects-of-adding-elements}. The observation provided an indication that the addition of more elements helped correct the deformation in the partial structure. This effect was present as long as there were more than one joint being assembled, and the effect is more pronounced when a new triangle is formed. 
 
 \paragraph{Hypothesis}
 
@@ -143,7 +143,7 @@ The design of the screw precedes the design of the screwdriver. The goal of the 
 
 \begin{enumerate}
     \item The screw has to pull the two halves of the joints together.
-    \item The screw has to stay behind to secure the joint against loosening (see 5.6.15 Joints Loosening after Assembly).
+    \item The screw has to stay behind to secure the joint against loosening \seeref{subsection:exploration-2-joints-loosening-after-assembly}.
 
 \end{enumerate}
 The two requirements have a conflicting requirement because the screw needs to be longer than the lap joint when it is not assembled for step 1, but has to be shorter than the total joint thickness after it is left behind, such that the screw does not stick outside of the timber. 
@@ -172,7 +172,7 @@ The screw design and the screw prototypes are made by Luca Steiner (Luca Stephan
 \subsection{Screw Driving Mechanism}
 \label{subsection:exploration-4-screw-driving-mechanism}
 
-The screw driving mechanism was designed to actuate the two-screw design (see the previous chapter). The goal of the mechanical movements consist of two tasks:
+The screw driving mechanism was designed to actuate the two-screw design \seeref{subsection:exploration-4-screw-design}. The goal of the mechanical movements consist of two tasks:
 
 \begin{enumerate}
     \item Pull joint by rotating the pull screw and the hollow screw. The screwdriver moves together with the moving beam towards the stationary-side.
@@ -253,7 +253,7 @@ During operation, the predrilled hole by the automatic joinery machine was found
 The Lap Screwdriver SL1 is an integration of the three hardware components (described in the previous sections) and the electronics controller.
 
 \begin{itemize}
-    \item Docking Adapter - same design as before (see 5.3.5 Docking adapter)
+    \item Docking Adapter - same design as before \seeref{subsection:exploration-2-docking-adapter}
     \item Screw Driving Mechanism \seeref{subsection:exploration-4-screw-driving-mechanism}
     \item Pin Gripper \seeref{subsection:exploration-4-pin-gripper-mechanism}
     \item SL1 Electronics \seeref{subsection:exploration-4-sl1-screwdriver-electronics}
@@ -279,7 +279,7 @@ missingimage
 \subsection{Parallel Gripper PG1500 for Long Beams}
 \label{subsection:exploration-4-parallel-gripper-pg1500-for-long-beams}
 
-A longer version of the parallel gripper (1500mm) was made to accommodate longer timber beams. The design is the same as before (see 5.3.6 Parallel Gripper PG500 and PG1000). This increased the total number of parallel grippers to three options: PG500, PG1000 and PG1500. The photo below shows the three grippers during operations.
+A longer version of the parallel gripper (1500mm) was made to accommodate longer timber beams. The design is the same as before \seeref{subsection:exploration-2-parallel-gripper-pg500-and-pg1000}. This increased the total number of parallel grippers to three options: PG500, PG1000 and PG1500. The photo below shows the three grippers during operations.
 
 missingimage
 
@@ -306,7 +306,7 @@ missingimage
 \subsection{Beam to Ground Connection}
 \label{subsection:exploration-4-beam-to-ground-connection}
 
-In response to the difficulty of fixing initial beams to the platform (see 6.5.8 Difficulty in attaching beam to platform), the new beam-to-ground connection is redesigned to fix horizontal beams instead of vertical columns. 
+In response to the difficulty of fixing initial beams to the platform \seeref{subsection:exploration-3-difficulty-in-attaching-beam-to-platform}, the new beam-to-ground connection is redesigned to fix horizontal beams instead of vertical columns. 
 
 The connection point consists of an inverted U shaped bracket that serves as an adjustable connection between the aluminium profiles and the timber. Between the bracket and the aluminium profiles, six machine screws allow for two adjustment directions. Between the bracket and the timber beam, an oversized hole was used to allow for adjustment between the bracket and the wood. The photo below shows how the bracket is used. Note that the platform has an intentionally high clearance with the ground to make room for robot and tool operations.
 
@@ -368,13 +368,13 @@ missingimage
 \subsection{Screwdriver Firmware (L1 Control)}
 \label{subsection:exploration-4-screwdriver-firmware-l1-control}
 
-The Screwdriver Firmware for SL1 and SL1\_G200 is similar to the L1 firmware of the clamps (see 5.3.9 CL3 Firmware). The main difference is that it is able to control two more servo motors for the pin grippers.
+The Screwdriver Firmware for SL1 and SL1\_G200 is similar to the L1 firmware of the clamps \seeref{subsection:exploration-2-cl3-firmware}. The main difference is that it is able to control two more servo motors for the pin grippers.
 The main motor no longer needs to support homing because the centre screw can spin indefinitely. The pin gripper motors have homing functions on the retracted direction.
 
 \subsection{Screwdriver Controller (L2 Control)}
 \label{subsection:exploration-4-screwdriver-controller-l2-control}
 
-The previous L2 clamp controller was modified to control the screwdrivers (see 5.3.12 Clamp Controller (L2)). The main difference is the addition of the commands for controlling the pin grippers. 
+The previous L2 clamp controller was modified to control the screwdrivers \seeref{subsection:exploration-2-clamp-controller-l2}. The main difference is the addition of the commands for controlling the pin grippers. 
 During testing, it was found that a position-control method was not able to drive the hollow screw all the way to the bottom of the pre-drilled holes. Two reasons were discovered: 
 \begin{itemize}
     \item The depth of the counterbored hole is not consistent (photo below, left)
@@ -383,7 +383,7 @@ During testing, it was found that a position-control method was not able to driv
 
 missingimage
 
-A torque-control method was devised to allow the screwdriver to tighten the joint until a predefined torque. The control method takes advantage of the power-limiting setting at the L1 motor controller, which was implemented as part of the motion control algorithm (see 5.3.8 Motion Control for DC Servo Motor). A specific power value could be set, corresponding to a desired torque, and the motor is allowed to run a normal motion profile with a target speed. The required torque is reached when the motion controller exceeds the maximum power. 
+A torque-control method was devised to allow the screwdriver to tighten the joint until a predefined torque. The control method takes advantage of the power-limiting setting at the L1 motor controller, which was implemented as part of the motion control algorithm \seeref{subsection:exploration-2-motion-control-for-dc-servo-motor}. A specific power value could be set, corresponding to a desired torque, and the motor is allowed to run a normal motion profile with a target speed. The required torque is reached when the motion controller exceeds the maximum power. 
 
 The tightening motion service is provided by the L2 controller because it is responsible for determining the success of a motion issued by the L3 controller. For example, in normal joint closure operation, the motion would be considered unsuccessful if the controller gives-up upon maximum power. However, in this tightening motion, the motion is considered successful only if the maximum power is reached before a predetermined distance is travelled. 
 
@@ -398,7 +398,7 @@ In this new development, Aruco Marker recognition algorithms (Garrido-Jurado et 
 
 \begin{itemize}
     \item \textbf{Robot pick-up a Clamp or Screwdriver from the structure --} Alignment between the two sides of the docking adapter. (similar to the movement shown in the picture below).
-    \item \textbf{Robot attach a Clamp to the structure --} Alignment between the clamp gripper pins (robot-side) and the attachment holes on the PA structure (stationary-side). This was planned to be used in the next Exploration Round (see 8.3.4 Camera-Marker Hardware on CL3 Clamp).
+    \item \textbf{Robot attach a Clamp to the structure --} Alignment between the clamp gripper pins (robot-side) and the attachment holes on the PA structure (stationary-side). This was planned to be used in the next Exploration Round \seeref{subsection:exploration-5-camera-marker-hardware-on-cl3-clamp}.
 \end{itemize}
 
 missingimage
@@ -536,7 +536,7 @@ This means that there is a dual relationship between the task and the states. Gi
 
 missingimage
 
-This concept, although simple, is essential for the implementation of automatic Task and Motion Planning (TAMP) in the next Exploration Round (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream).
+This concept, although simple, is essential for the implementation of automatic Task and Motion Planning (TAMP) in the next Exploration Round \seeref{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}.
 
 \subsection{Flowchart for Screwdriver Assembly}
 \label{subsection:exploration-4-flowchart-for-screwdriver-assembly}
@@ -548,7 +548,7 @@ missingimage
 \subsection{Fast Design Validation with IK Check}
 \label{subsection:exploration-4-fast-design-validation-with-ik-check}
 
-The Fast Design Validation by IK was developed to extend the checking function developed in 5.5.2 Checking Incorrect Planning Inputs. 
+The Fast Design Validation by IK was developed to extend the checking function developed in previous round \seeref{subsection:exploration-2-checking-incorrect-planning-inputs}.
 
 In the previous iteration, the check was developed as a developer tool for identifying programming errors before Motion Planning (MP). However, it was found to be useful also during the Process Design Phase for the Production Engineer to detect collisions in the motion request before committing to the slow MP process. Its fast computation speed, requiring only two Collision Check (CC) per Robot Motion Task, was helpful for catching mistakes. For example, all the motions in the BusStop task list can be checked in 1 minute. 
 
@@ -692,7 +692,7 @@ Similar to the BusStop demonstrator, the preparation procedures were similar. Ho
         \item Chamfer screw hole entry
         \item Drilled pin gripper attachment holes (similar procedure to previous process \seeref{subsection:exploration-4-pin-gripper-holes-drilling-jig})
     \end{enumerate}
-    \item Chamfer joint edges (similar to the method used in 5.6.6 Clamping Joints with Chamfered Edges, except 4mm was used)
+    \item Chamfer joint edges (similar to the method used before \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}, except 4mm was used)
     \item Robotic Assembly \seeref{subsection:exploration-4-flowchart-for-screwdriver-assembly}
     \begin{enumerate}
         \item Robot picks up a parallel gripper or uses a screwdriver as a gripper.
@@ -781,7 +781,7 @@ missingimage
 \subsubsection{Fastener Kept Joints From Loosening}
 \label{subsubsection:exploration-4-fastener-kept-joints-from-loosening}
 
-The hollow screws performed their intended role to keep the structure stable during construction. None of the joints have been found to be loosened after they are assembled. This successfully addressed the loosening problem observed in clamped joints (see 5.6.15 Joints Loosening after Assembly) and contributed to the overall stability during construction. The photos below show the hollow screw being revealed during (left) and after (right) the screwdriver is retracted with the robot.
+The hollow screws performed their intended role to keep the structure stable during construction. None of the joints have been found to be loosened after they are assembled. This successfully addressed the loosening problem observed in clamped joints \seeref{subsection:exploration-2-joints-loosening-after-assembly} and contributed to the overall stability during construction. The photos below show the hollow screw being revealed during (left) and after (right) the screwdriver is retracted with the robot.
 
 missingimage
 
@@ -915,13 +915,13 @@ missingimage
 The following photos show the same operation from a different angle. A ratcheting wrench can be seen on the right for tightening the screw to the wood.
 missingimage
 
-The anchoring of a horizontal beam instead of a vertical one in the BusStop (see 6.5.8 Difficulty in attaching beam to platform) provided two or three anchoring points for each beam. This improved the stability of the initial structure substantially.
+The anchoring of a horizontal beam instead of a vertical one in the BusStop \seeref{subsection:exploration-3-difficulty-in-attaching-beam-to-platform} provided two or three anchoring points for each beam. This improved the stability of the initial structure substantially.
 
 \subsubsection{Task Planning and Motion Planning}
 \label{subsubsection:exploration-4-task-planning-and-motion-planning}
 
 The flowchart task planning method \seeref{subsubsection:exploration-3-task-planning-with-flowchart} and the non-sequential planning solver \seeref{subsection:exploration-3-non-sequential-planning-order} was validated once again. However, the design of the flowchart \seeref{subsection:exploration-4-flowchart-for-screwdriver-assembly} was substantially more challenging than the Clamp Process due to more conditional statements used to handle different gripper choices. 
-In the next Exploration Round, the flowchart was anticipated to be even more complex because it will contain both clamped and screwed tools. AI task planning tools were therefore explored to overcome this limitation (see 8.3.5 Specifying Actions and Goals for TAMP with PDDLStream). 
+In the next Exploration Round, the flowchart was anticipated to be even more complex because it will contain both clamped and screwed tools. AI task planning tools were therefore explored to overcome this limitation \seeref{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}. 
 
 \subsubsection{Highly Automatic Process}
 \label{subsubsection:exploration-4-highly-automatic-process}
@@ -974,7 +974,7 @@ The inaccuracy of the drilled hole was not determined. My speculation of the cau
     \item It is also possible that the drilling of the 10mm hole and the 16mm hole were drilled from different sides and that the machine was not calibrated accurately.
 \end{itemize}
 
-Future work should consider working closely with the machine operator to determine potential accuracy problems and to find solutions for making the process more accurate. Further discussions can be found in the later chapter about alignment and correction (see 9.2.1 Accuracy of Timber Parts).
+Future work should consider working closely with the machine operator to determine potential accuracy problems and to find solutions for making the process more accurate. Further discussions can be found in the later chapter about alignment and correction \seeref{subsection:new-hypo-accuracy-of-timber-parts}.
 See the next section for the correction taken in this thesis.
 
 \subsubsection{Correction of the Screw Holes}
@@ -1094,7 +1094,7 @@ The pin extension mechanism and gearbox would have to be redesigned to overcome 
 \subsection{Screwdriver Operation was Very Slow}
 \label{subsection:exploration-4-screwdriver-operation-was-very-slow}
 
-The selection of the screwdriver main motor and the worm gearbox was very conservative to ensure the motor would not suffer from the stalling problem that the clamps had (see 5.6.7 Clamp Overload). This resulted in a screw-tightening speed of only 0.7mm/s and an unscrewing speed of 0.8mm/s. 
+The selection of the screwdriver main motor and the worm gearbox was very conservative to ensure the motor would not suffer from the stalling problem that the clamps had \seeref{subsection:exploration-2-clamp-overload}. This resulted in a screw-tightening speed of only 0.7mm/s and an unscrewing speed of 0.8mm/s. 
 
 For a typical 250mm of travel, this requires 6 minutes to tighten a beam and 5.2 minutes to rewind each screwdriver during retrieval. This was the largest bottleneck of the entire demonstration.
 

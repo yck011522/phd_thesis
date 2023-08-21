@@ -13,13 +13,13 @@ The key contribution of this thesis are
 
 		\item Identified two different solutions to improve structural \textbf{stability during construction}. \seerefiii{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}{subsubsection:exploration-4-global-correction-approach}{subsection:exploration-5-scaffolding-support-during-assembly}
 
-		\item Formalised the basic mechatronic components of a \textbf{generalised DiRT system} that can be applied beyond the scope of timber assembly. \textit{(see \ul{10.3.1 Designing new DiRT Tools})}
+		\item Formalised the basic mechatronic components of a \textbf{generalised DiRT system} that can be applied beyond the scope of timber assembly \seeref{subsection:discussion-designing-new-dirt-tools}.
 
-		\item Identified the requirements for developing \textbf{future on-site assembly robotic systems} compatible with DiRT.  \textit{(see \ul{10.3.2 Robotic Platform})}
+		\item Identified the requirements for developing \textbf{future on-site assembly robotic systems} compatible with DiRT \seeref{subsection:discussion-robotic-platform}.
 
-		\item Developed robotic control and monitoring software for coordinating multiple robot controllers and sensors to \textbf{execute} pre-planned robotic actions. \textit{(see \ul{5.2.3 Synchronisation between Clamp and RFL Robot})}
+		\item Developed robotic control and monitoring software for coordinating multiple robot controllers and sensors to \textbf{execute} pre-planned robotic actions \seeref{subsection:exploration-2-synchronisation-between-clamp-and-rfl-robot}.
 
-		\item Identified tasks and responsibilities for\textbf{ system designers, production engineers, and operators} for deploying the DiRT system. \textit{(see \ul{10.1 Response to Research Questions})}
+		\item Identified tasks and responsibilities for\textbf{ system designers, production engineers, and operators} for deploying the DiRT system \seeref{section:discussion-response-to-research-questions}.
 
 		\item Developed a vision-based docking alignment strategy that is compatible with \textbf{offline pre-planned robotic trajectory} by making \textbf{localised adjustments} online \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}.
 
@@ -27,7 +27,7 @@ The key contribution of this thesis are
 
 	\item Developed and demonstrated a \textbf{computational design and planning workflow} \textbf{for creating timber structures} assembled with the DiRT system.
 	\begin{enumerate}
-		\item Identified data structures for modelling robotically fabricated structures, allowing effective modelling of the robotic process at different levels of detail down to each joint. \textit{(see \ul{5.3.13 Assembly Model Data Structure and Functions})}
+		\item Identified data structures for modelling robotically fabricated structures, allowing effective modelling of the robotic process at different levels of detail down to each joint \seeref{subsection:exploration-2-assembly-model-data-structure-and-functions}.
 
 		\item Identified key software features to support fabrication-aware design workflows, such as process simulation \seeref{subsection:exploration-2-cad-cam-user-interface}, visualisation \seeref{subsubsection:exploration-3-process-visualization-and-adjustment} and design validation \seeref{subsection:exploration-4-fast-design-validation-with-ik-check}.
 
@@ -36,7 +36,7 @@ The key contribution of this thesis are
 		\begin{enumerate}
 			\item An easy-to-use flowchart method for manual task planning \seeref{subsubsection:exploration-3-task-planning-with-flowchart} in combination with an automatic non-sequential solver \seeref{subsection:exploration-3-non-sequential-planning-order} for coupled motion planning problems. (Manual task planning with automated motion planning)
 
-			\item An action and state modelling method to interface with TAMP algorithms. (Automated task and motion planning) \textit{(see \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream})}
+			\item An action and state modelling method to interface with TAMP algorithms. (Automated task and motion planning) \seeref{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}
 
 		\end{enumerate}
 	\end{enumerate}
@@ -45,12 +45,12 @@ The key contribution of this thesis are
 	\begin{enumerate}
 		\item Confirmed the feasibility of a highly automated timber frame assembly process. \seeref{subsubsection:exploration-4-highly-automatic-process}
 
-		\item Demonstrated different possible architectural typologies, such as column grid structure \textit{(see \ul{5.4.4 Demonstrator Design - BusStop Pavilion})}, hut typology \seeref{subsection:exploration-4-demonstrator-design-hyparhut-pavilion} and prefabricated spatial frames \textit{(see \ul{8.4.3 Demonstrator Design  - CantiBox Pavilion})}.
+		\item Demonstrated different possible architectural typologies, such as column grid structure \seeref{subsection:exploration-2-demonstrator-design-busstop-pavilion}, hut typology \seeref{subsection:exploration-4-demonstrator-design-hyparhut-pavilion} and prefabricated spatial frames \seeref{subsection:exploration-5-demonstrator-design-cantibox-pavilion}.
 
-		\item Demonstrated possible integration with structurally informed joint design, such as the ability to assemble a wide range of customised joint profiles. \textit{(see \ul{8.3.1 Structurally Informed Polyline Lap Joint})}
+		\item Demonstrated possible integration with structurally informed joint design, such as the ability to assemble a wide range of customised joint profiles \seeref{subsection:exploration-5-structurally-informed-polyline-lap-joint}.
 	\end{enumerate}
 
-	\item Developed a new hypothesis to \textbf{predict the success probability} of an assembly step affected by alignment problems. \textit{(see Chapter \ul{9 New Hypothesis - Probabilistic Model of Spatial Alignment Success})}
+	\item Developed a new hypothesis to \textbf{predict the success probability} of an assembly step affected by alignment problems \seeref{chapter:new-hypothesis}.
 
 \end{enumerate}
 
@@ -66,7 +66,7 @@ The subsequent section outlines the research limitations encountered during this
 \subsection{Extrapolation to On-Site Robotic Systems}
 \label{subsection:extrapolation-to-on-site-robots}
 
-The robotic Fabrication Lab (RFL) in ETH Zurich is one of the most prestigious laboratory environments in the world for experimenting with large-scale robotic manipulation. In this thesis, the RFL robotic system represents a generic robotic platform that is able to perform spatial positioning, with good reachability and a large assembly area. In many ways, the RFL satisfies the requirements for a future on-site robotic manipulator, with the exception that it is located indoors and with an assembly height of only a few metres \textit{(see 5.2.2 RFL Robotic Platform)}. 
+The robotic Fabrication Lab (RFL) in ETH Zurich is one of the most prestigious laboratory environments in the world for experimenting with large-scale robotic manipulation. In this thesis, the RFL robotic system represents a generic robotic platform that is able to perform spatial positioning, with good reachability and a large assembly area. In many ways, the RFL satisfies the requirements for a future on-site robotic manipulator, with the exception that it is located indoors and with an assembly height of only a few metres \seeref{subsection:exploration-2-rfl-robotic-platform}.
 
 One important note is that the maximum reach (2.55m) and payload (40kg) of the robotic arms are relatively low for manipulating large timber beams. Hence the choice of mechatronics and the design decisions throughout this thesis were bound by this limitation. 
 
@@ -77,7 +77,7 @@ In the broader context of construction robotics, the kinematic combination used 
 \subsection{Limitation of the Demonstrators}
 \label{subsection:limitation-of-the-demonstrators}
 
-Throughout this thesis, five development iterations were conducted, with only three large scale construction experiments. Due to the high cost of each demonstrator, it was not possible to conduct additional assembly experiments within the budget of this thesis. This limited the practical observations and development feedback to be based on only a handful of cases, resulting in scarce data. While smaller experiments were considered as a means to shorten the feedback cycle, they were found to be impractical due to the fixed fee for the digital services and transportation costs being a significant portion of the machining cost. For some of the problems presented in the previous chapters, drawing meaningful conclusions based solely on a few observations was not possible \textit{(see ending summary in \seeref{subsubsection:exploration-4-global-correction-approach})}, and further study is required to confirm causal relationships. 
+Throughout this thesis, five development iterations were conducted, with only three large scale construction experiments. Due to the high cost of each demonstrator, it was not possible to conduct additional assembly experiments within the budget of this thesis. This limited the practical observations and development feedback to be based on only a handful of cases, resulting in scarce data. While smaller experiments were considered as a means to shorten the feedback cycle, they were found to be impractical due to the fixed fee for the digital services and transportation costs being a significant portion of the machining cost. For some of the problems presented in the previous chapters, drawing meaningful conclusions based solely on a few observations was not possible \textit{(e.g. refer to ending summary \seeref{subsubsection:exploration-4-global-correction-approach})}, and further study is required to confirm causal relationships. 
 
 Each demonstrator included a wide variety of timber parts that function as columns, beams, and diagonal bracings, with each part possessing a unique combination of orientation, load condition, number of joints, neighbours, and type of robotic assembly tool used. While it is advantageous to observe a wide variety of assembly conditions, it is challenging to pinpoint the precise cause of any problems observed during execution due to the numerous uncontrolled variables, leading to some unexplored problems being deferred to future work.
 
@@ -102,7 +102,7 @@ It is also important to study whether the same robotic manipulator platform can 
 \subsection{Study to Enable Multiple Robotic Arms}
 \label{subsection:study_to_enable_multiple_robots
 }
-The use of a single robotic arm for the transfer of tools and timber elements has been a significant limitation in this thesis. It has led to a considerable number of tool changes between assembly tools and grippers, which increased assembly time. To improve efficiency, it is likely that the use of two or more robots could perform a wider range of actions. This could either involve two robots performing two separate tasks in parallel to improve productivity or, in some cases, collaborating to complete a single task that would otherwise be impossible \textit{(see \ul{5.6.4 Unstable structure during assembly})}. The implementation of multiple collaborating robots may also increase the maximum payload for beam transfer and resolve some of the overload problems observed. As such, the combined benefits of multiple collaborating robots could be greater than the sum of its parts.
+The use of a single robotic arm for the transfer of tools and timber elements has been a significant limitation in this thesis. It has led to a considerable number of tool changes between assembly tools and grippers, which increased assembly time. To improve efficiency, it is likely that the use of two or more robots could perform a wider range of actions. This could either involve two robots performing two separate tasks in parallel to improve productivity or, in some cases, collaborating to complete a single task that would otherwise be impossible \seeref{subsection:exploration-2-unstable-structure-during-assembly}. The implementation of multiple collaborating robots may also increase the maximum payload for beam transfer and resolve some of the overload problems observed. As such, the combined benefits of multiple collaborating robots could be greater than the sum of its parts.
 
 However, the implementation of multiple concurrent tasks is complex and challenging. It requires software that is capable of modelling these collaborative tasks and task planning that accounts for the execution time of each task to optimise overall performance. In a synchronous motion scenario, the motion planner needs to ensure the planned trajectory does not collide with each other. However, if we allow for asynchronous actions between each robotic actor, the challenge to avoid collision with each other is even more complex, because their interaction cannot be predicted in advance. Some recent research has suggested the use of a safety zone to allocate an exclusive space for the operation of each robot \textit{(cite)}. However, it is unclear how flexible this allocation can be used in congested space.
 

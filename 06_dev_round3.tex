@@ -43,7 +43,7 @@ No new demonstrator structure was created for this round. The timber beams of th
 \subsection{DiRT Clamping Assembly Process Task List (v2)}
 \label{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2}
 
-The robotic process task list is a revision from Section \ul{4.1.4 DiRT Clamping Assembly Process Task List (v1)} after incorporating the lessons learned from \ul{5.5.3 Narrow Passage Problem}. Approach and Retract targets are added to the beginning or the end of Free Motions to circumvent the Narrow Passage problems. However, this added many small motions to the overall task list.
+The robotic process task list is a revision from Section \ul{4.1.4 DiRT Clamping Assembly Process Task List (v1)} after incorporating the lessons learned about narrow passages \seeref{subsection:exploration-2-narrow-passage-problem}. Approach and Retract targets are added to the beginning or the end of Free Motions to circumvent the Narrow Passage problems. However, this added many small motions to the overall task list.
 
 In order to maintain a high level overview of the process, I developed a task group concept that is able to represent a group of tasks in an abstract way. This is referred to as \textbf{High-Level Tasks}. For example, it can contain a free motion to go to a target, linear motions between approach and retract points, and tool operations such as gripper movements and clamp movements. 
 
@@ -207,7 +207,7 @@ The image below (left) shows the UI for editing the \textbf{assembly model}; com
 
 \input{image_holder_1}
 
-While there was no need to recreate the BusStop Assembly Model for this Exploration Round, the newly developed process design workflow (see the next section) benefited greatly from this improvement. The visualisation and interactive UI for process design is also accessible from the toolbar in Rhino. More screen capture can be found in the later sections \seeref{subsubsection:exploration-3-process-visualization-and-adjustment}.
+While there was no need to recreate the BusStop Assembly Model for this Exploration Round, the newly developed process design workflow \seeref{subsection:exploration-3-process-design-workflow} benefited greatly from this improvement. The visualisation and interactive UI for process design is also accessible from the toolbar in Rhino. More screen capture can be found in the later sections \seeref{subsubsection:exploration-3-process-visualization-and-adjustment}.
 
 \subsection{Process Design Workflow}
 \label{subsection:exploration-3-process-design-workflow}
@@ -262,7 +262,7 @@ The diagram below shows the Process Design Workflow, the highlighted (grey) port
 
 
 \begin{itemize}
-	\item \textbf{Assembly Model --} Obtained from Assembly Design Phase, contains beams, joints and assembly sequence. (see \ul{5.3.13 Assembly Model Data Structure and Functions})
+	\item \textbf{Assembly Model --} Obtained from Assembly Design Phase, contains beams, joints and assembly sequence \seeref{subsection:exploration-2-assembly-model-data-structure-and-functions}.
 
 	\item \textbf{Robot Model --} A comprehensive model that describes the geometry and kinematics of the robot. The implementation used is based on compas\_fab, that is based on URDF and SRDF formats used in ROS moveit! Planning framework \parencite{SrdfROSWiki2023, UrdfROSWiki2023}.
 
@@ -276,7 +276,7 @@ Due to the complexity of the entire Process Design workflow, this section is lon
 \subsubsection{Task Planning with Flowchart}
 \label{subsubsection:exploration-3-task-planning-with-flowchart}
 
-Task planning refers to the creation of a list of tasks to accomplish a goal. These tasks have been listed in \ul{6.1.1 DiRT Clamping Assembly Process Task List (v2)} using colloquial language.
+Task planning refers to the creation of a list of tasks to accomplish a goal. These tasks have been listed in \seeref{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2} using colloquial language.
 
 \input{image_holder_1}
 
@@ -313,7 +313,7 @@ MISSINGTABLE
 \subsubsection{Expanding Task Groups}
 \label{subsubsection:exploration-3-expanding-task-groups}
 
-The list of tasks planned by the flowchart method is considered \textbf{High-Level Tasks }or \textbf{Task Groups}. Each of which can be expanded to a list of \textbf{Low-Level Tasks} that are directly related to the functions provided by the L2 and L3 controllers (see 5.2.4 Distributed Control System). The following table lists all the low-level tasks used in this exploration round and the \textbf{Task Agents }(including the human operator) and Controller that are responsive for their execution.
+The list of tasks planned by the flowchart method is considered \textbf{High-Level Tasks }or \textbf{Task Groups}. Each of which can be expanded to a list of \textbf{Low-Level Tasks} that are directly related to the functions provided by the L2 and L3 controllers \seeref{subsection:exploration-2-distributed-control-system}. The following table lists all the low-level tasks used in this exploration round and the \textbf{Task Agents }(including the human operator) and Controller that are responsive for their execution.
 
 MISSINGTABLE
 % {table:exploration_3_low_level_tasks}
@@ -325,7 +325,7 @@ Note the following properties:
 
 	\item Clamp and Robot Sync Linear Motion (SM) is provided by the L3 controller as it requires the coordination of the L2 Clamp Controller and the L2 ROS RRC Driver. 
 
-	\item Other L2 tasks are also executed through the L3 Process Controller because it provides flow control (see \ul{5.3.15 Process Execution Controller}). 
+	\item Other L2 tasks are also executed through the L3 Process Controller because it provides flow control \seeref{subsection:exploration-2-process-execution-controller}. 
 
 \end{itemize}
 The diagram below shows all the task groups used in this exploration round expanded into its constituting low-level tasks. Those that are marked with ``TC" means that a Taught Configuration was used for its target pose.
@@ -625,7 +625,7 @@ The red arrow denotes a fixed configuration input to the motion planner. It typi
 The following solution was considered but was not successful:
 
 \begin{itemize}
-	\item \textbf{Remove this Linear Motion --} it is not possible because of the narrow passage problem (see \ul{5.5.3 Narrow Passage Problem}). 
+	\item \textbf{Remove this Linear Motion --} it is not possible because of the narrow passage problem \seeref{subsection:exploration-2-narrow-passage-problem}. 
 
 	\item \textbf{Plan Sequentially Backwards --} the over constraint scenario will still be encountered.
 
@@ -661,7 +661,7 @@ The following charts \parencite{huangNewAnalogProtocol2021} shows the success ra
 \subsection{Standalone Process Execution Controller}
 \label{subsection:exploration-3-standalone-process-execution-controller}
 
-An improvement was made to upgrade the L3 Process Execution Controller that was based on Rhino Grasshopper (see \ul{5.3.15 Process Execution Controller}). The new controller is written in Python 3 code and utilises Tkinter to create an interactive graphical user interface (GUI).
+An improvement was made to upgrade the L3 Process Execution Controller that was based on Rhino Grasshopper \seeref{subsection:exploration-2-process-execution-controller}. The new controller is written in Python 3 code and utilises Tkinter to create an interactive graphical user interface (GUI).
 
 \input{image_holder_1}
 
@@ -684,7 +684,7 @@ In addition to the previous capability of sending pre-planned motions to the L2 
 \end{itemize}
 The tasks that were supported by the Execution Controller are listed Table \ref{table:exploration-3-low-level-tasks}. Each task has a corresponding execution function that specifies how it should be executed. They were developed according to the protocols provided by the controllers that provided the execution capability, in this case, compas\_rrc (L2) and the L2 Clamp Controller. 
 
-In theory each controller should provide a method to start a task, to query the state of the task, and to stop an ongoing task. However, the stopping function was not implemented in compas\_rrc until the next Exploration Round. This means that it was still not possible to stop an ongoing motion or to keep the two controllers in sync during an error stop (see \ul{5.6.9 Arm and Clamps Out-of-Sync after Error}).
+In theory each controller should provide a method to start a task, to query the state of the task, and to stop an ongoing task. However, the stopping function was not implemented in compas\_rrc until the next Exploration Round. This means that it was still not possible to stop an ongoing motion or to keep the two controllers in sync during an error stop \seeref{subsection:exploration-2-arm-and-clamps-out-of-sync-after-error}.
 
 \paragraph{Operator Tasks}
 
@@ -740,7 +740,7 @@ MISSINGTABLE
 \section{Demonstration}
 \label{section:exploration-3-demonstration}
 
-The demonstration structure is the same as the one used in the previous round. The timber beams were reused. The edges of lap joints that had less than 6mm chamfer were cut to 6mm, and those that were cut to 8mm still remained at 8mm (see \ul{5.6.6 Clamping Joints with Chamfered Edges}). 
+The demonstration structure is the same as the one used in the previous round. The timber beams were reused. The edges of lap joints that had less than 6mm chamfer were cut to 6mm, and those that were cut to 8mm still remained at 8mm \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}. 
 
 \subsection{Execution Plan}
 \label{subsection:exploration-3-execution-plan}
@@ -792,7 +792,7 @@ After the previous round, it was clear that the new robotic operations would not
 \input{image_holder_1}
 
 
-Wood screws were also added to the lap joint to prevent loose joints from opening up after they were assembled (see \ul{5.6.15 Joints Loosening after Assembly}). 
+Wood screws were also added to the lap joint to prevent loose joints from opening up after they were assembled \seeref{subsection:exploration-2-joints-loosening-after-assembly}.
 
 \section{Lessons Learnt}
 \label{section:exploration-3-lessons-learnt}
@@ -1102,7 +1102,7 @@ Collisions also happened with the documentation camera on a tripod. However, tha
 \textbf{\ul{Possible Solution and Follow-Up}}
 
 \begin{itemize}
-	\item \textbf{Include scaffolding in motion planning --} in Exploration Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. (see \ul{8.3.2 Scaffolding Support During Assembly}).
+	\item \textbf{Include scaffolding in motion planning --} in Exploration Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. \seeref{subsection:exploration-5-scaffolding-support-during-assembly}.
 
 	\item \textbf{Sensing collision geometry around robot --} If a dynamic point cloud scanner were to be used for scanning the area surrounding the robot during operation, the robot can potentially navigate around the newfound obstacle and would not be limited to the planned collision geometry. 
 
@@ -1193,7 +1193,7 @@ Conceptually, this is a simple elimination step. However, because the flow chart
 
 This problem is a classical reason for using automatic task planning that is developed by the robotics community \parencite{ghallabAutomatedPlanningActing2016}. The idea is to create rules for the computer to automatically search for an assembly task list. During a search, the computer can plan out when and how the clamps are moved, and whether it is necessary to place the clamp back to storage. 
 
-The implementation of automated task planning is developed and tested in the next Exploration Round (see \ul{8.2.2 TAMP with PDDLStream} and \ul{8.3.5 Specifying Actions and Goals for TAMP with PDDLStream}). The results showed that a large amount of clamp transfer does not need to go back to storage (see \ul{8.5.2.3 Optimised Clamp Transfer Tasks}).
+The implementation of automated task planning is developed and tested in the next Exploration Round \seerefii{subsection:exploration-5-tamp-with-pddlstream}{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}. The results showed that a large amount of clamp transfer does not need to go back to storage \seeref{subsubsection:exploration-5-optimised-clamp-transfer-tasks}.
 
 \subsection{Difficulty in attaching beam to platform}
 \label{subsection:exploration-3-difficulty-in-attaching-beam-to-platform}
@@ -1215,7 +1215,7 @@ The chart below \parencite{huangNewAnalogProtocol2021} shows the planning time f
 \input{image_holder_1}
 
 
-The images below illustrate the problem of the difficulty faced at sequence 14. Both of the images below depict the same moment (in different viewing angles) where the gripper (blue) holding the active beam (white) is approaching the clamp jaws (green). Notice that the free motion that brings the beam to this target had to slide through a narrow passage (see \ul{5.5.3 Narrow Passage Problem}). This is because the beam is blocked by the clamp jaws on one side, and blocked by one protruding portion of the already-assembled beams (light blue) on the other side.
+The images below illustrate the problem of the difficulty faced at sequence 14. Both of the images below depict the same moment (in different viewing angles) where the gripper (blue) holding the active beam (white) is approaching the clamp jaws (green). Notice that the free motion that brings the beam to this target had to slide through a narrow passage \seeref{subsection:exploration-2-narrow-passage-problem}. This is because the beam is blocked by the clamp jaws on one side, and blocked by one protruding portion of the already-assembled beams (light blue) on the other side.
 
 \input{image_holder_1x2}
 
@@ -1225,7 +1225,7 @@ It was found that difficult problems like these are difficult to anticipate duri
 \begin{itemize}
 	\item The targets for the beam (particularly for this motion) depend on the orientation of the clamps. This is not known in the Assemble Design Phase.
 
-	\item This is a valid target where no objects are in a collision. Therefore it will not be flagged by collision detection as an impossible target (see \ul{5.5.2 Checking Incorrect Planning Inputs}).
+	\item This is a valid target where no objects are in a collision. Therefore it will not be flagged by collision detection as an impossible target \seeref{subsection:exploration-2-checking-incorrect-planning-inputs}.
 
 	\item Visual inspection by the process engineer during the Process Design Phase may miss the problem. Notice that the narrow passage is not obvious from the viewing angle in the left image above. Narrow passages may only become obvious in certain viewing angles, such as the image on the right.
 
