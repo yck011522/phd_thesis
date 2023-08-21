@@ -11,14 +11,15 @@ By combining interdisciplinary approaches from timber construction, computationa
 Through the development of novel solutions and empirical construction experiments, this PhD thesis aspires to shape the future of construction and contribute to the interdisciplinary field of digital fabrication, between architecture, construction and robotics.
 
 \section{Timber Frame Construction}
-\label{sec:timberframeconstruction}
+\label{section:introduction_timber_frame_construction}
+
 Timber construction has been used historically in many cultures with an ample supply of trees.
 Timber is a remarkable construction material because of its very high strength-to-weight ratio.
 It can withstand tension and compression, making it suitable for different structural roles. Moreover, timber can naturally reach lengths of many metres, which provides tall columns and long beams for the construction of architectural structures at various scales.
 Historically, many types of construction methods have been developed. The focus of this thesis is timber frame construction which refers to a range of timber construction methods used as early as the 12th century until the early 20th century \parencite{sobonTimberFrameConstruction1984}.
 
 \subsection{Defining Characteristics}
-\label{subsec:timberframeconstruction/definingcharacteristics}
+\label{subsection:introduction_defining_characteristics}
 
 We can understand timber frame construction as a set of techniques that have evolved over time. Carpenters have experimented with different joint designs, structural arrangements and methods to frame walls, floors and roofs. While these techniques evolved independently in different civilisations, similar material behaviour (e.g. anisotropicity of wood, prone to decay) and similar design goals (e.g. weather protection) resulted in many similarities between them \parencite{zwergerWoodWoodJoints2012}.
 While there are still differences between regional practices (caused by regional timber species, weather, local culture and ornamental preferences), the type of timber construction that dominated the pre-industrial era (especially in Europe, North America, and Japan) share similar defining characteristics: (1) Large timber sizes, (2) integral timber joints, and (3) post-and-beam framing. 
@@ -26,7 +27,7 @@ These characteristics make timber frame construction ideal for studying automati
 As such, this thesis is not referring to the timber frame construction of a specific location or time period, but rather to the general use of these three defining characteristics of timber frame construction.
 
 \subsubsection{Large Timber Size}
-\label{subsec:timberframeconstruction/largetimbersize}
+\label{subsubsection:introduction_large_timber_size}
 
 The first defining characteristic of timber frame construction is large timber sizes.
 Historically, this is the result of using a whole harvested tree trunk as a structural member instead of laboriously cutting them into smaller pieces.
@@ -36,7 +37,7 @@ In this thesis, the assembly of both solid timber and engineered timber is inves
 The nominal size being used is 100mm x 100mm square profile (see 4.1.3 Scope for Initial Exploration Round)
 
 \subsubsection{Integral Timber Joints}
-\label{subsec:timberframeconstruction/integraltimberjoints}
+\label{subsubsection:introduction_integral_timber_joints}
 
 The second defining characteristic in timber frame construction is the use of integral timber joints (ITJ), where the jointing geometry is carved into the material. Structural load is transmitted from element to element directly through contact pressure over the mating surfaces of the joint. The design of these joints has been refined empirically throughout history, converging into specialised designs according to which structural elements they are connecting \autocite{jacksobonHistoricAmericanTimber2014}. It is common for a joint to serve multiple purposes and thus withstands different types of loads, such as self-weight and live forces. Different ‘geometrical features’ can therefore be incorporated into the connection to meet different force conditions. For example, a lap joint for a floor joist can be combined with a dovetail feature to provide tension resistance.
 These joints are typically dry-fitted \footnote{because historical glue technology could not withstand structural forces} and held in place due to interlocking geometry and gravity.
@@ -50,7 +51,7 @@ The photo below shows timber frame components being assembled on the ground. Not
 (Credits: CC AS 4.0 Licence photo by Georg Hefter - Traditionelles Fachwerk und Timberframe im Vergleich auf georghefter.de)
 
 \subsubsection{Post and Beam Structure}
-\label{subsec:timberframeconstruction/postandbeamstructure}
+\label{subsubsection:introduction_post_and_beam_structure}
 
 The third defining characteristic of timber frame construction is post-and-beam structural framing \parencite{jacksobonHistoricAmericanTimber2014,sobonTimberFrameConstruction1984}. The use of large timber sizes in timber frame structures allows them to be strong enough without the use of continuous load-bearing walls. The main benefit is the flexible arrangement of floors and walls to suit different architectural programmes. 
 On the other hand, integral timber joints are generally weak in rotational stiffness, causing the joints to behave kinematically. Therefore, diagonal bracing is often introduced to fully or partially triangulate the structure to improve structural stiffness. Being limited by the joint design, these bracings function primarily in compression. It is, therefore, common to design the bracings in complementary pairs to resist dynamic wind loads coming from opposing directions. While some architectural designs may find the intrusion of diagonal bracings obtrusive to usable space, these diagonal bracings are highlighted on the facade as ornamentation in half timber designs \parencite{gernerFachwerkEntwicklungGefuege1979}. In this thesis, the demonstration structures are designed with similar structural principles, specifically the use of structural triangulation in the design offered unique stability advantages during the robotic construction process (see 7.1.1 Deformation-Awareness and Error Correction by Triangulation and 7.5.2.6 Global Correction Approach).
@@ -64,12 +65,14 @@ The image below shows an example of a half-timber style timber frame house in So
 \end{figure}
     
 \subsection{Current Practice of Timber Frame Construction}
+\label{subsection:introduction_current_practice_of_timber_frame_construction}
 
 Timber frame construction was once the dominant building method, but it gradually declined in popularity during the 19th and 20th centuries. The advent of industrialization and mass production led to the availability of cheaper building materials such as steel and concrete, which were faster and easier to use. Even within the timber construction sector, newer construction methods that use dimensioned lumber, glulam, LVL, and cross laminated timber (CLT) have replaced timber frame construction. However, in recent years, as more people are aware of the environmental benefits of wood construction, interest in timber frame construction is increasing again as an alternative way to construct with timber. 
 
 Advancements in engineering and design, as well as increased availability of sustainably sourced timber, have helped to make timber frame construction a more viable option for modern building projects. Timber frame components can be prefabricated off-site, which can reduce construction time and costs while also minimising waste and environmental impact. The use of dry-fitted integral timber joints reduces the number of fasteners and components involved, meaning less metal consumption and quicker installation on-site. Finally, timber frame structures can be aesthetically pleasing as they often expose the beautiful timber material and reveal the structural load paths. When the joint details are exposed, they can evoke a feeling of tradition and craftsmanship and are often well-appreciated by those who inhabit the building.
 
 \subsubsection{Automatic Machining of Timber Joints}
+\label{subsubsection:introduction_automatic_machining_of_timber_joints}
 
 Between the years of decline and its recent resurgence, a number of technological improvements have made timber frame construction more efficient and competitive. One of the major advancements has been the use of automatic joinery machines for carving integral timber joints. Traditionally crafted with hand tools, these joints were labour-intensive and required highly skilled craftsmen that could work precisely.
 \footnote{The task of marking and setting out was considered the most critical and is often performed by the master carpenter. Other carpenters would prepare materials and carve joints using hand tools such as saws, planes, chisels, and drills.}
@@ -79,6 +82,7 @@ Since the invention of automatic joinery machines, the production of timber join
 This thesis capitalises on the accuracy and prefabrication efficiency provided by the automatic joinery machines. Accurate parts are highly advantageous for robotic automatic assembly because they ensure accurate manipulation and precise integration. By using prefabricated timber parts with accurately machined integral timber joints, this thesis aims to create a highly automated assembly process, reducing the manual labour needed for adjustment and adaptation. 
 
 \subsubsection{Assembly by Carpenters}
+\label{subsubsection:introduction_assembly_by_carpenters}
 
 Although the production of timber frame components is automated, the assembly of the structure is still predominantly manual \parencite{willmannNewParadigmsAutomatic2016}. It usually takes a team of carpenters to assemble a timber structure.
 
@@ -106,18 +110,21 @@ Below is a summary of the tasks that carpenters perform during the assembly of a
 These tasks are the focus of the automated assembly process pursued in this thesis. The challenges of each task are analysed and presented in the next chapter \textit{(see \ul{2.1 Mechanical Challenges)}}.
 
 \subsection{New Opportunities for Timber Frame Construction}
+\label{subsection:introduction_new_opportunities_for_timber_frame_construction}
 
 Compared to other newly developed construction methods with a higher degree of prefabrication, the on-site timber frame construction is less economically competitive. For example, modular floor and wall construction allow more components to be assembled off-site (e.g. insulation, windows, doors), which reduces the time and cost associated with on-site work. Volumetric prefabrication (e.g. modular timber construction), which pre-assembled an entire room, further allows the installation of wiring, plumbing, and interior finishes in a factory \parencite{adelDesignRoboticallyFabricated2018}. 
 
 Despite the lack of prefabrication advantages, timber frame construction enjoys greater design freedom because there are fewer transportation constraints when moving linear timber elements than moving a preassembled room-sized timber module. This freedom is essential in creating large-span structures or shell structures where sub-assemblies cannot be effectively transported. In addition, latest timber frame designs have already been able to integrate contemporary building requirements such as plumbing, electrical wiring and insulation that meets building codes \parencite{bensonTimberframeHomeDesign1988}. Therefore, the exploration of automatic assembly for timber frame structures could potentially keep these benefits without the associated penalty of on-site manual work.
 
 \section{Architectural Design to Production}
+\label{section:introduction_architectural_design_to_production}
 
 In recent years, the fields of architecture and construction have seen a growing interest in automating various stages of the design and production process. This trend is being driven by the potential benefits of automation, which include increased efficiency, higher precision, and improved quality control. Automation can also help to reduce labour costs, minimise waste, and improve safety on construction sites. While automation has already become common in the manufacturing industry, its adoption in architecture and construction has been slower due to the unique challenges and complexities in the construction sector. Most commercialised examples are limited to prefabrication of small or planar architectural components while only a handful of research projects have attempted to use robotics for structural scale spatial assembly. Therefore, this thesis aims to expand knowledge in this area, starting with the assembly of timber frame structures.
 
 This section will present a brief history of how the timber construction industry transitioned towards digital design and automated production, leading to the current state of the art practices. It is an important starting point to understand whether the assembly process will also undergo such a transition. 
 
 \subsection{Automation from Manufacturing to Construction}
+\label{subsection:introduction_automation_from_manufacturing_to_construction}
 
 The beginning of automation started with the manufacturing industry. It involves the use of machinery or computer systems to perform tasks that would otherwise be done by human labour. Without going into details, it typically involves the use of sensors, actuators and control systems to reduce or eliminate the need for human intervention \parencite{nofSpringerHandbookAutomation2009}. It has become a widely adopted practice in the manufacturing industry due to its benefits such as increased efficiency, improved quality, and reduced costs. With automation, the production process can run 24/7, leading to a predictable production schedule and reducing the need for manual labour. 
 
@@ -130,6 +137,7 @@ Invented in the 1950s and popularised in the 1960s, Computer Numeric Control (CN
 The adoption of automatic machines has changed the nature of work from labourers to operators and increasingly towards engineers and programmers \parencite{nobleForcesProductionSocial1986}. While this shift may be difficult for workers unable to acquire a new skill set, it improves the general labour working conditions in the longer term \parencite{stromquistWorldDevelopmentReport2019}. For example, by reducing repetitive manual tasks or avoiding working in dangerous environments. 
 
 \subsubsection{A Factory for Making Buildings}
+\label{subsubsection:introduction_a_factory_for_making_buildings}
 
 At a larger scale, the concept of automation can be applied to connect different machines together to autonomously regulate production flow. There are two types of connections involved, the first is physical connections, such as using conveyor belts and robotic arms to move parts between machines. The second is logical connections, such as programmable logic controllers forming complex logic networks. In extreme cases, the term ‘lights-out factory’ or ‘automatic factory’ was used to describe large production facilities that are able to sustain continuous production with very few or infrequent operator involvements \parencite{nobleForcesProductionSocial1986,walkerAutomaticFactoryCase1957}. 
 
@@ -140,6 +148,7 @@ Started in the late 1970s, Japan’s large construction contractors have begun d
 While the automated systems seen in Japan are mostly designed for steel and reinforced concrete structures, this thesis studies what it would take for timber construction to achieve a similar level of automation. 
 
 \subsection{Automatic Assembly in Timber Construction}
+\label{subsection:introduction_automatic_assembly_in_timber_construction}
 
 In recent years, interest in exploring automatic assembly for timber construction has grown. This was driven by the potential for increased efficiency, precision, and sustainability. Despite the advancements in fabrication techniques, particularly with the advent of CNC technology, the assembly process still presents challenges that industry professionals and researchers are working to address \parencite{willmannNewParadigmsAutomatic2016}.
 
@@ -152,6 +161,7 @@ Several innovative research projects have emerged in recent years, addressing th
 This thesis aims to contribute to the ongoing efforts to advance the state of the art in this domain. Using timber frame construction as a starting point, the assembly problems are studied and addressed in a holistic way, with the intention to improve the understanding of these problems and for generalizable solutions to emerge.
 
 \subsection{From Automation to Digital Fabrication}
+\label{subsection:introduction_from_automation_to_digital_fabrication}
 
 In the 1990s, various computer programmes that were intended for animation (e.g. Alias Wavefront, Maya) and engineering (e.g. Catia, later DigitalProject) were adopted by the architectural community for modelling geometrically complex buildings. This partially triggered the bloom of freeform architectural designs that are made famous by architects such as Frank Gehry, Zaha Hadid, Santiago Calatrava. For example, \textit{Fishdance Restaurant, Kobe (1989),  Guggenheim Museum Bilbao (1997), Walt Disney Concert Hall (2003)},and \textit{ Louis Vuitton Fondation (2014)}.\textit{ }
 
@@ -164,6 +174,7 @@ The basic workflow for CAD is called direct modelling, where designers explicitl
 There are two important benefits of a \textbf{reusable CAD workflow}. The first is to save time when modelling large amounts of geometrically similar (but not identical) parts. The second benefit is the ease of making design changes. For example, the designer only needs to change the inputs for the CAD programmes to update the downstream documents automatically. These can include 3D models of components, 2D drawings and assembly instructions. In recent years, the popularity of parametric workflow has shaped the way designers interact with the design process. Instead of focusing on the final outcome, the automated workflows allow them to design the geometrical logic first before adjusting the input parameters to achieve the desired geometry \parencite{jabiParametricDesignArchitecture2013}. In addition, measurement and evaluation logic can also be incorporated into the script, allowing designers to be more informed about their designs. Complex relationships between geometry and structure can also be scripted to allow an intuitive and interactive design process \parencite{pottmannArchitecturalGeometry2007, woodburyElementsParametricDesign2010}. This design process that is supported by parametric modelling is often called \textbf{Parametric Design}.
 
 \subsection{Programming Digital Fabrication Machines}
+\label{subsection:introduction_programming_digital_fabrication_machines}
 
 Reusable workflows have also been extended to the CAM software to generate machining programmes automatically. This refers not only to the automated creation of toolpaths from a part geometry, but also the automatic decision-making to choose machining strategy, tool choice, machining sequence, and machining speeds. In the architectural context, this type of workflow has been used for cutting 1D profile materials and 2D sheet materials for geometrically complex facade systems used in free-form buildings \parencite{eigensatzPanelingArchitecturalFreeform2010, sheldenDigitalSurfaceRepresentation2002}.
 
@@ -178,10 +189,12 @@ A production engineer, who has intimate knowledge of the machine setup, is often
 Hypothetically, the assembly process studied in this thesis can also adopt a similar workflow. There is a strong similarity between creating machining programmes and creating robotic assembly programmes. Both of them are specific to the machine setup (e.g. robot kinematics), machine limitation (e.g. avoiding collisions) and tools setup (e.g. end effectors). It also needs to overcome the complexity of making decisions according to unique geometry. Therefore, this thesis adopts the parametric modelling and reusable workflow from machining as a starting point and apply it to robotic timber assembly \textit{(see \ul{6.2.1 Workflow for Generating Assembly Programmes})}. 
 
 \subsection{Fabrication-aware Design}
+\label{subsection:introduction_fabrication_aware_design}
 
 \begin{quote}
-While digital models are easily created, the actual fabrication and construction remain a challenge. \parencite{pottmannArchitecturalGeometryFabricationAware2013}
+	While digital models are easily created, the actual fabrication and construction remain a challenge. \parencite{pottmannArchitecturalGeometryFabricationAware2013}
 \end{quote}
+
 The disconnection between design and fabrication is the source of numerous frustration that forced many geometrically complex projects into a ‘redesign’ phase after the reality of fabrication and construction limitations was imposed. This redesign process is known as rationalisation \parencite{pottmannArchitecturalGeometryFabricationAware2013}. A rationalisation is a design negotiation between keeping the design intent and reducing fabrication costs. It invariably led to a loss of fidelity. A better approach would be to incorporate knowledge of the actual construction process during the design stage; this is known as construction-aware or fabrication-aware design.
 
 In the current architecture and construction industry, the role of evaluating constructability lies in the hand of a construction engineer. Very often it is a single-direction workflow that is difficult to accommodate frequent design changes. As architectural design practices migrate towards a digital workflow, there is a growing interest to automate the evaluation process. One common approach is to encode the knowledge of the fabrication constraints as computational algorithms, which can be computed automatically within the CAD design software. Feedback can therefore be provided as quickly as possible for the designers, which gives them a better chance of pushing designs closer to fabrication limits yet without violating them. 
@@ -193,6 +206,7 @@ While the concept of fabrication-aware is often used to check prefabricated comp
 The following sections present two case studies in the field of digital fabrication. They provided a positive indication that an integrated design and fabrication workflow is achievable.
 
 \subsubsection{Case Study - Automatic CNC Machining Programme}
+\label{subsubsection:introduction_case_study_automatic_cnc_machining_programme}
 
 The first case study is a comparison between robotic assembly and machining processes. Assembly robots are similar to complex milling machines with multiple axes in the sense that they are both capable of making complex movements. However, they are also prone to programming errors that can cause expensive damage. Therefore, when creating toolpaths, a CNC programmer will often rely on the multitude of checking algorithms offered by the CAM software to catch potential problems. It is common for a CNC programmer to resolve production problems separately, within the scope of modifying machine parameters, tooling or cutting strategy. It is only until the attempts are exhausted that the programmer will suggest design changes to the designer. 
 
@@ -202,6 +216,7 @@ Similar to the hypothesis proposed before \textit{(see \ul{1.2.4 Programming Dig
 
 
 \subsubsection{Case Study - Automatic Slicing for 3D Printing}
+\label{subsubsection:introduction_case_study_automatic_slicing_for_3d_printing}
 
 Another parallel can be drawn between robotic assembly and additive manufacturing. Fused Deposition Modeling (FDM) Printers are mechanically simple devices that can create 3D parts by stacking 2D slices. However, the generation of toolpaths (a.k.a slicing) requires advanced algorithms to determine optimal toolpath, layer height, infill density, print speed, and other settings based on the geometry of the model, the type of printer, and the material being used. Additionally, the slicer software needs to take into account various non-linear factors that can affect the quality of the printed object, such as the cooling rate of the material, the shrinkage of the material as it cools, and the adhesion of the material to the print bed. Slicers may also include features such as support generation, which creates structures to support overhanging features of the model during printing. 
 
@@ -210,6 +225,7 @@ As a result, slicers can be quite complex and require a significant amount of tu
 Similarly, robotic assembly processes also require complex software algorithms to model robot kinematics, tool behaviour, and environmental limitations. The fact that full automation can be achieved in slicer programs provides an optimistic indication that robotic assembly processes may achieve a similar degree of automation.
 
 \section{Robotics in Architectural Assembly}
+\label{section:introduction_robotics_in_architectural_assembly}
 
 Robotics involves various disciplines that deal with the design, construction, operation, and use of industrial robots. The disciplines include mechanical engineering, electrical engineering, and computer science. Industrial robots play a crucial role in performing tasks autonomously or with minimal human intervention. There are many types of industrial robots, typically classified by their kinematic configurations, such as Cartesian Robots, Cylindrical Robots, and Articulated Robots \parencite{waldronKinematics2016}. Articulated robots, also known as robotic arms, are the most common type used for spatial manipulation. They typically contain 4 to 7 rotary joints (usually 6) arranged in a chain and connected by rigid metallic bodies. This allows spatial positioning and agile movements beyond orthogonal directions.
 
@@ -218,6 +234,7 @@ Robotic arms are multipurpose machines that can be used for material handling, m
 Many research projects have already explored the adaptation of robotic arms to perform architectural assembly tasks \textit{(see \ul{1.2.2 Automatic Assembly in Timber Construction})}. However, the use of robotic arms in the construction industry presents unique challenges due to the non-repetitive nature of the tasks involved. The two main challenges relevant to this thesis are the inaccuracy of non-repetitive targets and the automation of planning non-repetitive trajectories.
 
 \subsection{Inaccuracy for non-repetitive targets}
+\label{subsection:introduction_inaccuracy_for_non_repetitive_targets}
 
 Most of the industrial robotic arms available in the market today were designed for the manufacturing industry. Their long kinematic chains are designed to be able to reach into tight spaces such as machine openings and car interiors. For this purpose, agile motions are preferred over mechanical stiffness and accuracy. In the context of manufacturing, robotic tasks are often repetitive, targets and payload are also known in advance during programming. As long as the robot repeatability is good, manual calibration can be performed to achieve good alignment, this is known as Teaching \textit{(see \ul{6.2.3 Robot Targets - Taught Configuration and Cartesian Pose})} \parencite{shohamRobotTeachingMethods1984}.
 
@@ -228,6 +245,7 @@ While the kinematic model of a robot can be calibrated \parencite{mooringFundame
 Using robotic arms for architectural assembly typically entails a large number of unique targets. However, manually teaching each unique target would defeat the purpose of automation. Therefore, the practical limitation of this inaccuracy is studied in this thesis. For example, how it affects the timber frame assembly process, what are the associated failure modes, how does it affect failure rate and what strategies can be used to mitigate the problem. For the sake of clarity, it should also be pointed out that redesigning a robotic arm is beyond the scope of this thesis.
 
 \subsection{Automation for planning non-repetitive trajectories}
+\label{subsection:introduction_automation_for_planning_non_repetitive_trajectories}
 
 The anatomy of a robot program can be seen as a segment of movements that goes from one target to the next. The trajectory is simply a matter of interpolating between different targets. However in reality, there are many limitations to this interpolation. For example, some robotic joints cannot be rotated through 360 degrees between interpolation, or if the interpolation results in a collision.
 

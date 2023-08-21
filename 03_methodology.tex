@@ -12,6 +12,7 @@ In this thesis, an exploratory research method was used. The first reason is the
 
 \end{enumerate}
 \section{Research by Iterative Development}
+\label{section:methodology_research_by_iterative_development}
 
 The most important part of this exploratory research is the emphasis on system development and hands-on empirical trial runs to refine the hypothetical solution for automatic assembly. Five distinct development rounds were conducted, each containing their own research goals, technical developments, experiments and observations \textit{(further elaboration in \ul{3.1.1 Setting Research Goals})}. The following flowchart summarises the iterative loops across the development rounds. 
 
@@ -30,6 +31,7 @@ The full full systematic test was performed by designing and constructing a \tex
 During the \textbf{Construction Phase}, certain adjustments of the process parameters are also possible. Afterwhich, the follow-up actions are determined for the next exploration round\textbf{ }\textit{(further elaboration in \ul{3.1.4 Observations and Interpretation})}.
 
 \subsection{Setting Research Goals}
+\label{subsection:methodology_setting_research_goals}
 
 At the beginning of the first iteration, the goal was to design and prototype an assembly process and to test it with experiments. As new insights and discoveries are made, subsequent development iterations are guided by the discoveries and include follow-up explorations whenever necessary. Below is a summary of the goals in each phase:
 
@@ -46,6 +48,7 @@ At the beginning of the first iteration, the goal was to design and prototype an
  
 \end{itemize}
 \subsection{Technology Development}
+\label{subsection:methodology_technology_development}
 
 The robotic assembly process required the development of novel hardware and software that form systems and subsystems that are interdependent in their operations. Below is an overview of the development categories showing their multidisciplinary nature. The software tools that are used for their development are listed in the bracket. 
 
@@ -114,6 +117,7 @@ During development, multiple technical solutions can often be used to achieve a 
 Given the complexity of the AEC industry and its tendency to resist systematic changes, these principles guided the research direction towards finding implementable solutions with high impact.
 
 \subsection{Demonstrator Design}
+\label{subsection:methodology_demonstraror_design}
 
 At the end of development phase 2, 4 and 5, the developed assembly process was observed and evaluated by the construction of a prototype structure. This is often called a demonstrator in the field of digital fabrication research. In total, there were three real-scale (1-to-1) demonstrators designed for this thesis. For the purpose of technical evaluation, the use of real-scale experiments revealed issues that were otherwise not observable in a computer simulation or a small-scale test. From the perspective of architectural design, the demonstrators served as a design study that can be experienced in person. Because of the high material cost and long preparation time required to construct such a demonstrator, each of them serves multiple investigation purposes to maximise the knowledge that can be extracted. Below is a list of design guidelines used when designing the demonstrators:
 
@@ -138,6 +142,7 @@ Finally, the productivity of the robotic process was also observed by studying t
 The timber parts used for the demonstrators were ordered from an industrial timber fabricator. Ordering from industry was preferred over creating the components within our laboratories because it allows a reality check of whether the newly developed digital workflow and timber details are compatible with the existing upstream industry. We have identified a single company (Auer Holzbau, Switzerland) to provide all the machining services in favour of consistency. The machining was performed on a recently released automatic joinery machine model (ROBOT-Drive 1250) manufactured by Hans Hundegger AG, Germany. The transfer of timber geometrical data is based on a proprietary file format of Cadwork (version 28). This is because the timber machining industry in Switzerland accepts it as a de facto standard for contractual agreement on the geometry of parts.
 
 \subsection{Observations and Interpretation}
+\label{subsection:methodology_observations_and_interpretation}
 
 The \textbf{observations }made during the preparation and the execution of the demonstrators are documented as objectively as possible for each development phase (from Chapters 6 to 10). Based on these observations, \textbf{interpretations }are made to explain success and failure and are subsequently used to determine \textbf{follow-up actions}. Readers should be aware of the possible subjectivity in the interpretations and follow-up actions \textit{(See \ul{3.2 Epistemological assumptions} and \ul{3.3 Axiological assumptions})}. 
 
@@ -156,6 +161,7 @@ Note that some of the follow-up actions, such as adjusting software and tuning o
 Finally, follow-up actions are implemented wherever appropriate as long as my skills, research time and budget allow. Otherwise, the problems are elaborated for future investigations. 
 
 \section{Epistemological assumptions}
+\label{section:methodology_epistemological_assumptions}
 
 The aim of the research is to create knowledge by developing, integrating and observing the effects of various technologies and the decisions made when designing the demonstration structure.
 
@@ -164,24 +170,29 @@ The aim of the research is to create knowledge by developing, integrating and ob
 \textbf{Causal Relationships} were established by logical reasoning, discussion with domain experts (e.g. CNC operator, Robot Technician, Structural Engineer, Architect) or quantitative experiments (e.g. tuning operation parameters, substituting parts or subsystems). The specific method to identify relationships was selected individually depending on the nature of the inquiry.
 
 \section{Axiological assumptions}
+\label{section:methodology_axiological_assumptions}
 
 This thesis followed interpretivism principles, and many of this research's components are qualitatively analysed. Readers should therefore be aware of the author’s (my) background and its potential influence on the interpretation of data. In the rest of the thesis, first-person pronouns (i.e. I, my) are used as an indication of when decisions and interpretations are likely to be influenced by my background. Passive voice will continue to be used to describe objective observations and when making qualitative analyses.
 
 \subsection{Researcher Background}
+\label{subsection:methodology_researcher_background}
 
 I was trained at the undergraduate and graduate levels as an architectural designer specialising in computational design. I have also practised mechatronics design in art and design, albeit without formal training. These experiences greatly influence my characterisation of the research questions as a technology development problem focusing on mechatronics and computational design instead of other pathways. For example, another researcher with a timber engineering background may approach the problem by proposing novel wood joints, or a roboticist may propose a novel control method for robotic manipulators. Nevertheless, mechatronics and computational design are the most common approach taken by many recent research projects, as introduced in the previous chapters.
 
 \subsection{Laboratory Context}
+\label{subsection:methodology_laboratory_context}
 
 The research is conducted in the Robotic Fabrication Lab (RFL) of the Institute of Technology in Architecture (ITA) at the Department of Architecture of ETH Zurich, where four industrial robotic arms are mounted upside-down on two gantry robots (custom design by Güdel Group AG, Switzerland), forming a robotic manipulator that covers a large space\textit{ (see \ul{5.2.2 RFL Robotic Platform for technical details})}. Each robot consists of six articulated joints, an independent vertical linear axis, and two horizontal linear axes on the gantry coupled with neighbouring robots. If only a single robot is concerned, all nine axes can be commanded to move synchronously. This offers kinematic redundancy that allows the robot body to avoid obstacles in dense environments. For this thesis, the robotic manipulator in the RFL represents a hypothetical robotic manipulator that acted as a testbed for developing the robotic assembly process. This also carries the assumption that lessons learnt from this setup can be extrapolated to on-site setups in the future. The details of this extrapolation are further discussed in the conclusion chapter \textit{(see \ul{11.2.1 Extrapolation to On-Site Robotic Systems})}. 
 
 Our laboratory is also the home to many timber assembly research projects introduced in the context. This undoubtedly influences the research as existing robotic components and software infrastructure are adopted from previous research. For example, the choice of the automatic robotic quick-change system was the result of a donation from previous projects \textit{(see \ul{5.3.5 Docking adapter})}. Another example is the choice of online robot control middleware \textit{(see \ul{5.2.4 Distributed Control System})}, which was determined by our laboratory's standard mode of operations.
 
 \subsection{Participants in User Interface Study}
+\label{subsection:methodology_participants_in_user_interface_study}
 
 While the user interface consists of only a small portion of the development work, it is interesting to observe how designers can use the newly developed design interface. In order to gather a bigger picture, participants (other than myself) are invited to design two of the three demonstrators. During the design sessions, which often span multiple weeks, I offered technical guidance to the designer and observed what knowledge I explicitly communicated to the participant. This mitigates some of my subjectivity when considering implicit versus explicit knowledge, especially because I am the main developer of both software and hardware systems. 
 
 \section{Collaborations}
+\label{section:methodology_collaborations}
 
 Throughout this thesis, I collaborated with domain experts for some technological developments outside of my skills and knowledge. Their expert knowledge about state of the art in their respective fields helped me formulate the initial hypothetical solution. 
 
@@ -194,6 +205,7 @@ Throughout this thesis, I collaborated with domain experts for some technologica
 
 \end{itemize}
 \section{Thematic Reading Guide}
+\label{section:methodology_thematic_reading_guide}
 
 The following five chapters (chapter 4 to 8) are written in chronological order corresponding to five development rounds. This is important for understanding the exploration as an evolution between experiments and observations.  Each chapter contains the following sections:
 

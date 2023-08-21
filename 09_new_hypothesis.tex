@@ -1,4 +1,5 @@
 \chapter{New Hypothesis - Probabilistic Model of Spatial Alignment Success}
+\label{chapter:new_hypothesis}
 \chaptermark{New Hypothesis}
 
 In this chapter, we will explore the concept of ``\textbf{Successful Alignment}" as a sub-problem of "Successful Assembly" and model it with a probabilistic approach. After observing the construction of the three demonstration structures, assembly success is dependent on two main factors: good alignment and high assembly force. While assembly force is specific to the assembly of integral timber joints, alignment is a generic challenge that affects all assembly processes, particularly those involving spatial assembly.
@@ -12,6 +13,7 @@ Reflecting on the three demonstrator construction, it became apparent that align
 In this chapter, I will introduce the new hypothesis centred around the probabilistic model of spatial alignment success and explore its implications for the broader assembly domain. It is important to note that this model has not been tested within the scope of this thesis but the current findings shows that the model is in agreement with the observations. Further studies are required to confirm its completeness, validity, and practicality. 
 
 \section{Modelling Alignment and Correction}
+\label{section:new_hypo_modelling_alignment_correction}
 
 Let's begin by looking at the Table \ref{table:alignment_scenarios}that outlines all the alignment scenarios performed. Since we are using one robot for the assembly, the scenarios can all be described as ``Some part(s) on the robot-side attempting to align with some other part(s) on the stationary-side". 
 
@@ -22,6 +24,7 @@ Let's begin by looking at the Table \ref{table:alignment_scenarios}that outlines
 \end{table}
 
 \subsection{Alignment-Correction Model}
+\label{subsection:new_hypo_alignment_correction_model}
 
 Observations of the three demonstrations (from Development Phase 3 to 5) indicated that there are many different factors affecting the amount of deviation in each of the alignment scenarios. They affect whether the total pairwise deviation can be corrected and thus the chance of successful assembly. Below are some examples of the success factors:
 
@@ -155,6 +158,7 @@ In this thesis, in the cases where tight fitting joints are aligned with each ot
 \end{equation}
 
 \subsection{Application}
+\label{subsection:new_hypo_model_application}
 
 There are many ways that the model can be used. For example, to design a robotic system for a given structure with a \textbf{predictable success probability}, it is possible to check all the alignment scenarios (after TAMP is performed with the given robots, tool setup and design) within the process to determine its success probability. 
 
@@ -181,6 +185,7 @@ It is also possible to use the model as a comparison tool when choosing robotic 
 In conclusion, the Alignment-Correction Model allows us to analyse and predict the success rate of various assembly alignment scenarios in a robotic process. By taking into account deviation, tolerance and the correction method, this model enables production engineers, system designers and structure designers to identify potential problems, make informed decisions and predict execution outcomes. It is generalisable, mathematically simple and can be implemented computationally to allow quick and comprehensive check of all the alignment scenarios. These factors are important to ensure an efficient fabrication-aware design process.
 
 \subsection{Chaining Deviation}
+\label{subsection:new_hypo_model_chaining_deviation}
 
 In the previous section, we have assumed the deviation to be a probability distribution. In this section, we talk about the procedures to quantify this distribution. 
 
@@ -292,6 +297,7 @@ Consider that there is no tolerance in this tight joint, tolerance $T$ is 0 mm. 
 The result shows that, under the above assumptions, the probability of successful assembly is approximately 0.77. 
 
 \subsection{Allowable Tolerance and Correctable Deviation}
+\label{subsection:new_hypo_allowable_tolerance_and_correctable_deviation}
 
 The Alignment-Correction model considers two mechanisms to counteract deviation. The first is the \textbf{allowable tolerance} $T$ between the mating parts. For example, when designing a pin-in-hole assembly, engineers can dimension the pin to be smaller than the hole so that it can be assembled even if the two parts are not perfectly aligned. Therefore, in the first interval of equation \ref{eq:probability_of_success} where $ d \leq T$, no correction mechanism is necessary. Theoretically, the dimension of parts needs to also consider production tolerance. However, in the scale of an architectural assembly, the effect of positional deviation is so dominating that the effect of production tolerance can be ignored.
 
@@ -320,6 +326,7 @@ In the example shown in Image (c), $d$ is larger than $C_{Range}$ and is not cor
 \input{image_holder_1}
 
 \subsection{Multi-stage Alignment Correction}
+\label{subsection:new_hypo_multi_stage_alignment_correction}
 
 The Alignment-Correction Model is also capable of modelling multi-stage alignment and correction mechanisms, two of which are studied in this thesis:
 
@@ -332,12 +339,14 @@ The Alignment-Correction Model is also capable of modelling multi-stage alignmen
 In both scenarios, the $C_{Residual}$ of the first step is designed to be larger than the $C_{Range}$ of the second step. This ensures that the result of the first step will be within the allowable correction range of the second step. This also allows Equation \ref{eq:probability_expanded_rearranged} to be computed only once, using the $C_{Range}$ of the first step.
 
 \subsection{Multi-Point Alignment}
+\label{subsection:new_hypo_multi_point_alignment}
 
 Many of the alignment scenarios in this thesis require the alignment of more than one joint simultaneously. In this case, active correction by moving the robot side is challenging. This is because the deviation of each alignment point is likely to be a different vector that points to different directions. In this thesis, only the passive correction method is used for these scenarios, and the robot-side attempts to get as close to the ground truth as possible for the alignment to begin. 
 
 While there is no joint-to-joint error detection implemented in this thesis, if they were available, it may be feasible to develop algorithms for combining all error terms to find an optimal alignment position. An active correction would then be possible by moving the robot-side.
 
 \subsection{Cross-Examination with Observation}
+\label{subsection:new_hypo_cross_examination_with_observation}
 
 Table \ref{table:overview_of_alignment_variables_for_all_alignment} provides an overview of the variables, $D$, $T$, $C_{Range}$, and $C_{Residual}$ for all alignment-correct scenarios in this thesis. The rows are presented in the same order as Table $\ldots$ . The values of $T$, $C_{Range}$, and $C_{Residual}$ are actual values based on the design of the joint and the correction mechanisms. 
 
@@ -370,6 +379,7 @@ The following comparisons show that the observations agree with the predictions 
 \end{itemize}
 
 \section{Estimating Deviations}
+\label{section:estimating_deviations}
 
 The Alignment-Correction Model, introduced in the previous section, introduced the method to combine deviations of each component to perform a holistic estimation of deviation \textit{(see \ul{9.1.1 Alignment-Correction Model})}. In order to perform the calculations, the probability density function of deviation has to be determined for each of the components and interfaces in the kinematic chain \textit{(see \ul{9.1.3 Chaining Deviation})}.
 
@@ -386,6 +396,7 @@ The deviation of these flexible systems is poorly characterised in the existing 
 While the methods to quantify these errors were not solved within this thesis. The insights gained from my observation offer a starting point for future work to develop models that can predict them. 
 
 \subsection{Accuracy of Timber Parts}
+\label{subsection:new_hypo_accuracy_of_timber_parts}
 
 A key motivation behind this thesis is to harness the efficiency and accuracy offered by automated joinery machines. These machines are highly regarded for their precision and ability to eliminate human error due to their digital nature. However, throughout the experiments, it became apparent that the widespread praise for their accuracy is not founded on quantitative measurements but rather on comparisons with manual joint cutting. Undoubtedly, automated joinery machines can produce joints with greater accuracy than the average manual carpenter, particularly when time constraints are considered. However, the observed accuracy is still not as impressive when compared to other CNC machining operations, such as those performed by milling machines.
 
@@ -394,12 +405,14 @@ During the experiments, there were three instances in which the machined joints 
 Upon further search, I was not able to find any literature regarding the accuracy of automatic joinery machines or CNC-produced timber components.
 
 \subsubsection{Quality Assurance}
+\label{subsubsection:new_hypo_quality_assurance}
 
 These incidents not only exposed the misconception that CNC production is always highly accurate but also exposed an operational culture lacking effective quality assurance (QA) procedures. An informal interview with carpenters who work with CNC-produced parts supported this observation, revealing that finished parts from automatic joinery machines undergo only a brief inspection before shipping. Occasionally, inaccurate or incorrectly machined parts are delivered on-site and cannot be used. While carpenters on-site can fix minor issues, larger problems might necessitate machining a new component. Although these manual interventions and delays might be acceptable in the current manual construction practices, the downtime caused by such problems has a more significant impact on an automated process.
 
 Various techniques and management philosophies for process improvement have been developed for the manufacturing industry, such as the DMAIC model (Define, Measure, Analyze, Improve, and Control) and the Six Sigma model \parencite{tsungSixSigma2023}, which focuses on identifying and removing the causes of defects while minimising variability. These approaches are highly effective in enhancing the reliability of processes and are often utilised when designing automated systems. Unfortunately, they are rarely implemented in the timber construction industry, likely due to a lack of economic incentives. As construction workers are currently involved in the final assembly process, they can conduct inspections during installation and make corrections if necessary. However, such flexibility and dexterity are not yet available in robotic systems. Therefore, it is crucial to implement strategies that minimise interruptions caused by inaccurate or incorrect parts. By employing the DMAIC model, we can identify ways to improve current timber construction practices for a smoother transition to automated assembly.
 
 \subsubsection{Defining Part Tolerance}
+\label{subsubsection:new_hypo_defining_part_tolerance}
 
 When ordering parts for the demonstrators, I discussed the accuracy of the machining process with the timber supplier that operates the automatic joinery machine. To my surprise, despite repeated explanations of the importance of accuracy in my experiments, the company was unwilling to define a tolerance for the machined parts. The only guarantee offered was a verbal promise to remake a part if it did not fit. It is worth noting that this practice differs significantly from the mechanical engineering field, where parts are always designed and made within a predefined tolerance. 
 
@@ -423,6 +436,7 @@ Designing the right tolerance for a part requires striking a balance between pro
 For future development, I believe a pragmatic approach is helpful in finding such a balance, especially by discussing with all parties in the production chain to understand the implications when defining tolerance. This collaborative approach can foster a better understanding of the challenges and potential solutions, ultimately leading to improved accuracy and cost-effectiveness over the entire construction process.
 
 \subsubsection{Measuring Parts}
+\label{subsubsection:new_hypo_measuring_parts}
 
 Suffering from the undefined tolerance provided by the timber supplier, a manual fitting test was performed before constructing each demonstrator. This is to ensure the joints were machined correctly and that any assembly issues observed during the robotic processes could be attributed to the correct cause. There are generally two qualities that are important for the fitting test. The first is whether the joint pairs can be closed with a reasonable amount of force, and the second is whether the joints are in the correct position along the length of the beams.
 
@@ -476,6 +490,7 @@ In summary, the ability to assess dimensional accuracy is crucial for quality as
 Additionally, the measured deviation can be used to improve the accuracy of subsequent assembly processes. By measuring the deviation of a beam and its joints, the robot can try to compensate for the production error, thereby reducing the impact of the error on the overall assembly. This could be achieved through various techniques, such as adjusting the path of the robot arm or adjusting the selective compliance force during joint closure to accommodate the deviation. This can result in a robotic process that does not depend on extremely high machining accuracy and can potentially reduce the part rejection rate during production. Overall, the ability to measure accuracy is a critical component in the pursuit of reliable and robust robotic assembly processes.
 
 \subsection{Deformation of Partially Assembled Structure}
+\label{subsection:new_hypo_deformation_of_partially_assembled_structure}
 
 During the assembly process, the partially assembled structure is constantly growing in size and complexity. As new elements, tools, and scaffolding are added, its structural behaviour changes. Observations have shown that it is necessary to ensure that the partial structure is (1) strong enough to avoid damage or collapse, and (2) the subsequent assembly alignment targets are within acceptable deviations \textit{(see \ul{7.1.1 Deformation-Awareness and Error Correction by Triangulation})}. 
 
@@ -501,6 +516,7 @@ Although the structural analysis was not implemented computationally, the hypoth
 We can also speculate about other supporting methods, such as using an extra robot to temporarily hold the structure before it is stable \parencite{paraschoCooperativeRoboticAssembly2019, thomaRoboticFabricationBespoke2018}. Regardless of the choice of temporary support or its absence, the ability to plan for the correct actions relies on fast and accurate methods that can predict deformation for partial assemblies. This will be useful not only for robotic timber assembly but also relevant to general construction planning practices.
 
 \subsection{Accuracy of Robotic Platforms}
+\label{subsection:new_hypo_accuracy_of_robotic_platforms}
 
 The deviation of the robotic arm is one of the major sources of alignment error observed in our demonstrations. Considering that the RFL robotic platform is already designed with a highly stiff gantry, future on-site robotic platforms are likely to have even greater deviations. Therefore, it is important to understand the factors affecting the accuracy of robots and how they can be predicted. This information can be useful for checking an assembly process (for a given robot) or when designing new robots for on-site use. There are three main sources of inaccuracy:
 
@@ -515,12 +531,14 @@ The deviation of the robotic arm is one of the major sources of alignment error 
 \end{description}
 
 \subsubsection{Control Inaccuracy}
+\label{subsubsection:new_hypo_control_inaccuracy}
 
 Control inaccuracy is caused by the resolution of the actuator, encoder and sensors. It is a theoretical limit that is determined by the choice of components. For open-loop control actuators, such as stepper motors, the resolution is often limited by their step size. For closed-loop control actuators, such as DC servo motors, the resolution is limited by the encoder resolution and the driver's tracking deadband. This resolution can be changed by subsequent gearing in the transmission or worsened by any backlash in the gearbox. 
 
 To quantify the effect of this deviation, it is possible to compute a theoretical envelope using a forward kinematics model and the resolution of each joint. This envelope is analytical and has a theoretical confidence value of 1.0 while the distribution within the envelope can be considered uniform. It is important to note that the deviation envelope is in Cartesian space and its shape is dependent on the configuration of the robot.
 
 \subsubsection{Mechanical Inaccuracy}
+\label{subsubsection:new_hypo_mechanical_inaccuracy}
 
 Mechanical inaccuracy is caused by the deformation of the robot under gravity and dynamic load. In the context of architectural robotics, gravity load is the dominating factor because the movements are slow and the workpieces are heavy. The deformation is caused by gravity acting on the mass of the robot body, tools, workpiece attached to the flange, as well as any extra payload attached to the robot body, such as cable dress packs. This causes an elastic deformation on the connecting links of the robot body, and motion transmission parts, such as gears, shafts, and belts. The amount of deviation is sensitive to the centre of mass of the payload. For example, during the assembly of the BusStop\textit{ (5.6.2.4 Different Grasp Pose)}, it was found that if a beam is not held near the centre, the bending moment can be significant enough to cause visible deformation on the last two joints, which are mechanically the weakest. The amount of deviation is also dependent on the configuration of the robot, as shown in the RFL calibration dance\textit{ (see \ul{6.5.10 RFL Robot Inaccuracy and Calibration})}.
 
@@ -529,6 +547,7 @@ In a typical industrial robotic arm, this deformation cannot be detected by the 
 Another approach for compensating deviation is by adding sensors to measure the actual deviation and subjecting that to the real-time control loop. These can either be sensors embedded inside or on the robot body, such as an inertial measurement unit (IMU) in the robot links \parencite{judHEAPAutonomousWalking2021} or stationary sensors, such as optical measuring stations monitoring the end effector position \parencite{stadelmannEndEffectorPoseCorrection2019}. Typically, stationary sensors have better accuracy but are limited to line-of-sight measurements. Embedded sensors do not have such limitations but are often less accurate. 
 
 \subsubsection{Forward Kinematic Inaccuracy}
+\label{subsubsection:new_hypo_forward_kinematic_inaccuracy}
 
 Forward kinematic (FK) inaccuracy is caused by the difference between the kinematic description of the robot and its actual physical parts. The deviation can be minimised by calibrating the robot \parencite{chen-gangReviewKinematicsCalibration2014, mooringFundamentalsManipulatorCalibration1991} and using the measurements to update the FK model.
 

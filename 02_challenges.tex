@@ -12,8 +12,10 @@ The general research question is ``\textbf{How can robots assemble spatial timbe
 Finally, research questions are formulated in \textbf{Section 2.3 Research Questions}. 
 
 \section{Mechanical Challenges}
+\label{section:challenges_mechanical_challenges}
 
 \subsection{Sliding Friction}
+\label{subsection:challenges_sliding_friction}
 
 During the closure of a timber joint, surfaces between each pair of joints start to make contact. Apart from butt joints\footnote{ Definition of butt joints for this thesis are joints that do not have rubbing contact surfaces. Contact force only appears when the beam reaches its final, assembled position}, most of the joints are designed with a substantial amount of contact surfaces that will slide and rub against each other during assembly. The diagram below shows the increasing amount of rubbing surfaces in a pair of half lap joints during assembly. 
 
@@ -49,6 +51,7 @@ The design of these contact surfaces are used for many different purposes. For e
 Carpenters have always been aware of the quality of the joints and how it affects the assembly difficulty. However, with the use of CNC controlled joinery machines, the fabrication tolerance can be controlled much more easily. It is worth mentioning that one precedent project has attempted to control the moisture of the wood to shrink it for reducing friction \parencite{jennyPedagogyDigitalMateriality2022}. However the approach required heating the entire piece of wood, and would be difficult for larger scale structures.
 
 \subsection{Tight Fitting Joints}
+\label{subsection:challenges_tight_fitting_joints}
 
 The second form of assembly-resistance is the fit of the mating joints. Fit is a measurement of the tightness of the connection between two mating parts. The fit can be categorised into three main types: clearance fit, transition fit, and interference fit. Clearance fit allows for some play between the parts, whereas interference fit requires force to assemble the parts and creates a tight, secure connection. Transition fit lies between these two extremes, providing a snug fit with some allowance for slight variations in the parts' dimensions.
 
@@ -61,6 +64,7 @@ Existing studies on the effects of timber joint fit are mostly focused on furnit
 In fact, much of the architectural scale robotic assembly research avoided the problem of tight fitting joinery at all due to the difficulty in assembling them, instead they use tangential connections \parencite{apolinarskaSequentialRoof2016, gandiaAutomaticPathPlanning2018, paraschoCooperativeRoboticAssembly2019}, and butt joints \parencite{apolinarskaRoboticAssemblyTimber2021, thomaRoboticFabricationBespoke2018} that did not require a large assembly force. However, these joint designs require an extra fastening step, such as glueing \parencite{gramaziokohlerresearchethzurichSemiramis2022, helmreichRoboticAssemblyModular2022} and screwing \parencite{apolinarskaSequentialRoof2016, thomaRoboticFabricationBespoke2018} that is often performed manually. Even when integral timber joinery was involved, a loose fit was chosen to make the robotic assembly process easier. 
 
 \subsection{Assembly Force vs Robots}
+\label{subsection:challenges_assembly_force_vs_robots}
 
 The need to apply a large assembly force to overcome sliding friction and tight fit is a challenging problem for robotic assembly. 
 
@@ -77,6 +81,7 @@ The fifth challenging reason is that the location and amount of timber frame joi
 An alternative approach that was considered is to use more than one robotic arm, each holding a clamping end effector near the joints. However, it is challenging to scale up for more complex arrangements as the number of robots will have to increase with the number of simultaneously assembled joints. While this may be possible for a two-robot scenario, more robots will simply not fit in the limited space between them.
 
 \subsection{Joint Alignment}
+\label{subsection:challenges_joint_alignment}
 
 During the assembly of timber structures, it is necessary to accurately align the mating joints between the robot-sode and the stationary-side.
 
@@ -89,6 +94,7 @@ Because the robot targets are all extracted from a CAD model, unless there are a
 In the case where misalignment is severe and the problem is undetected, the subsequent robotic motion will not only fail but can also damage the timber parts. 
 
 \subsection{Fastener Installation}
+\label{subsection:challenges_fastener_installation}
 
 While many of the traditional timber frame joints contain no fasteners, some of them do, and for a multitude of reasons. For example, timber wedges are used to pull the joints tighter during assembly and can improve its stiffness; Timber dowels or pegs are used to prevent joint loosening due to live load; Metal dowels are used in contemporary designs to transmit shear force with metal plate connectors; Metal screws can be used to transmit tensile forces over a joint that would be hard to achieve using timber contact faces alone. 
 
@@ -97,8 +103,10 @@ The assembly of threaded fasteners is a common operation in the manufacturing in
 For timber frame construction with larger timber sizes, the screws used on the integral timber joints are often much larger than those used in the lighter timber systems. For other fasteners such as dowels and wedges, they are more specialised and have no automated precedence. 
 
 \section{Computational and Design Challenges}
+\label{section:challenges_computational_and_design_challenges}
 
 \subsection{Designing with Integral Timber Joints}
+\label{subsection:challenges_designing_with_integral_timber_joints}
 
 Timber frame structures often employ the use of integral timber joints that are interlocking, to restrict the movement of beams after assembly. In many cases, there is only one single direction in which the mating beams can be moved to assemble the joints. The arrangement of beams and the design of the interlocking joints works together to provide the stability and stiffness of a timber frame structure. However, this approach also creates a complex, interlocking system of parts that are difficult to design and analyse, not unlike the 3D interlocking puzzles commonly found in museum gift shops.
 
@@ -115,6 +123,7 @@ Historically, successful timber frame designs were passed from one generation of
 Today, advances in the computer graphic field have created many analytical methods and opened up new possibilities for designing and analysing novel timber structures. In this thesis, structural analysis and assembly analysis will not be the core focus of the research. This is because they are already a highly established field and that many existing works have already studied them in depth. However, it is still necessary to be aware of their challenges to be able to apply the techniques correctly.
 
 \subsection{Structural Analysis}
+\label{subsection:challenges_structural_analysis}
 
 Timber structures are designed by considering various factors such as material properties, structural loads, environmental conditions, building codes, and aesthetics. The process typically begins with architectural design, where the overall form and layout of the building are determined. This is followed by structural design, where the appropriate sizes and shapes of timber members, connections, and joints are selected to ensure structural integrity, stability, and longevity.
 
@@ -133,6 +142,7 @@ Timber structures, particularly those with integral timber joints, present uniqu
 
 \end{itemize}
 \subsection{Assembly Analysis}
+\label{subsection:challenges_assembly_analysis}
 
 Assembly analysis of timber frame structures with integral timber joints is a crucial aspect to ensuring the structure can be assembled, this is known as joint mobility analysis, or assemblability analysis. The assembly analysis can be extended to include automatic sequence planning and motion planning \parencite{wangStateArtComputational2021}. Assembly problems can be further categorised \parencite{wangStateArtComputational2021} by their properties: 
 
@@ -172,6 +182,7 @@ The extension of these analysis into the design process includes:
 In this thesis, task planning and motion planning are unavoidable for generating the robot programmes. However, sequence planning will not be studied. It is assumed that an experienced timber engineer, designer or carpenter can be tasked to determine the assembly order based on experience and intuition.
 
 \subsection{Task and Motion planning}
+\label{subsection:challenges_task_motion_planning}
 
 The use of robots for assembling timber structures requires careful planning and simulation to ensure that there are no unintended collisions. 
 
@@ -194,6 +205,7 @@ Many spatial assembly projects have used a rule-based strategy to programme the 
 A more generic strategy is to use a sampling-based motion planner as it has the ability to automatically search for a viable path while avoiding collisions \parencite{gandiaAutomaticPathPlanning2018, thomaRoboticFabricationBespoke2018}. This is critical if some of the beams have to reach into the small openings of a structure. However, one of the often cited knowledge gap remains at the automatic generation of robotic trajectories for large amounts of uniquely shaped and positioned elements \parencite{eversmannRoboticPrefabricationTimber2017, gandiaAutomaticPathPlanning2018}. Latest research developments have already created the interface to access planning tools from the robotics research field for planning architectural assemblies \parencite{gandiaAutomaticPathPlanning2018, paraschoCooperativeFabricationSpatial2017a, paraschoComputationalDesignRobotically2018}. The most comprehensive method to date being a unified sequence and motion planning or a unified task and 
 
 \subsection{Joint Modeling and Solving}
+\label{subsection:challenges_joint_modeling_solving}
 
 Joint Modeling and Solving refers to the computational process of creating and adjusting parametric models of integral timber joints, ensuring their compatibility and adaptability within the larger context of the timber frame assembly, while taking into account fabrication constraints, user customizations, and structural considerations.
 
@@ -277,6 +289,7 @@ It is worth noting that the solution space for a timber joint is large, and ther
 While the automatic modelling of timber joints is not an essential requirement for automatic assembly, it is important for a parametric design process. Even in a simple structure, there are many joints involved. The sheer number of joints makes the process tedious and prone to human error if they are modelled manually. Furthermore, the inclusion of assembly direction in a parametric joint model allows automatic design check for assemblability. It can also be used for generating the robotic assembly program, because the assembly direction defines one of the important movement targets for that specific beam. 
 
 \subsection{User Interface for Fabrication Aware Design}
+\label{subsection:challenges_user_interface_for_fabrication_aware_design}
 
 Creating designs in a highly constrained environment is often a balance between finding interesting possibilities while pushing the design boundary. Considering the many constraints, introduced in the previous sections, that are relevant to a robotically assembled timber frame structure, it is not hard to imagine the complexity of the design process. 
 
@@ -301,6 +314,7 @@ The primary goal for such an interface is to provide designers with real-time fe
 In summary, a user interface for fabrication-aware design should facilitate effective communication between the human designer and the computational tools, enabling a seamless and efficient design process. 
 
 \section{Research Questions}
+\label{section:research_questions}
 
 The challenges elaborated in the previous sections have indicated the highly interdisciplinary nature of this research. It includes the field of timber frame design, digital fabrication, machine design, computer graphics and robotics. Consequently, research questions that address these challenges require an integrated approach that combines expertise from these diverse fields..
 
