@@ -1,0 +1,1550 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.8.8)  12 AUG 2023 19:53
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**"c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex"
+(c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-03>
+(c:/texlive/2023/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
+(c:/texlive/2023/texmf-dist/tex/latex/base/bk11.clo
+File: bk11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@chapter=\count186
+\c@section=\count187
+\c@subsection=\count188
+\c@subsubsection=\count189
+\c@paragraph=\count190
+\c@subparagraph=\count191
+\c@figure=\count192
+\c@table=\count193
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+) (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
+ (c:/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+ (c:/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex (c:/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks17
+\XKV@tempa@toks=\toks18
+ (c:/texlive/2023/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count194
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
+) (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+ (c:/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (c:/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen141
+\Gin@req@width=\dimen142
+) (c:/texlive/2023/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box51
+)
+\tc@llx=\dimen143
+\tc@lly=\dimen144
+\tc@urx=\dimen145
+\tc@ury=\dimen146
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+ (c:/texlive/2023/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen147
+\adjbox@Height=\dimen148
+\adjbox@Depth=\dimen149
+\adjbox@Totalheight=\dimen150
+\adjbox@pwidth=\dimen151
+\adjbox@pheight=\dimen152
+\adjbox@pdepth=\dimen153
+\adjbox@ptotalheight=\dimen154
+ (c:/texlive/2023/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count195
+) (c:/texlive/2023/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box52
+\sift@deathcycles=\count196
+\@vwid@loff=\dimen155
+\@vwid@roff=\dimen156
+)) (c:/texlive/2023/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/07/31 v3.6n Customizing captions (AR)
+ (c:/texlive/2023/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen157
+\captionmargin=\dimen158
+\caption@leftmargin=\dimen159
+\caption@rightmargin=\dimen160
+\caption@width=\dimen161
+\caption@indent=\dimen162
+\caption@parindent=\dimen163
+\caption@hangindent=\dimen164
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count197
+\c@continuedfloat=\count198
+) (c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count199
+\float@exts=\toks19
+\float@box=\box53
+\@float@everytoks=\toks20
+\@floatcapt=\box54
+) (c:/texlive/2023/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (c:/texlive/2023/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
+) (c:/texlive/2023/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count266
+\mult@box=\box55
+\multicol@leftmargin=\dimen165
+\c@unbalance=\count267
+\c@collectmore=\count268
+\doublecol@number=\count269
+\multicoltolerance=\count270
+\multicolpretolerance=\count271
+\full@width=\dimen166
+\page@free=\dimen167
+\premulticols=\dimen168
+\postmulticols=\dimen169
+\multicolsep=\skip50
+\multicolbaselineskip=\skip51
+\partial@page=\box56
+\last@line=\box57
+\mc@boxedresult=\box58
+\maxbalancingoverflow=\dimen170
+\mult@rightbox=\box59
+\mult@grightbox=\box60
+\mult@firstbox=\box61
+\mult@gfirstbox=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\c@minrows=\count272
+\c@columnbadness=\count273
+\c@finalcolumnbadness=\count274
+\last@try=\dimen171
+\multicolovershoot=\dimen172
+\multicolundershoot=\dimen173
+\mult@nat@firstbox=\box99
+\colbreak@box=\box100
+\mc@col@check@num=\count275
+) (c:/texlive/2023/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip52
+\multirow@cntb=\count276
+\multirow@dima=\skip53
+\bigstrutjot=\dimen174
+) (c:/texlive/2023/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count277
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count278
+) (c:/texlive/2023/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box101
+\UL@hyphenbox=\box102
+\UL@skip=\skip54
+\UL@hook=\toks23
+\UL@height=\dimen175
+\UL@pe=\count279
+\UL@pixel=\dimen176
+\ULC@box=\box103
+Package: ulem 2019/11/18
+\ULdepth=\dimen177
+) (c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+ (c:/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (c:/texlive/2023/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (c:/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+) (c:/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (c:/texlive/2023/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count280
+) (c:/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+ (c:/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)) (c:/texlive/2023/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count281
+ (c:/texlive/2023/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) (c:/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (c:/texlive/2023/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+\c@tabx@nest=\count282
+\c@listtotal=\count283
+\c@listcount=\count284
+\c@liststart=\count285
+\c@liststop=\count286
+\c@citecount=\count287
+\c@citetotal=\count288
+\c@multicitecount=\count289
+\c@multicitetotal=\count290
+\c@instcount=\count291
+\c@maxnames=\count292
+\c@minnames=\count293
+\c@maxitems=\count294
+\c@minitems=\count295
+\c@citecounter=\count296
+\c@maxcitecounter=\count297
+\c@savedcitecounter=\count298
+\c@uniquelist=\count299
+\c@uniquename=\count300
+\c@refsection=\count301
+\c@refsegment=\count302
+\c@maxextratitle=\count303
+\c@maxextratitleyear=\count304
+\c@maxextraname=\count305
+\c@maxextradate=\count306
+\c@maxextraalpha=\count307
+\c@abbrvpenalty=\count308
+\c@highnamepenalty=\count309
+\c@lownamepenalty=\count310
+\c@maxparens=\count311
+\c@parenlevel=\count312
+\blx@tempcnta=\count313
+\blx@tempcntb=\count314
+\blx@tempcntc=\count315
+\c@blx@maxsection=\count316
+\blx@maxsegment@0=\count317
+\blx@notetype=\count318
+\blx@parenlevel@text=\count319
+\blx@parenlevel@foot=\count320
+\blx@sectionciteorder@0=\count321
+\blx@sectionciteorderinternal@0=\count322
+\blx@entrysetcounter=\count323
+\blx@biblioinstance=\count324
+\labelnumberwidth=\skip55
+\labelalphawidth=\skip56
+\biblabelsep=\skip57
+\bibitemsep=\skip58
+\bibnamesep=\skip59
+\bibinitsep=\skip60
+\bibparsep=\skip61
+\bibhang=\skip62
+\blx@bcfin=\read2
+\blx@bcfout=\write3
+\blx@langwohyphens=\language87
+\c@mincomprange=\count325
+\c@maxcomprange=\count326
+\c@mincompwidth=\count327
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count328
+\c@savedafterword=\count329
+\c@annotator=\count330
+\c@savedannotator=\count331
+\c@author=\count332
+\c@savedauthor=\count333
+\c@bookauthor=\count334
+\c@savedbookauthor=\count335
+\c@commentator=\count336
+\c@savedcommentator=\count337
+\c@editor=\count338
+\c@savededitor=\count339
+\c@editora=\count340
+\c@savededitora=\count341
+\c@editorb=\count342
+\c@savededitorb=\count343
+\c@editorc=\count344
+\c@savededitorc=\count345
+\c@foreword=\count346
+\c@savedforeword=\count347
+\c@holder=\count348
+\c@savedholder=\count349
+\c@introduction=\count350
+\c@savedintroduction=\count351
+\c@namea=\count352
+\c@savednamea=\count353
+\c@nameb=\count354
+\c@savednameb=\count355
+\c@namec=\count356
+\c@savednamec=\count357
+\c@translator=\count358
+\c@savedtranslator=\count359
+\c@shortauthor=\count360
+\c@savedshortauthor=\count361
+\c@shorteditor=\count362
+\c@savedshorteditor=\count363
+\c@labelname=\count364
+\c@savedlabelname=\count365
+\c@institution=\count366
+\c@savedinstitution=\count367
+\c@lista=\count368
+\c@savedlista=\count369
+\c@listb=\count370
+\c@savedlistb=\count371
+\c@listc=\count372
+\c@savedlistc=\count373
+\c@listd=\count374
+\c@savedlistd=\count375
+\c@liste=\count376
+\c@savedliste=\count377
+\c@listf=\count378
+\c@savedlistf=\count379
+\c@location=\count380
+\c@savedlocation=\count381
+\c@organization=\count382
+\c@savedorganization=\count383
+\c@origlocation=\count384
+\c@savedoriglocation=\count385
+\c@origpublisher=\count386
+\c@savedorigpublisher=\count387
+\c@publisher=\count388
+\c@savedpublisher=\count389
+\c@language=\count390
+\c@savedlanguage=\count391
+\c@origlanguage=\count392
+\c@savedoriglanguage=\count393
+\c@pageref=\count394
+\c@savedpageref=\count395
+\shorthandwidth=\skip63
+\shortjournalwidth=\skip64
+\shortserieswidth=\skip65
+\shorttitlewidth=\skip66
+\shortauthorwidth=\skip67
+\shorteditorwidth=\skip68
+\locallabelnumberwidth=\skip69
+\locallabelalphawidth=\skip70
+\localshorthandwidth=\skip71
+\localshortjournalwidth=\skip72
+\localshortserieswidth=\skip73
+\localshorttitlewidth=\skip74
+\localshortauthorwidth=\skip75
+\localshorteditorwidth=\skip76
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count396
+\c@textcitetotal=\count397
+\c@textcitemaxnames=\count398
+\c@biburlbigbreakpenalty=\count399
+\c@biburlbreakpenalty=\count400
+\c@biburlnumpenalty=\count401
+\c@biburlucpenalty=\count402
+\c@biburllcpenalty=\count403
+\biburlbigskip=\muskip17
+\biburlnumskip=\muskip18
+\biburlucskip=\muskip19
+\biburllcskip=\muskip20
+\c@smartand=\count404
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count405
+\c@bbx:relatedtotal=\count406
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+ (c:/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2023-08-03 L3 programming layer (loader) 
+ (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count407
+\l__pdf_internal_box=\box104
+))
+Package biblatex Info: ... and expl3
+(biblatex)             2023-08-03 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (c:/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2023-02-02 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+)) (c:/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (c:/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count408
+\Gm@cntv=\count409
+\c@Gm@tempcnt=\count410
+\Gm@bindingoffset=\dimen178
+\Gm@wd@mp=\dimen179
+\Gm@odd@mp=\dimen180
+\Gm@even@mp=\dimen181
+\Gm@layoutwidth=\dimen182
+\Gm@layoutheight=\dimen183
+\Gm@layouthoffset=\dimen184
+\Gm@layoutvoffset=\dimen185
+\Gm@dimlist=\toks24
+) (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2023-07-08 v7.01b Hypertext links for LaTeX
+ (c:/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (c:/texlive/2023/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (c:/texlive/2023/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (c:/texlive/2023/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (c:/texlive/2023/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (c:/texlive/2023/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-08-07 v2.53 Cross-referencing by name of section
+ (c:/texlive/2023/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (c:/texlive/2023/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count411
+)
+\@linkdim=\dimen186
+\Hy@linkcounter=\count412
+\Hy@pagecounter=\count413
+ (c:/texlive/2023/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2023-07-08 v7.01b Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (c:/texlive/2023/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count414
+ (c:/texlive/2023/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2023-07-08 v7.01b Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4167.
+Package hyperref Info: Link nesting OFF on input line 4172.
+Package hyperref Info: Hyper index ON on input line 4175.
+Package hyperref Info: Plain pages OFF on input line 4182.
+Package hyperref Info: Backreferencing OFF on input line 4187.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4434.
+\c@Hy@tempcnt=\count415
+LaTeX Info: Redefining \url on input line 4772.
+\XeTeXLinkMargin=\dimen187
+ (c:/texlive/2023/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+ (c:/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count416
+\Field@Width=\dimen188
+\Fld@charsize=\dimen189
+Package hyperref Info: Hyper figures OFF on input line 6051.
+Package hyperref Info: Link nesting OFF on input line 6056.
+Package hyperref Info: Hyper index ON on input line 6059.
+Package hyperref Info: backreferencing OFF on input line 6066.
+Package hyperref Info: Link coloring OFF on input line 6071.
+Package hyperref Info: Link coloring with OCG OFF on input line 6076.
+Package hyperref Info: PDF/A mode OFF on input line 6081.
+ (c:/texlive/2023/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count417
+\c@Item=\count418
+\c@Hfootnote=\count419
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2023-07-08 v7.01b Hyperref driver for pdfTeX
+ (c:/texlive/2023/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count420
+\c@bookmark@seq@number=\count421
+ (c:/texlive/2023/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+ (c:/texlive/2023/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip77
+)
+\@quotelevel=\count422
+\@quotereset=\count423
+ (./Victors_Thesis_Chapters_7b_reduced_table.aux)
+\openout1 = `Victors_Thesis_Chapters_7b_reduced_table.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+ (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count424
+\scratchdimen=\dimen190
+\scratchbox=\box105
+\nofMPsegments=\count425
+\nofMParguments=\count426
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count427
+\MPscratchDim=\dimen191
+\MPnumerator=\count428
+\makeMPintoPDFobject=\count429
+\everyMPtoPDFconversion=\toks26
+) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+ (c:/texlive/2023/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `Victors_Thesis_Chapters_7b_reduced_table.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'Victors_Thesis_Chapters_7b_reduced_table.bbl' not found.
+
+No file Victors_Thesis_Chapters_7b_reduced_table.bbl.
+Package biblatex Info: Reference section=0 on input line 30.
+Package biblatex Info: Reference segment=0 on input line 30.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(72.2698pt, 453.25262pt, 72.2698pt)
+* v-part:(T,H,B)=(72.2698pt, 700.22278pt, 72.2698pt)
+* \paperwidth=597.79224pt
+* \paperheight=844.76239pt
+* \textwidth=453.25262pt
+* \textheight=700.22278pt
+* \oddsidemargin=-0.00018pt
+* \evensidemargin=-0.00018pt
+* \topmargin=-31.87398pt
+* \headheight=12.0pt
+* \headsep=19.8738pt
+* \topskip=11.0pt
+* \footskip=27.46295pt
+* \marginparwidth=116.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package hyperref Info: Link coloring OFF on input line 30.
+\@outlinefile=\write4
+\openout4 = `Victors_Thesis_Chapters_7b_reduced_table.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 32.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 32.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 32.
+
+LaTeX Warning: No \author given.
+
+[1
+
+
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}] [2{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<./images/image1.jpeg, id=22, 217.5628pt x 108.405pt>
+File: ./images/image1.jpeg Graphic file (type jpg)
+<use ./images/image1.jpeg>
+Package pdftex.def Info: ./images/image1.jpeg  used on input line 87.
+(pdftex.def)             Requested size: 217.39296pt x 108.69585pt.
+<./images/image2.jpeg, id=23, 217.5628pt x 109.1578pt>
+File: ./images/image2.jpeg Graphic file (type jpg)
+<use ./images/image2.jpeg>
+Package pdftex.def Info: ./images/image2.jpeg  used on input line 87.
+(pdftex.def)             Requested size: 217.39296pt x 108.9743pt.
+<./images/image3.jpeg, id=24, 217.5628pt x 109.1578pt>
+File: ./images/image3.jpeg Graphic file (type jpg)
+<use ./images/image3.jpeg>
+Package pdftex.def Info: ./images/image3.jpeg  used on input line 87.
+(pdftex.def)             Requested size: 217.39296pt x 108.9743pt.
+<./images/image4.jpeg, id=25, 217.5628pt x 109.1578pt>
+File: ./images/image4.jpeg Graphic file (type jpg)
+<use ./images/image4.jpeg>
+Package pdftex.def Info: ./images/image4.jpeg  used on input line 87.
+(pdftex.def)             Requested size: 217.39296pt x 108.9743pt.
+
+Overfull \hbox (434.8147pt too wide) in paragraph at lines 87--88
+\T1/cmr/m/n/9 1[]2[]3[]4[] 
+ []
+
+<./images/image5.jpeg, id=26, 452.4403pt x 227.34938pt>
+File: ./images/image5.jpeg Graphic file (type jpg)
+<use ./images/image5.jpeg>
+Package pdftex.def Info: ./images/image5.jpeg  used on input line 92.
+(pdftex.def)             Requested size: 452.96388pt x 226.77295pt.
+[3 <./images/image1.jpeg> <./images/image2.jpeg> <./images/image3.jpeg> <./images/image4.jpeg> <./images/image5.jpeg>]
+<./images/image6.jpeg, id=37, 217.5628pt x 108.405pt>
+File: ./images/image6.jpeg Graphic file (type jpg)
+<use ./images/image6.jpeg>
+Package pdftex.def Info: ./images/image6.jpeg  used on input line 106.
+(pdftex.def)             Requested size: 203.9623pt x 101.63438pt.
+<./images/image7.jpeg, id=38, 217.5628pt x 108.405pt>
+File: ./images/image7.jpeg Graphic file (type jpg)
+<use ./images/image7.jpeg>
+Package pdftex.def Info: ./images/image7.jpeg  used on input line 111.
+(pdftex.def)             Requested size: 203.9623pt x 101.63438pt.
+<./images/image8.jpeg, id=39, 217.5628pt x 109.1578pt>
+File: ./images/image8.jpeg Graphic file (type jpg)
+<use ./images/image8.jpeg>
+Package pdftex.def Info: ./images/image8.jpeg  used on input line 122.
+(pdftex.def)             Requested size: 203.9623pt x 102.34018pt.
+<./images/image9.jpeg, id=40, 217.5628pt x 108.405pt>
+File: ./images/image9.jpeg Graphic file (type jpg)
+<use ./images/image9.jpeg>
+Package pdftex.def Info: ./images/image9.jpeg  used on input line 127.
+(pdftex.def)             Requested size: 203.9623pt x 101.63438pt.
+<./images/image10.jpeg, id=41, 452.4403pt x 227.34938pt>
+File: ./images/image10.jpeg Graphic file (type jpg)
+<use ./images/image10.jpeg>
+Package pdftex.def Info: ./images/image10.jpeg  used on input line 135.
+(pdftex.def)             Requested size: 452.96388pt x 226.77295pt.
+ [4 <./images/image6.jpeg> <./images/image7.jpeg> <./images/image8.jpeg> <./images/image9.jpeg> <./images/image10.jpeg>]
+<./images/image11.jpeg, id=50, 453.94594pt x 279.29344pt>
+File: ./images/image11.jpeg Graphic file (type jpg)
+<use ./images/image11.jpeg>
+Package pdftex.def Info: ./images/image11.jpeg  used on input line 143.
+(pdftex.def)             Requested size: 452.97508pt x 279.1308pt.
+<./images/image12.jpeg, id=51, 332.74312pt x 43.66313pt>
+File: ./images/image12.jpeg Graphic file (type jpg)
+<use ./images/image12.jpeg>
+Package pdftex.def Info: ./images/image12.jpeg  used on input line 154.
+(pdftex.def)             Requested size: 333.77296pt x 43.81956pt.
+<./images/image13.jpeg, id=52, 231.86626pt x 259.7203pt>
+File: ./images/image13.jpeg Graphic file (type jpg)
+<use ./images/image13.jpeg>
+Package pdftex.def Info: ./images/image13.jpeg  used on input line 161.
+(pdftex.def)             Requested size: 232.18056pt x 260.05652pt.
+
+Underfull \vbox (badness 6995) has occurred while \output is active []
+
+ [5 <./images/image11.jpeg> <./images/image12.jpeg>]
+<./images/image14.jpeg, id=60, 453.19313pt x 666.99188pt>
+File: ./images/image14.jpeg Graphic file (type jpg)
+<use ./images/image14.jpeg>
+Package pdftex.def Info: ./images/image14.jpeg  used on input line 170.
+(pdftex.def)             Requested size: 452.97072pt x 666.41013pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./images/image13.jpeg>]
+Overfull \vbox (61.7861pt too high) has occurred while \output is active []
+
+ [7 <./images/image14.jpeg>]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 188.
+<./images/image15.jpeg, id=73, 454.69875pt x 486.31688pt>
+File: ./images/image15.jpeg Graphic file (type jpg)
+<use ./images/image15.jpeg>
+Package pdftex.def Info: ./images/image15.jpeg  used on input line 213.
+(pdftex.def)             Requested size: 452.97696pt x 484.83156pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8] [9 <./images/image15.jpeg>]
+<./images/image16.jpeg, id=92, 452.4403pt x 211.54031pt>
+File: ./images/image16.jpeg Graphic file (type jpg)
+<use ./images/image16.jpeg>
+Package pdftex.def Info: ./images/image16.jpeg  used on input line 267.
+(pdftex.def)             Requested size: 203.9623pt x 95.36333pt.
+<./images/image17.jpeg, id=93, 452.4403pt x 211.54031pt>
+File: ./images/image17.jpeg Graphic file (type jpg)
+<use ./images/image17.jpeg>
+Package pdftex.def Info: ./images/image17.jpeg  used on input line 272.
+(pdftex.def)             Requested size: 203.9623pt x 95.36333pt.
+ [10 <./images/image16.jpeg> <./images/image17.jpeg>]
+Overfull \hbox (6.48608pt too wide) in paragraph at lines 288--289
+[]\T1/cmr/bx/n/10.95 Validate op-er-a-tion of SL1 Screw-driver - \T1/cmr/m/it/10.95 (see |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (15.54828pt too wide) in paragraph at lines 295--296
+[]\T1/cmr/bx/n/10.95 Polyline lap joints \T1/cmr/m/n/10.95 - Cus-tomised with tra-di-tional lap joints de-tails \T1/cmr/m/it/10.95 (see |   []   |   []
+ []
+
+<./images/image18.jpeg, id=107, 452.4403pt x 254.45062pt>
+File: ./images/image18.jpeg Graphic file (type jpg)
+<use ./images/image18.jpeg>
+Package pdftex.def Info: ./images/image18.jpeg  used on input line 327.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Extra }, or forgotten \endgroup.
+\UL@stop ... \UL@putbox \fi \else \egroup \egroup 
+                                                  \UL@putbox \fi \ifnum \UL@...
+l.327 }
+       
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Missing } inserted.
+<inserted text> 
+                }
+l.327 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.327 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Missing } inserted.
+<inserted text> 
+                }
+l.327 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Missing } inserted.
+<inserted text> 
+                }
+l.327 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Undefined control sequence.
+\endfigure ...box \columnwidth \fi \box \@currbox 
+                                                  \vskip \intextsep \relax 
+l.327 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Missing number, treated as zero.
+<to be read again> 
+                   \vskip 
+l.327 }
+       
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.327 }
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Missing } inserted.
+<inserted text> 
+                }
+l.327 }
+       
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.327 }
+       
+Things are pretty mixed up, but I think the worst is over.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Too many }'s.
+\UL@stop ...z@ \else \UL@putbox \fi \else \egroup 
+                                                  \egroup \UL@putbox \fi \if...
+l.327 }
+       
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Too many }'s.
+\UL@stop ... \UL@putbox \fi \else \egroup \egroup 
+                                                  \UL@putbox \fi \ifnum \UL@...
+l.327 }
+       
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Undefined control sequence.
+\UL@leaders ...L@skip \tw@ \UL@pixel \UL@leadtype 
+                                                  \LA@hskip \UL@skip \LA@hsk...
+l.327 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Undefined control sequence.
+\UL@leaders ...L@skip \tw@ \UL@pixel \UL@leadtype 
+                                                  \LA@hskip \UL@skip \LA@hsk...
+l.327 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Undefined control sequence.
+\UL@leaders ...L@skip \tw@ \UL@pixel \UL@leadtype 
+                                                  \LA@hskip \UL@skip \LA@hsk...
+l.327 }
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:327: Too many }'s.
+\UL@word ...stop \UL@leaders \fi \fi \fi \UL@word 
+                                                  \@empty 
+l.327 }
+       
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+<./images/image19.jpeg, id=108, 452.4403pt x 274.77657pt>
+File: ./images/image19.jpeg Graphic file (type jpg)
+<use ./images/image19.jpeg>
+Package pdftex.def Info: ./images/image19.jpeg  used on input line 334.
+(pdftex.def)             Requested size: 407.7241pt x 246.69286pt.
+[11]
+<./images/image20.jpeg, id=119, 217.5628pt x 109.1578pt>
+File: ./images/image20.jpeg Graphic file (type jpg)
+<use ./images/image20.jpeg>
+Package pdftex.def Info: ./images/image20.jpeg  used on input line 346.
+(pdftex.def)             Requested size: 203.9623pt x 102.34018pt.
+<./images/image21.jpeg, id=120, 217.5628pt x 108.405pt>
+File: ./images/image21.jpeg Graphic file (type jpg)
+<use ./images/image21.jpeg>
+Package pdftex.def Info: ./images/image21.jpeg  used on input line 351.
+(pdftex.def)             Requested size: 203.9623pt x 101.63438pt.
+<./images/image22.jpeg, id=121, 452.4403pt x 301.8778pt>
+File: ./images/image22.jpeg Graphic file (type jpg)
+<use ./images/image22.jpeg>
+Package pdftex.def Info: ./images/image22.jpeg  used on input line 361.
+(pdftex.def)             Requested size: 452.96388pt x 302.16725pt.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:361: Improper \spacefactor.
+\UL@on ...#1\xdef \UL@spfactor {\the \spacefactor 
+                                                  } \UL@end * 
+l.361 }
+       
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12 <./images/image19.jpeg> <./images/image20.jpeg> <./images/image21.jpeg>]
+<./images/image23.jpeg, id=128, 217.5628pt x 121.95563pt>
+File: ./images/image23.jpeg Graphic file (type jpg)
+<use ./images/image23.jpeg>
+Package pdftex.def Info: ./images/image23.jpeg  used on input line 369.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image24.jpeg, id=129, 217.5628pt x 122.70844pt>
+File: ./images/image24.jpeg Graphic file (type jpg)
+<use ./images/image24.jpeg>
+Package pdftex.def Info: ./images/image24.jpeg  used on input line 374.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image25.jpeg, id=130, 217.5628pt x 122.70844pt>
+File: ./images/image25.jpeg Graphic file (type jpg)
+<use ./images/image25.jpeg>
+Package pdftex.def Info: ./images/image25.jpeg  used on input line 403.
+(pdftex.def)             Requested size: 104.24615pt x 58.79826pt.
+<./images/image26.jpeg, id=131, 217.5628pt x 122.70844pt>
+File: ./images/image26.jpeg Graphic file (type jpg)
+<use ./images/image26.jpeg>
+Package pdftex.def Info: ./images/image26.jpeg  used on input line 403.
+(pdftex.def)             Requested size: 104.24615pt x 58.79826pt.
+<./images/image27.jpeg, id=132, 217.5628pt x 122.70844pt>
+File: ./images/image27.jpeg Graphic file (type jpg)
+<use ./images/image27.jpeg>
+Package pdftex.def Info: ./images/image27.jpeg  used on input line 403.
+(pdftex.def)             Requested size: 104.24615pt x 58.79826pt.
+<./images/image28.jpeg, id=133, 217.5628pt x 121.95563pt>
+File: ./images/image28.jpeg Graphic file (type jpg)
+<use ./images/image28.jpeg>
+Package pdftex.def Info: ./images/image28.jpeg  used on input line 403.
+(pdftex.def)             Requested size: 104.24615pt x 58.43753pt.
+
+c:/Users/leungp/Documents/GitHub/phd_thesis/auto_convert/Chapter 7b/Victors_Thesis_Chapters_7b_reduced_table.tex:403: Improper \spacefactor.
+\UL@on ...#1\xdef \UL@spfactor {\the \spacefactor 
+                                                  } \UL@end * 
+l.403 }
+       
+You can refer to \spacefactor only in horizontal mode;
+you can refer to \prevdepth only in vertical mode; and
+neither of these is meaningful inside \write. So
+I'm forgetting what you said and using zero instead.
+
+
+Underfull \vbox (badness 1117) has occurred while \output is active []
+
+ [13 <./images/image22.jpeg> <./images/image23.jpeg> <./images/image24.jpeg> <./images/image25.jpeg> <./images/image26.jpeg> <./images/image27.jpeg> <./images/image28.jpeg>]
+
+LaTeX Warning: Citation 'no_auth_4' on page 14 undefined on input line 463.
+
+<./images/image29.jpeg, id=142, 217.5628pt x 121.95563pt>
+File: ./images/image29.jpeg Graphic file (type jpg)
+<use ./images/image29.jpeg>
+Package pdftex.def Info: ./images/image29.jpeg  used on input line 471.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image30.jpeg, id=143, 217.5628pt x 121.95563pt>
+File: ./images/image30.jpeg Graphic file (type jpg)
+<use ./images/image30.jpeg>
+Package pdftex.def Info: ./images/image30.jpeg  used on input line 476.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+[14]
+<./images/image31.png, id=172, 452.4403pt x 254.45062pt>
+File: ./images/image31.png Graphic file (type png)
+<use ./images/image31.png>
+Package pdftex.def Info: ./images/image31.png  used on input line 484.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+<./images/image32.jpeg, id=174, 452.4403pt x 227.34938pt>
+File: ./images/image32.jpeg Graphic file (type jpg)
+<use ./images/image32.jpeg>
+Package pdftex.def Info: ./images/image32.jpeg  used on input line 491.
+(pdftex.def)             Requested size: 452.96388pt x 226.77295pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15 <./images/image29.jpeg> <./images/image30.jpeg> <./images/image31.png>]
+<./images/image33.jpeg, id=182, 217.5628pt x 121.95563pt>
+File: ./images/image33.jpeg Graphic file (type jpg)
+<use ./images/image33.jpeg>
+Package pdftex.def Info: ./images/image33.jpeg  used on input line 501.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image34.jpeg, id=183, 217.5628pt x 122.70844pt>
+File: ./images/image34.jpeg Graphic file (type jpg)
+<use ./images/image34.jpeg>
+Package pdftex.def Info: ./images/image34.jpeg  used on input line 506.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+
+
+LaTeX Warning: Citation 'no_auth_3' on page 16 undefined on input line 513.
+
+<./images/image35.jpeg, id=184, 217.5628pt x 108.405pt>
+File: ./images/image35.jpeg Graphic file (type jpg)
+<use ./images/image35.jpeg>
+Package pdftex.def Info: ./images/image35.jpeg  used on input line 519.
+(pdftex.def)             Requested size: 203.9623pt x 101.63438pt.
+<./images/image36.jpeg, id=185, 217.5628pt x 109.1578pt>
+File: ./images/image36.jpeg Graphic file (type jpg)
+<use ./images/image36.jpeg>
+Package pdftex.def Info: ./images/image36.jpeg  used on input line 524.
+(pdftex.def)             Requested size: 203.9623pt x 102.34018pt.
+<./images/image37.jpeg, id=186, 452.4403pt x 254.45062pt>
+File: ./images/image37.jpeg Graphic file (type jpg)
+<use ./images/image37.jpeg>
+Package pdftex.def Info: ./images/image37.jpeg  used on input line 532.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+[16 <./images/image32.jpeg> <./images/image33.jpeg> <./images/image34.jpeg> <./images/image35.jpeg> <./images/image36.jpeg>]
+File: ./images/image18.jpeg Graphic file (type jpg)
+<use ./images/image18.jpeg>
+Package pdftex.def Info: ./images/image18.jpeg  used on input line 543.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+
+Underfull \vbox (badness 1533) has occurred while \output is active []
+
+ [17 <./images/image37.jpeg> <./images/image18.jpeg>]
+<./images/image38.jpeg, id=201, 204.01219pt x 114.4275pt>
+File: ./images/image38.jpeg Graphic file (type jpg)
+<use ./images/image38.jpeg>
+Package pdftex.def Info: ./images/image38.jpeg  used on input line 569.
+(pdftex.def)             Requested size: 203.7315pt x 114.6699pt.
+<./images/image39.jpeg, id=202, 204.01219pt x 114.4275pt>
+File: ./images/image39.jpeg Graphic file (type jpg)
+<use ./images/image39.jpeg>
+Package pdftex.def Info: ./images/image39.jpeg  used on input line 569.
+(pdftex.def)             Requested size: 203.7315pt x 114.6699pt.
+<./images/image40.jpeg, id=203, 204.01219pt x 114.4275pt>
+File: ./images/image40.jpeg Graphic file (type jpg)
+<use ./images/image40.jpeg>
+Package pdftex.def Info: ./images/image40.jpeg  used on input line 569.
+(pdftex.def)             Requested size: 203.7315pt x 114.6699pt.
+<./images/image41.jpeg, id=204, 204.01219pt x 114.4275pt>
+File: ./images/image41.jpeg Graphic file (type jpg)
+<use ./images/image41.jpeg>
+Package pdftex.def Info: ./images/image41.jpeg  used on input line 569.
+(pdftex.def)             Requested size: 203.7315pt x 114.6699pt.
+<./images/image42.jpeg, id=205, 217.5628pt x 121.95563pt>
+File: ./images/image42.jpeg Graphic file (type jpg)
+<use ./images/image42.jpeg>
+Package pdftex.def Info: ./images/image42.jpeg  used on input line 581.
+(pdftex.def)             Requested size: 217.39296pt x 122.34795pt.
+<./images/image43.png, id=206, 217.5628pt x 122.70844pt>
+File: ./images/image43.png Graphic file (type png)
+<use ./images/image43.png>
+Package pdftex.def Info: ./images/image43.png  used on input line 581.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+ [18 <./images/image38.jpeg> <./images/image39.jpeg> <./images/image40.jpeg> <./images/image41.jpeg>]
+<./images/image44.png, id=219, 452.4403pt x 254.45062pt>
+File: ./images/image44.png Graphic file (type png)
+<use ./images/image44.png>
+Package pdftex.def Info: ./images/image44.png  used on input line 586.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+<./images/image45.jpeg, id=220, 221.32687pt x 124.21407pt>
+File: ./images/image45.jpeg Graphic file (type jpg)
+<use ./images/image45.jpeg>
+Package pdftex.def Info: ./images/image45.jpeg  used on input line 606.
+(pdftex.def)             Requested size: 203.9623pt x 114.47542pt.
+<./images/image46.jpeg, id=221, 221.32687pt x 125.71968pt>
+File: ./images/image46.jpeg Graphic file (type jpg)
+<use ./images/image46.jpeg>
+Package pdftex.def Info: ./images/image46.jpeg  used on input line 611.
+(pdftex.def)             Requested size: 203.9623pt x 115.86299pt.
+ [19 <./images/image42.jpeg> <./images/image43.png> <./images/image44.png>]
+<./images/image47.jpeg, id=232, 217.5628pt x 122.70844pt>
+File: ./images/image47.jpeg Graphic file (type jpg)
+<use ./images/image47.jpeg>
+Package pdftex.def Info: ./images/image47.jpeg  used on input line 624.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image48.jpeg, id=233, 217.5628pt x 121.95563pt>
+File: ./images/image48.jpeg Graphic file (type jpg)
+<use ./images/image48.jpeg>
+Package pdftex.def Info: ./images/image48.jpeg  used on input line 629.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+ [20 <./images/image45.jpeg> <./images/image46.jpeg> <./images/image47.jpeg> <./images/image48.jpeg>]
+<./images/image49.jpeg, id=251, 217.5628pt x 122.70844pt>
+File: ./images/image49.jpeg Graphic file (type jpg)
+<use ./images/image49.jpeg>
+Package pdftex.def Info: ./images/image49.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+<./images/image50.jpeg, id=252, 217.5628pt x 122.70844pt>
+File: ./images/image50.jpeg Graphic file (type jpg)
+<use ./images/image50.jpeg>
+Package pdftex.def Info: ./images/image50.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+<./images/image51.jpeg, id=253, 217.5628pt x 122.70844pt>
+File: ./images/image51.jpeg Graphic file (type jpg)
+<use ./images/image51.jpeg>
+Package pdftex.def Info: ./images/image51.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+<./images/image52.jpeg, id=254, 217.5628pt x 122.70844pt>
+File: ./images/image52.jpeg Graphic file (type jpg)
+<use ./images/image52.jpeg>
+Package pdftex.def Info: ./images/image52.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+<./images/image53.jpeg, id=255, 217.5628pt x 121.95563pt>
+File: ./images/image53.jpeg Graphic file (type jpg)
+<use ./images/image53.jpeg>
+Package pdftex.def Info: ./images/image53.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.34795pt.
+<./images/image54.png, id=256, 217.5628pt x 122.70844pt>
+File: ./images/image54.png Graphic file (type png)
+<use ./images/image54.png>
+Package pdftex.def Info: ./images/image54.png  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+<./images/image55.jpeg, id=257, 217.5628pt x 122.70844pt>
+File: ./images/image55.jpeg Graphic file (type jpg)
+<use ./images/image55.jpeg>
+Package pdftex.def Info: ./images/image55.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+<./images/image56.jpeg, id=258, 217.5628pt x 122.70844pt>
+File: ./images/image56.jpeg Graphic file (type jpg)
+<use ./images/image56.jpeg>
+Package pdftex.def Info: ./images/image56.jpeg  used on input line 662.
+(pdftex.def)             Requested size: 217.39296pt x 122.3505pt.
+ [21 <./images/image49.jpeg> <./images/image50.jpeg> <./images/image51.jpeg> <./images/image52.jpeg> <./images/image53.jpeg> <./images/image54.png> <./images/image55.jpeg> <./images/image56.jpeg>]
+<./images/image57.jpeg, id=265, 217.5628pt x 121.95563pt>
+File: ./images/image57.jpeg Graphic file (type jpg)
+<use ./images/image57.jpeg>
+Package pdftex.def Info: ./images/image57.jpeg  used on input line 684.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image58.jpeg, id=266, 217.5628pt x 122.70844pt>
+File: ./images/image58.jpeg Graphic file (type jpg)
+<use ./images/image58.jpeg>
+Package pdftex.def Info: ./images/image58.jpeg  used on input line 689.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 705.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 705.
+<./images/image59.png, id=267, 205.5178pt x 170.13562pt>
+File: ./images/image59.png Graphic file (type png)
+<use ./images/image59.png>
+Package pdftex.def Info: ./images/image59.png  used on input line 725.
+(pdftex.def)             Requested size: 203.9623pt x 168.84753pt.
+<./images/image60.png, id=268, 209.28188pt x 171.64125pt>
+File: ./images/image60.png Graphic file (type png)
+<use ./images/image60.png>
+Package pdftex.def Info: ./images/image60.png  used on input line 730.
+(pdftex.def)             Requested size: 203.9623pt x 167.2775pt.
+ [22 <./images/image57.jpeg> <./images/image58.jpeg> <./images/image59.png> <./images/image60.png>]
+<./images/image61.jpeg, id=281, 217.5628pt x 121.95563pt>
+File: ./images/image61.jpeg Graphic file (type jpg)
+<use ./images/image61.jpeg>
+Package pdftex.def Info: ./images/image61.jpeg  used on input line 757.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image62.jpeg, id=282, 217.5628pt x 122.70844pt>
+File: ./images/image62.jpeg Graphic file (type jpg)
+<use ./images/image62.jpeg>
+Package pdftex.def Info: ./images/image62.jpeg  used on input line 762.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image63.jpeg, id=283, 217.5628pt x 121.95563pt>
+File: ./images/image63.jpeg Graphic file (type jpg)
+<use ./images/image63.jpeg>
+Package pdftex.def Info: ./images/image63.jpeg  used on input line 775.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image64.jpeg, id=284, 217.5628pt x 122.70844pt>
+File: ./images/image64.jpeg Graphic file (type jpg)
+<use ./images/image64.jpeg>
+Package pdftex.def Info: ./images/image64.jpeg  used on input line 780.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image65.jpeg, id=285, 217.5628pt x 122.70844pt>
+File: ./images/image65.jpeg Graphic file (type jpg)
+<use ./images/image65.jpeg>
+Package pdftex.def Info: ./images/image65.jpeg  used on input line 791.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image66.jpeg, id=286, 217.5628pt x 122.70844pt>
+File: ./images/image66.jpeg Graphic file (type jpg)
+<use ./images/image66.jpeg>
+Package pdftex.def Info: ./images/image66.jpeg  used on input line 796.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+ [23 <./images/image61.jpeg> <./images/image62.jpeg> <./images/image63.jpeg> <./images/image64.jpeg>]
+<./images/image67.jpeg, id=294, 217.5628pt x 121.95563pt>
+File: ./images/image67.jpeg Graphic file (type jpg)
+<use ./images/image67.jpeg>
+Package pdftex.def Info: ./images/image67.jpeg  used on input line 807.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image68.jpeg, id=295, 217.5628pt x 121.95563pt>
+File: ./images/image68.jpeg Graphic file (type jpg)
+<use ./images/image68.jpeg>
+Package pdftex.def Info: ./images/image68.jpeg  used on input line 812.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image69.jpeg, id=296, 217.5628pt x 121.95563pt>
+File: ./images/image69.jpeg Graphic file (type jpg)
+<use ./images/image69.jpeg>
+Package pdftex.def Info: ./images/image69.jpeg  used on input line 823.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image70.jpeg, id=297, 217.5628pt x 122.70844pt>
+File: ./images/image70.jpeg Graphic file (type jpg)
+<use ./images/image70.jpeg>
+Package pdftex.def Info: ./images/image70.jpeg  used on input line 828.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image71.jpeg, id=298, 217.5628pt x 122.70844pt>
+File: ./images/image71.jpeg Graphic file (type jpg)
+<use ./images/image71.jpeg>
+Package pdftex.def Info: ./images/image71.jpeg  used on input line 839.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image72.jpeg, id=299, 217.5628pt x 122.70844pt>
+File: ./images/image72.jpeg Graphic file (type jpg)
+<use ./images/image72.jpeg>
+Package pdftex.def Info: ./images/image72.jpeg  used on input line 844.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image73.jpeg, id=300, 217.5628pt x 121.95563pt>
+File: ./images/image73.jpeg Graphic file (type jpg)
+<use ./images/image73.jpeg>
+Package pdftex.def Info: ./images/image73.jpeg  used on input line 855.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image74.jpeg, id=301, 217.5628pt x 122.70844pt>
+File: ./images/image74.jpeg Graphic file (type jpg)
+<use ./images/image74.jpeg>
+Package pdftex.def Info: ./images/image74.jpeg  used on input line 860.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+ [24 <./images/image65.jpeg> <./images/image66.jpeg> <./images/image67.jpeg> <./images/image68.jpeg> <./images/image69.jpeg> <./images/image70.jpeg> <./images/image71.jpeg> <./images/image72.jpeg>]
+<./images/image75.jpeg, id=310, 452.4403pt x 254.45062pt>
+File: ./images/image75.jpeg Graphic file (type jpg)
+<use ./images/image75.jpeg>
+Package pdftex.def Info: ./images/image75.jpeg  used on input line 874.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+ [25 <./images/image73.jpeg> <./images/image74.jpeg> <./images/image75.jpeg>]
+<./images/image76.jpeg, id=320, 217.5628pt x 121.95563pt>
+File: ./images/image76.jpeg Graphic file (type jpg)
+<use ./images/image76.jpeg>
+Package pdftex.def Info: ./images/image76.jpeg  used on input line 884.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image77.jpeg, id=321, 217.5628pt x 122.70844pt>
+File: ./images/image77.jpeg Graphic file (type jpg)
+<use ./images/image77.jpeg>
+Package pdftex.def Info: ./images/image77.jpeg  used on input line 889.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image78.jpeg, id=322, 217.5628pt x 122.70844pt>
+File: ./images/image78.jpeg Graphic file (type jpg)
+<use ./images/image78.jpeg>
+Package pdftex.def Info: ./images/image78.jpeg  used on input line 920.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image79.jpeg, id=323, 217.5628pt x 122.70844pt>
+File: ./images/image79.jpeg Graphic file (type jpg)
+<use ./images/image79.jpeg>
+Package pdftex.def Info: ./images/image79.jpeg  used on input line 925.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image80.jpeg, id=324, 217.5628pt x 121.95563pt>
+File: ./images/image80.jpeg Graphic file (type jpg)
+<use ./images/image80.jpeg>
+Package pdftex.def Info: ./images/image80.jpeg  used on input line 936.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image81.jpeg, id=325, 217.5628pt x 122.70844pt>
+File: ./images/image81.jpeg Graphic file (type jpg)
+<use ./images/image81.jpeg>
+Package pdftex.def Info: ./images/image81.jpeg  used on input line 941.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+ [26 <./images/image76.jpeg> <./images/image77.jpeg> <./images/image78.jpeg> <./images/image79.jpeg>]
+<./images/image82.png, id=335, 452.4403pt x 254.45062pt>
+File: ./images/image82.png Graphic file (type png)
+<use ./images/image82.png>
+Package pdftex.def Info: ./images/image82.png  used on input line 961.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+ [27 <./images/image80.jpeg> <./images/image81.jpeg> <./images/image82.png>]
+<./images/image83.jpeg, id=346, 452.4403pt x 254.45062pt>
+File: ./images/image83.jpeg Graphic file (type jpg)
+<use ./images/image83.jpeg>
+Package pdftex.def Info: ./images/image83.jpeg  used on input line 972.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+<./images/image84.jpeg, id=347, 453.19313pt x 226.59656pt>
+File: ./images/image84.jpeg Graphic file (type jpg)
+<use ./images/image84.jpeg>
+Package pdftex.def Info: ./images/image84.jpeg  used on input line 983.
+(pdftex.def)             Requested size: 452.97072pt x 226.76886pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28 <./images/image83.jpeg>]
+
+LaTeX Warning: Empty bibliography on input line 987.
+
+<./images/image85.jpeg, id=355, 217.5628pt x 383.18156pt>
+File: ./images/image85.jpeg Graphic file (type jpg)
+<use ./images/image85.jpeg>
+Package pdftex.def Info: ./images/image85.jpeg  used on input line 996.
+(pdftex.def)             Requested size: 203.9623pt x 359.24936pt.
+<./images/image86.jpeg, id=356, 217.5628pt x 383.18156pt>
+File: ./images/image86.jpeg Graphic file (type jpg)
+<use ./images/image86.jpeg>
+Package pdftex.def Info: ./images/image86.jpeg  used on input line 1001.
+(pdftex.def)             Requested size: 203.9623pt x 359.24936pt.
+[29 <./images/image84.jpeg> <./images/image85.jpeg> <./images/image86.jpeg>]
+<./images/image87.jpeg, id=363, 125.71968pt x 222.8325pt>
+File: ./images/image87.jpeg Graphic file (type jpg)
+<use ./images/image87.jpeg>
+Package pdftex.def Info: ./images/image87.jpeg  used on input line 1012.
+(pdftex.def)             Requested size: 203.9623pt x 361.51369pt.
+<./images/image88.jpeg, id=364, 307.1475pt x 223.58531pt>
+File: ./images/image88.jpeg Graphic file (type jpg)
+<use ./images/image88.jpeg>
+Package pdftex.def Info: ./images/image88.jpeg  used on input line 1017.
+(pdftex.def)             Requested size: 203.9623pt x 148.47424pt.
+<./images/image89.jpeg, id=365, 452.4403pt x 254.45062pt>
+File: ./images/image89.jpeg Graphic file (type jpg)
+<use ./images/image89.jpeg>
+Package pdftex.def Info: ./images/image89.jpeg  used on input line 1025.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30 <./images/image87.jpeg> <./images/image88.jpeg>]
+<./images/image90.jpeg, id=371, 217.5628pt x 383.18156pt>
+File: ./images/image90.jpeg Graphic file (type jpg)
+<use ./images/image90.jpeg>
+Package pdftex.def Info: ./images/image90.jpeg  used on input line 1055.
+(pdftex.def)             Requested size: 203.9623pt x 359.24936pt.
+<./images/image91.jpeg, id=372, 217.5628pt x 386.19281pt>
+File: ./images/image91.jpeg Graphic file (type jpg)
+<use ./images/image91.jpeg>
+Package pdftex.def Info: ./images/image91.jpeg  used on input line 1060.
+(pdftex.def)             Requested size: 203.9623pt x 362.07253pt.
+ [31 <./images/image89.jpeg>]
+<./images/image92.jpeg, id=381, 217.5628pt x 121.95563pt>
+File: ./images/image92.jpeg Graphic file (type jpg)
+<use ./images/image92.jpeg>
+Package pdftex.def Info: ./images/image92.jpeg  used on input line 1071.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image93.jpeg, id=382, 217.5628pt x 122.70844pt>
+File: ./images/image93.jpeg Graphic file (type jpg)
+<use ./images/image93.jpeg>
+Package pdftex.def Info: ./images/image93.jpeg  used on input line 1076.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+<./images/image94.jpeg, id=383, 452.4403pt x 254.45062pt>
+File: ./images/image94.jpeg Graphic file (type jpg)
+<use ./images/image94.jpeg>
+Package pdftex.def Info: ./images/image94.jpeg  used on input line 1084.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32 <./images/image90.jpeg> <./images/image91.jpeg> <./images/image92.jpeg> <./images/image93.jpeg>]
+<./images/image95.jpeg, id=390, 452.4403pt x 254.45062pt>
+File: ./images/image95.jpeg Graphic file (type jpg)
+<use ./images/image95.jpeg>
+Package pdftex.def Info: ./images/image95.jpeg  used on input line 1095.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+ [33 <./images/image94.jpeg> <./images/image95.jpeg>]
+Overfull \hbox (1.79301pt too wide) in paragraph at lines 1129--1130
+[]\T1/cmr/m/n/10.95 Stiffer Par-tial Struc-ture due to deformation-aware de-sign \T1/cmr/m/it/10.95 (see 7.1.1 Deformation-Awareness
+ []
+
+<./images/image96.png, id=399, 223.58531pt x 214.55156pt>
+File: ./images/image96.png Graphic file (type png)
+<use ./images/image96.png>
+Package pdftex.def Info: ./images/image96.png  used on input line 1144.
+(pdftex.def)             Requested size: 203.9623pt x 195.72673pt.
+<./images/image97.png, id=400, 217.5628pt x 215.30438pt>
+File: ./images/image97.png Graphic file (type png)
+<use ./images/image97.png>
+Package pdftex.def Info: ./images/image97.png  used on input line 1149.
+(pdftex.def)             Requested size: 203.9623pt x 201.85721pt.
+[34]
+<./images/image98.jpeg, id=407, 452.4403pt x 254.45062pt>
+File: ./images/image98.jpeg Graphic file (type jpg)
+<use ./images/image98.jpeg>
+Package pdftex.def Info: ./images/image98.jpeg  used on input line 1157.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+<./images/image99.jpeg, id=408, 217.5628pt x 121.95563pt>
+File: ./images/image99.jpeg Graphic file (type jpg)
+<use ./images/image99.jpeg>
+Package pdftex.def Info: ./images/image99.jpeg  used on input line 1167.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image100.jpeg, id=409, 217.5628pt x 122.70844pt>
+File: ./images/image100.jpeg Graphic file (type jpg)
+<use ./images/image100.jpeg>
+Package pdftex.def Info: ./images/image100.jpeg  used on input line 1172.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35 <./images/image96.png> <./images/image97.png> <./images/image98.jpeg>]
+<./images/image101.jpeg, id=418, 452.4403pt x 255.20343pt>
+File: ./images/image101.jpeg Graphic file (type jpg)
+<use ./images/image101.jpeg>
+Package pdftex.def Info: ./images/image101.jpeg  used on input line 1186.
+(pdftex.def)             Requested size: 452.96388pt x 254.94968pt.
+<./images/image102.jpeg, id=419, 102.3825pt x 204.765pt>
+File: ./images/image102.jpeg Graphic file (type jpg)
+<use ./images/image102.jpeg>
+Package pdftex.def Info: ./images/image102.jpeg  used on input line 1194.
+(pdftex.def)             Requested size: 102.43692pt x 204.87383pt.
+<./images/image103.jpeg, id=420, 102.3825pt x 204.765pt>
+File: ./images/image103.jpeg Graphic file (type jpg)
+<use ./images/image103.jpeg>
+Package pdftex.def Info: ./images/image103.jpeg  used on input line 1194.
+(pdftex.def)             Requested size: 102.43692pt x 204.87383pt.
+<./images/image104.jpeg, id=421, 102.3825pt x 204.765pt>
+File: ./images/image104.jpeg Graphic file (type jpg)
+<use ./images/image104.jpeg>
+Package pdftex.def Info: ./images/image104.jpeg  used on input line 1194.
+(pdftex.def)             Requested size: 102.43692pt x 204.87383pt.
+<./images/image105.jpeg, id=422, 102.3825pt x 204.765pt>
+File: ./images/image105.jpeg Graphic file (type jpg)
+<use ./images/image105.jpeg>
+Package pdftex.def Info: ./images/image105.jpeg  used on input line 1194.
+(pdftex.def)             Requested size: 102.43692pt x 204.87383pt.
+ [36 <./images/image99.jpeg> <./images/image100.jpeg> <./images/image101.jpeg>]
+<./images/image106.jpeg, id=430, 452.4403pt x 254.45062pt>
+File: ./images/image106.jpeg Graphic file (type jpg)
+<use ./images/image106.jpeg>
+Package pdftex.def Info: ./images/image106.jpeg  used on input line 1199.
+(pdftex.def)             Requested size: 452.96388pt x 254.94696pt.
+ [37 <./images/image102.jpeg> <./images/image103.jpeg> <./images/image104.jpeg> <./images/image105.jpeg> <./images/image106.jpeg>]
+<./images/image107.png, id=437, 217.5628pt x 121.95563pt>
+File: ./images/image107.png Graphic file (type png)
+<use ./images/image107.png>
+Package pdftex.def Info: ./images/image107.png  used on input line 1247.
+(pdftex.def)             Requested size: 203.9623pt x 114.33867pt.
+<./images/image108.jpeg, id=438, 217.5628pt x 122.70844pt>
+File: ./images/image108.jpeg Graphic file (type jpg)
+<use ./images/image108.jpeg>
+Package pdftex.def Info: ./images/image108.jpeg  used on input line 1252.
+(pdftex.def)             Requested size: 203.9623pt x 115.04448pt.
+ [38 <./images/image107.png> <./images/image108.jpeg>] [39] (./Victors_Thesis_Chapters_7b_reduced_table.aux)
+ ***********
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-03>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `Victors_Thesis_Chapters_7b_reduced_table.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Victors_Thesis_Chapters_7b_reduced_table.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  C10089931F24E6BEA634518E5380D66E;1102.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                Victors_Thesis_Chapters_7b_reduced_table
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'Victors_Thesis_Chapters_7b_reduced_table.run.xml'.
+\openout1 = `Victors_Thesis_Chapters_7b_reduced_table.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 20018 strings out of 475187
+ 358861 string characters out of 5767784
+ 1931248 words of memory out of 5000000
+ 40925 multiletter control sequences out of 15000+600000
+ 572302 words of font info for 65 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 86i,12n,117p,783b,1135s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsl1095.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on Victors_Thesis_Chapters_7b_reduced_table.pdf (39 pages, 4230813 bytes).
+PDF statistics:
+ 560 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
+ 182 named destinations out of 1000 (max. 500000)
+ 541 words of extra memory for PDF output out of 10000 (max. 10000000)
+
