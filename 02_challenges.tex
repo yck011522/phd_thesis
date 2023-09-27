@@ -1,11 +1,11 @@
 \chapter{Challenges and Research Goals}
 \label{chapter:challenges-and-research-goals}
 
-State of the art in automatic joinery machines and its design-to-CNC workflows have indicated that the technical bottleneck to prefabricate unique timber parts have long been solved. The entire production workflow from CAD design to joinery fabrication have already been digitised and automated. The next research frontier is to automate the assembly of the components into a complete structure. Using timber frame structures with integral timber joints as a starting target, this thesis aims to explore the roadblocks that are still in the way of automatic spatial timber assembly. The goal is to better understand existing challenges, discover new problems, identify possible solutions, develop new models and pave the way for future in-depth research.
+State of the art in automatic joinery machines and its design-to-production workflows have indicated that the technical bottleneck to prefabricate unique timber parts have long been solved. The entire production workflow from CAD design to joinery fabrication have already been digitised and automated. The next research frontier is to automate the assembly of the components into a complete structure. Using timber frame structures with integral timber joints as a starting target, this thesis aims to explore the roadblocks that are still in the way of automatic spatial timber assembly. The goal is to better understand existing challenges, discover new problems, identify possible solutions, develop new models and pave the way for future in-depth research.
 
-The general research question is ``\textbf{How can robots assemble spatial timber structures}?". However, the formulation of more specific questions is treated as a product of first understanding precedence works and their challenges. This approach allows for a more focused study on the commonly encountered problems and to steer towards generalizable solutions while avoiding common culprits. Therefore, this chapter will start by presenting the known challenges related to the automatic assembly of spatial timber structures before summarising on the more detailed research questions that are pursued in the rest of the thesis. This chapter consists of the following parts: 
+The general research question is ``\textbf{How can robots assemble spatial timber structures?}". However, the formulation of more specific questions is treated as a product of first understanding precedence works and their challenges. This approach allows for a more focused study on the commonly encountered problems and to steer towards generalizable solutions while avoiding common culprits. Therefore, this chapter will start by presenting the known challenges related to the automatic assembly of spatial timber structures before summarising on the more detailed research questions that are pursued in the rest of the thesis. This chapter consists of two parts: 
 
-\textbf{Section 2.1 Mechanical Challenges }focuses on the mechanical tasks that are physically performed during the construction. It represents the fabrication part of the ``Digital Fabrication" paradigm - the automation of the production tasks.
+\textbf{Section 2.1 Mechanical Challenges} focuses on the mechanical tasks that are physically performed during the construction. It represents the fabrication part of the ``Digital Fabrication" paradigm - the automation of the production tasks.
 
 \textbf{Section 2.2 Computation and Design Challenges} presents the computational problems required to prepare the information for the robotic process. In particular, the automatic and human-in-the-loop workflows to create robotic programmes from a design. It represents the digital part of the ``Digital Fabrication" paradigm - the automation of the production of digital information.
 
@@ -24,22 +24,22 @@ During the closure of a timber joint, surfaces between each pair of joints start
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/LapJoint_4.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/LapJoint_5.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.32\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/LapJoint_6.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
         \caption{Diagram of rubbing surfaces in a pair of half lap joints during assembly}
         \label{fig:rubbing-surface-in-lap-during-assembly}
@@ -54,7 +54,7 @@ Carpenters have always been aware of the quality of the joints and how it affect
 
 The second form of assembly-resistance is the fit of the mating joints. Fit is a measurement of the tightness of the connection between two mating parts. The fit can be categorised into three main types: clearance fit, transition fit, and interference fit. Clearance fit allows for some play between the parts, whereas interference fit requires force to assemble the parts and creates a tight, secure connection. Transition fit lies between these two extremes, providing a snug fit with some allowance for slight variations in the parts' dimensions.
 
-Various factors can influence the fit of the mating joints, such as machining tolerances \parencite{thibautWoodMachiningFocus2016}, movement of the timber after machining due to release of stress, and environmental conditions such as temperature and humidity change {(Cochran, 2018)}\parencite{cochranTimberFrameLayout2018}. 
+Various factors can influence the fit of the mating joints, such as machining tolerances \parencite{thibautWoodMachiningFocus2016}, movement of the timber after machining due to release of stress, and environmental conditions such as temperature and humidity change \parencite{cochranTimberFrameLayout2018}. 
 
 Tighter fits can result in higher frictional forces, which may require more force to overcome during assembly. It can also increase the difficulty for the robot to align the joints to begin assembly, which may increase the failure rate. Conversely, looser fits can lead to lower frictional forces but may compromise the structural integrity or performance of the assembled components \parencite{robellerRoboticIntegralAttachment2017}.
 
@@ -73,7 +73,7 @@ The second challenging reason is that the large assembly force has to be applied
 
 The third challenging reason is that there are more than one mating joint to be closed when assembling a beam. It is well known that the assembly of all the joints must proceed synchronously, or else the beam would jam and get stuck \parencite{dupontJammingWedgingConstrained1994}. Therefore, even if a robot could push from the centre of the beam without damaging it, any slight imbalance in the joint resistance among mating joints would result in a large torque on the wrist of the robotic arm. If the robot used a stiff control, this would likely result in an overload. If the robot used a compliant control, the beam would start to rotate and quickly get stuck. 
 
-The fourth challenging reason is that a strong pushing force requires an equally strong reaction force that can support the other side of the mating joint. Therefore, even if a super robotic arm would be possible and the timber beam is not jamming, it is impossible to guarantee that the supporting force can be transmitted from the ground through the partially assembled timber structure without damaging what has already been built. The only possible alternative is to engineer a special end-effector to provide both the pushing force and the support at the same time, similar to the configuration of a clamp or a parallel gripper.
+The fourth challenging reason is that a strong pushing force requires an equally strong reaction force that can support the other side of the mating joint. Therefore, even if a super robotic arm would be possible and the timber beam is not jamming, it is impossible to guarantee that the supporting force can be transmitted from the ground through the Partially Assembled timber structure without damaging what has already been built. The only possible alternative is to engineer a special end-effector to provide both the pushing force and the support at the same time, similar to the configuration of a clamp or a parallel gripper.
 
 The fifth challenging reason is that the location and amount of timber frame joints can vary substantially between different elements in a timber frame structure. In addition, the shape of the joints are also variable, depending on the intersecting angles between the beams. Therefore even if a clamping end-effector concept is used, it is difficult to design it to accommodate different joint locations and joint angles. A severe limitation in the design possibilities would likely defeat the purpose of using robots to assemble structures in the first place. Perhaps this end-effector method would be possible for special cases where the joints are always at a similar location. For example, certain space frames with a topologically repetitive arrangement \parencite{apolinarskaRoboticAssemblyTimber2021, willmannNewParadigmsAutomatic2016}. 
 
@@ -84,18 +84,25 @@ An alternative approach that was considered is to use more than one robotic arm,
 
 During the assembly of timber structures, it is necessary to accurately align the mating joints between the robot-sode and the stationary-side.
 
-On the robot-side, the joints are located on the beam that is being held by the robot. Because these beams have to be assembled in non-repetitive targets, teaching cannot be used \seeref{subsection:introduction-inaccuracy-for-non-repetitive-targets}. Therefore the end-effector that holds the beam is subjected to unmonitored deviation. If the timber elements are long, a small orientation error can cause a large positional deviation at the joints that are located far away from the robot wrist. Furthermore, long timber elements may also be slightly bent (permanent and static) or deflect (dynamic) due to its own weight, which further increases the deviation at the location where the joints mate.
+On the robot-side, the joints are located on the beam that is being held by the robot. Because these beams are assembled in non-repetitive locations, teaching cannot be used \seeref{subsection:introduction-inaccuracy-for-non-repetitive-targets}. Therefore the end-effector that holds the beam is subjected to unmonitored deviation. If the timber elements are long, a small orientation error can cause a large positional deviation at the joints that are located far away from the robot wrist. Furthermore, long timber elements may also be slightly bent (permanent and static) or deflect (dynamic) due to its own weight, which further increases the deviation at the location where the joints mate.
 
-On the stationary-side, the joints are spread across different elements in the partially constructed structure. Due to accumulated installation error, or deformation of the flexible timber structure, the location of the joints can deviate from where they are supposed to be. Moreover, the deviation among each of the joints may not be towards the same directions, making detection and correction difficult.
+On the stationary-side, the joints are spread across different elements in the partially constructed structure. Due to accumulated installation error, or deformation of the partially assembled timber structure, the location of the joints can deviate from where they are supposed to be. Moreover, the deviation at each of the joints may move towards different directions, making alignment and correction difficult.
 
-Because the robot targets are all extracted from a CAD model, unless there are active sensors monitoring the location of the joints on both sides, the joint pairs are likely to be subjected to misalignments which cannot be detected or corrected. Even if the misalignment can be detected, if there are more than one joint to align, correction may still be impossible due to conflicting deviation direction.
+Because the robot targets are all extracted from a CAD model, unless there are active sensors monitoring the location of the joints on both sides, the joint pairs are likely to be subjected to misalignments which cannot be detected or corrected. Even if the misalignment can be detected, if there are more than one joint to align, correction may still be impossible due to conflicting deviation direction. If misalignment is severe and the problem is undetected, the subsequent robotic motion can cause damage to the timber parts. 
 
-In the case where misalignment is severe and the problem is undetected, the subsequent robotic motion will not only fail but can also damage the timber parts. 
+Precedence research in robotic timber assembly have attempted to solve this problem by using chamfered edge to guide the joints into alignment \parencite{robellerRoboticIntegralAttachment2017}. An active sensing and correction approach have also been proposed \parencite{apolinarskaRoboticAssemblyTimber2021}. Machine learning techniques was applied to teach a robot equiped with 
+force-torque sensors to peform real-time adaptation.
 
 \subsection{Fastener Installation}
 \label{subsection:challenges-fastener-installation}
 
-While many of the traditional timber frame joints contain no fasteners, some of them do, and for a multitude of reasons. For example, timber wedges are used to pull the joints tighter during assembly and can improve its stiffness; Timber dowels or pegs are used to prevent joint loosening due to live load; Metal dowels are used in contemporary designs to transmit shear force with metal plate connectors; Metal screws can be used to transmit tensile forces over a joint that would be hard to achieve using timber contact faces alone. 
+While many of the traditional timber frame joints contain no fasteners, some of them do, and for a multitude of reasons. For example:
+\begin{itemize}
+    \item \textbf{Timber wedges} are used to pull the joints tighter during assembly and can improve its stiffness
+    \item \textbf{Timber dowels or pegs} are used to prevent joint loosening due to live load
+    \item \textbf{Metal dowels} are used in contemporary designs to transmit shear force with metal plate connectors
+    \item \textbf{Metal screws} can be used to transmit tensile forces over a joint that would be hard to achieve using timber contact faces alone
+\end{itemize}
 
 The assembly of threaded fasteners is a common operation in the manufacturing industry \parencite{jiaSurveyAutomatedThreaded2019}. Many different types of specialised end-effectors, robotic screwdrivers and screw feeding systems are designed to accommodate different types of screws. In timber construction, the automated assembly lines for prefabricated light-timber frame walls often have integrated screwdrivers and nail guns. Automated nailing has also been demonstrated for large-scale architectural construction \parencite{apolinarskaComplexTimberStructures2018, apolinarskaSequentialRoof2016}. However, most of these systems have been used for assembling planar assemblies and there are extra challenges when this has to be performed spatially. For example, handling long screws and non-orthogonal entry angles. Many of these precedence projects have resorted to assembling the screws manually \parencite{apolinarskaRoboticAssemblyTimber2021, thomaRoboticFabricationBespoke2018, willmannNewParadigmsAutomatic2016}. 
 
@@ -135,9 +142,9 @@ Timber structures, particularly those with integral timber joints, present uniqu
 
 	\item \textbf{Moisture content and hygroscopicity --} Wood is hygroscopic, meaning it absorbs and releases moisture in response to changes in environmental conditions. This can cause dimensional changes and affect the mechanical properties of the timber, impacting the behaviour of integral joints. Accurate analysis must account for these moisture-related effects and their potential impact on joint performance \parencite{thelanderssonTimberEngineering2003}.
 
-	\item \textbf{Load distribution and interaction --} Integral timber joints often involve complex load distribution and interaction between multiple components. This can make it difficult to accurately predict the load-carrying capacity and failure modes of the joint. Advanced structural analysis techniques, such as finite element analysis (FEA), are often required to accurately model these interactions and predict joint behaviour .
+	\item \textbf{Load distribution and interaction --} Integral timber joints often involve complex load distribution and interaction between multiple components. This can make it difficult to accurately predict the load-carrying capacity and failure modes of the joint. Advanced structural analysis techniques, such as Finite Element Analysis (FEA), are often required to accurately model these interactions and predict joint behaviour.
 
-	\item \textbf{Uncertainty in material properties and geometric tolerances --} Variability in material properties, such as strength and stiffness, as well as uncertainties in geometric tolerances, can make it challenging to predict the behaviour of integral timber joints with high confidence. Probabilistic approaches, such as reliability analysis \parencite{ranta-maunusReliabilityAnalysisTimber2001} and stochastic finite element methods \parencite{kandlerStochasticFiniteElement2015}, can be used to quantify these uncertainties and assess the impact on joint performance.
+	\item \textbf{Uncertainty in material properties and geometric tolerances --} Variability in material properties, such as strength and stiffness, as well as uncertainties in geometric tolerances, can make it challenging to predict the behaviour of integral timber joints with high confidence. Probabilistic approaches, such as reliability analysis \parencite{ranta-maunusReliabilityAnalysisTimber2001} and stochastic finite element methods \parencite{kandlerStochasticFiniteElement2015} can be used to quantify these uncertainties and assess the impact on joint performance.
 
 \end{itemize}
 \subsection{Assembly Analysis}
@@ -158,7 +165,7 @@ Most of the precedence robotic assembly projects in the architectural field, inc
 
 Large amount of research has been devoted to the automatic sequence and motion planning. For example, in the context of mechanical assembly \parencite{bahubalendruniReviewAssemblySequence2016, defazioSimplifiedGenerationAll1987, homemdemelloTaskSequencePlanning1989, wilsonGeometricAssemblyPlanning1992b}, computer graphics \parencite{natarajanPlanningAssemblies1988, wangDESIAGeneralFramework2018} and also timber construction \parencite{taiDesignAssemblyComputational2012}. It is also possible to include additional heuristics in the search of an optimal assembly plan. For example, to maximise structural stability during construction \parencite{deussAssemblingSelfsupportingStructures2014, garrettScalableProbabilisticallyComplete2020}, avoid robotic collision \parencite{huangFrameFabRoboticFabrication2016, yuHighlyInformedRobotic2016} or to minimise assembly time.
 
-When robots are used to perform an assembly task, the assembly analysis mentioned above also has to consider the actions of the robots and the tools, and their physical limitations. These limitations include
+When robots are used to perform an assembly task, the assembly analysis mentioned above also has to consider the actions of the robots and the tools, and their physical limitations. These limitations include:
 
 \begin{itemize}
     \item \textbf{Collision --} The robot and parts attached to the robot must not come into collision among itself or with stationary objects \seeref{subsubsection:exploration-2-collision-checking}.
@@ -173,9 +180,9 @@ The extension of these analysis into the design process includes:
 \begin{itemize}
 	\item \textbf{Automatic Sequence Planning --} Identical to the sequence planning above, concerned with the sequence among parts.
 
-	\item \textbf{Automatic Task Planning --} Planning the discrete actions of the robot to assemble each part (e.g. open gripper, move, close gripper, etc.) \parencite{homemdemelloTaskSequencePlanning1989}
+	\item \textbf{Automatic Task Planning --} Planning the discrete actions of the robot to assemble each part \parencite{homemdemelloTaskSequencePlanning1989}. For example, open gripper, move robot, and close gripper. 
 
-	\item \textbf{Automatic Motion Planning --} Finding the trajectory for the robot joint to follow, such that the attached end-effector moves from one target to another. \parencite{lavallePlanningAlgorithms2006}
+	\item \textbf{Automatic Motion Planning --} Finding the trajectory for the robot joint to follow, such that the attached end-effector moves from one target to another \parencite{lavallePlanningAlgorithms2006}. 
 \end{itemize}
 
 In this thesis, task planning and motion planning are unavoidable for generating the robot programmes. However, sequence planning will not be studied. It is assumed that an experienced timber engineer, designer or carpenter can be tasked to determine the assembly order based on experience and intuition.
@@ -192,7 +199,7 @@ The basic task of picking up a beam carrying it to the assembly location may sou
 
 	\item \textbf{Grasp --} What pose (position and orientation) does the robot use to hold the beam? Does the robot need to change its grasp during the process?
 
-	\item \textbf{Targets --} Where are the targets for the robot to reach at the start and end of a motion to pick or place a workpiece at the correct location.
+	\item \textbf{Targets --} Where are the targets for the robot to reach at the start and end of a motion to pick or place a workpiece at the correct location?
 
 	\item \textbf{Trajectories --} What is the continuous path (a series of static joint angles) that allows the robot and its attached objects to move from one target to the next?
 
@@ -219,79 +226,79 @@ Timber joints are typically modelled as a subtraction from the beam’s geometry
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_3.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_1.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_0.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_4.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_6.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
         \caption{Example of a mortise and tenon joint adapting to different beam intersection angles}
         \label{fig:mortise_tenon_different_angles}
 \end{figure}
 
 \paragraph{Customization of detail sizes or proportions}
-Even a simple lap joint model can include an adjustable parameter for the cheek depth. More complex joint topology can have many adjustable parameters. \textit{(refer to the diagram of a housed dovetail T Lap having many parameters) }These adjustments are often useful for changing the structural behaviour of the joint and may be specified or changed at a later stage of the design process during engineering calculations. Figure \ref{fig:mortise_tenon_different_topologies} show a mortise and tenon joint having the same intersection angles but different topologies. The proportion of the details in each topology would require a parametric definition.
+Even a simple lap joint model can include an adjustable parameter for the cheek depth. More complex joint topology can have many adjustable parameters \textit{(refer to the diagram of a housed dovetail T Lap having many parameters)}. These adjustments are often useful for changing the structural behaviour of the joint and may be specified or changed at a later stage of the design process during engineering calculations. Figure \ref{fig:mortise_tenon_different_topologies} show a mortise and tenon joint having the same intersection angles but different topologies. The proportion of the details in each topology would require a parametric definition.
 
 \begin{figure}[htb]
      \centering
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_0.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_9.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_10.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_7.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.19\textwidth}
          \centering
          \includegraphics[width=\textwidth]{images/02/Tenon_8.jpg}
-         % \caption{Sub figure caption}
-         %\label{fig:unique-subfigure-label}
+         % \caption{SubFigureCaption}
+         %\label{fig:uniquesubfigurelabel}
      \end{subfigure}
         \caption{Example of a mortise and tenon joint having different topologies}
         \label{fig:mortise_tenon_different_topologies}
@@ -317,7 +324,8 @@ Therefore it is common to consider the fabrication process and its constraints w
         \caption{Example of a dovetail cutter}
         \label{fig:dovetail-cutter}
     \end{subfigure}
-    \caption{Example of a joint cut with a shaped cutter 
+    \caption[Example of a joint cut with a shaped cutter]
+    {Example of a joint cut with a shaped cutter 
         \footnotesize{(Photo by Hannes Plackner \parencite{HightechDovetails2014})}}
     \label{fig:dovetail-cutter-and-joint}
 \end{figure}
@@ -347,12 +355,9 @@ Parametric joint models can be categorised according to what beam intersection t
          \caption{Mortise Tenon Joint}
          \label{fig:assembly-direction-mortise-tenon}
      \end{subfigure}
-     \caption{Assembly direction of different joint types. Red arrow indicates the direction of movement of the light-blue piece during assembly.}
+     \caption[Assembly direction of different joint types.]{Assembly direction of different joint types. Red arrow indicates the direction of movement of the light-blue piece during assembly.}
      \label{fig:joint_assembly_direction}
 \end{figure}
-
-
-
 
 It is worth noting that the solution space for a timber joint is large, and there are no existing approaches for evaluating all these requirements. Therefore, even though the solving process can theoretically be automatic, in practice, it often starts with the designer’s intuition and is later checked by the various design checks mentioned before. 
 
@@ -365,7 +370,7 @@ Creating designs in a highly constrained environment is often a balance between 
 
 The computational approach to address these highly constrained problems is to use a powerful computer to search for valid solutions that could satisfy the given boundary conditions \parencite{pottmannArchitecturalGeometryFabricationAware2013, tamFabricationawareStructuralOptimisation2018}. In theory, as long as a constraint can be committed to computer code, it can be evaluated automatically. However, this technique is only meaningful for problems where the design space and the constraints are well defined \parencite{huangFrameFabRoboticFabrication2016}. In the case of architectural design, where the design space is infinite and the aesthetics of the structure is impossible to codify, the total exclusion of a designer is not meaningful. 
 
-The alternative is a human-computer collaborative design process, or computer-aided design (CAD) in its essence, to combine the best of both agents. In this case, the human-computer interface (HCI), in the form of a graphical-user interface (GUI), becomes critical for successful collaboration of the two \parencite{preeceInteractionDesignHumancomputer2015}. 
+The alternative is a human-computer collaborative design process, or Computer-Aided Design (CAD) in its essence, to combine the best of both agents. In this case, the Human-Computer Interface (HCI), in the form of a Graphical-User Interface (GUI), becomes critical for successful collaboration of the two \parencite{preeceInteractionDesignHumancomputer2015}. 
 
 The primary goal for such an interface is to provide designers with real-time feedback and guidance while allowing them to explore the design space and make informed decisions \parencite{frichMappingLandscapeCreativity2019, puentesMakingGesturesDesign2015}. This involves visualising and communicating various constraints, warnings, and possible solutions through a well-designed interface that is both intuitive and user-friendly. To achieve this, the interface for designing a robotically-assemble timber structure should consider the following features: 
 
@@ -386,9 +391,9 @@ In summary, a user interface for fabrication-aware design should facilitate effe
 \section{Research Questions}
 \label{section:research-questions}
 
-The challenges elaborated in the previous sections have indicated the highly interdisciplinary nature of this research. It includes the field of timber frame design, digital fabrication, machine design, computer graphics and robotics. Consequently, research questions that address these challenges require an integrated approach that combines expertise from these diverse fields..
+The challenges elaborated in the previous sections have indicated the highly interdisciplinary nature of this research. It includes the field of timber frame design, digital fabrication, machine design, computer graphics and robotics. Consequently, research questions that address these challenges require an integrated approach that combines expertise from these diverse fields.
 
-Due to the novelty of the combination of the robotic assembly and integral timber joints, the thesis will adopt an exploratory research method (details in \textbf{Chapter 3 Methodology and Assumptions}). In this regard, the questions are open-ended and serve as a guide for exploration. 
+Due to the novelty of the combination of the robotic assembly and integral timber joints, the thesis will adopt an exploratory research method (details in \noseeref{chapter:methodology-and-assumptions}). In this regard, the questions are open-ended and serve as a guide for exploration. 
 
 \begin{enumerate}
 	\item \textbf{What technologies (hardware and software) are required?}
@@ -425,3 +430,18 @@ Due to the novelty of the combination of the robotic assembly and integral timbe
     \end{enumerate}
 \end{enumerate}
 
+\section{Hypothesis}
+\label{section:hypothesis}
+
+This thesis is based on the hypothesis that a robotic assembly process for timber frame structures with integral timber joints is possible. The hypothesis is further broken down into several sub-hypotheses that are evaluated in the thesis:
+
+\begin{itemize}
+	\item \textbf{Sub-hypothesis 1 --} It is possible to design a robotic assembly process for spatial timber frame structures with integral timber joints. Begining with the first prototype, a novel assembly strategy using Distributed Robotic Tools (DiRT) was developed and tested on a full-scale demonstrator. The process was then refined and tested on a second and a third full-scale demonstrators. The first working hypothesis is detailed in \noseeref{subsection:exploration-1-distributed-robotic-tool-approach} and \noseeref{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1}. A later, revised hypothesis is detailed in \noseeref{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2}, the final conclusion is detailed in \noseeref{section:discussion-generalised-dirt-system}.
+
+	\item \textbf{Sub-hypothesis 2 --} It is possible to design robotic end-effectors that can assemble integral timber joints. Over the course of the research, two types of robotic assembly tools were designed, fabricated and tested. Both of them are used for assembling lap joints, however their operating principles and capabilities are different. The first type is a robotic clamp that clamps joints together. The second type is a robotic screwdriver that pulls joints together. The combined use of both types of tools in the same structure is also tested in the third demonstrator the end of this thesis.
+
+	\item \textbf{Sub-hypothesis 3 --} It is possible to use computational tools for the design of spatial timber frame structures with integral timber joints. Computational tools were developed to support the design of the robotic assembly process. This includes timber structure modelling tools, a robotic assembly planning tool and a user interface for designers and engineers to validate the assembly process.
+
+	\item \textbf{Sub-hypothesis 4 --} It is possible to overcome the assembly challenges related to tolerance and alignment. Different active and passive alignment methods have been tested in this thesis. The most successful method is to chamfer the edges of the lap joints and to use the assembly tools to passively force the joints into alignment \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}. In addition, due to need of attaching and detaching DiRT tools from the timber structure, camera-based alignment methods were tested to align the robot and the DiRT tools \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}.  
+	
+\end{itemize}

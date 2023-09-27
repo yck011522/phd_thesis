@@ -4,22 +4,44 @@
 \author{Pok Yin Leung}
 \date{01 September 2023}
 
-% DEBUG: Compile ony a specific chapter
-% \includeonly{00_abstract, 01_introduction}
+% DEBUG: Compile only a specific chapter
+% \includeonly{00_abstract, 00_preface}
+% \includeonly{01_introduction, 02_challenges, 03_methodology}
+% \includeonly{04_dev_round1, 05_dev_round2, 06_dev_round3, 07_dev_round4, 08_dev_round5}
+% \includeonly{09_new_hypothesis, 10_discussion, 11_conclusion}
+
+% DEBUG: Switch off figures
+% \usepackage[allfiguresdraft]{draftfigure}
 
 \begin{document}
+
+% Change the stype of the labels in the itemized list 
 \renewcommand{\labelitemi}{\raisebox{.10ex}{\large$\bullet$}}
 \renewcommand{\labelitemii}{{\raisebox{.40ex}{\rule{.6ex}{.6ex}}}}
 \renewcommand{\labelitemiii}{{\large$\triangleright$}}
 
-% Drawing the layout debugging
-% \layout 
+% Margin settings for the todo bubbles
+\setlength{\marginparwidth}{25mm}
 
+% let chapters start on any page, even or odd:
+\makeatletter
+\@openrightfalse
+\makeatother
+
+\frontmatter
 \maketitle
+
 \include{00_abstract}
+\include{00_preface}
 
 \tableofcontents
 
+% force chapters to start on an odd page:
+\makeatletter
+\@openrighttrue
+\makeatother
+
+\mainmatter
 \include{01_introduction}
 \include{02_challenges}
 \include{03_methodology}
@@ -32,11 +54,37 @@
 \include{10_discussion}
 \include{11_conclusion}
 
+\backmatter
 
+
+% Smaller font size for bibliography
+\renewcommand*{\bibfont}{\normalfont\small}
+
+% \addcontentsline{toc}{chapter}{Bibliography} % Add to TOC
 \printbibliography[
 heading=bibintoc,
 title={Bibliography}
 ]
 
+% let chapters start on any page, even or odd:
+\makeatletter
+\@openrightfalse
+\makeatother
+
+% Smaller font sizes for list of figures and tables
+\fontsize{8}{9}\selectfont
+
+% List of figures and tables 
+% \cleardoublepage
+\clearpage
+\phantomsection % For hyperref to link correctly
+\addcontentsline{toc}{chapter}{\listfigurename} % Add to TOC
+\listoffigures
+
+% \cleardoublepage
+\clearpage
+\phantomsection % For hyperref to link correctly
+\addcontentsline{toc}{chapter}{\listtablename} % Add to TOC
+\listoftables
 
 \end{document}

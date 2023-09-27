@@ -34,7 +34,7 @@ The second alignment problem occurs when there are more than one joint being ass
 
 The third alignment problems arise from the use of robotic arms to manipulate DiRT tools. The implementation is challenging because tight tolerance is required to successfully place them on or retrieve them from the partially-built structure. The problem is worsened by the large deformation often seen on the partially-assembled structure. To address this issue, a contactless camera-marker alignment method was developed. The test result shows that it can direct the robotic arm to correct large deviations and achieve good alignment \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}.
 
-In general, it is not possible to answer whether an alignment will be successful. Different alignment scenarios have different amounts of deviation depending on the robot pose, the state of the partial assembly and many other factors that are unique in each moment. The correction mechanisms used, whether passive or active, have different correction ranges and success rates. The complexity of this problem is detailed in \ul{Chapter 9 New Hypothesis - Probabilistic Model of Spatial Alignment Success}, with a newly developed model to relate the probability of success with predictable deviations.
+In general, it is not possible to answer whether an alignment will be successful. Different alignment scenarios have different amounts of deviation depending on the robot pose, the state of the partial assembly and many other factors that are unique in each moment. The correction mechanisms used, whether passive or active, have different correction ranges and success rates. The complexity of this problem is detailed in \\noseeref{chapter:new-hypothesis}, with a newly developed model to relate the probability of success with predictable deviations.
 
 \paragraph{5. How suitable is an industrial robotic arm for performing spatial timber assembly? How can they be optimised for construction purposes?}
 
@@ -56,7 +56,7 @@ Computational tools are essential in supporting robotic assembly processes. In t
 
 The modelling method is similar to traditional CAD and CAM software, but includes the concept of a step-by-step assembly process. This allows the user to model the changing location of objects and robots during the assembly. Interactive design and evaluation workflow was found to be useful for designing the robotic process modelling \seeref{subsection:exploration-2-motion-planning}.
 
-The creation of the robotic programme consists of two main steps. The first step is task planning - to create a list of task descriptions that need to be executed. The second step is motion planning - to create robotic trajectories for the robotic motion tasks. These two steps can also be performed together and are known as task and motion planning (TAMP). It is not only a computationally expensive process to search for collision-free robotic motions but also a difficult formulation problem for designers to convert the design of a structure into task descriptions for the computational algorithms to compute. In order to address this, my collaborator YiJiang Huang and I created two different types of formulation methods that bridge the gap between designers and programmers \seerefii{subsubsection:exploration-3-task-planning-with-flowchart}{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}.
+The creation of the robotic programme consists of two main steps. The first step is task planning - to create a list of task descriptions that need to be executed. The second step is motion planning - to create robotic trajectories for the robotic motion tasks. These two steps can also be performed together and are known as Task and Motion Planning (TAMP). It is not only a computationally expensive process to search for collision-free robotic motions but also a difficult formulation problem for designers to convert the design of a structure into task descriptions for the computational algorithms to compute. In order to address this, my collaborator YiJiang Huang and I created two different types of formulation methods that bridge the gap between designers and programmers \seerefii{subsubsection:exploration-3-task-planning-with-flowchart}{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}.
 
 Because TAMP is a stochastic search in a high-dimension space, it is common to set a search limit for the process to decide when to give up. If a solution can be found within the given time, the assembly is considered constructible, and its motions can also be visualised \seeref{subsubsection:exploration-2-mp-as-a-design-feasibility-check}. However, in the context of timber frame construction, the assembly scene is often a congested space that makes it hard for the robot to manipulate long timber beams. It is not uncommon for TAMP to fail even after hours of search \seeref{subsection:exploration-2-narrow-passage-problem}. This creates frustration for designers to wait for long hours only knowing that something went wrong. A better approach is to use lower-fidelity checks that are faster to perform for a more efficient fabrication-aware design workflow. Even if the quality of the check is not perfect, it is good enough to provide early-stage feedback to the designers. \textit{(see \ul{question 9 below})}
 
@@ -72,7 +72,7 @@ In addition, I have found that the data structure of the static model has a larg
 
 \paragraph{9. How will design validation be performed?}
 
-Existing timber construction practice is typically concerned with structural validation (at both global and joint level) and CNC fabrication validation (to make sure joint details can be machined). While these validations are still required, the added robotic assembly process requires specialised validation to make sure it can be planned and executed. 
+Existing timber construction practice is typically concerned with structural validation (at both global and joint level) and Computer Numeric Control (CNC) fabrication validation (to make sure joint details can be machined). While these validations are still required, the added robotic assembly process requires specialised validation to make sure it can be planned and executed. 
 
 Practical experience has shown that some validation checks can be performed during design time with very fast feedback. This include: 
 
@@ -133,7 +133,8 @@ Based on the experience gained from operating the system, it is possible to spec
 		\item Formulate assembly logic as TAMP problems
 
 		\begin{itemize}
-			\item Create task planning flowcharts \seeref{subsubsection:exploration-3-task-planning-with-flowchart}
+			\item Create task planning flowcharts\\
+			\seeref{subsubsection:exploration-3-task-planning-with-flowchart}
 			\item Create an action-state description for automatic TAMP \seeref{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}
 
 		\end{itemize}
@@ -190,7 +191,7 @@ Based on the experience gained from operating the system, it is possible to spec
 
 		\end{itemize}
 		\item Create robotic programme \seerefii{subsection:exploration-3-process-design-workflow}{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}
-		\item Create CNC fabrication data for timber components  \seerefii{subsection:exploration-2-execution-plan}{subsection:exploration-4-execution-plan}
+		\item Create CNC fabrication data for timber components \seerefii{subsection:exploration-2-execution-plan}{subsection:exploration-4-execution-plan}
 		\item Create production schedule, resources list and cost estimation.
 	\end{itemize}
 
@@ -238,6 +239,8 @@ Based on the experiences gained during this thesis, several best practices and d
 
 \end{itemize}
 
+In addition, the ISO 10218 Standard \textit{Robots and robotic devices — Safety requirements for industrial robots} \cite{iso10218:2011RobotsRoboticDevices2011} offers standardized requirements and guidelines for the \textit{inherent safe design}, protective measures and information for use of industrial robots. It also describes the hazards associated with robots and provides requirements to eliminate, or adequately reduce, the risks associated with these hazards. It can be a useful reference for designing future DiRT robotic processes.
+
 \section{Generalised DiRT system}
 \label{section:discussion-generalised-dirt-system}
 
@@ -271,47 +274,63 @@ None of these ideas are novel on their own. For example, robotic arms are common
 
 While the development of each of these tools is presented in the previous chapters, the following section aims to describe the general properties of the tools and the robotic platform with the goal to inspire future development. For example, to design new assembly tools for more timber joint types, or even for other material and structural systems.
 
-\input{image_holder_1}
+Figure \ref{fig:robot-area-for-cantibox} shows the construction area before the beginning of the CantiBox. The DiRT Clamps and Screwdrivers are in the foreground. The robotic arm (right) can be seen approaching a parallel gripper. 
 
-
-The photo above shows the construction area before the beginning of the CantiBox. The DiRT Clamps and Screwdrivers are in the foreground. The robotic arm (right) can be seen approaching a parallel gripper. 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.99\textwidth]{images/10/Construction Area.jpg}
+    \caption{Robotic construction area setup used for assembling CantiBox}
+    \label{fig:robot-area-for-cantibox}
+\end{figure}
 
 \subsection{Designing new DiRT tools}
 \label{subsection:discussion-designing-new-dirt-tools}
 
 DiRT tools are modular in nature which allows them to fulfil different types of roles. For example, the role of the robotic clamps is to create a high compressive force locally at the area of the lap joints; The role of the screwdriver is similar but the assembly force is pulled from the middle of the joint and is also able to place a permanent fastener. While assembly tools are the only type of tools being developed in this thesis, it is possible to develop other types of DiRT tools based on the experience gained from this thesis. 
 
-This section presents a systemic design approach for designing new DiRT tools. In order to demonstrate the design procedures and considerations, I will attempt to redesign the temporary scaffolding in CantiBox (see photo below) such that it can be attached and detached automatically. I refer to this process of converting existing manual tools to a DiRT tool - DiRTify or DiRT-ification.
+This section presents a systemic design approach for designing new DiRT tools. In order to demonstrate the design procedures and considerations, I will attempt to redesign the temporary scaffolding in CantiBox (see Figure \ref{fig:manual-scaffolding-cantibox}) such that it can be attached and detached automatically. I refer to this process of converting existing manual tools to a DiRT tool - DiRTify or DiRT-ification.
 
-\input{image_holder_1}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[trim=0mm 20mm 0mm 0mm, clip, width=0.99\textwidth]{images/10/Manual Attach Scaffolding.jpg}
+    \caption{Manually attached scaffolding used during the construction of CantiBox}
+    \label{fig:manual-scaffolding-cantibox}
+\end{figure}
 
-The design process starts by drafting the specifications of the tool, which corresponds to two main operational aspects - the task to be completed and how the tool is attached. The table below contains an example of the specifications drafted for the DiRT scaffolding:
+The design process starts by drafting the specifications of the tool, which corresponds to two main operational aspects - the task to be completed and how the tool is attached. Table \ref{table:example-specification-dirt-scaffolding} contains an example of the specifications drafted for the DiRT scaffolding:
 
-MISSINGTABLE
+\begin{table}[h!]
+    \includegraphics[page=9, trim=25.4mm 130mm 25.4mm 33mm, clip, width=0.98\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Example specifications for a DiRT scaffolding}
+    \label{table:example-specification-dirt-scaffolding}
+\end{table}
+
+\FloatBarrier
 
 When describing the task, it is necessary to analyse what kinematic actions are needed to perform the task, and if any essential parts are required. In this example, the scaffolding bar does not require any kinematic movement. However, in the screwdriver development, the screwdriver head and the pull screw were essential components.
 
-When defining the geometrical flexibility of the task, be aware of its implications for the complexity of the tool. For example, if the scaffolding bar is to be extendable, an extra actuator is needed to do so. In general, it is best to avoid adding too much flexibility to the tool, as simplicity keeps the tool light and low cost. One potential opportunity for adjusting the dirt tool without adding an actuator is to use the robotic arm to adjust the tool. For example, we can design the scaffolding bar to be extendable, but the length adjustment is actuated by a push or rotation delivered by the robotic arm before the bar is being picked up.
+When defining the geometrical flexibility of the task, be aware of its implications for the complexity of the tool. For example, if the scaffolding bar is to be extendable, an extra actuator is needed to do so. In general, it is best to avoid adding too much flexibility to the tool, as simplicity keeps the tool light and low cost. One potential opportunity for adjusting the dirt tool without adding an actuator is to use the robotic arm to adjust the tool. For example, the length of the scaffolding bar can be adjustable by a push or rotation delivered by the robotic arm before the bar is being picked up.
 
 When designing the attachment method, it is best to first identify the direction of which the tools are attached and detached. Ensure the robot can reach into the area to perform the attachment and the detachment scenario is not blocked by the presence of newly assembled parts. Based on the assembly direction, the attachment mechanism can be detailed. This mechanism needs to ensure good registration accuracy with the workpiece, good stiffness after attachment and should be protected against accidental release. The pneumatic parallel gripper and electric pin gripper are good examples that can be reused. Because the tool is to be attached to the partially-assembled structure by the robot, alignment-correction method is likely necessary to achieve a high success rate. Based on the experience of this thesis, the camera-marker method proves to be quite robust. 
 
 Based on the specifications, a design study can generate different design options. The following list provides a guideline for important metrics to evaluate when deciding which option to pursue:
 
-\begin{itemize}
-	\item \textbf{Choice of power source --} Typically electric power is provided by an onboard battery. When the tool is attached to the robot, high-power electricity and pneumatic power can be provided through the docking adapter. Evaluate cost and power consumption per operation cycle.
+\begin{description}
+	\item [Choice of power source] Typically electric power is provided by an onboard battery. When the tool is attached to the robot, high-power electricity and pneumatic power can be provided through the docking adapter. Evaluate cost and power consumption per operation cycle.
 
-	\item \textbf{Weight of the tool --} Perform additional deviation analysis for typical attachment scenarios to make sure the tools can be hung from their intended locations without causing excessive deformation.
+	\item [Weight of the tool] Perform additional deviation analysis for typical attachment scenarios to make sure the tools can be hung from their intended locations without causing excessive deformation.
 
-	\item \textbf{Implementation complexity and cost --} Evaluate the choice of actuators and the required drivers and controllers. Typically, fewer actuators make the device simpler and lighter.
+	\item [Implementation complexity and cost] Evaluate the choice of actuators and the required drivers and controllers. Typically, fewer actuators make the device simpler and lighter.
 
-	\item \textbf{Chance of successful attachment --} Based on the alignment mechanism and the choice of alignment correction mechanism, estimate the allowable tolerance and correction range. Evaluate the chance of successful alignment for typical attachment operations using the alignment-correction model. 
+	\item [Chance of successful attachment] Based on the alignment mechanism and the choice of alignment correction mechanism, estimate the allowable tolerance and correction range. Evaluate the chance of successful alignment for typical attachment operations using the alignment-correction model. 
 
-	\item \textbf{Risk of collision --} Perform collision check for every key step during attachment, operation and detachment process. All collision objects should be considered, such as, robots, other tools, already-assembled structure, and ground foundation. If the tool is flexible to interact with geometrically different workpieces, perform multiple checks for each degree of freedom (at least one checks at each extreme of the flexibility and at the neutral position). Not all scenarios need to be collision free, for example, cases where multiple flexible dimensions are at their extremes can be exempted. The purpose of this evaluation is to get a sense of the design freedom. 
+	\item [Risk of collision] Perform collision check for every key step during attachment, operation and detachment process. All collision objects should be considered, such as, robots, other tools, already-assembled structure, and ground foundation. If the tool is flexible to interact with geometrically different workpieces, perform multiple checks for each degree of freedom (at least one checks at each extreme of the flexibility and at the neutral position). Not all scenarios need to be collision free, for example, cases where multiple flexible dimensions are at their extremes can be exempted. The purpose of this evaluation is to get a sense of the design freedom. 
 
-	\item \textbf{Command and control --} Evaluate whether the standard wireless command control framework can be used. Evaluate if bandwidth and latency is sufficient, especially if camera feed is required.
+	\item [Command and control] Evaluate whether the standard wireless command control framework can be used. Evaluate if bandwidth and latency is sufficient, especially if camera feed is required.
 
-\end{itemize}
-Finally it is necessary to consider the placement of the docking adapter. The position of the adapter directly determines the position of the robot flange and the position of the robot wrist when the tool is attached. For spherical wrist robots, such as the one used in this thesis, the wrist can be approximated by a sphere. A special property of these robots is that the sphere’s position relative to the flange does not change with the movement of Joint 5 or Joint 6. Therefore, we can use this sphere as a rule-of-thumb guidance to make sure there are no collisions with the parts being assembled.
+\end{description}
+
+Finally it is necessary to consider the placement of the docking adapter. The position of the adapter directly determines the position of the robot flange and the position of the robot wrist when the tool is attached. For spherical wrist robots, such as the one used in this thesis, the wrist can be approximated by a sphere. A special property of these robots is that the sphere’s position relative to the flange does not change with the movement of Joint 5 or Joint 6. Therefore, tool designers can use this sphere as a rule-of-thumb guidance to make sure there are no collisions with the parts being assembled.
 
 In conclusion, the development of custom DiRT tools is a clearly defined mechatronics design process that is repeatable and adaptable to a wide array of applications. The systematic design approach presented here allows each new tool to be optimised for its specific task, while also maintaining compatibility with the overarching robotic system. By following these design guidelines and principles, engineers can create modular and versatile tools that extend the capabilities of the DiRT assembly system. 
 
@@ -320,9 +339,13 @@ In conclusion, the development of custom DiRT tools is a clearly defined mechatr
 
 The robotic platform used for DiRT operations is generic in nature. The specific implementation can be adapted to on-site conditions and the target building size. This is similar to how cranes of different size, payload capacity and base condition (stationary vs mobile) are selected in the current construction practice. 
 
-The following table provides a list of robot specifications for DiRT operations that are crucial for achieving reasonable design freedom, efficiency, and safety during the construction process. It also includes how each specification can be determined according to the construction task in a generalised scenario. For timber frame construction, the values used for this thesis is included for reference, together with the recommended values concluded from the experience gained.
+Table \ref{table:dirt-specifications} provides a list of robot specifications for DiRT operations that are crucial for achieving reasonable design freedom, efficiency, and safety during the construction process. It also includes how each specification can be determined according to the construction task in a generalised scenario. For timber frame construction, the values used for this thesis is included for reference, together with the recommended values concluded from the experience gained.
 
-MISSINGTABLE
+\begin{table}[hb!]
+    \includegraphics[page=10, trim=25.4mm 60mm 23mm 33mm, clip, width=0.98\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{Crucial robot specifications for DiRT operations}
+    \label{table:dirt-specifications}
+\end{table}
 
 The primary consideration in implementing the robotic platform is the kinematic arrangement. A popular approach, that is also used in this thesis, is the overhead gantry with an inverted robot arrangement. This arrangement offers overhead clearance to facilitate navigation in congested assembly areas. It is also the most common arrangement used in many of the integrated automated construction sites found in Japan \parencite{linnerAutomatedRoboticConstruction2013, potterJapanSkyscraperFactories2022}. Apart from its sturdiness, it provides other benefits such as attachment of vertical material transport robots and weather cover over the gantry.
 
@@ -331,6 +354,8 @@ There are alternative arrangements to the gantry-robot approach, one of which is
 In this thesis, the gantry-robot arrangement achieves a balance between accuracy, reachability and payload capacity suitable for timber frame assembly. However, for heavier construction components such as prefab-concrete and steel, it is likely that the role of heavy lifting and manipulating DiRT tools are distributed to two different robotic platforms, each optimised for their specific tasks.
 
 In conclusion, the selection of an appropriate robotic platform for DiRT operations depends on the construction material and assembly process. While this thesis focused on the assembly of timber frame structures with integral timber joints, it is likely that actual on-site robotic platforms will need to accommodate a wider variety of components and processes. The specification of which will need to integrate and satisfy all requirements while maintaining flexibility.
+
+\FloatBarrier
 
 \subsection{Docking Adapter}
 \label{subsection:discussion-docking-adapter}
@@ -345,12 +370,19 @@ It is worth noting that the payload capacity of a docking adapter is directly re
 
 During the development of the automatic tool placement procedure, it was found that the docking tolerance of 2mm offered by the tool presented a challenge for robotic alignment. The solution was to add a camera on the robot side, target markers on the tool side, and develop an alignment algorithm to perform correction by moving the robot \seeref{subsection:exploration-4-camera-marker-hardware-on-docking-adapter}. While this method proves to be highly successful, an alternative solution would be to redesign the mechanical interface to allow for more tolerance. In addition to the pneumatic feedthrough, it would also be beneficial to include a power feedthrough for charging the on-board tool batteries while the tools are being handled \seeref{subsubsection:exploration-5-combined-operation-of-dirt-tools}. 
 
+\FloatBarrier
+
 \subsection{Wireless Communication System}
 \label{subsection:discussion-wireless-communication-system}
 
-In order to communicate wirelessly with the DiRT tools, it is essential to have a high-performance and robust radio communication system. While there are many matured wireless communication systems like Wi-Fi and ZigBee, they do not fully address the unique challenges and requirements of DiRT systems in a construction environment. For example, ensuring signal reliability in a construction environment with many occlusions is challenging but essential to the robot process. As many of the DiRT movements require synchronising movements with multiple tools and robots, any dropped connection will result in an emergency stop, causing a disruption to the process. The following table lists the general requirements for a wireless communication system designed for DiRT operations:
+In order to communicate wirelessly with the DiRT tools, it is essential to have a high-performance and robust radio communication system. While there are many matured wireless communication systems like Wi-Fi and ZigBee, they do not fully address the unique challenges and requirements of DiRT systems in a construction environment. For example, ensuring signal reliability in a construction environment with many occlusions is challenging but essential to the robot process. As many of the DiRT movements require synchronising movements with multiple tools and robots, any dropped connection will result in an emergency stop, causing a disruption to the process. Table \ref{table:dirt-wireless-specifications} lists the general requirements for a wireless communication system designed for DiRT operations:
 
-MISSINGTABLE
+\begin{table}[h!]
+    \includegraphics[page=11, trim=25.4mm 70mm 25.4mm 33mm, clip, width=0.98\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
+    \caption{General requirements for a wireless communication system designed for DiRT operations}
+    \label{table:dirt-wireless-specifications}
+\end{table}
+
 
 In this thesis, a custom network is implemented based on a low-cost sub-GHz radio transceiver (CC1101 by Texas Instruments) installed on each DiRT tool \seeref{subsection:exploration-2-radio-network}.The frequency and encoding is chosen to maximise signal reliability, and the radio is set to the maximum allowable power under licence-free operation. Although this was shown to be sufficient for operating the DiRT system in the lab, there are many shortcomings that should be improved in future implementation \seeref{subsection:exploration-5-wireless-radio-latency}.
 
@@ -359,14 +391,20 @@ Note that the wireless communication system is the software and electronics coun
 \subsection{Control Systems}
 \label{subsection:discussion-control-systems}
 
-In order to coordinate all the robotic hardware to perform a series of planned tasks, a complex control system is needed. In order to follow a modular development process, a distributed control system (DCS) model is adopted. Specifically, the control, monitor and synchronising tasks are separated into a layered stack of software that communicates with each other \seeref{subsection:exploration-2-distributed-control-system}. The diagram below shows the relationship between all the control software used in this thesis, arranged according to a DCS model. The communication channel is labelled on the arrows. In addition, a set of command-response protocols were also developed for two way communication between each layer. 
+In order to coordinate all the robotic hardware to perform a series of planned tasks, a complex control system is needed. In order to follow a modular development process, a distributed control system (DCS) model is adopted. Specifically, the control, monitor and synchronising tasks are separated into a layered stack of software that communicates with each other \seeref{subsection:exploration-2-distributed-control-system}. Figure \ref{fig:communication-software-relationship} shows the relationship between all the control software used in this thesis, arranged according to a DCS model. The communication channel is labelled on the arrows. In addition, a set of command-response protocols were also developed for two way communication between each layer. 
 
-\input{image_holder_1}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.99\textwidth]{images/10/Control Software Relationships.pdf}
+    \caption{Communication relationship between control software components used in this thesis}
+    \label{fig:communication-software-relationship}
+\end{figure}
 
 This software arrangement with an overarching process execution controller is generic for any multi-controller scenarios. Level 1 or Level 2 controllers can be added if additional hardware is needed for the process. In this case, the Level 3 Process Execution Controller only needs to be revised to manage the new connection and to support the new commands \seeref{subsection:exploration-3-standalone-process-execution-controller}. 
 
 Experience has shown that the use of compas\_rrc \parencite{fleischmannCOMPASRRCOnline2020} to send commands between Levels 2 and 3 is extremely flexible. Specifically, the `Instructions` class can be used to encapsulate newly developed instruction sets, such as requesting a status report, setting states, or starting an action. It also supports synchronous and asynchronous command modes, which is essential for managing long-running motion tasks. In addition, the use of ROS messaging system by compas\_fab allows easy addition of Level 2 controllers, even if they are running on a different computer. 
 
+\FloatBarrier
 \section{Conclusion of Discussion}
 \label{section:conclusion-of-discussion}
 

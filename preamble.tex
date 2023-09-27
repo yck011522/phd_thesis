@@ -2,22 +2,19 @@
 
 % For including figures, also supports 'page' option
 \usepackage{graphicx}
-% 
+
 % For allowing FloatBarrier
 \usepackage{placeins}
-% 
-% For debugging layout problems
-% \usepackage{layout}
-% \usepackage{showframe} % Load the showframe package
 
 % To remove margin notes area
 \usepackage[nomarginpar,bindingoffset=0.5cm,rmargin=3cm,lmargin=3cm]{geometry}
 
-% For allowing long url to be broken 
-\usepackage{xurl}
-
 % For allowing underline to break across lines
 \usepackage{soul}
+
+% For tracking changes
+% \usepackage[textsize=tiny, color=yellow, textwidth=24mm]{todonotes}
+\usepackage[disable]{todonotes}
 
 % Allow floating graphics and figures
 \usepackage{float}
@@ -32,11 +29,33 @@
 % \setlength{\parindent}{0pt}
 \usepackage[skip=10pt plus1pt]{parskip}
 
+% Trying to fix some weird spacing between paragraph glue being stretched
+\raggedbottom
+
 \usepackage{setspace}
 \onehalfspacing
 
+% Adjusting the spacing between number and letters in List of tables and List of figures
+\usepackage{tocloft}
+\setlength{\cftfignumwidth}{3em}%
+\setlength{\cfttabnumwidth}{3em}%
+
+% Adjusting the right side margin for text to wrap in LOT and LOF
+\makeatletter
+\renewcommand{\@tocrmarg}{6.6em}
+\makeatother
+
 % For math symbols like checkmark
 \usepackage{amssymb}
+
+% For customizing the title of \paragraph tags
+\usepackage{titlesec}
+% The paragraph title is change to its own indepedent line and bolded
+\titleformat{\paragraph}
+    {\normalfont\bfseries}
+    {}
+    {0pt}
+    {}
 
 % Allow subtitle in the chapter level
 % \newcommand{\Chapter}[2]{
@@ -69,6 +88,7 @@
 % Hyperlink package
 % \usepackage{hyperref} % This shows a box around the clickable links, good for debugging.
 \usepackage[hidelinks]{hyperref} % This hides the ugly hyperlink box in the resulting PDF
+\hypersetup{breaklinks=true}
 
 % Provides \textquote{} for managing quotations
 \usepackage{csquotes}
@@ -84,8 +104,8 @@
 
 \newcommand{\noseeref}[1]{{\color{gray} \S\ref{#1} \nameref{#1}}}
 
-% \usepackage[at]{easylist}
-
+% Fancy style for code variable names
+\newcommand{\codett}[1]{\texttt{#1}}
 
 %------------------------
 %  Header & Footer 
@@ -95,7 +115,7 @@
 
 \setlength{\headheight}{14pt}
 \setlength{\headsep}{30pt}
-\addtolength{\textheight}{25pt}
+\addtolength{\textheight}{55pt}
 \addtolength{\topmargin}{-16pt}
 
 % define the plain style for the first page of each chapter
@@ -112,7 +132,15 @@
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
 
-% Changepage provides \begin{adjustwidth}{}{} for adjusting margins in abstract 
+% Redefine the abstract environment
+% \newenvironment{abstract}
+%  {
+%   \list{}{
+%     \setlength{\leftmargin}{25mm}%
+%     \setlength{\rightmargin}{\leftmargin}%
+%   }%
+%   \item\relax}
+%  {\endlist}
 \usepackage{changepage}
 
 % define different stypes for title/abstract pages & normal pages
@@ -164,6 +192,27 @@
 %------------------------
 
 % \usepackage[style=authoryear,sorting=ynt,doi=false,isbn=false,url=false,eprint=false]{biblatex}
-\usepackage[style=authoryear,sorting=nyt,isbn=false,eprint=false,block=space,date=year]{biblatex}
+\usepackage[style=authoryear,sorting=nyt,isbn=false,eprint=false,block=space,date=year,dashed=false]{biblatex}
 			
 \addbibresource{Thesis.bib}
+
+% Stop Biblatex from showing URL when DOI is present
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:url}
+    {\iffieldundef{doi}{\usebibmacro{url+urldate}}{}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}     
+    {}%   
+  \newunit\newblock   
+  \iftoggle{bbx:doi}     
+    {\printfield{doi}}     
+    {}}
+
+% Stop showing the total number of pages of a book in the bibliography
+\AtEveryBibitem{\clearfield{pagetotal}} 
+
+% For allowing long url to be broken 
+%  Must be loaded after biblatex for it to work properly in the Bib area: https://ctan.math.illinois.edu/macros/latex/contrib/xurl/doc/xurl.pdf
+\usepackage{xurl}
