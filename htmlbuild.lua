@@ -1,5 +1,4 @@
 -- filename: mybuild.lua
-Make:add("myconfig", "2,splitat=chapter")
 Make:add("biber","biber ${input}")
 if mode=="draft" then
     Make:htlatex {}

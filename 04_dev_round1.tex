@@ -18,20 +18,20 @@ I started the exploration round by analysing the assembly challenges introduced 
     \label{table:response-to-challenges}
 \end{table}
 
-I conducted a survey of tools used by carpenters to applying assembly force for closing joints. The first is a hammer-type tool.\footnote{There are other names for the carpentry hammer, such as mallet, beetle} The striking action of a hammer delivers a short but strong spike of force that momentarily overcome friction to drive joints together. However, it is only effective if a striking surface is available near the joint, as the flexible timber material can absorb the shock. Moreover, hammers are ineffective if the striking direction is upright, as it is difficult to work against gravity. 
+I conducted a survey of tools used by carpenters to applying assembly force for closing joints. The first is a hammer-type tool.\footnote{There are other names for the carpentry hammer, such as mallet, beetle} The striking action of a hammer delivers a short but strong spike of force that momentarily overcome friction to drive joints together. However, it is only effective if a striking surface is available near the joint, as the flexible timber material can absorb the shock. Moreover, hammers are ineffective if the striking direction is upright, as it is difficult to work against gravity.
 
-The second is a joint-puller-type tool. It often consists of a pair of hooks that can be tightened by a screw or ratcheting mechanism. The hooks can be hammered into the timber or hooked into pre-drilled holes on both sides and pull the joint together. Joint-pullers are particularly useful for pulling liner elements along its length, such as in a splice joint, where a striking surface is not available near the joint. 
+The second is a joint-puller-type tool. It often consists of a pair of hooks that can be tightened by a screw or ratcheting mechanism. The hooks can be hammered into the timber or hooked into pre-drilled holes on both sides and pull the joint together. Joint-pullers are particularly useful for pulling liner elements along its length, such as in a splice joint, where a striking surface is not available near the joint.
 
-The third is a clamp-type tool. It is often used for lap joints where parallel surfaces are easily reachable for clamping. Among different designs, F-shaped clamps are often used because their opening can be quickly adjusted. The joint puller type and the clamp type tools can be used in various orientations regardless of the direction of gravity and they can also be used as a means of temporary support after they are tightened. 
+The third is a clamp-type tool. It is often used for lap joints where parallel surfaces are easily reachable for clamping. Among different designs, F-shaped clamps are often used because their opening can be quickly adjusted. The joint puller type and the clamp type tools can be used in various orientations regardless of the direction of gravity and they can also be used as a means of temporary support after they are tightened.
 
-For beams that require the assembly of multiple joints, it is common for multiple workers to actuate the assembly tools synchronously. Because the assembly tools can only apply local forces to each pair of joints, if the assembly motion is not synchronised, the overall beam will deviate from the assembly trajectory (e.g. starts to rotate) and can get stuck due to the jamming effect. This problem is similar to the peg-hole insertion jamming problem studied in robotic assembly. \parencite{dupontJammingWedgingConstrained1994} Therefore, assembly workers need to keep an eye on the overall progress of the entire beam and adjust their actuation speed or hammering force accordingly. 
+For beams that require the assembly of multiple joints, it is common for multiple workers to actuate the assembly tools synchronously. Because the assembly tools can only apply local forces to each pair of joints, if the assembly motion is not synchronised, the overall beam will deviate from the assembly trajectory (e.g. starts to rotate) and can get stuck due to the jamming effect. This problem is similar to the peg-hole insertion jamming problem studied in robotic assembly. \parencite{dupontJammingWedgingConstrained1994} Therefore, assembly workers need to keep an eye on the overall progress of the entire beam and adjust their actuation speed or hammering force accordingly.
 
 \subsection{Distributed Robotic Tool (DiRT) Approach}
 \label{subsection:exploration-1-distributed-robotic-tool-approach}
 
-From the insights gained from challenges 3.2 to 3.4, it became evident that deploying multiple high-force assembly actuators on each mating joint is a promising approach. Moreover, these actuators should not be fixed together such that it is flexible to position them where the joints are. However, it is challenging to use one robotic arm to hold each end-effector during operation as the number of robots needed may result in congestion near the active beam. Furthermore, this approach is not scalable when working with timber elements that have a large number of joints. 
+From the insights gained from challenges 3.2 to 3.4, it became evident that deploying multiple high-force assembly actuators on each mating joint is a promising approach. Moreover, these actuators should not be fixed together such that it is flexible to position them where the joints are. However, it is challenging to use one robotic arm to hold each end-effector during operation as the number of robots needed may result in congestion near the active beam. Furthermore, this approach is not scalable when working with timber elements that have a large number of joints.
 
-Therefore, I hypothesised a scenario in which the actuators are attached to and hanging from the Partially Assembled (PA) structure. The attachment and detachment of the tools can therefore be performed one by one, using as few as one robotic arm. After all the actuators are in place, the robotic arm can bring the next piece of timber towards the joints, and perform the assembly with all the actuators exerting force locally at each joint. Because these actuators are no longer tethered to the rest of the robotic system, I called this a “Distributed Robotic Tool” (DiRT) approach. 
+Therefore, I hypothesised a scenario in which the actuators are attached to and hanging from the Partially Assembled (PA) structure. The attachment and detachment of the tools can therefore be performed one by one, using as few as one robotic arm. After all the actuators are in place, the robotic arm can bring the next piece of timber towards the joints, and perform the assembly with all the actuators exerting force locally at each joint. Because these actuators are no longer tethered to the rest of the robotic system, I called this a “Distributed Robotic Tool” (DiRT) approach.
 This distributed approach does not only address the robot congestion issue but also enhances the scalability and flexibility of the system, making it better suited for timber assembly tasks with varying levels of complexity. The modularity of distributed tools allows for the development of different tools tailored to different joint types and assembly requirements. The system can intelligently select the appropriate tool based on the design of a structure, joint types, and joint angles. This adaptability ensures that the DiRT approach can effectively address a wide range of timber frame structures.
 
 \subsection{Scope for Initial Exploration Round}
@@ -65,10 +65,10 @@ In order to simplify initial development, I decided to pick a timber size standa
 For the timber species and processing, I chose \textbf{glue-laminated spruce} as the intended material because it is one of the most commonly used construction timber in Switzerland. The timber material used in this thesis has the following properties:
 
 \begin{itemize}[nosep]
-    \item Strength class: GL24h 
+    \item Strength class: GL24h
     \item Appearance class: N
     \item Lamination composition: Duo or Trio
-    \item Gluing standard: DIN EN 14 080 
+    \item Gluing standard: DIN EN 14 080
     \item Moisture Content 13\% ± 3\%
     \item Nominal Density 460kg/m3
 \end{itemize}
@@ -165,13 +165,13 @@ Figure \ref{fig:beam-assembly-six-moments} illustrates the assembly process of a
 
 Timber frame buildings utilize a variety of joints to connect structural elements and create a stable, load-bearing framework. Various categorisation methods have been developed to group them based on their characteristics, functions, or cultural background \seeref{subsection:introduction-defining-characteristics}. As the primary objective of this thesis is to investigate the assembly process of timber frame structures, I adopted a classification method that focuses on the assembly direction of the joints, because it is closely related to the kinematics of the assembly tools.
 
-Lap joints, mortise and tenon joints, and splice joints are three common types of joints found in timber frame construction, each with different assembly directions in relation to the neighbouring elements' arrangements. This thesis focus on the assembly of lap joints, as they represent a straightforward and widely used connection method in timber frame construction. 
+Lap joints, mortise and tenon joints, and splice joints are three common types of joints found in timber frame construction, each with different assembly directions in relation to the neighbouring elements' arrangements. This thesis focus on the assembly of lap joints, as they represent a straightforward and widely used connection method in timber frame construction.
 
-Lap joints are formed by overlapping two pieces of timber, with one piece lying on top of the other. The overlapping sections are typically cut to half the thickness of the timber, creating a flush surface.\footnote{Note that in some classifications \parencite{seikeArtJapaneseJoinery1977}, lap joints are not necessarily planar or assembled perpendicular to the flush face. However, this narrower definition simplified the initial development.} Lap joints are widely used in timber frame construction due to their versatility and ability to transfer loads between connected elements effectively. These joints are relatively simple to assemble, as they involve linear assembly motion that is perpendicular to the flush surface. 
+Lap joints are formed by overlapping two pieces of timber, with one piece lying on top of the other. The overlapping sections are typically cut to half the thickness of the timber, creating a flush surface.\footnote{Note that in some classifications \parencite{seikeArtJapaneseJoinery1977}, lap joints are not necessarily planar or assembled perpendicular to the flush face. However, this narrower definition simplified the initial development.} Lap joints are widely used in timber frame construction due to their versatility and ability to transfer loads between connected elements effectively. These joints are relatively simple to assemble, as they involve linear assembly motion that is perpendicular to the flush surface.
 
-Figure \ref{fig:common-joints-crosslap} and \ref{fig:common-joints-teelap} shows cross-shape and tee-shape lap joint, both conform to the lap joint definition used in this thesis. Figure \ref{fig:common-joints-mortisetenon} shows a counter-example, a mortise and tenon joint, where the assembly direction is parallel to one of the element’s axes. Later in Exploration Round 2, the definition of lap joints was expanded to include joints that have parametric angle variation \seerefii{subsection:exploration-2-parametric-variations-of-lap-joints}{subsection:exploration-4-parametric-polyline-lap-joints}. In Exploration Round 5, it is further expanded to compound angles out-of-plane \seeref{subsection:exploration-4-parametric-non-planar-lap-joints}. 
+Figure \ref{fig:common-joints-crosslap} and \ref{fig:common-joints-teelap} shows cross-shape and tee-shape lap joint, both conform to the lap joint definition used in this thesis. Figure \ref{fig:common-joints-mortisetenon} shows a counter-example, a mortise and tenon joint, where the assembly direction is parallel to one of the element’s axes. Later in Exploration Round 2, the definition of lap joints was expanded to include joints that have parametric angle variation \seerefii{subsection:exploration-2-parametric-variations-of-lap-joints}{subsection:exploration-4-parametric-polyline-lap-joints}. In Exploration Round 5, it is further expanded to compound angles out-of-plane \seeref{subsection:exploration-4-parametric-non-planar-lap-joints}.
 
-% 3 Horizontal Image  
+% 3 Horizontal Image
 \begin{figure}[H]
      \centering
      \begin{subfigure}[b]{0.32\textwidth}
@@ -230,7 +230,7 @@ The shoulders of each joint were cut manually with a Japanese pull saw. The chee
 \end{figure}
 
 
-Figure \ref{fig:lap-joint-assembly-rubbing-after} shows four surfaces that were expected to be in tight rubbing contact, contributing to assembly resistance. These surfaces come in two interference groups (IG). Interference for each group can be computed by the following formula. Note that the value is positive when there is interference. The case where the joint is loose, it is assumed to have 0 interference. 
+Figure \ref{fig:lap-joint-assembly-rubbing-after} shows four surfaces that were expected to be in tight rubbing contact, contributing to assembly resistance. These surfaces come in two interference groups (IG). Interference for each group can be computed by the following formula. Note that the value is positive when there is interference. The case where the joint is loose, it is assumed to have 0 interference.
 
 Interference of IG 1 = $max( C (Sample 1) - N (Sample 2), 0)$\\
 Interference of IG 2 = $max( C (Sample 2) - N (Sample 1), 0)$
@@ -253,7 +253,7 @@ The mean interference between the two groups is used as an indication of the tig
 
 \subsubsection{Results and Conclusion about Joint Tightness}
 
-Figure \ref{fig:tightness-measurement-pairwise} shows the pairwise force measurement result. Sample 1-4 was not measured because it had no friction at all. Sample 4-6 cannot be measured because it was too tight to begin any assembly motion. Figure \ref{fig:tightness-measurement-plot} shows the relationship between the mean interference (representing tightness) and the assembly force needed. 
+Figure \ref{fig:tightness-measurement-pairwise} shows the pairwise force measurement result. Sample 1-4 was not measured because it had no friction at all. Sample 4-6 cannot be measured because it was too tight to begin any assembly motion. Figure \ref{fig:tightness-measurement-plot} shows the relationship between the mean interference (representing tightness) and the assembly force needed.
 
 \begin{figure}[H]
     \centering
@@ -274,7 +274,7 @@ Figure \ref{fig:tightness-measurement-pairwise} shows the pairwise force measure
     \label{fig:tightness-measurement-result}
 \end{figure}
 
-While it is not possible to conclude the correlation between the two quantities based on a few data samples, the test has shown a reasonable upper force limit for specifying the linear actuator. The forces measured are in the same order of magnitude as the number reported by a previous study (Robeller et al., 2017). For the purpose of designing the clamp actuator, the required clamping force was specified at 3000N. 
+While it is not possible to conclude the correlation between the two quantities based on a few data samples, the test has shown a reasonable upper force limit for specifying the linear actuator. The forces measured are in the same order of magnitude as the number reported by a previous study (Robeller et al., 2017). For the purpose of designing the clamp actuator, the required clamping force was specified at 3000N.
 
 \section{Development}
 \label{section:exploration-1-development}
@@ -282,7 +282,7 @@ While it is not possible to conclude the correlation between the two quantities 
 \subsection{Lap Clamp CL1}
 \label{subsection:exploration-1-lap-clamp-cl1-proof-of-concept}
 
-The Lap Clamp CL1 was designed as a proof of concept clamp to demonstrate the robotic clamping action. The goal is to assemble a single orthogonal half-lap joint on a 100mm timber profile. 
+The Lap Clamp CL1 was designed as a proof of concept clamp to demonstrate the robotic clamping action. The goal is to assemble a single orthogonal half-lap joint on a 100mm timber profile.
 In addition, it contains a spring-loaded parallel gripper mechanism to allow it to hang onto the structure. Figure \ref{fig:cl1-sketch} shows an early sketch of the clamp design, showing a U-shape configuration that surrounds a beam.
 
 \begin{figure}
@@ -295,16 +295,16 @@ In addition, it contains a spring-loaded parallel gripper mechanism to allow it 
 \subsubsection{Linear Actuator and Jaw Design}
 \label{subsubsection:exploration-1-linear-actuator-and-jaw-design}
 
-The robotic clamp jaw is designed around a linear actuator typically used for movable furniture (see Figure \ref{fig:linear-actuator-cl1}), it has a compact design and is rated for 2000N of force at 5mm/s. Despite the force being lower than the 3000N requirement established in \noseeref{subsection:exploration-1-joint-tightness}, using two jaws combined would likely be sufficient to overcome the tightest joint. The motor contains a 2-channel hall effect encoder fixed to the motor shaft, this is needed for closed loop position control \seeref{subsubsection:exploration-1-bang-bang-motion-control}. 
+The robotic clamp jaw is designed around a linear actuator typically used for movable furniture (see Figure \ref{fig:linear-actuator-cl1}), it has a compact design and is rated for 2000N of force at 5mm/s. Despite the force being lower than the 3000N requirement established in \noseeref{subsection:exploration-1-joint-tightness}, using two jaws combined would likely be sufficient to overcome the tightest joint. The motor contains a 2-channel hall effect encoder fixed to the motor shaft, this is needed for closed loop position control \seeref{subsubsection:exploration-1-bang-bang-motion-control}.
 
 \begin{figure}[hb!]
     \centering
     \includegraphics[width=0.99\textwidth]{images/04-3/cl1-linearactuator.jpg}
     \caption{Linear actuator used in the CL1 clamp}
-    \label{fig:linear-actuator-cl1} 
+    \label{fig:linear-actuator-cl1}
 \end{figure}
 
-The clamp jaw is made from aluminium plates bolted together. It has two open-type bronze linear bushing paired with a 12mm round shaft to act as linear motion guide. The bronze bearing was chosen over ball-type linear bearings to maximise load capacity. The front side of the actuator is mounted with an in-line load cell for collecting force data for analysis. Figure \ref{fig:cl1-clamp-jaw} shows the detached clamp jaw from the guide shaft and linear actuator. 
+The clamp jaw is made from aluminium plates bolted together. It has two open-type bronze linear bushing paired with a 12mm round shaft to act as linear motion guide. The bronze bearing was chosen over ball-type linear bearings to maximise load capacity. The front side of the actuator is mounted with an in-line load cell for collecting force data for analysis. Figure \ref{fig:cl1-clamp-jaw} shows the detached clamp jaw from the guide shaft and linear actuator.
 
 \begin{figure}
     \centering
@@ -372,7 +372,7 @@ The clamp is designed with a jaw that can be fitted with different plastic inser
         \caption{Beam after being placed on the resting feature}
         %\label{fig:uniquesubfigurelabel}
     \end{subfigure}
-    \caption{Sketch of a beam rest with wedge-shaped alignment feature} 
+    \caption{Sketch of a beam rest with wedge-shaped alignment feature}
     \label{fig:beam-rest-feature}
 \end{figure}
 
@@ -401,7 +401,7 @@ Figure \ref{fig:cl1-attach-to-joint} shows how the clamp is intended to be attac
         % \caption{Beam after being placed on the resting feature}
         %\label{fig:uniquesubfigurelabel}
     \end{subfigure}
-    \caption{Integrated design of the CL1 clamp} 
+    \caption{Integrated design of the CL1 clamp}
     \label{fig:integrated-cl1-hardware}
 \end{figure}
 
@@ -469,7 +469,7 @@ Considering that most of the common DC motors are either 12V or 24V, I decided t
 \subsubsection{Motor Driver}
 \label{subsubsection:exploration-1-motor-driver}
 
-The choice of motor driver is a Dual H-Bridge Motor Controller (XY160D manufactured by Handson Technology) (See Table \ref{table:hbridge-xz160d-properties} for its specifications) which weighted only 32 grams. The H-Bridge configuration allows bi-directional DC motor control that is necessary for clamp jaw retraction and extension. This type of H-Bridge motor driver is very common and is made by many different companies with different current ratings. The intention of choosing this type of driver is to facilitate future upgrades if necessary. 
+The choice of motor driver is a Dual H-Bridge Motor Controller (XY160D manufactured by Handson Technology) (See Table \ref{table:hbridge-xz160d-properties} for its specifications) which weighted only 32 grams. The H-Bridge configuration allows bi-directional DC motor control that is necessary for clamp jaw retraction and extension. This type of H-Bridge motor driver is very common and is made by many different companies with different current ratings. The intention of choosing this type of driver is to facilitate future upgrades if necessary.
 
 \begin{table}[]
     \includegraphics[page=4, trim=25.4mm 210mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 4.pdf}
@@ -488,8 +488,8 @@ The motor driver supports four possible control modes (see Table \ref{table:hbri
 \subsubsection{LiPo Battery}
 \label{subsubsection:exploration-1-lipo-battery}
 
-Based on the specification of the chosen linear actuator, the 12V option is rated at 60W with 5mm/s at 2000N output. It will draw 5A at constant maximum power, which should be compatible with this 7A driver. It will take approximately 20 seconds to traverse 120mm, assuming 80\% driver efficiency, each full stroke which will consume about 35mAh. A complete cycle of clamping and retraction can consume roughly 70mAh. Based on this rough calculation, a 1000mAh battery was chosen, as it will support approximately 10 cycles, assuming the battery has only 80\%-90\% usable capacity.   
-Table \ref{table:lipo-battery-survey} listed some of the 4S LiPo batteries on the market as of April 2023. 
+Based on the specification of the chosen linear actuator, the 12V option is rated at 60W with 5mm/s at 2000N output. It will draw 5A at constant maximum power, which should be compatible with this 7A driver. It will take approximately 20 seconds to traverse 120mm, assuming 80\% driver efficiency, each full stroke which will consume about 35mAh. A complete cycle of clamping and retraction can consume roughly 70mAh. Based on this rough calculation, a 1000mAh battery was chosen, as it will support approximately 10 cycles, assuming the battery has only 80\%-90\% usable capacity.
+Table \ref{table:lipo-battery-survey} listed some of the 4S LiPo batteries on the market as of April 2023.
 
 \begin{table}[]
     \includegraphics[page=6, trim=25.4mm 210mm 25.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 4.pdf}
@@ -502,12 +502,12 @@ Different capacities were tested with no major performance difference being obse
 \subsubsection{Microcontroller}
 \label{subsubsection:exploration-1-microcontroller}
 
-The Arduino family of microcontroller boards was selected for this development due to their extensive library support for integrated and external hardware. 
+The Arduino family of microcontroller boards was selected for this development due to their extensive library support for integrated and external hardware.
 \textbf{Arduino Uno} was chosen for initial tests development, the reason being:
 
 \begin{itemize}[nosep]
     \item Low cost and widespread availability.
-    \item Presence of two external interrupt signal inputs, making it suitable for counting motor encoder output. 
+    \item Presence of two external interrupt signal inputs, making it suitable for counting motor encoder output.
     \item Integrated USB serial communication, which greatly simplifies debugging and control.
     \item Equipped with an ATmega328 CPU running at 16 MHz, these Arduino boards are popular choices for embedded motion control tasks.
 \end{itemize}
@@ -515,16 +515,16 @@ The Arduino family of microcontroller boards was selected for this development d
 The Arduino Uno is later switched to \textbf{Arduino Nano}, which has the same functionality but a smaller form factor. The following General Purpose Input Output (GPIO) pins are used:
 
 \begin{itemize}[nosep]
-    \item The motor drivers require three digital signals, one of which requires PWM output, for controlling each motor channel. The two channels occupied 6 pins. 
+    \item The motor drivers require three digital signals, one of which requires PWM output, for controlling each motor channel. The two channels occupied 6 pins.
     \item There are two encoder channels from each motor, one of which is connected to the external interrupt pin. In total, both motor encoders occupied 4 pins.
     \item There are provisions for connecting to the CC1101 radio module and two load cells. This was tested during development but was not implemented for the demonstration. The integration with the radio module is continued in the next Exploration Round.
     \item One of the Analog-to-Digital Converter (ADC) input pins is used for monitoring battery voltage.
 \end{itemize}
 
-In order to monitor battery voltage, it is connected to the ADC over a voltage divider with a ratio of 3.35 to 1 (see the schematic below). A fully charged LiPo 4S battery at 16.8V will be reduced to 5.01V, which coincides with the upper bound of the ADC. The ADC has 10 bit resolution (1024 steps) or 0.00488V per step \\($5.0V / 1024 steps$). This circuit design will provide an effective resolution ($R_{Eff}$) between a full battery at 16.8V and an empty battery at 12.8V : 
+In order to monitor battery voltage, it is connected to the ADC over a voltage divider with a ratio of 3.35 to 1 (see the schematic below). A fully charged LiPo 4S battery at 16.8V will be reduced to 5.01V, which coincides with the upper bound of the ADC. The ADC has 10 bit resolution (1024 steps) or 0.00488V per step \\($5.0V / 1024 steps$). This circuit design will provide an effective resolution ($R_{Eff}$) between a full battery at 16.8V and an empty battery at 12.8V :
 \\ $R_{Eff} = (16.8V - 12.8V) / 0.00488V = 243 steps$
 
-The \textit{Measured Voltage} is related to the \textit{Raw Values} (obtained from the ADC) by a divisor variable and an offset variable. Values of which has to be calibrated after construction for each device to compensate for component deviations. 
+The \textit{Measured Voltage} is related to the \textit{Raw Values} (obtained from the ADC) by a divisor variable and an offset variable. Values of which has to be calibrated after construction for each device to compensate for component deviations.
 
 \paragraph{Validation}
 
@@ -612,11 +612,11 @@ The CL1 Clamp Firmware was designed to receive serial commands from the integrat
 \end{table}
 
 
-All commands received by the firmware are treated as real-time commands, allowing motion to be started, modified, or stopped at any time. This is crucial for upper-level controllers (on a PC) to assert full control over the hardware behaviour and stop it in emergency situations. This behaviour is inspired by many embedded real-time Computer Numeric Control (CNC) motion controllers, such as tinyg2 \parencite{G2core2023} and grbl \parencite{jeonGrbl2019}. 
+All commands received by the firmware are treated as real-time commands, allowing motion to be started, modified, or stopped at any time. This is crucial for upper-level controllers (on a PC) to assert full control over the hardware behaviour and stop it in emergency situations. This behaviour is inspired by many embedded real-time Computer Numeric Control (CNC) motion controllers, such as tinyg2 \parencite{G2core2023} and grbl \parencite{jeonGrbl2019}.
 Table \ref{table:command-list-cl1-firmware} lists all the commands supported by the controller.
 
 
-In order to avoid blocking the main control loop, all motion commands are processed in an asynchronous manner. This was achieved by setting an internal state in the controller, such as a target position, and defer the execution to the motion control subroutine in the main control loop. The Motion Control Subroutine can then be executed regularly to perform motion control \seeref{section:exploration-1-demonstration}. For other commands, such as the settings \verb|(\$)| commands, the status report \verb|(?)| and the stop command, were executed immediately. 
+In order to avoid blocking the main control loop, all motion commands are processed in an asynchronous manner. This was achieved by setting an internal state in the controller, such as a target position, and defer the execution to the motion control subroutine in the main control loop. The Motion Control Subroutine can then be executed regularly to perform motion control \seeref{section:exploration-1-demonstration}. For other commands, such as the settings \verb|(\$)| commands, the status report \verb|(?)| and the stop command, were executed immediately.
 
 In this exploration round, there was no mechanism to ensure command packages are not lost during transmission. There was a risk that a movement command may be lost and the controller will not start the motion. This was a known issue that was addressed in the next exploration round \seeref{subsection:exploration-2-clamp-controller-l2}.
 
@@ -643,7 +643,7 @@ A linear profile motion controller was implemented to control the motion of the 
     \label{fig:linear-motion-profile}
 \end{figure}
 
-When the Motor Control Subroutine is entered, it computes the current tracking position using the motion trajectory and computes the {\tt tracking\_position\_error} by comparing it with the encoder readings. 
+When the Motor Control Subroutine is entered, it computes the current tracking position using the motion trajectory and computes the {\tt tracking\_position\_error} by comparing it with the encoder readings.
 Figure \ref{fig:linear-motion-profile} shows the motion profile in a graphical way. Green arrows are the parameters that define the motion profile and brown arrows are the changing tracking targets.
 The equations of motion are as follows:
 
@@ -655,9 +655,9 @@ tracking\_position\_error &= tracking\_position - current\_position \nonumber \\
 
 A bang-bang control logic is implemented for simplicity. When the position error is positive, the motor is set at full power to catch-up. Otherwise, the motor is set to cruising mode (no power, high impedance) and allowed to slow down. No control deadband was programmed. This low level control subroutine is not being throttled by a timer. Therefore it runs as frequently as the main control loop and therefore it may be executed irregularly. Despite the simplicity of bang-bang control, it was tested to be functional over a variety of speed from 0 to 2mm/s. The mechanical dampening likely contributed to its relatively smooth motion.
 
-During the motion tracking, if the position error is too large, the controller will consider it as a tracking failure and will switch over to a stopped state. This is a protection for when the assembly resistance is too great for the motor to keep up with the designated speed. It is possible to try a failed motion again with a slower speed, but tests have shown that the assembly resistance will eventually increase to the point that the motor cannot keep up again. In general this is referred to as a stall state. 
+During the motion tracking, if the position error is too large, the controller will consider it as a tracking failure and will switch over to a stopped state. This is a protection for when the assembly resistance is too great for the motor to keep up with the designated speed. It is possible to try a failed motion again with a slower speed, but tests have shown that the assembly resistance will eventually increase to the point that the motor cannot keep up again. In general this is referred to as a stall state.
 
-Extra protection was added to avoid overheating the motor and the driver. This is implemented by detecting whether the encoder values have changed within a certain time. If power was applied to the motor and the encoder did not rotate, the controller would stop and enter the stalled state. 
+Extra protection was added to avoid overheating the motor and the driver. This is implemented by detecting whether the encoder values have changed within a certain time. If power was applied to the motor and the encoder did not rotate, the controller would stop and enter the stalled state.
 
 Table \ref{table:cl1-firmware-motion-control-parameters} shows the main control parameters and their tuned values used in the demonstration. The motion control algorithm is validated with the CL1 hardware and its positioning repeatability is within 0.2mm.
 
@@ -729,7 +729,7 @@ The list below shows a number of planned tests with the CL1 Clamp. They were suc
 \subsection{Successful Validation}
 \label{subsection:exploration-1-successful-validation}
 
-During the setup, a manual valve was used to actuate the hanging gripper and there was no difficulty positioning the clamp on the column. Figure \ref{fig:cl1-clamp-hanging-photo} shows the clamp hanging from the column. The spring loaded grip between them was firm and stable. 
+During the setup, a manual valve was used to actuate the hanging gripper and there was no difficulty positioning the clamp on the column. Figure \ref{fig:cl1-clamp-hanging-photo} shows the clamp hanging from the column. The spring loaded grip between them was firm and stable.
 
 \begin{figure}[h]
     \centering
@@ -738,7 +738,7 @@ During the setup, a manual valve was used to actuate the hanging gripper and the
     \label{fig:cl1-clamp-hanging-photo}
 \end{figure}
 
-The clamp’s weight is 4.9kg without a battery. This raised a concern for its future when it is not hanging in a perfectly vertical column because this much mass may cause a lot of deformation to the partially-assembled structure. Nothing was done to address this problem in this Exploration Round because it did not cause a problem for the test. In the next rounds, the weight issue was gone because of the new clamp designs. 
+The clamp’s weight is 4.9kg without a battery. This raised a concern for its future when it is not hanging in a perfectly vertical column because this much mass may cause a lot of deformation to the partially-assembled structure. Nothing was done to address this problem in this Exploration Round because it did not cause a problem for the test. In the next rounds, the weight issue was gone because of the new clamp designs.
 
 Figure \ref{fig:manual-place-beam} shows the manual placement of the beam into the clamp jaws. It was carefully placed to align the two halves of the lap joint. The horizontal surface in the clamp jaw was found capable of supporting the beam steadily. However, it was also apparent that this would not have been possible if the beam had been tilted at an angle \seeref{subsection:exploration-1-beam-support-needed-during-clamping}.
 
@@ -751,7 +751,7 @@ Figure \ref{fig:manual-place-beam} shows the manual placement of the beam into t
 
 There was no alignment features used between the beam and the clamp jaw, as was intended in the initial design. The plan was to first test without the features before introducing them. However, the instability problem if the beam were to be tilted, makes this exploration obsolete as it is clear that a different alignment solution is needed.
 
-During the robotic motion, both jaws maintained steady and synchronous movement at 2.5mm/s, the total distance travelled was 105mm (see Figure \ref{fig:cl1-clamp-closing-photo}). The horizontal beam can be seen moving steadily without slip-stick behaviour while closing the joint.  
+During the robotic motion, both jaws maintained steady and synchronous movement at 2.5mm/s, the total distance travelled was 105mm (see Figure \ref{fig:cl1-clamp-closing-photo}). The horizontal beam can be seen moving steadily without slip-stick behaviour while closing the joint.
 
 \begin{figure}
     \centering
@@ -787,7 +787,7 @@ The clamp jaw is able to close until 150mm before it touches on the solid piece 
 \paragraph{Possible Cause}
 
 \begin{itemize}[nosep]
-    \item Despite not being specified by the manufacturer, the linear actuator is likely designed to be used for pushing against a compressive load. The use case here required the actuator to pull, and thus, its body is subjected to tension. 
+    \item Despite not being specified by the manufacturer, the linear actuator is likely designed to be used for pushing against a compressive load. The use case here required the actuator to pull, and thus, its body is subjected to tension.
     \item The mounting plate is connected to the casing of the gearbox that is not intended for this purpose.
 \end{itemize}
 
@@ -802,15 +802,15 @@ A quick search revealed that off-the-shelf linear actuators capable of pulling a
     \end{itemize}
     \item Design and build a custom screw mechanism for linear actuation
     \begin{itemize}
-        \item Implemented and tested with success in the next Exploration Round \seeref{subsection:exploration-2-ball-screw-linear-actuator}. 
+        \item Implemented and tested with success in the next Exploration Round \seeref{subsection:exploration-2-ball-screw-linear-actuator}.
     \end{itemize}
 \end{itemize}
 
 Upon reflection, it is likely that if the motor were stalled long enough, the motor driver would also overheat and become damaged. The solution would require the firmware to include stall detection and cut power to the driver if a stall is detected. This is implemented when designing the next motion control algorithm \seeref{subsection:exploration-2-motion-control-for-dc-servo-motor}
-This reflection also led to the realisation of a new protection concept for all DiRT tools: 
+This reflection also led to the realisation of a new protection concept for all DiRT tools:
 \begin{quote}
     The design of any DiRT tool should protect against self-destruction. The actions of the DiRT tool, even under incorrect control, should never cause irreversible damage to its own components.
-\end{quote} 
+\end{quote}
 This concept remained relevant for the rest of the thesis guiding the mechatronics development of later tools and systems.
 
 \subsection{Electronics Brownout}
@@ -831,11 +831,11 @@ In the linear regulator design, input and output capacitors were provided to buf
     \begin{itemize}
         \item This was implemented and tested in Exploration Round 2 \seeref{subsection:exploration-2-cl3-clamp-electronics}
     \end{itemize}
-    \item Add digital stall protection in motor controller firmware to limit stall duration. 
+    \item Add digital stall protection in motor controller firmware to limit stall duration.
     \begin{itemize}
         \item This was implemented and tested successfully in Exploration Round 2 \seeref{subsection:exploration-2-motion-control-for-dc-servo-motor}
     \end{itemize}
-    \item Use a separate battery for microcontroller - This could be a very stable solution and can potentially be very robust. However, this also adds an extra battery on-board and would increase operator workload to replace and recharge. 
+    \item Use a separate battery for microcontroller - This could be a very stable solution and can potentially be very robust. However, this also adds an extra battery on-board and would increase operator workload to replace and recharge.
     \begin{itemize}
         \item This was not implemented because the other solutions were sufficient.
     \end{itemize}
@@ -844,7 +844,7 @@ In the linear regulator design, input and output capacitors were provided to buf
 \subsection{Unstable Clamp Jaw}
 \label{subsection:exploration-1-unstable-clamp-jaw}
 
-The unstable clamp jaw problem was discovered almost immediately after the CL1 design was constructed. It is caused by a design error of using round linear bushings and assuming the linear actuator can act as the second linear guide. 
+The unstable clamp jaw problem was discovered almost immediately after the CL1 design was constructed. It is caused by a design error of using round linear bushings and assuming the linear actuator can act as the second linear guide.
 
 Unfortunately, due to the mounting points provided by the actuator, it is difficult to fix its base rigidly to provide enough stiffness against rotation. The rotational motion of the jaw does not cause any operational problem during the tests. However, there is a chance that this movement creates unintentional forces to other components and causes damage. Figure \ref{fig:cl1-broken-jaw-photo} of CL1 with the disassembled jaw shows the two round bushings that contributed to the instability.
 
@@ -867,7 +867,7 @@ Unfortunately, due to the mounting points provided by the actuator, it is diffic
         \item These guides are capable of resisting rotation with a single rail but their load ratings are also relatively low due to the small contact surface area over the balls. However their popularity and low cost offered by generic brands justified a test in Exploration Round 2 \seeref{subsection:exploration-2-ball-screw-linear-actuator}
     \end{itemize}
 \end{itemize}
-        
+
 \subsection{Beam Support Needed During Clamping}
 \label{subsection:exploration-1-beam-support-needed-during-clamping}
 
@@ -875,7 +875,7 @@ To further elaborate the problem observed before \seeref{subsection:exploration-
 
 \paragraph{Possible Solution and Follow-Up}
 
-The most obvious solution to this issue was to use the robotic arm to support the weight of the moving beam. Since the robotic arm was designed to transfer the timber beam to the clamps, it simply has to keep holding it while it moves. The beam gripper would then release the beam after the joints are securely clamped. 
+The most obvious solution to this issue was to use the robotic arm to support the weight of the moving beam. Since the robotic arm was designed to transfer the timber beam to the clamps, it simply has to keep holding it while it moves. The beam gripper would then release the beam after the joints are securely clamped.
 
 On the positive side, it is a solution with very little or no additional hardware requirements, therefore it is easy to implement from the hardware perspective. The design of clamps can be also simplified because it no longer has to support the beam, making them easier to build and lighter weight. However, the worrying concern was that the movement of the robot and the clamps will have to be synchronised. This is known to be possible in industrial settings where external axes are integrated with the robot arm’s motion controller. However, synchronising it with an experimental remote-controlled device has no precedence and the programming and control implementation is likely to be challenging.
 
@@ -919,7 +919,7 @@ After trying to find alternative solutions with no avail, my decision was to pur
 \end{figure}
 
 
-A design study was conducted to determine if it is possible to create a demonstrator structure with only orthogonal lap joints. The intention is to understand whether the limitation of the CL3 Clamp is acceptable for creating convincing demonstration. Figure \ref{fig:design-study-ortho-lap-joint} shows some of the design sketches.  
+A design study was conducted to determine if it is possible to create a demonstrator structure with only orthogonal lap joints. The intention is to understand whether the limitation of the CL3 Clamp is acceptable for creating convincing demonstration. Figure \ref{fig:design-study-ortho-lap-joint} shows some of the design sketches.
 
-\todo{Following paragraph is rephrased}
+% \todo{Following paragraph is rephrased}
 Throughout the design exercise, I found that it is very limiting to use only orthogonal joints. It was not possible to create triangulation for structural stability or to create an angled roof. The lower right option in Figure \ref{fig:design-study-ortho-lap-joint} where the joints are oriented differently is perhaps the most visually interesting. However these designs remain very sculptural due to the inability to create a structurally strong enclosure with architectural relevance. Nevertheless, this design exercise served to inform the development in the next round \seeref{section:exploration-2-goal} to prioritise redesigning the clamp to handle non-orthogonal lap joints.

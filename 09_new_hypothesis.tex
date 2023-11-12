@@ -11,12 +11,12 @@ A robotic assembly process can be seen as a continuous chain of automatic operat
 
 Reflecting on the three demonstrator construction, it became apparent that alignment and corrections were not always successful, as deviations could be larger than expected. This prompted an investigation into the sources of these deviations and the potential for developing models to better predict them. Towards the end of this thesis, after examining all alignment scenarios, a pattern for modelling the alignment and correction problem emerged. This led to a new hypothesis -- a statistical model capable of predicting the probability of successful alignment by considering deviation, tolerance, and the correction method applied.
 
-This chapter will introduce the this hypothesis centred around the probabilistic model of successful spatial alignment and explore its implications for the broader assembly domain. It is important to note that this model has not been tested within the scope of this thesis but the current findings shows that the model is in agreement with the observations. Further studies are required to confirm its completeness, validity, and practicality. 
+This chapter will introduce the this hypothesis centred around the probabilistic model of successful spatial alignment and explore its implications for the broader assembly domain. It is important to note that this model has not been tested within the scope of this thesis but the current findings shows that the model is in agreement with the observations. Further studies are required to confirm its completeness, validity, and practicality.
 
 \section{Modelling Alignment and Correction}
 \label{section:new-hypo-modelling-alignment-correction}
 
-Let's begin by looking at the Table \ref{table:alignment-scenarios} that outlines all the alignment scenarios performed. Because only one robot was used for the assembly, there is a clear distinction between the objects moving together with the robot, versus the others that are stationary. Therefore, the scenarios presented in the table can all be described as ``Some part(s) on the \textbf{robot-side} attempting to align with some other part(s) on the \textbf{stationary-side}". 
+Let's begin by looking at the Table \ref{table:alignment-scenarios} that outlines all the alignment scenarios performed. Because only one robot was used for the assembly, there is a clear distinction between the objects moving together with the robot, versus the others that are stationary. Therefore, the scenarios presented in the table can all be described as ``Some part(s) on the \textbf{robot-side} attempting to align with some other part(s) on the \textbf{stationary-side}".
 
 \FloatBarrier
 \begin{table}[ht]
@@ -31,14 +31,14 @@ Let's begin by looking at the Table \ref{table:alignment-scenarios} that outline
 
 Observations during the construction of the three demonstrators (from Exploration Round 2 to 5) indicated that there are many different factors affecting the amount of deviation in each of the alignment scenarios. They affect whether the total pairwise deviation can be corrected and thus the chance of successful assembly. Below are some examples of the success factors:
 
-\begin{description}[style=unboxed] % Environment provided enumitem package
-	\item [Tight tolerance, deviation of partially assembled structure] When picking up tools from the structure (types \#3 and \#7), the alignment between robot-side ATC and tool-side ATC has a very low chance of success \seeref{subsection:exploration-3-docking-adapter-misalignment}. This may be caused by a combination of the small allowable tolerance (2mm) governed by the design of the ATC and the high deformation of the partially built structure from which the tool is hanging. 
+\begin{description}[] % Environment provided enumitem package
+	\item [Tight tolerance, deviation of partially assembled structure] When picking up tools from the structure (types \#3 and \#7), the alignment between robot-side ATC and tool-side ATC has a very low chance of success \seeref{subsection:exploration-3-docking-adapter-misalignment}. This may be caused by a combination of the small allowable tolerance (2mm) governed by the design of the ATC and the high deformation of the partially built structure from which the tool is hanging.
 
 	\item [Correction range] Comparing the two joint closure methods, screwing closure (type \#6) have a much higher success rate than clamping closure (type \#1). This may be explained by the pointy tip of the screwdriver aiming at a relatively large pre-drilled hole.
 
 	\item [Deviation] When retrieving tools from and returning tools to the stationary tool storage (type \#4, \#5 and \#8), the alignment has a very high success rate when compared to other alignment types. This may be explained by the fact that tool storage alignment is performed manually by teaching, there is no deviation of the tool storage afterwards and the robotic platform is repeatable. In other alignment scenarios, the target is novel and may be deformed from its designated location.
 
-	\item [Payload] During the transport of a beam to the work area, if the beam is very heavy \seeref{subsection:exploration-4-heavy-beam-caused-robot-overload} or if the grasp is not near the center of the beam, the chance of success is low. 
+	\item [Payload] During the transport of a beam to the work area, if the beam is very heavy \seeref{subsection:exploration-4-heavy-beam-caused-robot-overload} or if the grasp is not near the center of the beam, the chance of success is low.
 
 \end{description}
 
@@ -51,10 +51,10 @@ In order to create a unified model to include different deviation factors, I fir
     \centering
     \includegraphics[width=0.99\textwidth]{images/09/Alignment Error Two Kinematic Chain.pdf}
     \caption{Diagram of a type \#1 alignment scenario}
-    \label{fig:type-1-alignment-scenario}
+    \label{fig:type-one-alignment-scenario}
 \end{figure}
 
-Figure \ref{fig:type-1-alignment-scenario} shows a type \#1 alignment scenario where two joints needs to be aligned. Two \textbf{structural chains} can be identified from a fixed reference (the ground and the ceiling) towards the two points of alignment \parencite{slocumPrecisionMachineDesign1992}. On the robot-side, the timber joint is located on a beam held by the robot through a gripper. On the stationary-side, the timber joint is located on the partially built timber structure, which is located on a temporary platform. In a perfect scenario, the alignment point (or pose) on each side should both be equal to the target that is extracted from the CAD model. I refer to this as the ‘\textbf{ground truth}’. In reality, due to imperfection of each component in the structural loop, both alignment points will be deviated from the ground truth. These imperfections include stiffness of the timber material, accuracy of the prefabricated timber parts, deformation of the machine parts and inaccuracy of the robotic control systems. 
+Figure \ref{fig:type-one-alignment-scenario} shows a type \#1 alignment scenario where two joints needs to be aligned. Two \textbf{structural chains} can be identified from a fixed reference (the ground and the ceiling) towards the two points of alignment \parencite{slocumPrecisionMachineDesign1992}. On the robot-side, the timber joint is located on a beam held by the robot through a gripper. On the stationary-side, the timber joint is located on the partially built timber structure, which is located on a temporary platform. In a perfect scenario, the alignment point (or pose) on each side should both be equal to the target that is extracted from the CAD model. I refer to this as the ‘\textbf{ground truth}’. In reality, due to imperfection of each component in the structural loop, both alignment points will be deviated from the ground truth. These imperfections include stiffness of the timber material, accuracy of the prefabricated timber parts, deformation of the machine parts and inaccuracy of the robotic control systems.
 
 \subsubsection{Probabilistic Model}
 \label{subsubsection:probabilistic-model}
@@ -73,23 +73,23 @@ In practice, it is possible to quantify the PDF of a random variable (such as th
 \end{figure}
 
 
-The use of PDF and CDF is related to, but different from the typical accuracy representation in the field of robotics. When discussing machine accuracy, it is more common to measure trueness (difference between ground truth and statistical mean) and precision (standard deviation of the distribution). 
+The use of PDF and CDF is related to, but different from the typical accuracy representation in the field of robotics. When discussing machine accuracy, it is more common to measure trueness (difference between ground truth and statistical mean) and precision (standard deviation of the distribution).
 
 \subsubsection{Worst-Case Deviation}
 \label{subsubsection:worst-case-deviation}
 
-For the purpose of assembly, only the worst-case deviation between the two alignment points have to be considered for determining whether the alignment is sufficiently good. The use of CDF allows us to directly model the alignment problem by relating the threshold value and the probability of the actual value falling within range. 
+For the purpose of assembly, only the worst-case deviation between the two alignment points have to be considered for determining whether the alignment is sufficiently good. The use of CDF allows us to directly model the alignment problem by relating the threshold value and the probability of the actual value falling within range.
 
-Given the following variables: 
+Given the following variables:
 
 \begin{itemize}[nosep, leftmargin=20mm]
-	\item [$d$] is the measured deviation of the two alignment points across the open structural loop. It is assumed to be a random variable because of the random imperfections in the system. 
-	\item [$D$] is the probability distribution of the random deviation $d$, 
-	\item [$x$] is a variable representing a deviation threshold to be analysed 
-	\item [$K_D \in (0,1)$] represents the probability that $d$ takes on a value less than or equal to $x$. 
+	\item [$d$] is the measured deviation of the two alignment points across the open structural loop. It is assumed to be a random variable because of the random imperfections in the system.
+	\item [$D$] is the probability distribution of the random deviation $d$,
+	\item [$x$] is a variable representing a deviation threshold to be analysed
+	\item [$K_D \in (0,1)$] represents the probability that $d$ takes on a value less than or equal to $x$.
 \end{itemize}
 
-Using the cumulative distribution function $F_D ()$, the variable $K_D \in (0,1)$ is defined as the probability that $d$ takes on a value less than or equal to $x$: 
+Using the cumulative distribution function $F_D ()$, the variable $K_D \in (0,1)$ is defined as the probability that $d$ takes on a value less than or equal to $x$:
 
 \begin{equation}
     K_D = F_D (x)
@@ -98,35 +98,35 @@ Using the cumulative distribution function $F_D ()$, the variable $K_D \in (0,1)
 \subsubsection{Allowable Tolerance and Correction Mechanism}
 \label{subsubsection:allowable-tolerance-and-correction-mechanism}
 
-The allowable assembly tolerance of the mating features (such as the gap in a pin-in-hole assembly or the gap on a loose joint pair) can be described with a single variable. It is the maximum threshold of deviation $d$ such that the assembly is still successful. It is defined as: 
+The allowable assembly tolerance of the mating features (such as the gap in a pin-in-hole assembly or the gap on a loose joint pair) can be described with a single variable. It is the maximum threshold of deviation $d$ such that the assembly is still successful. It is defined as:
 
 \begin{itemize}
-	\item $T$ as the allowable assembly tolerance 
+	\item $T$ as the allowable assembly tolerance
 \end{itemize}
 
-If a correction mechanism is used, such as chamfered edges passive correction or camera-marker active correction. The properties of the correction mechanism or process are defined as: 
+If a correction mechanism is used, such as chamfered edges passive correction or camera-marker active correction. The properties of the correction mechanism or process are defined as:
 
 \begin{itemize}[nosep]
 	\item $C_{Range}$ as the maximum correctable range (e.g. size of chamfered joint edge)
 
-	\item  $K_D \in (0,1)$ as the success rate of the correction method. 
+	\item  $K_D \in (0,1)$ as the success rate of the correction method.
 
 \end{itemize}
 
 \subsubsection{Model and Computation}
 \label{subsubsection:model-and-computation}
 
-\textbf{The numerical representation and units} have to be consistent for $d$, $x$, $T$, $C_{Range}$ and $C_{Residual}$. For the sake of simple arithmetics, the subsequent explanation will only consider the absolute Cartesian distance for the deviation. Therefore it is represented as a signless real number. Alternatively, a transformation consisting of translation and rotation can be used. However, the transformation arithmetics will be outside the scope of this explanation. 
+\textbf{The numerical representation and units} have to be consistent for $d$, $x$, $T$, $C_{Range}$ and $C_{Residual}$. For the sake of simple arithmetics, the subsequent explanation will only consider the absolute Cartesian distance for the deviation. Therefore it is represented as a signless real number. Alternatively, a transformation consisting of translation and rotation can be used. However, the transformation arithmetics will be outside the scope of this explanation.
 
-The probability of successful assembly $S \in (0, 1)$ is defined according to the newly proposed Alignment-Correction Model to relate $S$ as a function of $d$ with three intervals: 
+The probability of successful assembly $S \in (0, 1)$ is defined according to the newly proposed Alignment-Correction Model to relate $S$ as a function of $d$ with three intervals:
 
-\begin{description}[style=unboxed, nosep] % Environment provided enumitem package
+\begin{description}[] % Environment provided enumitem package
 	\item [No correction needed] if $d \le q$ T then $S = 1$\\ Explanation: No correction is needed because the deviation is within the allowable tolerance.
 	\item [Correction success] if $T < d \leq C_{Range}$ \\ Explanation: The deviation is within the range of the correction mechanism and its residual deviation is within the allowable tolerance.
 	\item [Correction failure] if $C_{Range} < d$ then $S = 0$
 \end{description}
 
-The function of $S(d)$ can be expressed by: 
+The function of $S(d)$ can be expressed by:
 
 \begin{subequations} \label{eq:probability-of-success}
   \begin{empheq}[left={S(d) = }\empheqlbrace]{align}
@@ -135,6 +135,16 @@ The function of $S(d)$ can be expressed by:
      0 &\text{ , if } C_{Range} < d \label{eq:probability-of-success-III}
   \end{empheq}
 \end{subequations}
+
+% missing equation here
+% \begin{subequations} \label{eq:probability-of-success}
+%     S(d) =
+%        1 &\text{ , if } d \le T \label{eq:probability-of-success-I}\\
+%        K_c &\text{ , if } T < d \le C_{Range} \label{eq:probability-of-success-II}\\
+%        0 &\text{ , if } C_{Range} < d \label{eq:probability-of-success-III}
+
+%   \end{subequations}
+
 
 Note that some correction mechanisms do not correct the deviation to zero but to within a certain range. It is important for this residual deviation after correction to be smaller than $T$, such that it can be accommodated by the allowable tolerance. In practice, the allowable tolerance and residual deviation are physical properties of the mating feature and the correction system, which can always be satisfied by proper design of the correction mechanism. For example, in the camera-marker correction system, the convergence value is designed to ensure successful alignment with the docking adapter.
 
@@ -171,7 +181,7 @@ Figure \ref{fig:distribution-of-alignment-points-graph} depicts the same concept
 The combined probability of success $S$ for all three zones can be found by combining Equations \ref{eq:probability-interval-I} and \ref{eq:probability-interval-II} using the summation of probability. Note that interval \textrm{III} is not included because the probability of success is zero.
 
 \begin{equation} \label{eq:probability-of-three-intervals}
-    S = K_I \cdot S(d \le T) + K_{II} \cdot S(T < d \le C_{Range})   
+    S = K_I \cdot S(d \le T) + K_{II} \cdot S(T < d \le C_{Range})
 \end{equation}
 
 Expending the terms using Equations \ref{eq:probability-of-success-I}, \ref{eq:probability-of-success-II}, \ref{eq:probability-interval-I} and \ref{eq:probability-interval-II}:
@@ -184,19 +194,19 @@ After arranging some terms:
 
 \begin{align} \label{eq:probability-expanded-rearranged}
     S &= F_D(T) + F_D (C_{Range}) \cdot K_C - F_D(T) \cdot K_C \nonumber \\
-      &= F_D(T) \cdot (1 - K_C) + F_D(C_{Range}) \cdot K_C 
+      &= F_D(T) \cdot (1 - K_C) + F_D(C_{Range}) \cdot K_C
 \end{align}
 
 In this thesis, in the cases where tight fitting joints are aligned with each other, there is zero tolerance $(T = 0)$ , thus $F_D(T) = 0$. In this special case, the formula can be simplified to:
 
 \begin{equation} \label{eq:probability-when-zero-tolerance}
-    S = F_D(C_{Range}) \cdot K_C 
+    S = F_D(C_{Range}) \cdot K_C
 \end{equation}
 
 \subsection{Application}
 \label{subsection:new-hypo-model-application}
 
-There are many ways that the model can be used. For example, to design a robotic system for a given structure with a \textbf{predictable success probability}, it is possible to check all the alignment scenarios (after Task and Motion Planning (TAMP) is performed with the given robots, tool setup and design) within the process to determine its success probability. 
+There are many ways that the model can be used. For example, to design a robotic system for a given structure with a \textbf{predictable success probability}, it is possible to check all the alignment scenarios (after Task and Motion Planning (TAMP) is performed with the given robots, tool setup and design) within the process to determine its success probability.
 
 Given $N$ steps in a process, and each step has a success probability of $S(i)$ where $i$ is the index of a step. If success at each step is required for an overall success, the total probability of success $S$ can be found by multiplying the success probabilities of each step together.
 
@@ -216,25 +226,25 @@ Note that the distribution of $D$ is dependent on the states of the robot and pa
 
 Another application is for designing the assembly details. For example, if the success rate for a certain type of alignment is statistically low. It may indicate that the tolerance or the correction mechanism for that type of scenario has to be adjusted, such as increasing the size of the edge chamfer or the field of view of the camera system. It is even possible to automatically assign an appropriate amount of edge chamfer to each joint until a satisfactory success rate is achieved.
 
-It is also possible to use the model as a comparison tool when choosing robotic system components. For example, the accuracy of a specific robotic arm, gantry, or docking adapter can often be found from datasheet or by measurement. The amount of deviation can be used to compute the how it affects the success rate of a certain alignment scenario and compare it with other alternatives. It is also possible to compare the suitability of different robotic setup for a specific assembly task, such as a given structural design. 
+It is also possible to use the model as a comparison tool when choosing robotic system components. For example, the accuracy of a specific robotic arm, gantry, or docking adapter can often be found from datasheet or by measurement. The amount of deviation can be used to compute the how it affects the success rate of a certain alignment scenario and compare it with other alternatives. It is also possible to compare the suitability of different robotic setup for a specific assembly task, such as a given structural design.
 
 In conclusion, the Alignment-Correction Model allows us to analyse and predict the success rate of various assembly alignment scenarios in a robotic process. By taking into account deviation, tolerance and the correction method, this model enables production engineers, system designers and structure designers to identify potential problems, make informed decisions and predict execution outcomes. It is generalisable, mathematically simple and can be implemented computationally to allow quick and comprehensive check of all the alignment scenarios. These factors are important to ensure an efficient fabrication-aware design process.
 
 \subsection{Chaining Deviation}
 \label{subsection:new-hypo-model-chaining-deviation}
 
-In the previous section, the deviation is assumed to be a probability distribution. This section,discuss the procedures to quantify this distribution. 
+In the previous section, the deviation is assumed to be a probability distribution. This section,discuss the procedures to quantify this distribution.
 
-Refer to the structural loop diagram (Figure \ref{fig:type-1-alignment-scenario}). Each side of the open loop consist of a number of components between the fixed ground and the alignment point. Assuming each of these components are affected by random imperfections, each of them contribute to the deviation, and accumulate at the point of alignment. The total deformation on each link can therefore be modelled as a forward kinematics problem where the deviation caused by each component is modelled as a rigid transformation $[Z]$ and the geometrical distance for each link is modelled as rigid transformation $[X]$. For a given chain $P$ The general kinematic chain equation allows the total chain deviation $T_P$ to be computed:
+Refer to the structural loop diagram (Figure \ref{fig:type-one-alignment-scenario}). Each side of the open loop consist of a number of components between the fixed ground and the alignment point. Assuming each of these components are affected by random imperfections, each of them contribute to the deviation, and accumulate at the point of alignment. The total deformation on each link can therefore be modelled as a forward kinematics problem where the deviation caused by each component is modelled as a rigid transformation $[Z]$ and the geometrical distance for each link is modelled as rigid transformation $[X]$. For a given chain $P$ The general kinematic chain equation allows the total chain deviation $T_P$ to be computed:
 
 \begin{equation} \label{eq:one-chain-deviation}
-    [T_P] = [Z_{P1}][X_{P1}][Z_{P2}][X_{P2}] \cdots [X_{P_{n-1}}][Z_{Pn}] 
+    [T_P] = [Z_{P1}][X_{P1}][Z_{P2}][X_{P2}] \cdots [X_{P_{n-1}}][Z_{Pn}]
 \end{equation}
 
 Where total deviation $d$ between the two alignment points on chain $P$ and $Q$ can be found by:
 
 \begin{equation} \label{eq:two-chain-deviation}
-    d = [T_P][T_Q]^T 
+    d = [T_P][T_Q]^T
 \end{equation}
 
 While this representation of $d$ using rigid transformation is quite accurate, the complex representation is hard to be used for statistical analysis. In order to simplify the analysis, only the absolute positional deviation is considered in each of these components, which can be represented by a single number. In practice, the rotation component is often small enough and the Abby error associated with it is small. For a conservative analysis, the worst-case combined deviation of $N$ links in the structural chain $P$ is defined as $d_P$:
@@ -247,7 +257,7 @@ And the total deviation $d$ between the two alignment points on chain $P$ and $Q
 
 \begin{align} \label{eq:deviation-with-two-links}
     d &= d_P + d_Q \nonumber\\
-      &= d_{P1} + d_{P2} + \cdots + d_{PN} + d_{Q1} + d_{Q2} + \cdots + d_{QN} 
+      &= d_{P1} + d_{P2} + \cdots + d_{PN} + d_{Q1} + d_{Q2} + \cdots + d_{QN}
 \end{align}
 
 Because of the simple summation, there is no more differentiation between the elements in either one of the chains. All the links can be treated in the same way. Therefore, for a structural loop with N links in total, d can be decomposed into:
@@ -262,7 +272,7 @@ Recall that each of the deviation components is a random statistical distributio
     F_{XY}(x,y) = F_X(x) \cdot F_Y(y)
 \end{equation}
 
-For a structural loop with $N$ links on both chains, the $F_D(d)$ evaluated at $d$ can be expanded. 
+For a structural loop with $N$ links on both chains, the $F_D(d)$ evaluated at $d$ can be expanded.
 \begin{equation}  \label{eq:probability-with-all-links}
     F_D(d) = F_1(d_1) \cdot F_2(d_2) \cdot \cdots \cdot F_N(d_N)
 \end{equation}
@@ -280,7 +290,7 @@ In conclusion, the simplification of the deviation from transformation to measur
     \label{fig:summation_error}
 \end{figure}
 
-Depending on the nature of the deviation in the link, there are different methods of obtaining its statistical distribution. All of them require fitting a probability distribution to a series of measured data or properties. Different distributions can be selected depending on the shape of the measured data as long as an effective CDF can be applied to the distribution. Table \ref{table:deviations_examples} provides some examples of deviations that are 
+Depending on the nature of the deviation in the link, there are different methods of obtaining its statistical distribution. All of them require fitting a probability distribution to a series of measured data or properties. Different distributions can be selected depending on the shape of the measured data as long as an effective CDF can be applied to the distribution. Table \ref{table:deviations_examples} provides some examples of deviations that are
 common in robotic assembly processes and how they can found:
 
 \begin{table}[h!]
@@ -296,10 +306,10 @@ common in robotic assembly processes and how they can found:
     \centering
     \includegraphics[width=0.99\textwidth]{images/09/Type one alignment scenario.jpg}
     \caption{Example of a type \#1 joint-to-joint alignment scenario. Photo taken during the construction of CantiBox.}
-    \label{fig:type_one_alignment_example}
+    \label{fig:type_one_alignment_example2}
 \end{figure}
 
-Figure \ref{fig:type_one_alignment_example} shows an example of a type \#1 joint-to-joint alignment scenario. In this simple example, the beam being assembled contains only one mating joint. The photo depicts the connectivity chain on the robot side P and stationary side Q at the alignment moment. The possible source of deviation and their quantification method for all parts and interfaces are listed in Table \ref{table:deviation-robot-side} and \ref{table:deviation-stationary-side}\footnote{The estimated deviation $d$ and the probability $F(d)$ in the experiment setup is listed for the purpose of an example, they are not derived from actual measurement.}.
+Figure \ref{fig:type_one_alignment_example2} shows an example of a type \#1 joint-to-joint alignment scenario. In this simple example, the beam being assembled contains only one mating joint. The photo depicts the connectivity chain on the robot side P and stationary side Q at the alignment moment. The possible source of deviation and their quantification method for all parts and interfaces are listed in Table \ref{table:deviation-robot-side} and \ref{table:deviation-stationary-side}\footnote{The estimated deviation $d$ and the probability $F(d)$ in the experiment setup is listed for the purpose of an example, they are not derived from actual measurement.}.
 
 \FloatBarrier
 
@@ -352,7 +362,7 @@ In the case where there is no tolerance (gap) in the design of this tight joint,
 \end{align}
 \endgroup
 
-The result shows that, under the above assumptions, the probability of successful assembly is approximately 0.77. 
+The result shows that, under the above assumptions, the probability of successful assembly is approximately 0.77.
 
 
 \subsection{Allowable Tolerance and Correctable Deviation}
@@ -360,7 +370,7 @@ The result shows that, under the above assumptions, the probability of successfu
 
 The Alignment-Correction model considers two mechanisms to counteract deviation, allowable tolerance and correction mechanism.
 
-\textbf{Allowable tolerance} refers to the allowable positional error between mating parts. For example, when designing a pin-in-hole assembly, engineers can dimension the pin to be smaller than the hole so that it can be assembled even if the two parts are not perfectly aligned.\footnote{Theoretically, the dimension of parts needs to also consider production tolerance. However, in the scale of an architectural assembly, the effect of positional deviation is so dominating that the effect of production tolerance can be ignored.} Therefore, in the first interval of equation \ref{eq:probability-of-success} where $ d \leq T$, no correction mechanism is necessary. 
+\textbf{Allowable tolerance} refers to the allowable positional error between mating parts. For example, when designing a pin-in-hole assembly, engineers can dimension the pin to be smaller than the hole so that it can be assembled even if the two parts are not perfectly aligned.\footnote{Theoretically, the dimension of parts needs to also consider production tolerance. However, in the scale of an architectural assembly, the effect of positional deviation is so dominating that the effect of production tolerance can be ignored.} Therefore, in the first interval of equation \ref{eq:probability-of-success} where $ d \leq T$, no correction mechanism is necessary.
 
 \begin{table}[b]
     \includegraphics[page=5, trim=25.4mm 132mm 23.4mm 33mm, clip, width=\textwidth]{tables/Tables in Chapter 9 to 11.pdf}
@@ -368,7 +378,7 @@ The Alignment-Correction model considers two mechanisms to counteract deviation,
     \label{table:list-of-correction-mechanism}
 \end{table}
 
-In cases where $d$ is larger than $T$ or a large $T$ is undesirable for the joint, a \textbf{correction mechanism} with a suitable $C_{Range}$ is needed. This is the case for the integral timber joints used in timber frame construction, which are often designed to be tight-fitting to maximise structural stiffness, thus resulting in zero allowable tolerance. Because perfect alignment is practically impossible, $d$ must be greater than zero. Therefore a correction method is needed, such as the chamfered edges implemented in this thesis. 
+In cases where $d$ is larger than $T$ or a large $T$ is undesirable for the joint, a \textbf{correction mechanism} with a suitable $C_{Range}$ is needed. This is the case for the integral timber joints used in timber frame construction, which are often designed to be tight-fitting to maximise structural stiffness, thus resulting in zero allowable tolerance. Because perfect alignment is practically impossible, $d$ must be greater than zero. Therefore a correction method is needed, such as the chamfered edges implemented in this thesis.
 Apart from the joint-to-joint alignment scenario, alignments between other mating pairs are also studied in this thesis. Table \ref{table:list-of-correction-mechanism} lists all the correction methods used in this thesis and their properties.
 
 \FloatBarrier
@@ -385,8 +395,8 @@ Observations made during the assembly of the HyparHut shows how the model agrees
 
 \begin{itemize}[nosep]
     \item Figure \ref{fig:tapered-screw-tip} shows the first point of contact between the screwdriver tip and the pre-drilled screw hole.
-    \item Figure \ref{fig:correction-failed} shows that the tapered screw tip alone ($C_{Range} = 4$) is not enough to correct the misalignment. In this case, $d$ is larger than $C_{Range}$ provided by the screwdriver tip. 
-    \item Figure \ref{fig:chamfering_tool} shows the hole chamfering tool that was used to cut the chamfer on the pre-drilled hole. This increased the total $C_{Range}$ by providing an extra guided entry, thus increasing $F_D(C_{Range})$. According to Equation \ref{eq:probability-when-zero-tolerance}, $S = F-{D}(C-{Range}) \times K-{C}$, the assembly success rate $S$ becomes larger. 
+    \item Figure \ref{fig:correction-failed} shows that the tapered screw tip alone ($C_{Range} = 4$) is not enough to correct the misalignment. In this case, $d$ is larger than $C_{Range}$ provided by the screwdriver tip.
+    \item Figure \ref{fig:chamfering_tool} shows the hole chamfering tool that was used to cut the chamfer on the pre-drilled hole. This increased the total $C_{Range}$ by providing an extra guided entry, thus increasing $F_D(C_{Range})$. According to Equation \ref{eq:probability-when-zero-tolerance}, $S = F-{D}(C-{Range}) \times K-{C}$, the assembly success rate $S$ becomes larger.
     \item Image \ref{fig:screwdriver_tip_successful} shows a successful alignment correction with the chamfered entry to the screw hole.
 \end{itemize}
 
@@ -433,7 +443,7 @@ The Alignment-Correction Model is also capable of modelling multi-stage alignmen
 \begin{enumerate}
 	\item After the camera-marker correction mechanism is introduced, the attachment of clamps to the partially-built timber structure (Type \#2, tested in CantiBox). The first correction stage is an active correction using the camera-marker correction method. After convergence, the second correction stage is passive guidance by the tapered pin of the clamp gripper.
 
-	\item The alignment for the screwed joint (Type \#6A and \#6B, tested in HyparHut). The first correction stage is passive guidance by the tapered screwdriver tip and chamfered screw hole. The second stage passive guidance by chamfered joint edges. 
+	\item The alignment for the screwed joint (Type \#6A and \#6B, tested in HyparHut). The first correction stage is passive guidance by the tapered screwdriver tip and chamfered screw hole. The second stage passive guidance by chamfered joint edges.
 
 \end{enumerate}
 In both scenarios, the $C_{Residual}$ of the first step is designed to be larger than the $C_{Range}$ of the second step. This ensures that the result of the first step will be within the allowable correction range of the second step. This also allows Equation \ref{eq:probability-expanded-rearranged} to be computed only once, using the $C_{Range}$ of the first step.
@@ -441,14 +451,14 @@ In both scenarios, the $C_{Residual}$ of the first step is designed to be larger
 \subsection{Multi-Point Alignment}
 \label{subsection:new-hypo-multi-point-alignment}
 
-Many of the alignment scenarios in this thesis require the alignment of more than one joint simultaneously. In this case, active correction by moving the robot side is challenging. This is because the deviation of each alignment point is likely to be a different vector that points to different directions. In this thesis, only the passive correction method is used for these scenarios, and the robot-side attempts to get as close to the ground truth as possible for the alignment to begin. 
+Many of the alignment scenarios in this thesis require the alignment of more than one joint simultaneously. In this case, active correction by moving the robot side is challenging. This is because the deviation of each alignment point is likely to be a different vector that points to different directions. In this thesis, only the passive correction method is used for these scenarios, and the robot-side attempts to get as close to the ground truth as possible for the alignment to begin.
 
 While there is no joint-to-joint error detection implemented in this thesis, if they were available, it may be feasible to develop algorithms for combining all error terms to find an optimal alignment position. An active correction would then be possible by moving the robot-side.
 
 \subsection{Cross-Examination with Observation}
 \label{subsection:new-hypo-cross-examination-with-observation}
 
-Table \ref{table:overview-of-alignment-variables-for-all-alignment} provides an overview of the variables, $D$, $T$, $C_{Range}$, and $C_{Residual}$ for all alignment-correct scenarios in this thesis. The rows are presented in the same order as Table \ref{table:alignment-scenarios}. The values of $T$, $C_{Range}$, and $C_{Residual}$ are actual values based on the design of the joint and the correction mechanisms. 
+Table \ref{table:overview-of-alignment-variables-for-all-alignment} provides an overview of the variables, $D$, $T$, $C_{Range}$, and $C_{Residual}$ for all alignment-correct scenarios in this thesis. The rows are presented in the same order as Table \ref{table:alignment-scenarios}. The values of $T$, $C_{Range}$, and $C_{Residual}$ are actual values based on the design of the joint and the correction mechanisms.
 
 \clearpage
 \begin{table}[ht!]
@@ -472,13 +482,13 @@ It is not the intention of this thesis to model the statistical distribution $D$
 Table \ref{table:t-and-d-values-for-all-alignment} provides an aggregation of $T$ and $D$ values from their estimation in the table above, comparing them using the limits in equation \ref{eq:probability-of-success}, and comparing it with an empirical observation of the success rate by the operator\footnote{The author is the operator in all three demonstrations}. Despite the very imprecise nature of the estimated values, it still provides a comparative study opportunity between different scenarios. The following comparisons show that the observations agree with the predictions from the model.
 
 \begin{itemize}
-	\item Deviation in \#4, \#5, and \#8 are always staying in interval \textrm{I}. Therefore, despite no correction mechanism being used, the observed alignment is always successful. 
+	\item Deviation in \#4, \#5, and \#8 are always staying in interval \textrm{I}. Therefore, despite no correction mechanism being used, the observed alignment is always successful.
 
 	\item \#2 and \#3 benefited from the addition of the camera-market correction method. $C_{Range}$ is increased substantially to 25mm. The model reflects the chance of success and agrees with the observation.
 
 	\item Deviation is larger in \#6B than \#6A due to the additional flying beam in the structural loop. This effect on success rate can be reflected in the model and agrees with the observation.
 
-	\item The observed success rate for \#1 went from ‘average’ in the BusStop demonstrator to ‘high’ in the CantiBox demonstrator. This is caused by better deformation management when designing the structure, and the bigger chamfer size used. 
+	\item The observed success rate for \#1 went from ‘average’ in the BusStop demonstrator to ‘high’ in the CantiBox demonstrator. This is caused by better deformation management when designing the structure, and the bigger chamfer size used.
 \end{itemize}
 
 \clearpage
@@ -487,7 +497,7 @@ Table \ref{table:t-and-d-values-for-all-alignment} provides an aggregation of $T
 
 The Alignment-Correction Model, introduced in the previous section, introduced the method to combine deviations of each component to perform a holistic estimation of deviation \seeref{subsection:new-hypo-alignment-correction-model}. In order to perform the calculations, the probability density function of deviation has to be determined for each of the components and interfaces in the kinematic chain \seeref{subsection:new-hypo-model-chaining-deviation}.
 
-Many of the industrial and robotic components, such as robotic arms, grippers and tool changers have a well documented accuracy. For example ISO9283 is a common standard for measuring the accuracy and repeatability of industrial robots \parencite{iso9283:1998ManipulatingIndustrialRobots1998}. The SCHUNK tool changer used in this thesis also has a datasheet that specifies its accuracy \parencite{schunkgmbh&co.kgSWSCatalog2023}. 
+Many of the industrial and robotic components, such as robotic arms, grippers and tool changers have a well documented accuracy. For example ISO9283 is a common standard for measuring the accuracy and repeatability of industrial robots \parencite{iso9283:1998ManipulatingIndustrialRobots1998}. The SCHUNK tool changer used in this thesis also has a datasheet that specifies its accuracy \parencite{schunkgmbh&co.kgSWSCatalog2023}.
 
 On the other hand, this thesis have encountered three significant sources of deviations that are not well studied in existing literature. They are:
 
@@ -497,14 +507,14 @@ On the other hand, this thesis have encountered three significant sources of dev
 	\item Accuracy of large-scale robotic platforms such as the gantry used in this thesis
 \end{itemize}
 
-While the methods to quantify these errors were not solved within this thesis. The insights gained from my observation is elaborated in this section to offer a starting point for future work to develop models that can predict them. 
+While the methods to quantify these errors were not solved within this thesis. The insights gained from my observation is elaborated in this section to offer a starting point for future work to develop models that can predict them.
 
 \subsection{Accuracy of Timber Parts}
 \label{subsection:new-hypo-accuracy-of-timber-parts}
 
 A key motivation behind this thesis is to harness the efficiency and accuracy offered by automated joinery machines. These machines are highly regarded for their precision and ability to eliminate human error due to their digital nature. However, throughout the experiments, it became apparent that the widespread praise for their accuracy is not founded on quantitative measurements but rather on comparisons with manual joint cutting. Undoubtedly, automated joinery machines can produce joints with greater accuracy than the average manual carpenter, particularly when time constraints are considered. However, the observed accuracy is still not as impressive when compared to other Computer Numeric Control (CNC) machining operations, such as those performed by milling machines.
 
-During the experiments, there were three instances in which the machined joints deviated significantly \seerefiii{subsection:exploration-4-missing-cut-problem}{subsection:exploration-4-inaccurate-screw-hole-problem}{subsection:exploration-5-inaccurate-polyline-lap-problem}. These inaccuracies were identified during ground test fits and resolved through manual adjustments using saws and chisels. However, the nature and the source of these errors were not identified. 
+During the experiments, there were three instances in which the machined joints deviated significantly \seerefiii{subsection:exploration-4-missing-cut-problem}{subsection:exploration-4-inaccurate-screw-hole-problem}{subsection:exploration-5-inaccurate-polyline-lap-problem}. These inaccuracies were identified during ground test fits and resolved through manual adjustments using saws and chisels. However, the nature and the source of these errors were not identified.
 
 Upon further search, I was not able to find any literature regarding the accuracy of automatic joinery machines or CNC-produced timber components.
 
@@ -518,11 +528,11 @@ Various techniques and management philosophies for process improvement have been
 \subsubsection{Defining Part Tolerance}
 \label{subsubsection:new-hypo-defining-part-tolerance}
 
-When ordering parts for the demonstrators, I discussed the accuracy of the machining process with the timber supplier that operates the automatic joinery machine. To my surprise, despite repeated explanations of the importance of accuracy in my experiments, the company was unwilling to define a tolerance for the machined parts. The only guarantee offered was a verbal promise to remake a part if it did not fit. It is worth noting that this practice differs significantly from the mechanical engineering field, where parts are always designed and made within a predefined tolerance. 
+When ordering parts for the demonstrators, I discussed the accuracy of the machining process with the timber supplier that operates the automatic joinery machine. To my surprise, despite repeated explanations of the importance of accuracy in my experiments, the company was unwilling to define a tolerance for the machined parts. The only guarantee offered was a verbal promise to remake a part if it did not fit. It is worth noting that this practice differs significantly from the mechanical engineering field, where parts are always designed and made within a predefined tolerance.
 
 Without further study into the operations of these timber companies, it is difficult to conclude whether this phenomenon is specific to this company or what caused their refusal to guarantee a tolerance. However, there are a few speculations worth further investigation:
 
-\begin{description}[style=unboxed] % Environment provided enumitem package
+\begin{description}[] % Environment provided enumitem package
 
 	\item [Economic Considerations --] Unique shapes of each timber part make manual inspection very time-consuming, and no automatic measurement methods are available.
 
@@ -533,7 +543,7 @@ Without further study into the operations of these timber companies, it is diffi
 	\item [Liability Concerns --] By agreeing to a specific tolerance level, the supplier may be exposing themselves to potential legal and financial consequences if the parts produced do not meet the agreed-upon tolerances. They may be unable to assess the risk or are unwilling to take the risk.
 
 \end{description}
-It is often said that timber parts cannot be made as accurately as metal parts, but lower accuracy should not be confused with an inability to define tolerance. 
+It is often said that timber parts cannot be made as accurately as metal parts, but lower accuracy should not be confused with an inability to define tolerance.
 Designing the right tolerance for a part requires striking a balance between production cost and what is considered an acceptable level of deviation. For example, parts produced with tight tolerance are less likely to cause assembly issues due to deviation. However, tight tolerances often implies higher production costs because tighter control is needed during production, which may slow down production or lead to a higher part rejection rate.
 
 For future development, I believe a pragmatic approach is helpful in finding such a balance, especially by discussing with all parties in the production chain to understand the implications when defining tolerance. This collaborative approach can foster a better understanding of the challenges and potential solutions, ultimately leading to improved accuracy and cost-effectiveness over the entire construction process.
@@ -543,47 +553,47 @@ For future development, I believe a pragmatic approach is helpful in finding suc
 
 Suffering from the undefined tolerance provided by the timber supplier, a manual fitting test was performed before constructing each demonstrator. This is to ensure the joints were machined correctly and that any assembly issues observed during the robotic processes could be attributed to the correct cause. There are generally two qualities that are important for the fitting test. The first is whether the joint pairs can be closed with a reasonable amount of force, and the second is whether the joints are in the correct position along the length of the beams.
 
-Across the three demonstrators, only pairwise fitting problems were found \seeref{subsection:new-hypo-accuracy-of-timber-parts}. The general tendency is that there is an increased likelihood of manufacturing problems for complex or unconventional joints. While these problems may be resolved in the future, the incidents revealed a more problematic issue - the lack of suitable inspection methods capable of inspecting large timber parts for the level of accuracy required for robotic assembly. Developing new methods to measure the accuracy of timber beams and timber joints may sound simple, but there are some fundamental questions that are yet to be solved. The following list contains some of the challenges that are speculated for the unsolved questions: 
+Across the three demonstrators, only pairwise fitting problems were found \seeref{subsection:new-hypo-accuracy-of-timber-parts}. The general tendency is that there is an increased likelihood of manufacturing problems for complex or unconventional joints. While these problems may be resolved in the future, the incidents revealed a more problematic issue - the lack of suitable inspection methods capable of inspecting large timber parts for the level of accuracy required for robotic assembly. Developing new methods to measure the accuracy of timber beams and timber joints may sound simple, but there are some fundamental questions that are yet to be solved. The following list contains some of the challenges that are speculated for the unsolved questions:
 
 \begin{itemize}[nosep]
 	\item What are suitable measurement tools?
     \begin{itemize}
     	\item Existing tools such as tape measures, laser distance measures, and callipers cannot reach the size needed for measuring a beam or a joint.
-    
+
     	\item Gauges can be used, but only if the geometry is repetitive.
-    
+
     	\item Can non-contact measurement methods be used, such as photogrammetry reconstruction, structure light sensing, X-ray scanner, lidar scanner?
     \end{itemize}
-    
+
 	\item How to take measurements on the wood surface?
     \begin{itemize}
-    	\item Which are the critical measurements that need to be inspected? 
-    
+    	\item Which are the critical measurements that need to be inspected?
+
     	\item How to probe soft surfaces with measurement tools?
-    
+
     	\item How to measure the tightness of a joint?
-    
+
     	\item How to take measurements on joints with many facets and compound angles? (They are almost impossible to measure with manual tools.)
-    
+
     	\item How to take measurements on inside surfaces that are hard to reach? (e.g. when measuring the straightness, diameter and depth of a drilled hole)
-    
+
     	\item If 3D scanning technology is used, how to analyse the point cloud to confirm whether the geometry is acceptable?
-    
+
     	\item How do moisture content and external environmental conditions affect the measurements?
     \end{itemize}
-    
+
     \item How to deal with the flexibility of the timber beam?
     \begin{itemize}
     	\item How to define dimensions and tolerances for a flexible beam that can accommodate flexing?
-    
+
     	\item Measurement may indicate a beam is bent, but this is likely to be usable because the assembly process can bend it back.
     \end{itemize}
-    
+
 	\item How to deal with bespoke pieces
     \begin{itemize}
     	\item Automated inspection is likely necessary. How can the measurement process be integrated into the production workflow?
     \end{itemize}
-    
+
     \item Can the measurements be used to improve joinery machine calibration?
 
 \end{itemize}
@@ -595,14 +605,14 @@ Additionally, the measured deviation can be used to improve the accuracy of subs
 \subsection{Deformation of Partially Assembled Structure}
 \label{subsection:new-hypo-deformation-of-partially-assembled-structure}
 
-During the assembly process, the partially assembled structure is constantly growing in size and complexity. As new elements, tools, and scaffolding are added, its structural behaviour changes. Observations have shown that it is necessary to ensure that the partial structure is (1) strong enough to avoid damage or collapse, and (2) the subsequent assembly alignment targets are within acceptable deviations \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}. 
+During the assembly process, the partially assembled structure is constantly growing in size and complexity. As new elements, tools, and scaffolding are added, its structural behaviour changes. Observations have shown that it is necessary to ensure that the partial structure is (1) strong enough to avoid damage or collapse, and (2) the subsequent assembly alignment targets are within acceptable deviations \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}.
 
-While timber is typically very strong, it is also very flexible. In addition, the rotational stiffness of integral timber joints is very low, which can result in high deformation simply from gravity load, especially when the structure is incomplete. This is consistent with the observation during the construction of the BusStop, as substantial deviations have been found on multiple occasions that prevented the assembly from continuing \seeref{subsection:exploration-2-unstable-structure-during-assembly}. 
+While timber is typically very strong, it is also very flexible. In addition, the rotational stiffness of integral timber joints is very low, which can result in high deformation simply from gravity load, especially when the structure is incomplete. This is consistent with the observation during the construction of the BusStop, as substantial deviations have been found on multiple occasions that prevented the assembly from continuing \seeref{subsection:exploration-2-unstable-structure-during-assembly}.
 
-From the observations of the BusStop, I proposed a hypothesis that structural analysis is needed to validate the strength and deformation at every critical step of the assembly. While it is similar to a normal structural analysis with only gravity load, there are some key differences. 
+From the observations of the BusStop, I proposed a hypothesis that structural analysis is needed to validate the strength and deformation at every critical step of the assembly. While it is similar to a normal structural analysis with only gravity load, there are some key differences.
 
 \begin{itemize}
-	\item The analysis should model the stiffness of the timber beams, the stiffness of the joints, and the small kinematic motion in the joints due to uncertain joint tightness. The last of these is particularly challenging because many structural analysis methods cannot correctly represent the behaviour of kinematic joints. 
+	\item The analysis should model the stiffness of the timber beams, the stiffness of the joints, and the small kinematic motion in the joints due to uncertain joint tightness. The last of these is particularly challenging because many structural analysis methods cannot correctly represent the behaviour of kinematic joints.
 
 	\item The partially-assembled structure may be at an unstable equilibrium point where small disturbances can make the structure unstable (Figure \ref{fig:probabilistic-structural-analysis}a). This can cause non-deterministic behaviour where there are many possible stable states.
 
@@ -616,9 +626,9 @@ From the observations of the BusStop, I proposed a hypothesis that structural an
     \label{fig:probabilistic-structural-analysis}
 \end{figure}
 
-One of the promising methods to perform this analysis is \textbf{probabilistic structural analysis}, which can simulate the probabilistic distribution of structural responses due to uncertainties, such as nonuniform material properties and imperfect geometry\parencite{cruseProbabilisticStructuralAnalysis1988, kohlerProbabilisticModelingTimber2007}. The analysis results are typically a statistical distribution that can be used directly in the Alignment-Correction Model. Unfortunately, this type of analysis was not developed for architectural purposes, and the new development is beyond my knowledge and the resources of this thesis. 
+One of the promising methods to perform this analysis is \textbf{probabilistic structural analysis}, which can simulate the probabilistic distribution of structural responses due to uncertainties, such as nonuniform material properties and imperfect geometry\parencite{cruseProbabilisticStructuralAnalysis1988, kohlerProbabilisticModelingTimber2007}. The analysis results are typically a statistical distribution that can be used directly in the Alignment-Correction Model. Unfortunately, this type of analysis was not developed for architectural purposes, and the new development is beyond my knowledge and the resources of this thesis.
 
-Although the structural analysis was not implemented computationally, the hypothesis was still tested in the design of the HyparHut and CantiBox demonstrators. The designer was able to intuitively gauge the potential severity of the deformation by identifying high risk elements \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}. Using this principle, the HyparHut was specifically designed to avoid deviation problems by adjusting the structure design and assembly sequence \seeref{subsubsection:exploration-4-global-correction-approach}. In the CantiBox design, temporary scaffolding was added to the four columns of each box to limit deformation, allowing subsequent beams to align properly \seeref{subsubsection:exploration-5-stability-from-scaffolding}. Both strategies proved useful in ensuring a high success rate during alignment, demonstrating that even manual estimation of deformation can serve as a reliable guide for applying mitigation strategies. 
+Although the structural analysis was not implemented computationally, the hypothesis was still tested in the design of the HyparHut and CantiBox demonstrators. The designer was able to intuitively gauge the potential severity of the deformation by identifying high risk elements \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}. Using this principle, the HyparHut was specifically designed to avoid deviation problems by adjusting the structure design and assembly sequence \seeref{subsubsection:exploration-4-global-correction-approach}. In the CantiBox design, temporary scaffolding was added to the four columns of each box to limit deformation, allowing subsequent beams to align properly \seeref{subsubsection:exploration-5-stability-from-scaffolding}. Both strategies proved useful in ensuring a high success rate during alignment, demonstrating that even manual estimation of deformation can serve as a reliable guide for applying mitigation strategies.
 
 Other supporting methods can also be speculated, such as using an extra robot to temporarily hold the structure before it is stable \parencite{paraschoCooperativeRoboticAssembly2019, thomaRoboticFabricationBespoke2018}. Regardless of the choice of temporary support or its absence, the ability to plan for the correct actions relies on fast and accurate methods that can predict deformation for partial assemblies. This will be useful not only for robotic timber assembly but also relevant to general construction planning practices.
 
@@ -627,20 +637,20 @@ Other supporting methods can also be speculated, such as using an extra robot to
 
 The deviation of the robotic arm is one of the major sources of alignment error observed in our demonstrations. Considering that the RFL robotic platform is already designed with a highly stiff gantry, future on-site robotic platforms are likely to have even greater deviations. Therefore, it is important to understand the factors affecting the accuracy of robots and how they can be predicted. This information can be useful for checking an assembly process (for a given robot) or when designing new robots for on-site use. There are three main sources of inaccuracy:
 
-\begin{description}[style=unboxed] % Environment provided enumitem package
+\begin{description}[] % Environment provided enumitem package
 
 	\item [Control Inaccuracy --] Deviation from target due to actuator and control limit.
 
 	\item [Mechanical Inaccuracy --] Deformation of robot parts and body.
 
-	\item [Forward Kinematics Inaccuracy --] Discrepancy between the CAD model of the robotic kinematic chain and the physical parts. 
+	\item [Forward Kinematics Inaccuracy --] Discrepancy between the CAD model of the robotic kinematic chain and the physical parts.
 
 \end{description}
 
 \subsubsection{Control Inaccuracy}
 \label{subsubsection:new-hypo-control-inaccuracy}
 
-Control inaccuracy is caused by the resolution of the actuator, encoder and sensors. It is a theoretical limit that is determined by the choice of components. For open-loop control actuators, such as stepper motors, the resolution is often limited by their step size. For closed-loop control actuators, such as DC servo motors, the resolution is limited by the encoder resolution and the driver's tracking deadband. This resolution can be changed by subsequent gearing in the transmission or worsened by any backlash in the gearbox. 
+Control inaccuracy is caused by the resolution of the actuator, encoder and sensors. It is a theoretical limit that is determined by the choice of components. For open-loop control actuators, such as stepper motors, the resolution is often limited by their step size. For closed-loop control actuators, such as DC servo motors, the resolution is limited by the encoder resolution and the driver's tracking deadband. This resolution can be changed by subsequent gearing in the transmission or worsened by any backlash in the gearbox.
 
 To quantify the effect of this deviation, it is possible to compute a theoretical envelope using a forward kinematics model and the resolution of each joint. This envelope is analytical and has a theoretical confidence value of 1.0 while the distribution within the envelope can be considered uniform. It is important to note that the deviation envelope is in Cartesian space and its shape is dependent on the configuration of the robot.
 
@@ -651,7 +661,7 @@ Mechanical inaccuracy is caused by the deformation of the robot under gravity an
 
 In a typical industrial robotic arm, this deformation cannot be detected by the encoders and is therefore outside its control loop. In other words, the deviation cannot be compensated unless the error can be predicted or measured. At the moment, both approaches are being actively researched, but results have not been adopted in standard practice. One approach is to create a structural deformation model of the robotic arm to predict deformation. A complex model is used to capture effects such as backlash and thermo deformation \parencite{wuReviewIndustrialRobot2022}. However, this approach requires a non-trivial amount of experimental data for a model with high dimensions. Another approach is to automate the measuring process to generate a large data set and use machine learning methods to create the compensation model \parencite{yeHighaccuracyPredictionCompensation2022}. Reports have indicated significant improvement in robotic arms, and it might be possible to be applied for the large-scale gantry and robotic arm configuration, similar to the RFL robot.
 
-Another approach for compensating deviation is by adding sensors to measure the actual deviation and subjecting that to the real-time control loop. These can either be sensors embedded inside or on the robot body, such as an inertial measurement unit (IMU) in the robot links \parencite{judHEAPAutonomousWalking2021} or stationary sensors, such as optical measuring stations monitoring the end effector position \parencite{stadelmannEndEffectorPoseCorrection2019}. Typically, stationary sensors have better accuracy but are limited to line-of-sight measurements. Embedded sensors do not have such limitations but are often less accurate. 
+Another approach for compensating deviation is by adding sensors to measure the actual deviation and subjecting that to the real-time control loop. These can either be sensors embedded inside or on the robot body, such as an inertial measurement unit (IMU) in the robot links \parencite{judHEAPAutonomousWalking2021} or stationary sensors, such as optical measuring stations monitoring the end effector position \parencite{stadelmannEndEffectorPoseCorrection2019}. Typically, stationary sensors have better accuracy but are limited to line-of-sight measurements. Embedded sensors do not have such limitations but are often less accurate.
 
 \subsubsection{Forward Kinematic Inaccuracy}
 \label{subsubsection:new-hypo-forward-kinematic-inaccuracy}

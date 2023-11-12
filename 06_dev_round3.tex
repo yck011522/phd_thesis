@@ -4,7 +4,8 @@
 \section{Goal}
 \label{section:exploration-3-goal}
 
-The goal of the third round is to address the issues observed in the previous round and to test the rest of the automatic process that were not included in the previous round \seeref{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1}. \todo{The following sentence revised to explain that the BusStop is reconstructed}No new demonstrator structure was created for this round because the BusStop Pavilion can be reused again for testing the missing robotic tasks. The following list shows an overview of the technical development in this round to achieve the goal. 
+The goal of the third round is to address the issues observed in the previous round and to test the rest of the automatic process that were not included in the previous round \seeref{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1}.
+% \todo{The following sentence revised to explain that the BusStop is reconstructed}No new demonstrator structure was created for this round because the BusStop Pavilion can be reused again for testing the missing robotic tasks. The following list shows an overview of the technical development in this round to achieve the goal.
 
 \begin{itemize}
 	\item \textbf{Mechatronics}
@@ -12,18 +13,18 @@ The goal of the third round is to address the issues observed in the previous ro
 	   \item Implemented docking adapter
 	   \item Addressed issues found in clamp drive electronics
     \end{itemize}
-    
+
 	\item \textbf{Controller / Firmware}
     \begin{itemize}[nosep]
     	\item Added stall protection in motion control
     	\item Process Execution Controller switched from GH interface to standalone GUI application
     \end{itemize}
-    
+
 	\item \textbf{CAD Design Software}
     \begin{itemize}[nosep]
     	\item Design software switched to Rhino Python
     \end{itemize}
-    
+
     \item \textbf{Task and Motion Planning }(TAMP)
     \begin{itemize}[nosep]
     	\item Developed Flowchart Formulation method for task planning
@@ -33,7 +34,7 @@ The goal of the third round is to address the issues observed in the previous ro
     	\item Developed Kinematic Robotic Tool Models
     	\item Integrated Post-planning Trajectory Smoothing
     \end{itemize}
-    
+
 \end{itemize}
 
 The main development effort in this round was to develop the software infrastructure that would allow automatic Task and Motion Planning (TAMP). Many of the related developments and discoveries presented in this chapter were created in collaboration with YiJiang Huang (from MIT Architecture) who specialises in TAMP for Construction Tasks. The level of software automation would not have been possible without this collaboration.
@@ -43,9 +44,9 @@ The main development effort in this round was to develop the software infrastruc
 
 The robotic process task list is a revision from \noseeref{subsection:exploration-1-dirt-clamping-assembly-process-task-list-v1} after incorporating the lessons learned about narrow passages \seeref{subsection:exploration-2-narrow-passage-problem}. Approach and Retract targets are added to the beginning or the end of Free Motions to circumvent the Narrow Passage problems. However, this added many small motions to the overall task list.
 
-In order to maintain a high level overview of the process, I developed a task group concept that is able to represent a group of tasks in an abstract way. This is referred to as \textbf{High-Level Tasks}. For example, it can contain a free motion to go to a target, linear motions between approach and retract points, and tool operations such as gripper movements and clamp movements. 
+In order to maintain a high level overview of the process, I developed a task group concept that is able to represent a group of tasks in an abstract way. This is referred to as \textbf{High-Level Tasks}. For example, it can contain a free motion to go to a target, linear motions between approach and retract points, and tool operations such as gripper movements and clamp movements.
 
-Table Figure \ref{table:high-level-task-v2} shows the High-Level Tasks, the Low-Level Tasks are described later \seeref{subsubsection:exploration-3-expanding-task-groups}. 
+Table Figure \ref{table:high-level-task-v2} shows the High-Level Tasks, the Low-Level Tasks are described later \seeref{subsubsection:exploration-3-expanding-task-groups}.
 
 \begin{table}[!h]
     \includegraphics[page=1, trim=25.4mm 130mm 25.4mm 33mm, clip, width=0.98\textwidth]{tables/Tables in Chapter 6.pdf}
@@ -79,7 +80,7 @@ This thesis aims to address these challenges by developing and testing workflows
 \subsection{Multimodal Motion Planning (MMMP)}
 \label{subsection:exploration-3-multimodal-motion-planning-mmmp}
 
-In the previous exploration round, motion planning was introduced as finding the path between two targets. In order to find the trajectory for a complete robotic process, it is necessary to consider many more robotic motions at the same time. Specifically, the robotic motions listed in \noseeref{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2} have to be chained together such that their starting and ending configuration are continuous. In addition, the manually performed backtracking in the last round would have to be automated to handle this many more chained motions \seeref{subsubsection:exploration-2-motion-planning}. 
+In the previous exploration round, motion planning was introduced as finding the path between two targets. In order to find the trajectory for a complete robotic process, it is necessary to consider many more robotic motions at the same time. Specifically, the robotic motions listed in \noseeref{subsection:exploration-3-dirt-clamping-assembly-process-task-list-v2} have to be chained together such that their starting and ending configuration are continuous. In addition, the manually performed backtracking in the last round would have to be automated to handle this many more chained motions \seeref{subsubsection:exploration-2-motion-planning}.
 
 Multimodal Motion Planning (MMMP) is an advanced approach to robotic motion planning that takes into consideration different kinematic configurations, different motion constraints and different types of actuators \parencite{hauserMultimodalMotionPlanning2010, hauserRandomizedMultimodalMotion2011}. MMMP expands the capabilities of single-query motion planning algorithms \seeref{subsubsection:exploration-2-selecting-motion-planning-algorithms} to perform more complex tasks.
 
@@ -99,13 +100,13 @@ The mode definition allows the planner to understand the difference between diff
 
 In order to specify the motion of a robotic arm, a program must be created. This is often achieved by a symbolic programme, written in a manufacturer-specific language such as Rapid for ABB robots and KRL for Kuka robots. The programme would contain a number of targets which the robot can pass through or stop at. These targets can be specified as \textbf{Robot Configurations}, a list of position values corresponding to each robot joint, or \textbf{Cartesian Poses}, a 6 DOF position and orientation definition.
 
-For industrial automation with repetitive targets, the targets are typically specified by configurations. These would be created by the production engineer or programmer using a joystick to jog the arm to the intended target and record the joint values at that moment. This process is referred to as ‘teaching’. Teaching has to be performed in the production environment using the real robot, with tools and workpieces attached to the robot to accommodate deflection due to payload. The recorded configurations are known as \textbf{Taught Configurations}. If accurate alignment is needed, the jogging can be performed in small increments until good alignment is confirmed. This has to be repeated for every key position where alignment is important. 
+For industrial automation with repetitive targets, the targets are typically specified by configurations. These would be created by the production engineer or programmer using a joystick to jog the arm to the intended target and record the joint values at that moment. This process is referred to as ‘teaching’. Teaching has to be performed in the production environment using the real robot, with tools and workpieces attached to the robot to accommodate deflection due to payload. The recorded configurations are known as \textbf{Taught Configurations}. If accurate alignment is needed, the jogging can be performed in small increments until good alignment is confirmed. This has to be repeated for every key position where alignment is important.
 
-Industrial robotic arms typically have good repeatability, meaning it is capable to go back to this taught target under the same payload. For performing repetitive tasks, this is largely sufficient. However, it is important to note that repeatability is different from ‘accuracy’, which is a measurement of its ability to reach an uncalibrated target and under arbitary payload. 
+Industrial robotic arms typically have good repeatability, meaning it is capable to go back to this taught target under the same payload. For performing repetitive tasks, this is largely sufficient. However, it is important to note that repeatability is different from ‘accuracy’, which is a measurement of its ability to reach an uncalibrated target and under arbitary payload.
 
-In cases where the target is not in a fixed position (e.g. position of an object located by a camera), or if the targets cannot be calibrated one by one, it is useful to specify them using a Cartesian Pose. This pose is often extracted from a digital model that estimates where the targets should be in relation to the robot base. The configuration of the robot joints must therefore be calculated using Inverse Kinematics (IK) calculation. 
+In cases where the target is not in a fixed position (e.g. position of an object located by a camera), or if the targets cannot be calibrated one by one, it is useful to specify them using a Cartesian Pose. This pose is often extracted from a digital model that estimates where the targets should be in relation to the robot base. The configuration of the robot joints must therefore be calculated using Inverse Kinematics (IK) calculation.
 
-\todo{The following paragraph is revised to explain what I mean by stretched. I also mentioned that the RFL robot is one of those high DOF robot that is affected by the choice of configuration}The accuracy of the robot resulting from an IK calculation depends on the accuracy of the robot kinematics model, payload and the choice of configuration used to reach the pose. High-DOF robots, such as the RFL robotic platform, can have many different IK solutions that can reach the same target. If an IK result is choosen where the robotic arm's base is positioned far away from the payload (e.g. to avoid obstacles), the robotic arm will have to stretch its forearm (link 3 to 6) far away. This can result in more defection compared to another configuration that is closer to the robot base. 
+\todo{The following paragraph is revised to explain what I mean by stretched. I also mentioned that the RFL robot is one of those high DOF robot that is affected by the choice of configuration}The accuracy of the robot resulting from an IK calculation depends on the accuracy of the robot kinematics model, payload and the choice of configuration used to reach the pose. High-DOF robots, such as the RFL robotic platform, can have many different IK solutions that can reach the same target. If an IK result is choosen where the robotic arm's base is positioned far away from the payload (e.g. to avoid obstacles), the robotic arm will have to stretch its forearm (link 3 to 6) far away. This can result in more defection compared to another configuration that is closer to the robot base.
 
 \FloatBarrier
 
@@ -130,7 +131,7 @@ The constructed ground platform was measured with the iGPS system and adjusted u
 \subsection{Tool Storage Pads}
 \label{subsection:exploration-3-tool-storage-pads}
 
-Storage pads were designed for keeping the gripper and clamps at a repeatable location for the robot to pick them up. Figure \ref{fig:tool-in-storage-pad} shows a CL3 Clamp and a PG500 Parallel Gripper placed in their storage pads during a test. 
+Storage pads were designed for keeping the gripper and clamps at a repeatable location for the robot to pick them up. Figure \ref{fig:tool-in-storage-pad} shows a CL3 Clamp and a PG500 Parallel Gripper placed in their storage pads during a test.
 
 \begin{figure}[!h]
     \centering
@@ -143,7 +144,7 @@ Storage pads were designed for keeping the gripper and clamps at a repeatable lo
 
 The design of the clamp pad simulates the same attachment orientation when the clamps are attached to a beam (Figure \ref{fig:cl3-clamp-storage-pad}, left). However, this orientation was found to be difficult for teaching the robot (Figure \ref{fig:about-to-pick-up-clamp}, right). The two step movement needed to pick up the clamp (to clear the pins on the hanging gripper) was also found to be unnecessary. This design was modified in the next demonstrator to a straight pick up design.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -166,21 +167,22 @@ The design of the clamp pad simulates the same attachment orientation when the c
 \subsection{Robot Cable Guides}
 \label{subsection:exploration-3-robot-cable-guides}
 
-The robotic cable guides were designed to address the cable tangling problem found in the last round \seeref{subsection:exploration-2-robot-cables-problems}. Specifically, to avoid unconstrained cables tangling with the Partially Assembled (PA) structure or being pinched between the spherical wrist. 
+The robotic cable guides were designed to address the cable tangling problem found in the last round \seeref{subsection:exploration-2-robot-cables-problems}. Specifically, to avoid unconstrained cables tangling with the Partially Assembled (PA) structure or being pinched between the spherical wrist.
 
 It is worth noting that the cable tangling problem is not new in the field of industrial robot operations. However, the robots used in manufacturing automation often perform repetitive motions and therefore, their cable guides can be designed to move in a predetermined manner. Moreover, they could be tested vigorously within a reasonable amount of time. In the context of architectural automation, the non-repetitive targets would require a cable guiding solution that can accommodate the whole range of motions that results from the motion planner. As the robotic arm contains 6 rotary joints, the cable can easily move in an unpredictable way.
 
-The solution developed for this round, is to use cable guides to constrain the cables to move in a known location. Those locations can therefore be blocked by collision models during motion planning to avoid collision. The framework for designing the cable guides was to decouple the six rotary joints such that the cable guides can deal with one or two joints at a time. 
+The solution developed for this round, is to use cable guides to constrain the cables to move in a known location. Those locations can therefore be blocked by collision models during motion planning to avoid collision. The framework for designing the cable guides was to decouple the six rotary joints such that the cable guides can deal with one or two joints at a time.
 
 The newly developed system established three groups for the robot:
 
-\begin{description}[style=unboxed] % Environment provided enumitem package
+\begin{description}[] % Environment provided enumitem package
+% \begin{description}[style=unboxed] % Environment provided enumitem package
 	\item [Joint 1 to 3] The base and upper arms. The cable slack in this area did not cause problems previously.
 	\item [Joint 4] Forearm in-line joint where cable slack was more prominent and are often closest to the structure.
 	\item [Joint 5 and 6] Wrist joints where pinching was a problem.
 \end{description}
 
-This new system developed for this test covered Joint 4 to 6, where the tangling problem was most severe in the previous round. This is because the range of motions in these three joints required a lot of extra cable slack to accommodate their movements. 
+This new system developed for this test covered Joint 4 to 6, where the tangling problem was most severe in the previous round. This is because the range of motions in these three joints required a lot of extra cable slack to accommodate their movements.
 
 \paragraph{Construction}
 
@@ -193,9 +195,9 @@ There are three mechanical parts that contribute to this system. The first is a 
     \label{fig:cable-retraction-system}
 \end{figure}
 
-Figure \ref{fig:swivel-cable-guide} shows the second part of the constraint, a \textbf{swivel cable guide} mounted on the side of the wrist. This guide is custom made with a 3D printer using PLA plastic and included a ball bearing to allow swivel movement. 
+Figure \ref{fig:swivel-cable-guide} shows the second part of the constraint, a \textbf{swivel cable guide} mounted on the side of the wrist. This guide is custom made with a 3D printer using PLA plastic and included a ball bearing to allow swivel movement.
 
-Note that the free-moving segment between the retraction system and the swivel guide only have one rotational joint (Joint 4). This means that the cable chain would wrap around the forearm in a predictable manner. 
+Note that the free-moving segment between the retraction system and the swivel guide only have one rotational joint (Joint 4). This means that the cable chain would wrap around the forearm in a predictable manner.
 
 \begin{figure}[!h]
     \centering
@@ -204,13 +206,13 @@ Note that the free-moving segment between the retraction system and the swivel g
     \label{fig:swivel-cable-guide}
 \end{figure}
 
-The final segment bridges over Joint 5 and 6 and is connected to the tool changer. A 3D-printed mounting piece (Figure \ref{fig:3d-printed-mounting-piece}) is used to create an interface between the cable chain and one of the attachment flanges on the Schunk tool changer. The tangential entry of the cable chain to the tool changer prevents cable pinching even when Joint 5 is in a fully deflected position (Figure \ref{fig:cable-chain-in-stretched-pose}). 
+The final segment bridges over Joint 5 and 6 and is connected to the tool changer. A 3D-printed mounting piece (Figure \ref{fig:3d-printed-mounting-piece}) is used to create an interface between the cable chain and one of the attachment flanges on the Schunk tool changer. The tangential entry of the cable chain to the tool changer prevents cable pinching even when Joint 5 is in a fully deflected position (Figure \ref{fig:cable-chain-in-stretched-pose}).
 
 The combined effect of the retraction system pulling the cable chain, the swivel guide and the tangential layout allows the cable chain to move freely in almost all configurations. During the motion planning process, the joint range were limited to the following configurations (Joint 1 to 6):
 
 {\footnotesize rm\_limits $=$ [(-175, 175), (-85, 145), (-175, 70), (-181, 181), (-120, 120), (-181, 181)]}
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -236,7 +238,7 @@ The combined effect of the retraction system pulling the cable chain, the swivel
 
 Figure \ref{fig:collision-mesh-of-the-tool-changer} shows the collision mesh (yellow) of the tool changer used for motion planning. Note that it covers a portion of volume where the cable chain leads out tangentially. Figure \ref{fig:collision-mesh-of-the-forearm} shows the collision meshes of the forearm. Extra boxes (orange) can be seen covering the swivel guide location and the location where the cable chain would pass over the wrist.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -303,7 +305,7 @@ By updating only part of the model where it is necessary, the user decisions tha
 
 Figure \ref{fig:editing-the-assembly-model} shows the UI for editing the \textbf{assembly model}; commands such as \codett{AddBeam}, \codett{MoveAssembly}, and \codett{FlipBeamAssemblyDirection} are shown in Rhino command line. Figure \ref{fig:editing-the-assembly-sequence} shows the UI for editing the \textbf{assembly sequence}; commands such as \codett{MoveEarlier}, \codett{MoveLater}, \codett{PickElementToGoAfterThis}, and \\ \codett{ChangeAssemblyMethod} are shown. In practice, I have found that the command\\ \codett{FlipBeamAssemblyDirection} is also helpful while editing the sequence.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -337,7 +339,7 @@ The process design software follows the model-centric programming approach descr
 \begin{enumerate}
 	\item \textbf{Creation of Process Model}
 	\begin{itemize}
-		\item The Process Model is created by combining the Assembly Model, Robot Model, Tool Models (Clamps, Docking Adapter and Grippers) and the Environment Model 
+		\item The Process Model is created by combining the Assembly Model, Robot Model, Tool Models (Clamps, Docking Adapter and Grippers) and the Environment Model
 		\item Subsequent computation updates this Process Model
 	\end{itemize}
 
@@ -353,14 +355,14 @@ The process design software follows the model-centric programming approach descr
 		\item Design rules are used to make decision automatically for parameters that have multiple options
 		\item Parameters can be modified manually by the engineer if needed
 	\end{itemize}
-	
+
 	\item \textbf{Compute Robot Targets and Object States}
 	\begin{itemize}
 		\item Robot Targets are computed automatically for each Robot Motion\\
         \seeref{subsubsection:exploration-3-compute-robot-targets}
 		\item Object States are computed automatically for each Keyframe between Tasks \seeref{subsubsection:exploration-3-compute-object-states}
 	\end{itemize}
-	
+
 	\item \textbf{Collision Detection and Keyframe Visualization}
 	\begin{itemize}
 		\item Scene states can be used for automatic collision detection
@@ -373,7 +375,7 @@ The process design software follows the model-centric programming approach descr
 	\end{itemize}
 \end{enumerate}
 
-Figure \ref{fig:process-design-1} shows the Process Design Workflow, the highlighted (grey) portion represents the initial creation of the Process Model, which is essentially a wrapper around all other important models. 
+Figure \ref{fig:process-design-1} shows the Process Design Workflow, the highlighted (grey) portion represents the initial creation of the Process Model, which is essentially a wrapper around all other important models.
 
 \begin{figure}[!h]
     \centering
@@ -429,7 +431,7 @@ In the DiRT Clamping Assembly Process, different sets of assembly tasks are requ
 
 	\end{itemize}
 \end{itemize}
-In order to be flexible for planning different scenarios and be generalizable for later development, the flowchart method uses \textbf{loops }and \textbf{conditionals }to plan the tasks. Figure \ref{fig:flowchart-for-planning-busstop} shows the flowchart used for planning the BusStop. It consists of a global loop (a) that iterates through each beam to be assembled, and two other loops (b) and (c) that iterates through the required clamps for the operations. A conditional (d) is used to decide whether the assembly requires synchronised clamping. Whenever the flowchart encounters a \textbf{Task}, that task is added to a \textbf{Task List}. 
+In order to be flexible for planning different scenarios and be generalizable for later development, the flowchart method uses \textbf{loops }and \textbf{conditionals }to plan the tasks. Figure \ref{fig:flowchart-for-planning-busstop} shows the flowchart used for planning the BusStop. It consists of a global loop (a) that iterates through each beam to be assembled, and two other loops (b) and (c) that iterates through the required clamps for the operations. A conditional (d) is used to decide whether the assembly requires synchronised clamping. Whenever the flowchart encounters a \textbf{Task}, that task is added to a \textbf{Task List}.
 
 \begin{figure}[!h]
     \centering
@@ -464,11 +466,11 @@ The list of tasks planned by the flowchart method is considered \textbf{High-Lev
 Note the following properties:
 
 \begin{itemize}
-	\item Only \textbf{LM}, \textbf{FM }and \textbf{SM }require motion planning. 
+	\item Only \textbf{LM}, \textbf{FM }and \textbf{SM }require motion planning.
 
-	\item Clamp and Robot Sync Linear Motion (SM) is provided by the L3 controller as it requires the coordination of the L2 Clamp Controller and the L2 ROS RRC Driver. 
+	\item Clamp and Robot Sync Linear Motion (SM) is provided by the L3 controller as it requires the coordination of the L2 Clamp Controller and the L2 ROS RRC Driver.
 
-	\item Other L2 tasks are also executed through the L3 Process Controller because it provides flow control \seeref{subsection:exploration-2-process-execution-controller}. 
+	\item Other L2 tasks are also executed through the L3 Process Controller because it provides flow control \seeref{subsection:exploration-2-process-execution-controller}.
 
 \end{itemize}
 Figure \ref{fig:task-group-1}, \ref{fig:task-group-2}, \ref{fig:task-group-3}, \ref{fig:task-group-4}, and \ref{fig:task-group-5} shows all the \textit{Task Groups} used in this exploration round expanded into its constituting low-level tasks (refer to Figure \ref{fig:legend-for-low-level-tasks} for a legend of the types of low-level tasks). The tasks that are marked with ``TC" are motion tasks that used a Taught Configuration for its target pose \seeref{subsection:exploration-3-taught-configuration-for-repetitive-targets}.
@@ -515,7 +517,7 @@ Figure \ref{fig:task-group-1}, \ref{fig:task-group-2}, \ref{fig:task-group-3}, \
     \label{fig:task-group-5}
 \end{figure}
 
-There are some useful techniques for designing the Low Level Tasks. 
+There are some useful techniques for designing the Low Level Tasks.
 
 \begin{itemize}
 	\item \textbf{Start with Free Motion --} Notice that all the High Level Tasks start with a Free Motion. This essentially means bringing the robot from wherever it was to this specific target at the beginning of this motion. This effectively allows the High Level Tasks to be decoupled from each other, allowing them to be modular and reusable within the flowchart.
@@ -555,7 +557,7 @@ After the task list is completed, the next step is to compute the process parame
 
 Table \ref{table:process-parameters-list-and-sources} shows the most important process parameters used for the clamped assembly process, the first column lists the 1:1 relationship, and how the parameters are related to the models. For example, there is only one ``Assembly Sequence" in the whole Assembly Model, but there is one ``Designed Location" for every beam.
 
-The second column lists the design phase where the values are generated. This can be Assembly Design (\textbf{AD}), Process Design (\textbf{PD}) and Tool Design (\textbf{TD}). In this PD phase, the production engineer’s role is to select suitable PD parameters such that the robotic process can be carried out. 
+The second column lists the design phase where the values are generated. This can be Assembly Design (\textbf{AD}), Process Design (\textbf{PD}) and Tool Design (\textbf{TD}). In this PD phase, the production engineer’s role is to select suitable PD parameters such that the robotic process can be carried out.
 
 The third column lists the domain expert involved in deciding the values. This can be Architectural and Structural Designer (\textbf{ASD}), Process Engineer (\textbf{PE}) and Tool Engineer (\textbf{TE}). It can also be Automatic Algorithms (\textbf{Auto}) that are used to infer the parameters from other parameters. In cases where the inference result has multiple possibilities, rule-based logic can be used for automatically making the selection. If necessary, the production engineer can also make adjustments to the selection.
 
@@ -572,12 +574,12 @@ The following three parameters regarding the parallel gripper is an example wher
 
 	\item \textbf{Grasp Face --} The grasp face was selected such that the gripper faced downwards during assembly. For vertical columns, the gripper was chosen to face the centre of the structure.
 
-	\item \textbf{Grasp Position --} The centre of the beam was used as default. 
+	\item \textbf{Grasp Position --} The centre of the beam was used as default.
 
 \end{itemize}
-Based on the three parameters, the \textbf{Grasp Pose} (a transformation that relates between Gripper Grasp Frame and Beam Base Frame) is automatically computed. Note that there are numerous grasp pose possibilities. However, most of them are not viable because of collisions with the structure or the clamps. Nevertheless, this rule set was designed to maximise the chance of selecting a viable solution and helped reduce the work needed when the production engineer reviews them and makes changes to them. 
+Based on the three parameters, the \textbf{Grasp Pose} (a transformation that relates between Gripper Grasp Frame and Beam Base Frame) is automatically computed. Note that there are numerous grasp pose possibilities. However, most of them are not viable because of collisions with the structure or the clamps. Nevertheless, this rule set was designed to maximise the chance of selecting a viable solution and helped reduce the work needed when the production engineer reviews them and makes changes to them.
 
-Figure \ref{fig:ui-for-selecting-gripper-parameters} shows the interface for the production engineer to select the gripper parameters. Specifically, four different Grasp Face decisions are shown. Note that only one of them is viable because the others have collisions (highlighted in orange). 
+Figure \ref{fig:ui-for-selecting-gripper-parameters} shows the interface for the production engineer to select the gripper parameters. Specifically, four different Grasp Face decisions are shown. Note that only one of them is viable because the others have collisions (highlighted in orange).
 
 
 % 2 x 2 Images
@@ -614,14 +616,14 @@ Figure \ref{fig:ui-for-selecting-gripper-parameters} shows the interface for the
     \label{fig:ui-for-selecting-gripper-parameters}
 \end{figure}
 
-Theoretically, a more advanced method would be to search the three parametric dimensions automatically to find a solution where the gripper does not cause collision. Additionally, it would be ideal to select a grasp position as close to the centre as possible to reduce imbalance. However, such algorithms were not implemented in the development because human intuition can often identify the solution fairly quickly. 
+Theoretically, a more advanced method would be to search the three parametric dimensions automatically to find a solution where the gripper does not cause collision. Additionally, it would be ideal to select a grasp position as close to the centre as possible to reduce imbalance. However, such algorithms were not implemented in the development because human intuition can often identify the solution fairly quickly.
 
 \FloatBarrier
 
 \subsubsection{Compute Robot Targets}
 \label{subsubsection:exploration-3-compute-robot-targets}
 
-\textbf{Robot target }refers to the goal pose of the robotic flange in each Robotic Motion (Linear and Free Motion) in the planned task list. It is also called the \textbf{Robot Flange Frame}, \textbf{Robot Frame}, or \textbf{Target Pose} depending on the context. 
+\textbf{Robot target }refers to the goal pose of the robotic flange in each Robotic Motion (Linear and Free Motion) in the planned task list. It is also called the \textbf{Robot Flange Frame}, \textbf{Robot Frame}, or \textbf{Target Pose} depending on the context.
 
 \begin{figure}[!h]
     \centering
@@ -632,12 +634,12 @@ Theoretically, a more advanced method would be to search the three parametric di
 
 As seen earlier in the expanded low level task list, the assembly of one beam contains many robot motions and the whole assembly contains many more. Because of the non-repetitive geometry and position of the beams in the assembly design, the targets for each motion are mostly unique. Furthermore, the targets have to be recomputed for visualisation whenever the process parameters are changed. Therefore it is important to have an automated system to compute the targets to ensure an efficient Process Design workflow.
 
-In case this is not obvious, all the concepts covered in the previous sections, such as the Assembly Model, Tool Models, Tasks, Task List, Process Parameters, are all designed in preparation for this computation step. 
+In case this is not obvious, all the concepts covered in the previous sections, such as the Assembly Model, Tool Models, Tasks, Task List, Process Parameters, are all designed in preparation for this computation step.
 
 \paragraph{Kinematic Chain}
 
-In order to understand how the robot targets are computated from the Assembly Model, is necessary to introduce the concept of the \textbf{Kinematic Chain} \parencite{lavallePlanningAlgorithms2006}. In the field of robot kinematics, the kinematic chain typically refers to the series of links and joints in the robot body \parencite{waldronKinematics2016}. However, in the context of motion planning it also includes the components that are attached to the body and the flange of the robot. In the DiRT clamping process, this includes the Docking Adapter, Clamps, Grippers and Beams. Because these components can be attached and detached during operation, the planning process have to be able to handle the change in the kinematic chain. 
-In order to allow a flexible combination of Tools and Beams, each of the kinematic link components are represented by their corresponding models, which are designed to allow are connected in a chain. Figure \ref{fig:kinematic-chain-of-the-robotic-system} shows the kinematic chain (after the robotic arm), when the robot is holding a beam in the gripper. 
+In order to understand how the robot targets are computated from the Assembly Model, is necessary to introduce the concept of the \textbf{Kinematic Chain} \parencite{lavallePlanningAlgorithms2006}. In the field of robot kinematics, the kinematic chain typically refers to the series of links and joints in the robot body \parencite{waldronKinematics2016}. However, in the context of motion planning it also includes the components that are attached to the body and the flange of the robot. In the DiRT clamping process, this includes the Docking Adapter, Clamps, Grippers and Beams. Because these components can be attached and detached during operation, the planning process have to be able to handle the change in the kinematic chain.
+In order to allow a flexible combination of Tools and Beams, each of the kinematic link components are represented by their corresponding models, which are designed to allow are connected in a chain. Figure \ref{fig:kinematic-chain-of-the-robotic-system} shows the kinematic chain (after the robotic arm), when the robot is holding a beam in the gripper.
 
 \begin{figure}[!h]
     \centering
@@ -646,7 +648,7 @@ In order to allow a flexible combination of Tools and Beams, each of the kinemat
     \label{fig:kinematic-chain-of-the-robotic-system}
 \end{figure}
 
-The coloured boxes represent the computational models of the components in the chain and contain properties that describe them. They have \textbf{intrinsic properties}, values of which do not change during the process, and \textbf{extrinsic properties}, values of which can be changed by task agents. For example, the pose (a.k.a. Frame) of a Gripper is an extrinsic prosperity because it is changed when it is moved around. 
+The coloured boxes represent the computational models of the components in the chain and contain properties that describe them. They have \textbf{intrinsic properties}, values of which do not change during the process, and \textbf{extrinsic properties}, values of which can be changed by task agents. For example, the pose (a.k.a. Frame) of a Gripper is an extrinsic prosperity because it is changed when it is moved around.
 
 The column on the left of the models shows the kinematic relationship between the pose of each object. Notice how they are related in a chain-like arrangement. Every component contains a base frame and a child frame. The geometrical relationship between the two is a \textbf{transformation function} \textbf{(T) }that can be extracted from the models. If this transformation function is defined as an intrinsic property of the component models, they can have a known and fixed value. Which means that as long as one of the frames in this frame is known, all the other frames in the chain can be computed, including the Robot Target at the top. On the right side of the diagram, is a flowchart that shows the application of the transformation to compute the up-chain or down-chain neighbours, once a single frame can be determined.
 
@@ -654,11 +656,11 @@ Note that the Grasp Pose is modelled as a component in the chain, even though it
 
 \paragraph{Kinematic Switch}
 
-The second important concept is that the kinematic chain can change during the assembly process whenever the robot is making or breaking contact with objects. For example, when picking up a beam or letting it go. The change in the kinematic chain is referred to as a \textbf{Kinematic Switch} \parencite{garrettIntegratedTaskMotion2021}. 
+The second important concept is that the kinematic chain can change during the assembly process whenever the robot is making or breaking contact with objects. For example, when picking up a beam or letting it go. The change in the kinematic chain is referred to as a \textbf{Kinematic Switch} \parencite{garrettIntegratedTaskMotion2021}.
 
-Figure \ref{fig:kinematic-chain-arrangements} shows all the possible kinematic chain arrangements used during the DiRT clamping assembly process. These arrangements are called \textbf{modes }in MMMP. The bottom row of the diagram shows how the modes are switched between each other during the high-level tasks mentioned earlier \seeref{subsubsection:exploration-3-task-planning-with-flowchart}. 
+Figure \ref{fig:kinematic-chain-arrangements} shows all the possible kinematic chain arrangements used during the DiRT clamping assembly process. These arrangements are called \textbf{modes }in MMMP. The bottom row of the diagram shows how the modes are switched between each other during the high-level tasks mentioned earlier \seeref{subsubsection:exploration-3-task-planning-with-flowchart}.
 
-Note that some of the high level tasks can have more than one kinematic switch, and some can have none. It is just a coincidence that the tasks used in the clamp assembly process all had a one-to-one relationship with a kinematic switch. 
+Note that some of the high level tasks can have more than one kinematic switch, and some can have none. It is just a coincidence that the tasks used in the clamp assembly process all had a one-to-one relationship with a kinematic switch.
 
 \begin{figure}[!h]
     \centering
@@ -675,7 +677,7 @@ In the DiRT clamp assembly process, the kinematic switches are indicated by a To
 
 The following examples shows how the model of kinematic chains can be used to compute the robot targets for each motion. The following three examples are extracted from the flowchart for planning the BusStop demonstrator (Figure \ref{fig:flowchart-for-planning-busstop}).
 
-Figure \ref{fig:exploration-three-low-level-tasks} shows the PickBeamFromStorage Task, as seen in Table \ref{table:low-level-tasks-and-agents}. The column on the left shows the sequence of low-level tasks (they are the same as before), which consist of one Free Motion, two Linear Motions and one Tool Motion. The kinematic chain during each motion is presented on the right hand including some of the important object frames (arranged horizontally for drawing convenience). Notice that the Tool Motion by the Gripper - Close Gripper created a kinematic switch. 
+Figure \ref{fig:exploration-three-low-level-tasks} shows the PickBeamFromStorage Task, as seen in Table \ref{table:low-level-tasks-and-agents}. The column on the left shows the sequence of low-level tasks (they are the same as before), which consist of one Free Motion, two Linear Motions and one Tool Motion. The kinematic chain during each motion is presented on the right hand including some of the important object frames (arranged horizontally for drawing convenience). Notice that the Tool Motion by the Gripper - Close Gripper created a kinematic switch.
 
 \begin{figure}[!h]
     \centering
@@ -684,14 +686,14 @@ Figure \ref{fig:exploration-three-low-level-tasks} shows the PickBeamFromStorage
     \label{fig:exploration-three-low-level-tasks}
 \end{figure}
 
-The computation begins by identifying Object Frames that are in a known position. In this case, the Gripper Location for Beam Pickup is fixed by design (such that the material loading location is the same every time for the operator). This parameter is fixed during Process Design, it is denoted by a \checkmark mark at step 3. The subsequent computation can proceed following the geometrical relationships between each step. The sequence of computation is indicated by the pointy arrows that originate from the \textit{known frame} with the \checkmark mark. 
+The computation begins by identifying Object Frames that are in a known position. In this case, the Gripper Location for Beam Pickup is fixed by design (such that the material loading location is the same every time for the operator). This parameter is fixed during Process Design, it is denoted by a \checkmark mark at step 3. The subsequent computation can proceed following the geometrical relationships between each step. The sequence of computation is indicated by the pointy arrows that originate from the \textit{known frame} with the \checkmark mark.
 
 \begin{itemize}
 	\item The Gripper Tool Motion in Step 3 created a kinematic switch but did not move any objects. Therefore the gripper frame for this step is equal to those in Step 2.
 
 	\item The position of the gripper in Step 1 is the Approach Position towards the position in Step 2, the transformation (Gripper-Approach-Beam Direction) is defined in the Tool Model of the Gripper.
 
-	\item The movement of the gripper in Step 4 after the pickup is defined during Process Design (it moves upwards in the world frame). Therefore its position can be computed from that in Step 3 by that transformation. 
+	\item The movement of the gripper in Step 4 after the pickup is defined during Process Design (it moves upwards in the world frame). Therefore its position can be computed from that in Step 3 by that transformation.
 
 \end{itemize}
 By definition, only Robotic Motions can change the position of components in the kinematic chain. Therefore the ‘equal’ relationship can be applied between frames whenever the task is not a Robotic Motion.
@@ -715,7 +717,7 @@ Figure \ref{fig:chain-example-2} shows another example of computing robotic targ
 \paragraph{Computation Example Three}
 
 \todo{Added a few more sentence to explain the example}
-Figure \ref{fig:chain-example-3} shows a third example with the PlaceClampToStructure Task Group. The known frame is the pose of the clamp where it is hanging on the partially-assembled structure. Because there are two possible orientations where a clamp can be hanging on the structure, one of the two poses was selected by the Process Engineer during Process Design. The two transformations (Clamp-Attach-To-Beam Step 1 Direction) and (Clamp-Attach-To-Beam Step 1 Direction) are properties of the Clamp and are defined in its Tool Model. The sequence of computation goes from Step 3 towards Step 1 and Step 4 towards Step 7. A kinematic switch happens at Step 6 when the docking adapter is released, letting go of the clamp. 
+Figure \ref{fig:chain-example-3} shows a third example with the PlaceClampToStructure Task Group. The known frame is the pose of the clamp where it is hanging on the partially-assembled structure. Because there are two possible orientations where a clamp can be hanging on the structure, one of the two poses was selected by the Process Engineer during Process Design. The two transformations (Clamp-Attach-To-Beam Step 1 Direction) and (Clamp-Attach-To-Beam Step 1 Direction) are properties of the Clamp and are defined in its Tool Model. The sequence of computation goes from Step 3 towards Step 1 and Step 4 towards Step 7. A kinematic switch happens at Step 6 when the docking adapter is released, letting go of the clamp.
 
 \begin{figure}[!h]
     \centering
@@ -755,7 +757,7 @@ Except for the Joint Configuration of the Robot, which is computed later by the 
 	\item All tools at their storage location
 	\item Gripper fingers closed
 	\item Clamp gripper closed, clamp jaw extended
-	\item Beams positioned in a stack at beam storage location 
+	\item Beams positioned in a stack at beam storage location
 \end{itemize}
 
 Each of the low-level tasks is now seen as a function that causes a state change. In practice, this is implemented as a function in the Task Classes where a Starting State can be passed into the function and the Ending State is produced by updating the relevant parameters (see Figure \ref{fig:state-change-function}).
@@ -808,13 +810,13 @@ When one of these states is used to update the extrinsic parameters of the objec
     \label{fig:process-design-6}
 \end{figure}
 
-Up until this point, every parameter has been automatically computed from the initial Process Model and default values have been used for all the multiple-choice decisions. The process visualization step begins a cycle where the production engineer can visualize the assembly actions, identify problems, and make adjustments to the process parameters to correct them. Refer to the adjustable process parameters that are marked with Process Engineer (PE) \seeref{subsubsection:exploration-3-process-parameters}. Most of them are related to the gripper and the clamps. 
+Up until this point, every parameter has been automatically computed from the initial Process Model and default values have been used for all the multiple-choice decisions. The process visualization step begins a cycle where the production engineer can visualize the assembly actions, identify problems, and make adjustments to the process parameters to correct them. Refer to the adjustable process parameters that are marked with Process Engineer (PE) \seeref{subsubsection:exploration-3-process-parameters}. Most of them are related to the gripper and the clamps.
 
 \paragraph{Drawing Previews}
 
 The screen capture image in Figure \ref{fig:rhino-interface-for-visualisation} shows how the process is visualised. A Rhino Command Interface was implemented to provide an interactive interface for the production engineer to step through the task list and visualise the scene at the end of each task. Extra controls are provided to jump to a specific beam or to skip through the non-robotic actions. The engineer is able to use all the 3D view control and rendering functions provided by the Rhino Viewport during this time.
 
-Once a scene is selected, all the objects are drawn in the 3D modelling canvas based on the object models using their state parameters. The 3D models were initially implemented as mesh models because it is the default input format for motion planning. However, the implementation for visualisation was changed to using BRep Polysurfaces in Rhino because their solid boolean operations are easier to perform in Rhino. 
+Once a scene is selected, all the objects are drawn in the 3D modelling canvas based on the object models using their state parameters. The 3D models were initially implemented as mesh models because it is the default input format for motion planning. However, the implementation for visualisation was changed to using BRep Polysurfaces in Rhino because their solid boolean operations are easier to perform in Rhino.
 
 \begin{figure}[!h]
     \centering
@@ -863,13 +865,13 @@ The interface also allows the engineer to make changes to the process parameters
 
 \FloatBarrier
 
-The screen capture images in Figure \ref{fig:visualisation-of-assembly-steps} show the \textit{visualisation of different assembly steps} for one beam. 
+The screen capture images in Figure \ref{fig:visualisation-of-assembly-steps} show the \textit{visualisation of different assembly steps} for one beam.
 
 \begin{itemize}
-	\item Step 1 and 2 shows the clamps’ position before and after attaching the clamp to the Partially Assembled (PA) structure. It is a small movement that slides the clamp's hanging gripper into the timber structure. 
-	\item Step 3 and 4 shows the gripper’s and beam’s positions before and after being moved into the clamp jaws. 
+	\item Step 1 and 2 shows the clamps’ position before and after attaching the clamp to the Partially Assembled (PA) structure. It is a small movement that slides the clamp's hanging gripper into the timber structure.
+	\item Step 3 and 4 shows the gripper’s and beam’s positions before and after being moved into the clamp jaws.
 	\item Step 5 shows the position after the synchronised clamping.
-	\item Step 6 shows the position after gripper release. 
+	\item Step 6 shows the position after gripper release.
 	\item Step 7 and 8 shows the clamp position before and after being detached.
 \end{itemize}
 
@@ -933,7 +935,7 @@ Notice that in this specific case, the position of the gripper before approach (
         \caption*{Step 8}
         %\label{fig:uniquesubfigurelabel}
     \end{subfigure}
-	
+
     \caption{Visualisation of eight selected assembly steps for one beam}
     \label{fig:visualisation-of-assembly-steps}
 \end{figure}
@@ -941,11 +943,11 @@ Notice that in this specific case, the position of the gripper before approach (
 \FloatBarrier
 
 \todo{Sentence below rewritten to clarify what objects are in collisions}
-It is important to understand that collisions can occur in some steps but not others. 
-For example, in Figure \ref{fig:collision-in-keyframes}, there are no collisions in the clamped keyframe (Figure \ref{fig:keyframe-no-collision}), but there are collisions in another keyframe (Figure \ref{fig:keyframe-no-collision}) between the gripper and the vertical timber beam. 
-Therefore, it is necessary for the production engineer to go through each beam and each step to ensure they are all collision free. Otherwise the subsequent motion planning process would fail to find a solution because objects were already in collision. 
+It is important to understand that collisions can occur in some steps but not others.
+For example, in Figure \ref{fig:collision-in-keyframes}, there are no collisions in the clamped keyframe (Figure \ref{fig:keyframe-no-collision}), but there are collisions in another keyframe (Figure \ref{fig:keyframe-no-collision}) between the gripper and the vertical timber beam.
+Therefore, it is necessary for the production engineer to go through each beam and each step to ensure they are all collision free. Otherwise the subsequent motion planning process would fail to find a solution because objects were already in collision.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -968,7 +970,7 @@ Therefore, it is necessary for the production engineer to go through each beam a
 
 In the next exploration round, an automatic collision check is implemented and the engineer only has to go through the steps that are in collision \seeref{subsection:exploration-4-fast-design-validation-with-ik-check}.
 
-Aside from collisions, the engineer can also make adjustments to avoid potentially difficult situations, such as beam grasp that are too close to other neighbours or the ground, or highly eccentric grasp that are prone to deflection. The ground platform can also be adjusted if necessary and updates the environment model. Once the engineer is happy with the Process Model, it can be passed on for motion planning. 
+Aside from collisions, the engineer can also make adjustments to avoid potentially difficult situations, such as beam grasp that are too close to other neighbours or the ground, or highly eccentric grasp that are prone to deflection. The ground platform can also be adjusted if necessary and updates the environment model. Once the engineer is happy with the Process Model, it can be passed on for motion planning.
 
 \FloatBarrier
 
@@ -997,7 +999,7 @@ The major role of the solver is to ensure \textbf{trajectory continuity} between
 In the previous exploration round, if the motion planning failed, the planning routine was programmed to backtrack to the first motion of the failing beam (which is always a Free Motion) and restart the planning from there. The intention is that the highly stochastic Free Motion Planner (FMP) would result in a different ending configuration that is less likely to get stuck in the subsequent motion.
 
 \todo{Paragrapgh rewritten to clarify what the problem of getting stuck. And why the Process Engineer is waiting 10h.}
-This downside of this sequential planning method was discovered not long after it was used for this round. The algorithm often got stuck at one specific beam and cannot get past the beam. This is because all the motions are chained together in this round, instead of planning only a few motions per beam. In some cases, a full night (10h) of autonomous planning could only finish half of all the 40 beams because it got stuck. To make things worse, the planning difficulty only increased towards the end because the partial structure grew larger and presents a large obstacle for the FMP. It was a long cycle for the Process Engineer to make changes and wait to see if the planning can finish. 
+This downside of this sequential planning method was discovered not long after it was used for this round. The algorithm often got stuck at one specific beam and cannot get past the beam. This is because all the motions are chained together in this round, instead of planning only a few motions per beam. In some cases, a full night (10h) of autonomous planning could only finish half of all the 40 beams because it got stuck. To make things worse, the planning difficulty only increased towards the end because the partial structure grew larger and presents a large obstacle for the FMP. It was a long cycle for the Process Engineer to make changes and wait to see if the planning can finish.
 
 This problem was addressed by separating the task list into smaller \textbf{task groups} organised by each beam, this created 40 groups for the 40 beams that could be planned in parallel, or skipped when being stuck. When the task lists had to be stitched back together, the Free Movement in the beginning of each beam can be replanned using the two neighbouring configurations to ensure their continuity. In conclusion, the discovery of this problem led to a generalizable technique of using \textbf{Free Motion as a ‘glue’} that can connect separately planned segments together.
 
@@ -1006,11 +1008,11 @@ At a later stage of this Exploration Round, taught configuration was introduced 
 \subsubsection{Short Discussion about Process Design}
 \label{subsubsection:exploration-3-short-discussion-about-process-design}
 
-The development of the planning process in this section is a process of discovery that has its own significance. 
+The development of the planning process in this section is a process of discovery that has its own significance.
 
 Despite MP, TAMP and MMMP techniques have been demonstrated in many robotics research projects, applying them for timber construction, or architectural applications in general, require a significant adjustment to their parameters. Moreover, the integrated design and planning approach that is common in the architectural workflow has little precedence in the field of robotics where these algorithms were invented.
 
-The development of High-Level Tasks, Low-Level Tasks, and the method of computing robot targets by geometrical relationship provided a unique solution for automatically parsing a design (i.e. the arrangement of beams and joints) into task and motion plans needed for autonomous execution. In addition, the discovery of process parameters that can have multiple options, formalised the workflow for how user input can be accommodated. It also opened the avenue for future work to automate these decisions using rule-based logic or searching techniques. This provided a roadmap for improving the process engineer’s role, from fixing collision problems, to designing the computational algorithms that can fix it automatically. 
+The development of High-Level Tasks, Low-Level Tasks, and the method of computing robot targets by geometrical relationship provided a unique solution for automatically parsing a design (i.e. the arrangement of beams and joints) into task and motion plans needed for autonomous execution. In addition, the discovery of process parameters that can have multiple options, formalised the workflow for how user input can be accommodated. It also opened the avenue for future work to automate these decisions using rule-based logic or searching techniques. This provided a roadmap for improving the process engineer’s role, from fixing collision problems, to designing the computational algorithms that can fix it automatically.
 
 Finally this development has shown that, the planning flowchart, the high level tasks, the low level tasks, the geometrical relationships between robot targets and the ACM are specific to the construction method (DiRT clamping in this case) and will require project specific customization. While the tasks performed by these algorithms are similar to the work of a construction planner, the skillset to design them is rather specialised. It is still uncertain as to who will design them.
 
@@ -1021,11 +1023,11 @@ Finally this development has shown that, the planning flowchart, the high level 
 \textit{Teaching} is a technique for calibrating and saving a robot configuration for repetitive targets, the configuration that are saved is called a \textit{taught configuration} \seeref{subsection:introduction-inaccuracy-for-non-repetitive-targets}.
 Taught configuration was added as an optional parameter in this round for all the Robot Motion Task. Whenever the taught configuration is defined, it is used as the starting configuration for motion planning instead of using Cartesian frame targets. Because the configuration is fixed, inverse kinematics (IK) is not required for planning the motion.
 
-Taught configuration was used in the clamping process for repetitive targets, including the storage pose (for all the grippers and clamps) and the pickup pose for the gripper to pick up a beam. The enhance accuracy for reaching these locations is hypothesised to be ``worth the effort'' to implement additional planning logic for handeling taught configuration. 
+Taught configuration was used in the clamping process for repetitive targets, including the storage pose (for all the grippers and clamps) and the pickup pose for the gripper to pick up a beam. The enhance accuracy for reaching these locations is hypothesised to be ``worth the effort'' to implement additional planning logic for handeling taught configuration.
 
 Figure \ref{fig:tool-storage-location} shows the tool storage location where taught configurations are used (one for each tool). A 3D-printed plastic pad was used to position the tools in a repeatable position on the aluminium platform. Figure \ref{fig:teaching-robot-configuration} shows a demonstration of \textbf{teaching} the robot configuration for picking up the tool. Similar process was used for the beam pickup configuration with the grippers.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -1051,7 +1053,7 @@ Taught configurations are typically acquired after the construction area is prep
 \label{subsection:exploration-3-non-sequential-planning-order}
 
 \todo{This paragraph was originally belonging to the previous subsection, but it is more appropriate to be here.}
-After the taught configurations were introduced, the planning method of sequentially planning chained motions no longer works. The success rate of planning a task group with taught configurations has dropped to zero - 0 success for each of the 40 beams, using 1800 seconds of maximum planning time. 
+After the taught configurations were introduced, the planning method of sequentially planning chained motions no longer works. The success rate of planning a task group with taught configurations has dropped to zero - 0 success for each of the 40 beams, using 1800 seconds of maximum planning time.
 
 \todo{This paragraph is rewritten to be more clear about the example.}
 Upon further investigation, the cause was identified to be the interaction between the taught configuration and the Linear Motion Planner (LMP), but not the Free Motion Planner (FMP). Figure \ref{fig:taught-configurations-over-constraint} shows the a portion of the task group that is faced with the problem. In this example, M3 is a Linear Motion that contains a taught configuration. When sequential planning order is used, the Free Motion (M1) and Linear Motion (M2) would be planned first. The problem happends when the Linear Motion (M3) is planned, the ending configuration of M2 is carried forward to be the starting configuration for M3. On the other side, the taught configuration for the target of M3 is fixing its ending configuration. This means that the the LMP is constrained to use fixed configuration for both start and end points. This over-constrained the LMP, reducing the chance successful planning past this motion to be almost zero.
@@ -1068,14 +1070,14 @@ Upon further investigation, the cause was identified to be the interaction betwe
 The following solution was considered but was not successful:
 
 \begin{itemize}
-	\item \textbf{Remove this Linear Motion --} it is not possible because of the narrow passage problem \seeref{subsection:exploration-2-narrow-passage-problem}. 
+	\item \textbf{Remove this Linear Motion --} it is not possible because of the narrow passage problem \seeref{subsection:exploration-2-narrow-passage-problem}.
 	\item \textbf{Plan Sequentially Backwards --} the over constraint scenario will still be encountered.
 
 \end{itemize}
 
 The solution that successfully addressed the problem consist of three parts:
 \begin{itemize}
-	\item A \textbf{priority flag }was added to the Motion Task to signify that it should be planned first. 
+	\item A \textbf{priority flag }was added to the Motion Task to signify that it should be planned first.
 
 	\item The process engineer can set this flag at the high-level task group template, and it would automatically appear in all motion tasks after Task Planning in the task list.
 
@@ -1090,9 +1092,9 @@ The solution that successfully addressed the problem consist of three parts:
     \label{fig:priority-flag}
 \end{figure}
 
-In summary, the departure from sequential planning order allowed the motions with more constraints (such as the Linear Motion next to a taught config) to be planned first. In this way, it was possible to avoid having both start and end config input for the LMP. The FMP, on the contrary, is able to handle the constraints and is planned the last. Figure \ref{fig:priority-flag-no-over-constraint} depicts the same \codett{PickToolFromStorage} Task. 
+In summary, the departure from sequential planning order allowed the motions with more constraints (such as the Linear Motion next to a taught config) to be planned first. In this way, it was possible to avoid having both start and end config input for the LMP. The FMP, on the contrary, is able to handle the constraints and is planned the last. Figure \ref{fig:priority-flag-no-over-constraint} depicts the same \codett{PickToolFromStorage} Task.
 
-Using the new method, Motion M3 and M4 would be flagged by the Process Engineer to be planned first, each of them will have one fixed config (directly from the taught config). Then M2 will be planned next (because LM has a higher priority than FM), it will also have one fixed config. M1 and M5 will be planned last, and will likely have two fixed configurations due to their neighbours before and after them. The FMG will have a much higher chance of bridging between the two constraints. 
+Using the new method, Motion M3 and M4 would be flagged by the Process Engineer to be planned first, each of them will have one fixed config (directly from the taught config). Then M2 will be planned next (because LM has a higher priority than FM), it will also have one fixed config. M1 and M5 will be planned last, and will likely have two fixed configurations due to their neighbours before and after them. The FMG will have a much higher chance of bridging between the two constraints.
 
 \begin{figure}[!h]
     \centering
@@ -1102,7 +1104,7 @@ Using the new method, Motion M3 and M4 would be flagged by the Process Engineer 
 \end{figure}
 
 
-Figure \ref{fig:success-rate-and-runtime} \parencite{huangNewAnalogProtocol2021} shows the success rate and runtime for planning one task group (one beam) using the non-sequential (it is called nonlinear in the paper) versus sequential planning. Notice that the success rate for sequential planning is practically zero. 
+Figure \ref{fig:success-rate-and-runtime} \parencite{huangNewAnalogProtocol2021} shows the success rate and runtime for planning one task group (one beam) using the non-sequential (it is called nonlinear in the paper) versus sequential planning. Notice that the success rate for sequential planning is practically zero.
 
 \begin{figure}[!h]
     \centering
@@ -1144,13 +1146,13 @@ In addition to the previous capability of sending pre-planned motions to the L2 
 
 \end{itemize}
 
-The tasks that were supported by the Execution Controller are listed Table \ref{table:low-level-tasks-and-agents}. Each task has a corresponding execution function that specifies how it should be executed. They were developed according to the protocols provided by the controllers that provided the execution capability, in this case, compas\_rrc (L2) and the L2 Clamp Controller. 
+The tasks that were supported by the Execution Controller are listed Table \ref{table:low-level-tasks-and-agents}. Each task has a corresponding execution function that specifies how it should be executed. They were developed according to the protocols provided by the controllers that provided the execution capability, in this case, compas\_rrc (L2) and the L2 Clamp Controller.
 
 In theory each controller should provide a method to start a task, to query the state of the task, and to stop an ongoing task. However, the stopping function was not implemented in compas\_rrc until the next Exploration Round. This means that it was still not possible to stop an ongoing motion or to keep the two controllers in sync during an error stop \seeref{subsection:exploration-2-arm-and-clamps-out-of-sync-after-error}.
 
 \paragraph{Operator Tasks}
 
-There are two types of Operator Tasks in the process, OperatorLoadBeam and VisualInspection. When the execution controller encounters these tasks, a dialog will appear to show the operator the task instructions and the controller will wait for the operator to complete that task. The operator will need to click a button to confirm the task is finished before the next task is executed. 
+There are two types of Operator Tasks in the process, OperatorLoadBeam and VisualInspection. When the execution controller encounters these tasks, a dialog will appear to show the operator the task instructions and the controller will wait for the operator to complete that task. The operator will need to click a button to confirm the task is finished before the next task is executed.
 
 \paragraph{Execution Flow Control}
 
@@ -1166,7 +1168,7 @@ The controller maintains an execution pointer that points to a selected task in 
 	\item \textbf{Error --} This state is entered automatically if the executing task has failed.
 
 \end{itemize}
-If the operator presses the \textbf{Stop Button}, the current task will be stopped immediately. The operator can also change from the Running state to the Step State at any time by using the \textbf{Step Button}. This effectively means the current task will be allowed to finish but the next one will not be started. 
+If the operator presses the \textbf{Stop Button}, the current task will be stopped immediately. The operator can also change from the Running state to the Step State at any time by using the \textbf{Step Button}. This effectively means the current task will be allowed to finish but the next one will not be started.
 
 \paragraph{Implementation Challenges}
 
@@ -1178,7 +1180,7 @@ The main implementation challenge is to synchronise emergency stop signals betwe
     \label{table:sequential-communication-protocol-emergency-stop}
 \end{table}
 
-An workaround was implemented to solve this problem, providing some improvement. The approach is to send only a small amount of targets in a short horizon and upon detection of a stop condition, discontinue the commands. However, this approach still causes a small amount of out-of-sync distance after the stop signal. 
+An workaround was implemented to solve this problem, providing some improvement. The approach is to send only a small amount of targets in a short horizon and upon detection of a stop condition, discontinue the commands. However, this approach still causes a small amount of out-of-sync distance after the stop signal.
 
 This problem was only truly resolved after this Exploration Round when developers of compas\_rrc upgraded the system to support real-time commands being passed on a second channel (Table \ref{table:two-channel-communication-protocol-emergency-stop}). The second channel allows the Level 3 controller to query the system status of the Level 2 controllers and can be performed frequently enough to detect emergency signals.
 
@@ -1194,8 +1196,8 @@ This problem was only truly resolved after this Exploration Round when developer
 A generalizable lesson learnt regarding the communication protocol between Level 2 (L2) to Level 3 (L3) controllers is that the use of a sequential commanding structure is incompatible with the time-critical synchronisation process that involves multiple controllers. This is relevant not only to DiRT operation but also systems such as 3D printing where a robotic arm is moving an extruder and the extruder mechanism is controlled by a separate controller.
 
 \todo{Rewritten to explain the proposal more clearly. and to clarify that the proposal is a hypothetical system for future implementation.}
-While the two-channel approach was successfully implemented in this round and used till the end of this thesis, I propose a hypothetical system for future exploration that uses only one channel while still providing the same functionality. 
-The proposed system utilize more states for describing a command, they are shown in Table \ref{table:single-channel-non-blocking-controller-states}. Only one communication channel is needed between L2 and L3 controllers. All the commands are initiated by the L3 controller, and they are always treated as a real-time non-blocking command by the L2 controller. 
+While the two-channel approach was successfully implemented in this round and used till the end of this thesis, I propose a hypothetical system for future exploration that uses only one channel while still providing the same functionality.
+The proposed system utilize more states for describing a command, they are shown in Table \ref{table:single-channel-non-blocking-controller-states}. Only one communication channel is needed between L2 and L3 controllers. All the commands are initiated by the L3 controller, and they are always treated as a real-time non-blocking command by the L2 controller.
 
 \begin{table}[!h]
     \includegraphics[page=9, trim=25.4mm 175mm 25.4mm 33mm, clip, width=0.98\textwidth]{tables/Tables in Chapter 6.pdf}
@@ -1204,7 +1206,7 @@ The proposed system utilize more states for describing a command, they are shown
 \end{table}
 
 
-When the L2 controller receives a command, it makes the decision whether the command is queued, or to start running immediately depending on the current buffering level within the controller. Level 3 can make a further request to change the command status to \textbf{Pause }or to \textbf{Cancel }the command. Figure \ref{fig:state-changes-of-a-command} shows how the command state is changed. The labels (L2 or L3) indicate which controller is responsible of initiating the change. 
+When the L2 controller receives a command, it makes the decision whether the command is queued, or to start running immediately depending on the current buffering level within the controller. Level 3 can make a further request to change the command status to \textbf{Pause }or to \textbf{Cancel }the command. Figure \ref{fig:state-changes-of-a-command} shows how the command state is changed. The labels (L2 or L3) indicate which controller is responsible of initiating the change.
 
 For out-of-sequence commands, such as a status report request or a pause request, the Level 2 controller should directly execute the command upon reception and change its status to \textbf{Completed }immediately.
 
@@ -1229,12 +1231,12 @@ Table \ref{table:single-channel-non-blocking-communication-protocol} illustrates
 \section{Demonstration}
 \label{section:exploration-3-demonstration}
 
-The demonstration structure is the same as the one used in the previous round. The timber beams were reused. The edges of lap joints that had less than 6mm chamfer were cut to 6mm, and those that were cut to 8mm still remained at 8mm \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}. 
+The demonstration structure is the same as the one used in the previous round. The timber beams were reused. The edges of lap joints that had less than 6mm chamfer were cut to 6mm, and those that were cut to 8mm still remained at 8mm \seeref{subsection:exploration-2-clamping-joints-with-chamfered-edges}.
 
 \subsection{Execution Preparation}
 \label{subsection:exploration-3-execution-plan}
 
-The execution preparation was similar to the previous demonstration except that no test fit was necessary and many of the manually performed tasks were performed robotically. After the construction of the ground platform, the planned tasks were executed sequentially as planned. The new process is mostly automatic and only requires the operator to the load the beams to the robot gripper. 
+The execution preparation was similar to the previous demonstration except that no test fit was necessary and many of the manually performed tasks were performed robotically. After the construction of the ground platform, the planned tasks were executed sequentially as planned. The new process is mostly automatic and only requires the operator to the load the beams to the robot gripper.
 
 For the purpose of observation and debugging. A number of \textit{Operator Visual Inspection} tasks were also added to the planning template for introducing a pause to the other automatic process. They were considered only necessary during the development process and are not integral to the DiRT Assembly Process. The inspection happens at the following movements:
 
@@ -1304,11 +1306,11 @@ After the previous round, it was clear that the new robotic operations would not
 \subsubsection{Automatic Clamp Placement}
 \label{subsubsection:exploration-3-automatic-clamp-placement}
 
-The automatic placement and retrieval of clamps was found to be possible, thereby validating one of the core principles of the Distributed Robotic Tools (DiRT) system. 
+The automatic placement and retrieval of clamps was found to be possible, thereby validating one of the core principles of the Distributed Robotic Tools (DiRT) system.
 
-However, the process is not capable of full autonomy because of alignment problems and the lack of sensors that can detect the misalignment \seerefii{subsection:exploration-3-beam-placement-misalignment}{subsection:exploration-3-docking-adapter-misalignment}. This required the operator to constantly monitor the system by physically walking into the construction area. Not only that it is dangerous but also not very effective because many of the alignment locations are far from the ground. 
+However, the process is not capable of full autonomy because of alignment problems and the lack of sensors that can detect the misalignment \seerefii{subsection:exploration-3-beam-placement-misalignment}{subsection:exploration-3-docking-adapter-misalignment}. This required the operator to constantly monitor the system by physically walking into the construction area. Not only that it is dangerous but also not very effective because many of the alignment locations are far from the ground.
 
-Figure \ref{fig:robot-picking-up-clamp} shows the robot having picked-up a clamp from the structure. A jerry rigged camera (pink) can be seen installed on the flange to help with docking alignment \seeref{subsection:exploration-3-docking-adapter-alignment-with-camera}. 
+Figure \ref{fig:robot-picking-up-clamp} shows the robot having picked-up a clamp from the structure. A jerry rigged camera (pink) can be seen installed on the flange to help with docking alignment \seeref{subsection:exploration-3-docking-adapter-alignment-with-camera}.
 
 \begin{figure}[!h]
     \centering
@@ -1335,18 +1337,18 @@ The discovery of the effectiveness of the scaffolding bars led to the developmen
 \subsubsection{Screws Preventing Joints Opening Up}
 \label{subsubsection:exploration-3-screws-preventing-joints-opening-up}
 
-A small wood screw (5 x 80mm) was added manually to some of the lap joints to prevent them from opening up. 
+A small wood screw (5 x 80mm) was added manually to some of the lap joints to prevent them from opening up.
 
-After the clamping operation of a beam and during the release of the clamp, the tightness of the lap joint was assessed by the operator. A manual push was used to determine if the joints needed to be fixed. If so, a battery-powered screwdriver was used to insert a screw into the lap joint, penetrating the two beams. No pre-drilled holes were used because of the small screw size. 
+After the clamping operation of a beam and during the release of the clamp, the tightness of the lap joint was assessed by the operator. A manual push was used to determine if the joints needed to be fixed. If so, a battery-powered screwdriver was used to insert a screw into the lap joint, penetrating the two beams. No pre-drilled holes were used because of the small screw size.
 
 Despite the small size of the screw, it was found to be sufficient in holding the joint in place, preventing them from opening up. They also appeared to have helped stiffen the structure. However, this effect was not conclusive.
 
-Theoretically, this screw is not bearing the structural load of the structure, but only to prevent joints from accidentally opening up. This discovery provided useful information for later development of a screwdriver for closing joints in the next Exploration Round \seeref{section:exploration-4-goal}. 
+Theoretically, this screw is not bearing the structural load of the structure, but only to prevent joints from accidentally opening up. This discovery provided useful information for later development of a screwdriver for closing joints in the next Exploration Round \seeref{section:exploration-4-goal}.
 
 \subsubsection{Debugging with the Process Execution Controller}
 \label{subsubsection:exploration-3-debugging-with-the-process-execution-controller}
 
-The process execution controller \seeref{subsection:exploration-3-standalone-process-execution-controller} was found to be very helpful during the execution of the planned tasks. 
+The process execution controller \seeref{subsection:exploration-3-standalone-process-execution-controller} was found to be very helpful during the execution of the planned tasks.
 
 \begin{itemize}
 	\item \textbf{Rewind and try again --} Using the task list in the table view, it is easy to select an earlier state to rewind the robot and tools back to an earlier state for debugging purposes.
@@ -1369,11 +1371,11 @@ Despite the inclusion of temporary scaffolding during construction, which reduce
     \begin{itemize}
         \item On many occasions, I manually jogged the robot to align the joints visually. The deviation often requires 10 to 20mm of offset on the linear gantry and 2 to 4 degrees on the last joint of the robotic arm to be corrected. No pattern was observed between the offset amount.
 
-        \item I perform manual jogging too often that I added an `OperatorAddVisualOffset` Movement in the list of tasks and created a function for applying the offset to subsequent assembly and gripper retract movement. 
+        \item I perform manual jogging too often that I added an `OperatorAddVisualOffset` Movement in the list of tasks and created a function for applying the offset to subsequent assembly and gripper retract movement.
 
     \end{itemize}
 
-	\item For beams that were placed on the ground platform, the final target is somewhat consistently lower than the point where the beam touches the platform. 
+	\item For beams that were placed on the ground platform, the final target is somewhat consistently lower than the point where the beam touches the platform.
     \begin{itemize}
         \item This usually pushed the beam to slip within the gripper fingers, sometimes causing an overload error on the robot controller.
 
@@ -1395,7 +1397,7 @@ Because of poor alignment, a temporary solution was added to allow the operator 
 
 {\footnotesize Number of measured data points $= 29$ \\ Mean Value (after discarding top and bottom 5\% outlier) $= 9.1mm$}
 
-Although the data shows the distribution of the deviation, it is not possible to draw conclusion whether the inaccuracy comes from the robot-side or the stationary-side. It is most likely a combination of the two because the clamps also visibly move during the clamping movement. 
+Although the data shows the distribution of the deviation, it is not possible to draw conclusion whether the inaccuracy comes from the robot-side or the stationary-side. It is most likely a combination of the two because the clamps also visibly move during the clamping movement.
 
 \FloatBarrier
 
@@ -1404,13 +1406,13 @@ Although the data shows the distribution of the deviation, it is not possible to
 Another investigation was conducted for the placement of beams when the misalignment was bad. Two different types of observations were made, to compare real world position and the position in the CAD model. In both cases, gripper-to-beam positions were first checked to ensure it is grasped correctly.
 
 \begin{itemize}
-	\item \textbf{Alignment to the ground platform --} Since the platform is measured with iGPS, its position in the CAD environment is highly accurate. The beam was sent to a known target above the platform, and its deviation is measured against it. In some cases, the error in the vertical direction is more than 10mm from the model in the CAD software. 
+	\item \textbf{Alignment to the ground platform --} Since the platform is measured with iGPS, its position in the CAD environment is highly accurate. The beam was sent to a known target above the platform, and its deviation is measured against it. In some cases, the error in the vertical direction is more than 10mm from the model in the CAD software.
 
-	\item \textbf{Alignment to other joints on the PA structure --} Since the PA structure sits accurately on the ground platform, and is supported by scaffolding, the location of the joints are reasonably accurate. However, misalignments between mating joints can also exceed 10mm. 
+	\item \textbf{Alignment to other joints on the PA structure --} Since the PA structure sits accurately on the ground platform, and is supported by scaffolding, the location of the joints are reasonably accurate. However, misalignments between mating joints can also exceed 10mm.
 
 \end{itemize}
 
-Because of these two observations, I concluded that the source of error on the robot-side is so significant that no matter how stable the PA structure is, it is still beyond what the chamfered edges can correct. 
+Because of these two observations, I concluded that the source of error on the robot-side is so significant that no matter how stable the PA structure is, it is still beyond what the chamfered edges can correct.
 
 The following list explored the possible source of error on the robot-side in the kinematic chain, starting from the gantry, ending at the timber.
 
@@ -1477,11 +1479,11 @@ In these cases, either I manually jogged the robot to alignment, or pushed the P
 
 \paragraph{Possible Cause}
 
-The cause is similar to another problem \seeref{subsection:exploration-3-beam-placement-misalignment}. However, the fact that the clamp is hanging from the PA structure is likely to have more error. Unfortunately this was difficult to quantify. 
+The cause is similar to another problem \seeref{subsection:exploration-3-beam-placement-misalignment}. However, the fact that the clamp is hanging from the PA structure is likely to have more error. Unfortunately this was difficult to quantify.
 
 Note that the maximum permissible XY axis offset for the Schunk Tool Changer to successfully lock is 2mm, which is significantly smaller tolerance than the timber joints. This may explain the very low success rate.
 
-In the case of PickClampFromStorage, the use of taught configuration, resulting in 100\% success rate confirms that the robot is very repeatable. 
+In the case of PickClampFromStorage, the use of taught configuration, resulting in 100\% success rate confirms that the robot is very repeatable.
 
 \paragraph{Possible Solution and Follow-Up}
 
@@ -1524,7 +1526,7 @@ In some occasions, after the docking adapter is inserted within each other, and 
 
 	\item If the system is not stopped in time, the execution controller would continue to move the execution pointer to the next move because the gripper actuator also lacks a sensor to detect its failure.
 
-	\item The next two movements are the robotic arm detaching the clamp with linear movements. Since the clamp is not properly locked to the robotic arm and that the gripper is not released, the robotic arm moving away from the clamp can cause it to bend around the attachment location and result in a fall. 
+	\item The next two movements are the robotic arm detaching the clamp with linear movements. Since the clamp is not properly locked to the robotic arm and that the gripper is not released, the robotic arm moving away from the clamp can cause it to bend around the attachment location and result in a fall.
 
 \end{enumerate}
 
@@ -1597,7 +1599,7 @@ In an attempt to understand if the docking adapter alignment can be solved by a 
 \end{figure}
 
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{minipage}{0.49\textwidth}
@@ -1618,7 +1620,7 @@ In an attempt to understand if the docking adapter alignment can be solved by a 
 \end{figure}
 
 
-An alignment routine was added to the Process Execution Controller to involve the operator for aligning the docking adapter. A video feed with digitally overlaid blue and red marks was shown to the operator (see Figure \ref{fig:alignment-target-as-seen}) and the operator can type in misalignments values. The XY misalignment can be read from the red mark position over the target and the Z misalignment (distance to target) can be guessed using the relative size of the blue marks over the target. The robot is then instructed to move to the offsetted position and the observation is repeated until all marks are aligned as best as possible. However, due to the activation of only three Cartesian axes, the correction can only compensate for position but not orientation error. 
+An alignment routine was added to the Process Execution Controller to involve the operator for aligning the docking adapter. A video feed with digitally overlaid blue and red marks was shown to the operator (see Figure \ref{fig:alignment-target-as-seen}) and the operator can type in misalignments values. The XY misalignment can be read from the red mark position over the target and the Z misalignment (distance to target) can be guessed using the relative size of the blue marks over the target. The robot is then instructed to move to the offsetted position and the observation is repeated until all marks are aligned as best as possible. However, due to the activation of only three Cartesian axes, the correction can only compensate for position but not orientation error.
 
 \paragraph{Observation}
 
@@ -1636,14 +1638,14 @@ This alignment method was tested 59 times during the robotic construction proces
 
 \paragraph{Possible Solution and Follow-Up}
 
-This experiment indicated that the visual docking method is a promising approach. Leading to the development of a fully automatic camera marker correction mechanism in the next Exploration Round \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}. 
+This experiment indicated that the visual docking method is a promising approach. Leading to the development of a fully automatic camera marker correction mechanism in the next Exploration Round \seeref{subsection:exploration-4-camera-marker-alignment-correction-system}.
 
 After this positional correction and successful insertion, the docking adapter is still suffering from failure to lock. This indicated that the locking problem is likely the result of orientation error and overly stiff docking pair \seeref{subsection:exploration-3-docking-adapter-fail-to-lock}.
 
 \subsection{Robot Collision with Scaffolding}
 \label{subsection:exploration-3-robot-collision-with-scaffolding}
 
-Due to the unplanned use of scaffolding to support the unstable structure. The pre-planned robotic motion caused collision of the moving objects with the scaffolding bar and clamps. Figure \ref{fig:robot-colliding-with-scaffolding-bar} show an imminent collision between the timber beam held by the robot and a scaffolding bar. 
+Due to the unplanned use of scaffolding to support the unstable structure. The pre-planned robotic motion caused collision of the moving objects with the scaffolding bar and clamps. Figure \ref{fig:robot-colliding-with-scaffolding-bar} show an imminent collision between the timber beam held by the robot and a scaffolding bar.
 
 \begin{figure}[!h]
     \centering
@@ -1653,7 +1655,7 @@ Due to the unplanned use of scaffolding to support the unstable structure. The p
 \end{figure}
 
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -1681,20 +1683,20 @@ Collisions also happened with the documentation camera on a tripod. However, tha
 \begin{itemize}
 	\item \textbf{Include scaffolding in motion planning --} in Exploration Round 5, the use of scaffolding is a planned act. The location and geometry of the scaffolding bars can therefore be included as collision geometry during motion planning. \seeref{subsection:exploration-5-scaffolding-support-during-assembly}.
 
-	\item \textbf{Sensing collision geometry around robot --} If a dynamic point cloud scanner were to be used for scanning the area surrounding the robot during operation, the robot can potentially navigate around the newfound obstacle and would not be limited to the planned collision geometry. 
+	\item \textbf{Sensing collision geometry around robot --} If a dynamic point cloud scanner were to be used for scanning the area surrounding the robot during operation, the robot can potentially navigate around the newfound obstacle and would not be limited to the planned collision geometry.
 
 \begin{itemize}
 	\item Existing research literature in autonomous robotics have developed many different techniques for sensing and replanning. \parencite{elbanhawiSamplingBasedRobotMotion2014} However, due to the lack of expertise in these fields, the development was not pursued.
 
 \end{itemize}
-	\item \textbf{Do not use scaffolding --} in Exploration Round 4, deformation-aware design principles and error correction method was developed \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}. The demonstrator can be designed to be stable and with limited deformation for all the incomplete states in the entire assembly process. This eliminated the need for any scaffolding during assembly. 
+	\item \textbf{Do not use scaffolding --} in Exploration Round 4, deformation-aware design principles and error correction method was developed \seeref{subsection:exploration-4-deformation-awareness-and-error-correction-by-triangulation}. The demonstrator can be designed to be stable and with limited deformation for all the incomplete states in the entire assembly process. This eliminated the need for any scaffolding during assembly.
 
 \end{itemize}
 
 \subsection{Redundant Clamp Detach Attach Actions}
 \label{subsection:exploration-3-redundant-clamp-detach-attach-actions}
 
-The task planning method using a flowchart was found to produce a number of redundant tasks regarding tool changes. This is because of the cyclic nature of the flowchart that considered only the tasks necessary for one beam. 
+The task planning method using a flowchart was found to produce a number of redundant tasks regarding tool changes. This is because of the cyclic nature of the flowchart that considered only the tasks necessary for one beam.
 
 \paragraph{Possible Cause}
 
@@ -1740,11 +1742,11 @@ In order to illustrate the problem, consider the task list below for two beams (
 
 Notice that at the end of the first beam and the beginning of the next one, the robot will PickClampFromStructure (c1), PlaceClampToStorage (c1), PickClampFromStorage (c1), and finally PlaceClampToStructure (c1). The PlaceClampToStorage (c1) and PickClampFromStorage (c1) are redundant. Cancelling out these two actions would allow the clamp to go directly from one area of the structure to another area directly.
 
-Conceptually, this is a simple elimination step. However, because the flow chart method is iterating based on one cycle per beam, it is difficult to reason about when to retrieve the clamps or not based on the situation in the previous or next beams. Furthermore, if a clamp is left on the structure, to be retrieved at a later time, there is no guarantee that the clamp can still be accessible. For example, the access could have been blocked by the addition of elements. 
+Conceptually, this is a simple elimination step. However, because the flow chart method is iterating based on one cycle per beam, it is difficult to reason about when to retrieve the clamps or not based on the situation in the previous or next beams. Furthermore, if a clamp is left on the structure, to be retrieved at a later time, there is no guarantee that the clamp can still be accessible. For example, the access could have been blocked by the addition of elements.
 
 \paragraph{Possible Solution and Follow-Up}
 
-This problem is a classical reason for using automatic task planning that is developed by the robotics community \parencite{ghallabAutomatedPlanningActing2016}. The idea is to create rules for the computer to automatically search for an assembly task list. During a search, the computer can plan out when and how the clamps are moved, and whether it is necessary to place the clamp back to storage. 
+This problem is a classical reason for using automatic task planning that is developed by the robotics community \parencite{ghallabAutomatedPlanningActing2016}. The idea is to create rules for the computer to automatically search for an assembly task list. During a search, the computer can plan out when and how the clamps are moved, and whether it is necessary to place the clamp back to storage.
 
 The implementation of automated task planning is developed and tested in the next Exploration Round \seerefii{subsection:exploration-5-tamp-with-pddlstream}{subsection:exploration-5-specifying-actions-and-goals-for-tamp-with-pddlstream}. The results showed that a large amount of clamp transfer does not need to go back to storage \seeref{subsubsection:exploration-5-optimised-clamp-transfer-tasks}.
 
@@ -1753,7 +1755,7 @@ The implementation of automated task planning is developed and tested in the nex
 
 The ground platform in this round was designed for accurate measurement of robotic precision. However, during construction, attaching the columns to the flat surface of the aluminium profile proved challenging (see Figure \ref{fig:column-resting-difficulty}). In many instances, a significant number of aluminium profiles were needed to provide a clamping surface between the column and the platform, as shown in Figure \ref{fig:temporary-scaffolding-needed-column-bottom}. These scaffolding elements are slow to erect, and their connection are not very stiff.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -1780,7 +1782,7 @@ The experience from constructing the BusStop pavilion indicated that it would be
 \subsection{Difficult to Plan Targets}
 \label{subsection:exploration-3-difficult-to-plan-targets}
 
-The chart below \parencite{huangNewAnalogProtocol2021} shows the planning time for each of the 40 beams in the BusStop using the MMMP solver developed in the previous section \seeref{subsection:exploration-3-non-sequential-planning-order}. Notice that two beams were particularly difficult to plan and took substantially longer time. 
+The chart below \parencite{huangNewAnalogProtocol2021} shows the planning time for each of the 40 beams in the BusStop using the MMMP solver developed in the previous section \seeref{subsection:exploration-3-non-sequential-planning-order}. Notice that two beams were particularly difficult to plan and took substantially longer time.
 
 \begin{figure}[!h]
     \centering
@@ -1791,7 +1793,7 @@ The chart below \parencite{huangNewAnalogProtocol2021} shows the planning time f
 
 The images below illustrate the problem of the difficulty faced at sequence 14. Figure \ref{fig:difficult-target-at-sequence-14} depict the moment (in different viewing angles) where the gripper (blue) holding the active beam (white) is approaching the clamp jaws (green). Notice that the free motion that brings the beam to this target had to slide through a narrow passage \seeref{subsection:exploration-2-narrow-passage-problem}. This is because the beam is blocked by the clamp jaws on one side, and blocked by one protruding portion of the already-assembled beams (light blue) on the other side.
 
-% 2 Horizontal Image  
+% 2 Horizontal Image
 \begin{figure}[!h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -1822,7 +1824,7 @@ It was found that difficult problems like these are difficult to anticipate duri
 	\item Visual inspection by the process engineer during the Process Design Phase may miss the problem. Notice that the narrow passage is not obvious from the viewing angle in the left image above. Narrow passages may only become obvious in certain viewing angles, such as the image on the right.
 
 \end{itemize}
-Therefore, it is only during final planning that the difficulty is encountered. The long task list for each beam also made the difficult problem difficult to diagnose, often required reading log files to understand which motions failed most frequently. In later development, the task list was split into smaller chunks, which enabled easier diagnosis \seeref{subsection:exploration-4-planning-order-by-motion-group}. 
+Therefore, it is only during final planning that the difficulty is encountered. The long task list for each beam also made the difficult problem difficult to diagnose, often required reading log files to understand which motions failed most frequently. In later development, the task list was split into smaller chunks, which enabled easier diagnosis \seeref{subsection:exploration-4-planning-order-by-motion-group}.
 
 \subsection{RFL Robot Inaccuracy and Calibration}
 \label{subsection:exploration-3-rfl-robot-inaccuracy-and-calibration}
@@ -1896,4 +1898,4 @@ The following joints in the URDF model were updated:
 
 A comparison between measured values and the FK result shows that the average error is reduced from 6.46mm to 2.45mm after the URDF is adjusted. The remaining error is likely due to the nonlinear effects and dynamic deformation of the robotic system. These effects cannot be accommodated with the URDF model.
 
-This URDF is used in the subsequent development rounds together with other measures for improving alignment accuracy. The combined effect resulted in an improvement in alignment. However, it is difficult to conclude which effect contributed the most. 
+This URDF is used in the subsequent development rounds together with other measures for improving alignment accuracy. The combined effect resulted in an improvement in alignment. However, it is difficult to conclude which effect contributed the most.
