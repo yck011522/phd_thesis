@@ -20,3 +20,13 @@ Prof. Dr. Agathe Koller
 % For hiding tracking changes
 \usepackage[disable]{todonotes}
 ```
+
+To bake MTHL output
+https://www.kodymirus.cz/tex4ht-doc/BasicTutorial.html#basic-tutorial
+
+```
+make4ht --output-dir html htmlmain.tex "3,splitat=chapter"
+make4ht --output-dir html -e htmlbuild.lua testmain.tex
+
+make4ht --output-dir html -e htmlbuild.lua -a debug htmlmain.tex
+```
